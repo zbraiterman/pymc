@@ -1,1 +1,3 @@
-az.plot_posterior(data, var_names=['mu'])
+import arviz as az
+data = az.load_arviz_data('centered_eight')
+az.plot_posterior(data)

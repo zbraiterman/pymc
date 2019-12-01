@@ -1,21 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Latent Variable Implementation &#8212; PyMC3 3.6 documentation</title>
+    <meta charset="utf-8" />
+    <title>Latent Variable Implementation &#8212; PyMC3 3.8 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script type="text/javascript" src="../_static/highlight.min.js"></script>
     <script type="text/javascript" src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
@@ -63,16 +64,16 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput,
-div.nbinput div.prompt,
-div.nbinput div.input_area,
-div.nbinput div[class*=highlight],
-div.nbinput div[class*=highlight] pre,
-div.nboutput,
-div.nbinput div.prompt,
-div.nbinput div.output_area,
-div.nboutput div[class*=highlight],
-div.nboutput div[class*=highlight] pre {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -81,13 +82,13 @@ div.nboutput div[class*=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class*=highlight] pre {
+div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
 /* input/output containers */
-div.nbinput,
-div.nboutput {
+div.nbinput.container,
+div.nboutput.container {
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;
@@ -95,92 +96,92 @@ div.nboutput {
     width: 100%;
 }
 @media (max-width: 540px) {
-    div.nbinput,
-    div.nboutput {
+    div.nbinput.container,
+    div.nboutput.container {
         flex-direction: column;
     }
 }
 
 /* input container */
-div.nbinput {
+div.nbinput.container {
     padding-top: 5px;
 }
 
 /* last container */
-div.nblast {
+div.nblast.container {
     padding-bottom: 5px;
 }
 
 /* input prompt */
-div.nbinput div.prompt pre {
-    color: #303F9F;
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
 }
 
 /* output prompt */
-div.nboutput div.prompt pre {
-    color: #D84315;
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
 }
 
 /* all prompts */
-div.nbinput div.prompt,
-div.nboutput div.prompt {
-    min-width: 9ex;
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 7ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
     flex: 0;
 }
 @media (max-width: 540px) {
-    div.nbinput div.prompt,
-    div.nboutput div.prompt {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
         text-align: left;
         padding: 0.4em;
     }
-    div.nboutput div.prompt.empty {
+    div.nboutput.container div.prompt.empty {
         padding: 0;
     }
 }
 
 /* disable scrollbars on prompts */
-div.nbinput div.prompt pre,
-div.nboutput div.prompt pre {
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
     overflow: hidden;
 }
 
 /* input/output area */
-div.nbinput div.input_area,
-div.nboutput div.output_area {
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
     padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
 @media (max-width: 540px) {
-    div.nbinput div.input_area,
-    div.nboutput div.output_area {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
         width: 100%;
     }
 }
 
 /* input area */
-div.nbinput div.input_area {
-    border: 1px solid #cfcfcf;
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f7f7f7;
+    background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
-div.nboutput div[class*=MathJax] {
+div.nboutput.container div[class*=MathJax] {
     text-align: left !important;
 }
 
-/* override sphinx.ext.pngmath center alignment in output cells */
-div.nboutput div.math p {
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
     text-align: left;
 }
 
 /* standard error */
-div.nboutput div.output_area.stderr {
+div.nboutput.container div.output_area.stderr {
     background: #fdd;
 }
 
@@ -223,31 +224,57 @@ div.nboutput div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 </style>
 <div class="section" id="Latent-Variable-Implementation">
 <h1>Latent Variable Implementation<a class="headerlink" href="#Latent-Variable-Implementation" title="Permalink to this headline">¶</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">gp.Latent</span></code> class is a direct implementation of a GP. It is called
-“Latent” because the underlying function values are treated as latent
-variables. It has a <code class="docutils literal notranslate"><span class="pre">prior</span></code> method, and a <code class="docutils literal notranslate"><span class="pre">conditional</span></code> method.
-Given a mean and covariance function, the function <span class="math notranslate nohighlight">\(f(x)\)</span> is
-modeled as,</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">gp.Latent</span></code> class is a direct implementation of a GP. It is called “Latent” because the underlying function values are treated as latent variables. It has a <code class="docutils literal notranslate"><span class="pre">prior</span></code> method, and a <code class="docutils literal notranslate"><span class="pre">conditional</span></code> method. Given a mean and covariance function, the function <span class="math notranslate nohighlight">\(f(x)\)</span> is modeled as,</p>
 <div class="math notranslate nohighlight">
 \[f(x) \sim \mathcal{GP}(m(x),\, k(x, x')) \,.\]</div>
 <div class="section" id=".prior">
 <h2><code class="docutils literal notranslate"><span class="pre">.prior</span></code><a class="headerlink" href="#.prior" title="Permalink to this headline">¶</a></h2>
-<p>With some data set of finite size, the <code class="docutils literal notranslate"><span class="pre">prior</span></code> method places a
-multivariate normal prior distribution on the vector of function values,
-<span class="math notranslate nohighlight">\(\mathbf{f}\)</span>,</p>
+<p>With some data set of finite size, the <code class="docutils literal notranslate"><span class="pre">prior</span></code> method places a multivariate normal prior distribution on the vector of function values, <span class="math notranslate nohighlight">\(\mathbf{f}\)</span>,</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{f} \sim \text{MvNormal}(\mathbf{m}_{x},\, \mathbf{K}_{xx}) \,,\]</div>
-<p>where the vector <span class="math notranslate nohighlight">\(\mathbf{m}\)</span> and the matrix
-<span class="math notranslate nohighlight">\(\mathbf{K}_{xx}\)</span> are the mean vector and covariance matrix
-evaluated over the inputs <span class="math notranslate nohighlight">\(x\)</span>. Some sample code is,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
+<p>where the vector <span class="math notranslate nohighlight">\(\mathbf{m}\)</span> and the matrix <span class="math notranslate nohighlight">\(\mathbf{K}_{xx}\)</span> are the mean vector and covariance matrix evaluated over the inputs <span class="math notranslate nohighlight">\(x\)</span>. Some sample code is,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
 
 <span class="c1"># A one dimensional column vector of inputs.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
 
 <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">latent_gp_model</span><span class="p">:</span>
     <span class="c1"># Specify the covariance function.</span>
@@ -260,36 +287,25 @@ evaluated over the inputs <span class="math notranslate nohighlight">\(x\)</span
     <span class="n">f</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">prior</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>By default, PyMC3 reparameterizes the prior on <code class="docutils literal notranslate"><span class="pre">f</span></code> under the hood by
-rotating it with the Cholesky factor of its covariance matrix. This
-helps to reduce covariances in the posterior of the transformed random
-variable, <code class="docutils literal notranslate"><span class="pre">v</span></code>. The reparameterized model is,</p>
+<p>By default, PyMC3 reparameterizes the prior on <code class="docutils literal notranslate"><span class="pre">f</span></code> under the hood by rotating it with the Cholesky factor of its covariance matrix. This helps to reduce covariances in the posterior of the transformed random variable, <code class="docutils literal notranslate"><span class="pre">v</span></code>. The reparameterized model is,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{aligned}
   \mathbf{v} \sim \text{N}(0, 1)&amp; \\
   \mathbf{L} = \text{Cholesky}(\mathbf{K}_{xx})&amp; \\
   \mathbf{f} = \mathbf{m}_{x} + \mathbf{Lv} \\
 \end{aligned}\end{split}\]</div>
-<p>For more information about this reparameterization, see the section on
-<a class="reference external" href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Drawing_values_from_the_distribution">drawing values from a multivariate
-distribution</a>.
-This reparameterization can be disabled by setting the optional flag in
-the <code class="docutils literal notranslate"><span class="pre">prior</span></code> method, <code class="docutils literal notranslate"><span class="pre">reparameterize</span> <span class="pre">=</span> <span class="pre">False</span></code>. The default is
-<code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>For more information about this reparameterization, see the section on <a class="reference external" href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution#Drawing_values_from_the_distribution">drawing values from a multivariate distribution</a>. This reparameterization can be disabled by setting the optional flag in the <code class="docutils literal notranslate"><span class="pre">prior</span></code> method, <code class="docutils literal notranslate"><span class="pre">reparameterize</span> <span class="pre">=</span> <span class="pre">False</span></code>. The default is <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 </div>
 <div class="section" id=".conditional">
 <h2><code class="docutils literal notranslate"><span class="pre">.conditional</span></code><a class="headerlink" href="#.conditional" title="Permalink to this headline">¶</a></h2>
-<p>The conditional method implements the predictive distribution for
-function values that were not part of the original data set. This
-distribution is,</p>
+<p>The conditional method implements the predictive distribution for function values that were not part of the original data set. This distribution is,</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{f}_* \mid \mathbf{f} \sim \text{MvNormal} \left(
   \mathbf{m}_* + \mathbf{K}_{*x}\mathbf{K}_{xx}^{-1} \mathbf{f} ,\,
   \mathbf{K}_{**} - \mathbf{K}_{*x}\mathbf{K}_{xx}^{-1}\mathbf{K}_{x*} \right)\]</div>
-<p>Using the same <code class="docutils literal notranslate"><span class="pre">gp</span></code> object we defined above, we can construct a random
-variable with this distribution by,</p>
+<p>Using the same <code class="docutils literal notranslate"><span class="pre">gp</span></code> object we defined above, we can construct a random variable with this distribution by,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># vector of new X points we want to predict the function at</span>
-<span class="n">X_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)[:,</span> <span class="bp">None</span><span class="p">]</span>
+<span class="n">X_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span>
 
 <span class="k">with</span> <span class="n">latent_gp_model</span><span class="p">:</span>
     <span class="n">f_star</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;f_star&quot;</span><span class="p">,</span> <span class="n">X_star</span><span class="p">)</span>
@@ -298,30 +314,25 @@ variable with this distribution by,</p>
 </div>
 <div class="section" id="Example-1:-Regression-with-Student-T-distributed-noise">
 <h2>Example 1: Regression with Student-T distributed noise<a class="headerlink" href="#Example-1:-Regression-with-Student-T-distributed-noise" title="Permalink to this headline">¶</a></h2>
-<p>The following is an example showing how to specify a simple model with a
-GP prior using the <code class="docutils literal notranslate"><span class="pre">gp.Latent</span></code> class. So we can verify that the
-inference we perform is correct, the data set is made using a draw from
-a GP.</p>
+<p>The following is an example showing how to specify a simple model with a GP prior using the <code class="docutils literal notranslate"><span class="pre">gp.Latent</span></code> class. So we can verify that the inference we perform is correct, the data set is made using a draw from a GP.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
-<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="kn">as</span> <span class="nn">tt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="k">as</span> <span class="nn">tt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -329,12 +340,12 @@ a GP.</p>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">n</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># The number of data points</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)[:,</span> <span class="bp">None</span><span class="p">]</span> <span class="c1"># The inputs to the GP, they must be arranged as a column vector</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n</span><span class="p">)[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="c1"># The inputs to the GP, they must be arranged as a column vector</span>
 
 <span class="c1"># Define the true covariance function and its parameters</span>
-<span class="err">ℓ</span><span class="n">_true</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="err">η</span><span class="n">_true</span> <span class="o">=</span> <span class="mf">3.0</span>
-<span class="n">cov_func</span> <span class="o">=</span> <span class="err">η</span><span class="n">_true</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">_true</span><span class="p">)</span>
+<span class="n">ℓ_true</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">η_true</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">cov_func</span> <span class="o">=</span> <span class="n">η_true</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ_true</span><span class="p">)</span>
 
 <span class="c1"># A mean function that is zero everywhere</span>
 <span class="n">mean_func</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">mean</span><span class="o">.</span><span class="n">Zero</span><span class="p">()</span>
@@ -346,9 +357,9 @@ a GP.</p>
 
 <span class="c1"># The observed data is the latent function plus a small amount of T distributed noise</span>
 <span class="c1"># The standard deviation of the noise is `sigma`, and the degrees of freedom is `nu`</span>
-<span class="err">σ</span><span class="n">_true</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="err">ν</span><span class="n">_true</span> <span class="o">=</span> <span class="mf">3.0</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">f_true</span> <span class="o">+</span> <span class="err">σ</span><span class="n">_true</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="err">ν</span><span class="n">_true</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+<span class="n">σ_true</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">ν_true</span> <span class="o">=</span> <span class="mf">3.0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">f_true</span> <span class="o">+</span> <span class="n">σ_true</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">standard_t</span><span class="p">(</span><span class="n">ν_true</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
 
 <span class="c1">## Plot the data and the unobserved latent function</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">));</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -365,37 +376,28 @@ a GP.</p>
 <img alt="../_images/notebooks_GP-Latent_5_0.png" src="../_images/notebooks_GP-Latent_5_0.png" />
 </div>
 </div>
-<p>The data above shows the observations, marked with black dots, of the
-unknown function <span class="math notranslate nohighlight">\(f(x)\)</span> that has been corrupted by noise. The true
-function is in blue.</p>
+<p>The data above shows the observations, marked with black dots, of the unknown function <span class="math notranslate nohighlight">\(f(x)\)</span> that has been corrupted by noise. The true function is in blue.</p>
 <div class="section" id="Coding-the-model-in-PyMC3">
 <h3>Coding the model in PyMC3<a class="headerlink" href="#Coding-the-model-in-PyMC3" title="Permalink to this headline">¶</a></h3>
-<p>Here’s the model in PyMC3. We use a <span class="math notranslate nohighlight">\(\text{Gamma}(2, 1)\)</span> prior
-over the lengthscale parameter, and weakly informative
-<span class="math notranslate nohighlight">\(\text{HalfCauchy}(5)\)</span> priors over the covariance function scale,
-and noise scale. A <span class="math notranslate nohighlight">\(\text{Gamma}(2, 0.1)\)</span> prior is assigned to the
-degrees of freedom parameter of the noise. Finally, a GP prior is placed
-on the unknown function. For more information on choosing priors in
-Gaussian process models, check out some of <a class="reference external" href="https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations">recommendations by the Stan
+<p>Here’s the model in PyMC3. We use a <span class="math notranslate nohighlight">\(\text{Gamma}(2, 1)\)</span> prior over the lengthscale parameter, and weakly informative <span class="math notranslate nohighlight">\(\text{HalfCauchy}(5)\)</span> priors over the covariance function scale, and noise scale. A <span class="math notranslate nohighlight">\(\text{Gamma}(2, 0.1)\)</span> prior is assigned to the degrees of freedom parameter of the noise. Finally, a GP prior is placed on the unknown function. For more information on choosing priors in Gaussian process models, check out some of <a class="reference external" href="https://github.com/stan-dev/stan/wiki/Prior-Choice-Recommendations">recommendations by the Stan
 folks</a>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="err">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="err">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-    <span class="n">cov</span> <span class="o">=</span> <span class="err">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="p">)</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ</span><span class="p">)</span>
     <span class="n">gp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Latent</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov</span><span class="p">)</span>
 
     <span class="n">f</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">prior</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
 
-    <span class="err">σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="err">ν</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ν&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">y_</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">StudentT</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="err">σ</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="err">ν</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ν</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ν&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">StudentT</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">f</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="n">σ</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="n">ν</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 
     <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chains</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -404,7 +406,7 @@ folks</a>.</p>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
@@ -425,20 +427,17 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 </div>
 <div class="section" id="Results">
 <h3>Results<a class="headerlink" href="#Results" title="Permalink to this headline">¶</a></h3>
-<p>Below are the posteriors of the covariance function hyperparameters. The
-red lines show the true values that were used to draw the function from
-the GP.</p>
+<p>Below are the posteriors of the covariance function hyperparameters. The red lines show the true values that were used to draw the function from the GP.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span>  <span class="p">{},</span> <span class="err">η</span><span class="n">_true</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="err">σ</span><span class="n">_true</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="err">ℓ</span><span class="n">_true</span><span class="p">),</span>
-    <span class="p">(</span><span class="s2">&quot;ν&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="err">ν</span><span class="n">_true</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span>  <span class="p">{},</span> <span class="n">η_true</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">σ_true</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">ℓ_true</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;ν&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">ν_true</span><span class="p">),</span>
 <span class="p">]</span>
 <span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="n">lines</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="s2">&quot;ν&quot;</span><span class="p">]);</span>
 </pre></div>
@@ -452,8 +451,7 @@ the GP.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -481,31 +479,20 @@ the GP.</p>
 <img alt="../_images/notebooks_GP-Latent_10_0.png" src="../_images/notebooks_GP-Latent_10_0.png" />
 </div>
 </div>
-<p>As you can see by the red shading, the posterior of the GP prior over
-the function does a great job of representing both the fit, and the
-uncertainty caused by the additive noise. The result also doesn’t over
-fit due to outliers from the Student-T noise model.</p>
+<p>As you can see by the red shading, the posterior of the GP prior over the function does a great job of representing both the fit, and the uncertainty caused by the additive noise. The result also doesn’t over fit due to outliers from the Student-T noise model.</p>
 </div>
 <div class="section" id="Using-.conditional">
 <h3>Using <code class="docutils literal notranslate"><span class="pre">.conditional</span></code><a class="headerlink" href="#Using-.conditional" title="Permalink to this headline">¶</a></h3>
-<p>Next, we extend the model by adding the conditional distribution so we
-can predict at new <span class="math notranslate nohighlight">\(x\)</span> locations. Lets see how the extrapolation
-looks out to higher <span class="math notranslate nohighlight">\(x\)</span>. To do this, we extend our <code class="docutils literal notranslate"><span class="pre">model</span></code> with
-the <code class="docutils literal notranslate"><span class="pre">conditional</span></code> distribution of the GP. Then, we can sample from it
-using the <code class="docutils literal notranslate"><span class="pre">trace</span></code> and the <code class="docutils literal notranslate"><span class="pre">sample_posterior_predictive</span></code> function.
-This is similar to how Stan uses its <code class="docutils literal notranslate"><span class="pre">generated</span> <span class="pre">quantities</span> <span class="pre">{...}</span></code>
-blocks. We could have included <code class="docutils literal notranslate"><span class="pre">gp.conditional</span></code> in the model <em>before</em>
-we did the NUTS sampling, but it is more efficient to separate these
-steps.</p>
+<p>Next, we extend the model by adding the conditional distribution so we can predict at new <span class="math notranslate nohighlight">\(x\)</span> locations. Lets see how the extrapolation looks out to higher <span class="math notranslate nohighlight">\(x\)</span>. To do this, we extend our <code class="docutils literal notranslate"><span class="pre">model</span></code> with the <code class="docutils literal notranslate"><span class="pre">conditional</span></code> distribution of the GP. Then, we can sample from it using the <code class="docutils literal notranslate"><span class="pre">trace</span></code> and the <code class="docutils literal notranslate"><span class="pre">sample_posterior_predictive</span></code> function. This is similar to how Stan uses its <code class="docutils literal notranslate"><span class="pre">generated</span> <span class="pre">quantities</span> <span class="pre">{...}</span></code> blocks. We could have included <code class="docutils literal notranslate"><span class="pre">gp.conditional</span></code> in the model <em>before</em> we
+did the NUTS sampling, but it is more efficient to separate these steps.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># 200 new values from x=0 to x=15</span>
 <span class="n">n_new</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">n_new</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">]</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">n_new</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
 
 <span class="c1"># add the GP conditional to the model, given the new X values</span>
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
@@ -520,14 +507,13 @@ steps.</p>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 100%|██████████| 1000/1000 [00:18&lt;00:00, 55.53it/s]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -553,12 +539,9 @@ steps.</p>
 </div>
 <div class="section" id="Example-2:-Classification">
 <h2>Example 2: Classification<a class="headerlink" href="#Example-2:-Classification" title="Permalink to this headline">¶</a></h2>
-<p>First we use a GP to generate some data that follows a Bernoulli
-distribution, where <span class="math notranslate nohighlight">\(p\)</span>, the probability of a one instead of a
-zero is a function of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>First we use a GP to generate some data that follows a Bernoulli distribution, where <span class="math notranslate nohighlight">\(p\)</span>, the probability of a one instead of a zero is a function of <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -571,10 +554,10 @@ zero is a function of <span class="math notranslate nohighlight">\(x\)</span>.</
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
 
 <span class="c1"># true covariance</span>
-<span class="err">ℓ</span><span class="n">_true</span> <span class="o">=</span> <span class="mf">0.1</span>
-<span class="err">η</span><span class="n">_true</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">cov_func</span> <span class="o">=</span> <span class="err">η</span><span class="n">_true</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">_true</span><span class="p">)</span>
-<span class="n">K</span> <span class="o">=</span> <span class="n">cov_func</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">ℓ_true</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">η_true</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">cov_func</span> <span class="o">=</span> <span class="n">η_true</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ_true</span><span class="p">)</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">cov_func</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 
 <span class="c1"># zero mean function</span>
 <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
@@ -591,8 +574,7 @@ zero is a function of <span class="math notranslate nohighlight">\(x\)</span>.</
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -611,22 +593,21 @@ zero is a function of <span class="math notranslate nohighlight">\(x\)</span>.</
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
     <span class="c1"># covariance function</span>
-    <span class="err">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="c1"># informative, positive normal prior on the period</span>
-    <span class="err">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">cov</span> <span class="o">=</span> <span class="err">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="p">)</span>
+    <span class="n">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ</span><span class="p">)</span>
 
     <span class="n">gp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Latent</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov</span><span class="p">)</span>
 
     <span class="c1"># make gp prior</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">prior</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">x</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">prior</span><span class="p">(</span><span class="s2">&quot;f&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
 
     <span class="c1"># logit link and Bernoulli likelihood</span>
     <span class="n">p</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s2">&quot;p&quot;</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">invlogit</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
@@ -639,7 +620,7 @@ zero is a function of <span class="math notranslate nohighlight">\(x\)</span>.</
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
@@ -657,12 +638,11 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ℓ&#39;</span><span class="p">,</span> <span class="s1">&#39;η&#39;</span><span class="p">],</span> <span class="n">lines</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="err">ℓ</span><span class="n">_true</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="err">η</span><span class="n">_true</span><span class="p">)]);</span>
+<span></span><span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;ℓ&#39;</span><span class="p">,</span> <span class="s1">&#39;η&#39;</span><span class="p">],</span> <span class="n">lines</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">ℓ_true</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">η_true</span><span class="p">)]);</span>
 </pre></div>
 </div>
 </div>
@@ -674,13 +654,12 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">n_pred</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">n_pred</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">]</span>
+<span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="n">n_pred</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
     <span class="n">f_pred</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;f_pred&quot;</span><span class="p">,</span> <span class="n">X_new</span><span class="p">)</span>
@@ -693,14 +672,13 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 100%|██████████| 1000/1000 [00:18&lt;00:00, 53.60it/s]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -727,6 +705,15 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 <img alt="../_images/notebooks_GP-Latent_20_0.png" src="../_images/notebooks_GP-Latent_20_0.png" />
 </div>
 </div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -744,7 +731,7 @@ Only one chain was sampled, this makes it impossible to run some convergence che
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 1.7.9.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
         </p>
     </div>
 </div>

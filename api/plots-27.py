@@ -1,1 +1,2 @@
-az.plot_density([centered, non_centered], var_names=["mu"], group="prior")
+tau_posterior = np.concatenate(non_centered.posterior["tau"].values)
+az.plot_kde(mu_posterior, values2=tau_posterior)

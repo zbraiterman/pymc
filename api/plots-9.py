@@ -1,1 +1,1 @@
-az.plot_posterior(data, var_names=['mu', 'theta_tilde'], point_estimate='mode')
+az.plot_posterior(data, var_names=['mu', 'theta'], ref_val=0)

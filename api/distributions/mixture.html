@@ -1,21 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Mixture &#8212; PyMC3 3.6 documentation</title>
+    <meta charset="utf-8" />
+    <title>Mixture &#8212; PyMC3 3.8 documentation</title>
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script type="text/javascript" src="../../_static/highlight.min.js"></script>
     <script type="text/javascript" src="../../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../../_static/PyMC3.ico"/>
@@ -60,59 +61,53 @@
         
   <div class="section" id="mixture">
 <h1>Mixture<a class="headerlink" href="#mixture" title="Permalink to this headline">¶</a></h1>
-<table border="1" class="longtable docutils">
+<table class="longtable docutils align-default">
 <colgroup>
-<col width="10%" />
-<col width="90%" />
+<col style="width: 10%" />
+<col style="width: 90%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td><a class="reference internal" href="#pymc3.distributions.mixture.Mixture" title="pymc3.distributions.mixture.Mixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mixture</span></code></a>(w,&nbsp;comp_dists,&nbsp;*args,&nbsp;**kwargs)</td>
-<td>Mixture log-likelihood</td>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.mixture.Mixture" title="pymc3.distributions.mixture.Mixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mixture</span></code></a>(w, comp_dists, *args, **kwargs)</p></td>
+<td><p>Mixture log-likelihood</p></td>
 </tr>
-<tr class="row-even"><td><a class="reference internal" href="#pymc3.distributions.mixture.NormalMixture" title="pymc3.distributions.mixture.NormalMixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NormalMixture</span></code></a>(w,&nbsp;mu[,&nbsp;sigma,&nbsp;tau,&nbsp;sd,&nbsp;…])</td>
-<td>Normal mixture log-likelihood</td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.mixture.NormalMixture" title="pymc3.distributions.mixture.NormalMixture"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NormalMixture</span></code></a>(w, mu[, sigma, tau, sd, …])</p></td>
+<td><p>Normal mixture log-likelihood</p></td>
 </tr>
 </tbody>
 </table>
 <span class="target" id="module-pymc3.distributions.mixture"></span><dl class="class">
 <dt id="pymc3.distributions.mixture.Mixture">
-<em class="property">class </em><code class="descclassname">pymc3.distributions.mixture.</code><code class="descname">Mixture</code><span class="sig-paren">(</span><em>w</em>, <em>comp_dists</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.mixture.</code><code class="sig-name descname">Mixture</code><span class="sig-paren">(</span><em class="sig-param">w</em>, <em class="sig-param">comp_dists</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mixture log-likelihood</p>
 <p>Often used to model subpopulation heterogeneity</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid w, \theta) = \sum_{i = 1}^n w_i f_i(x \mid \theta_i)\]</div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="15%" />
-<col width="85%" />
+<col style="width: 15%" />
+<col style="width: 85%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Support</td>
-<td><span class="math notranslate nohighlight">\(\cap_{i = 1}^n \textrm{support}(f_i)\)</span></td>
+<tbody>
+<tr class="row-odd"><td><p>Support</p></td>
+<td><p><span class="math notranslate nohighlight">\(\cap_{i = 1}^n \textrm{support}(f_i)\)</span></p></td>
 </tr>
-<tr class="row-even"><td>Mean</td>
-<td><span class="math notranslate nohighlight">\(\sum_{i = 1}^n w_i \mu_i\)</span></td>
+<tr class="row-even"><td><p>Mean</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sum_{i = 1}^n w_i \mu_i\)</span></p></td>
 </tr>
 </tbody>
 </table>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>w</strong> : array of floats</p>
-<blockquote>
-<div><p>w &gt;= 0 and w &lt;= 1
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl>
+<dt><strong>w</strong><span class="classifier">array of floats</span></dt><dd><p>w &gt;= 0 and w &lt;= 1
 the mixture weights</p>
-</div></blockquote>
-<p><strong>comp_dists</strong> : multidimensional PyMC3 distribution (e.g. <cite>pm.Poisson.dist(…)</cite>)</p>
-<blockquote class="last">
-<div><p>or iterable of PyMC3 distributions the component distributions
+</dd>
+<dt><strong>comp_dists</strong><span class="classifier">multidimensional PyMC3 distribution (e.g. <cite>pm.Poisson.dist(…)</cite>)</span></dt><dd><p>or iterable of PyMC3 distributions the component distributions
 <span class="math notranslate nohighlight">\(f_1, \ldots, f_n\)</span></p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+</dl>
 <p class="rubric">Examples</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2-Mixture Poisson distribution</span>
 <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
@@ -164,7 +159,7 @@ the mixture weights</p>
 </div>
 <dl class="method">
 <dt id="pymc3.distributions.mixture.Mixture.infer_comp_dist_shapes">
-<code class="descname">infer_comp_dist_shapes</code><span class="sig-paren">(</span><em>point=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.infer_comp_dist_shapes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">infer_comp_dist_shapes</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">point=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.infer_comp_dist_shapes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Try to infer the shapes of the component distributions,
 <cite>comp_dists</cite>, and how they should broadcast together.
 The behavior is slightly different if <cite>comp_dists</cite> is a <cite>Distribution</cite>
@@ -175,97 +170,122 @@ the following procedure is repeated for each element in the list:
 3. If it is an empty tuple, a single random sample is drawn by calling
 <cite>comp_dists.random(point=point, size=None)</cite>, and the returned
 test_sample’s shape is used as the inferred <cite>comp_dists.shape</cite></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>point: None or dict (optional)</strong></p>
-<blockquote>
-<div><p>Dictionary that maps rv names to values, to supply to
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>point: None or dict (optional)</strong></dt><dd><p>Dictionary that maps rv names to values, to supply to
 <cite>self.comp_dists.random</cite></p>
-</div></blockquote>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">comp_dist_shapes: shape tuple or list of shape tuples.</p>
-<blockquote>
-<div><p>If <cite>comp_dists</cite> is a <cite>Distribution</cite>, it is a shape tuple of the
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>comp_dist_shapes: shape tuple or list of shape tuples.</dt><dd><p>If <cite>comp_dists</cite> is a <cite>Distribution</cite>, it is a shape tuple of the
 inferred distribution shape.
 If <cite>comp_dists</cite> is a list of <cite>Distribution`s, it is a list of
 shape tuples inferred for each element in `comp_dists</cite></p>
-</div></blockquote>
-<p>broadcast_shape: shape tuple</p>
-<blockquote class="last">
-<div><p>The shape that results from broadcasting all component’s shapes
+</dd>
+<dt>broadcast_shape: shape tuple</dt><dd><p>The shape that results from broadcasting all component’s shapes
 together.</p>
-</div></blockquote>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.distributions.mixture.Mixture.logp">
+<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.logp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate log-probability of defined Mixture distribution at specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+values are desired the values must be provided in a numpy array or theano tensor</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.distributions.mixture.Mixture.random">
+<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">point=None</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw random values from defined Mixture distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+conditioned (uses default point if not specified).</p>
+</dd>
+<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+specified).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>array</dt><dd></dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="pymc3.distributions.mixture.NormalMixture">
-<em class="property">class </em><code class="descclassname">pymc3.distributions.mixture.</code><code class="descname">NormalMixture</code><span class="sig-paren">(</span><em>w</em>, <em>mu</em>, <em>sigma=None</em>, <em>tau=None</em>, <em>sd=None</em>, <em>comp_shape=()</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.NormalMixture" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.mixture.</code><code class="sig-name descname">NormalMixture</code><span class="sig-paren">(</span><em class="sig-param">w</em>, <em class="sig-param">mu</em>, <em class="sig-param">sigma=None</em>, <em class="sig-param">tau=None</em>, <em class="sig-param">sd=None</em>, <em class="sig-param">comp_shape=()</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.NormalMixture" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normal mixture log-likelihood</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid w, \mu, \sigma^2) = \sum_{i = 1}^n w_i N(x \mid \mu_i, \sigma^2_i)\]</div>
-<table border="1" class="docutils">
+<table class="docutils align-default">
 <colgroup>
-<col width="17%" />
-<col width="83%" />
+<col style="width: 17%" />
+<col style="width: 83%" />
 </colgroup>
-<tbody valign="top">
-<tr class="row-odd"><td>Support</td>
-<td><span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span></td>
+<tbody>
+<tr class="row-odd"><td><p>Support</p></td>
+<td><p><span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span></p></td>
 </tr>
-<tr class="row-even"><td>Mean</td>
-<td><span class="math notranslate nohighlight">\(\sum_{i = 1}^n w_i \mu_i\)</span></td>
+<tr class="row-even"><td><p>Mean</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sum_{i = 1}^n w_i \mu_i\)</span></p></td>
 </tr>
-<tr class="row-odd"><td>Variance</td>
-<td><span class="math notranslate nohighlight">\(\sum_{i = 1}^n w_i^2 \sigma^2_i\)</span></td>
+<tr class="row-odd"><td><p>Variance</p></td>
+<td><p><span class="math notranslate nohighlight">\(\sum_{i = 1}^n w_i^2 \sigma^2_i\)</span></p></td>
 </tr>
 </tbody>
 </table>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><p class="first"><strong>w</strong> : array of floats</p>
-<blockquote>
-<div><p>w &gt;= 0 and w &lt;= 1
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>w</strong><span class="classifier">array of floats</span></dt><dd><p>w &gt;= 0 and w &lt;= 1
 the mixture weights</p>
-</div></blockquote>
-<p><strong>mu</strong> : array of floats</p>
-<blockquote>
-<div><p>the component means</p>
-</div></blockquote>
-<p><strong>sigma</strong> : array of floats</p>
-<blockquote>
-<div><p>the component standard deviations</p>
-</div></blockquote>
-<p><strong>tau</strong> : array of floats</p>
-<blockquote>
-<div><p>the component precisions</p>
-</div></blockquote>
-<p><strong>comp_shape</strong> : shape of the Normal component</p>
-<blockquote>
-<div><p>notice that it should be different than the shape
+</dd>
+<dt><strong>mu</strong><span class="classifier">array of floats</span></dt><dd><p>the component means</p>
+</dd>
+<dt><strong>sigma</strong><span class="classifier">array of floats</span></dt><dd><p>the component standard deviations</p>
+</dd>
+<dt><strong>tau</strong><span class="classifier">array of floats</span></dt><dd><p>the component precisions</p>
+</dd>
+<dt><strong>comp_shape</strong><span class="classifier">shape of the Normal component</span></dt><dd><p>notice that it should be different than the shape
 of the mixture distribution, with one axis being
 the number of components.</p>
-</div></blockquote>
-<p class="last"><strong>Note: You only have to pass in sigma or tau, but not both.</strong></p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt><strong>Note: You only have to pass in sigma or tau, but not both.</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="pymc3.distributions.mixture.all_discrete">
-<code class="descclassname">pymc3.distributions.mixture.</code><code class="descname">all_discrete</code><span class="sig-paren">(</span><em>comp_dists</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.all_discrete" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.distributions.mixture.</code><code class="sig-name descname">all_discrete</code><span class="sig-paren">(</span><em class="sig-param">comp_dists</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.all_discrete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine if all distributions in comp_dists are discrete</p>
 </dd></dl>
 
@@ -285,7 +305,7 @@ the number of components.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 1.7.9.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
         </p>
     </div>
 </div>

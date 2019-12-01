@@ -1,1 +1,1 @@
-az.plot_kde(mu_posterior, rug=True)
+az.plot_autocorr(data, var_names=['mu', 'tau'], combined=True)

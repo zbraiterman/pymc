@@ -1,21 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Example: CO2 at Mauna Loa &#8212; PyMC3 3.6 documentation</title>
+    <meta charset="utf-8" />
+    <title>Example: CO2 at Mauna Loa &#8212; PyMC3 3.8 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script type="text/javascript" src="../_static/highlight.min.js"></script>
     <script type="text/javascript" src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
@@ -63,16 +64,16 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput,
-div.nbinput div.prompt,
-div.nbinput div.input_area,
-div.nbinput div[class*=highlight],
-div.nbinput div[class*=highlight] pre,
-div.nboutput,
-div.nbinput div.prompt,
-div.nbinput div.output_area,
-div.nboutput div[class*=highlight],
-div.nboutput div[class*=highlight] pre {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -81,13 +82,13 @@ div.nboutput div[class*=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class*=highlight] pre {
+div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
 /* input/output containers */
-div.nbinput,
-div.nboutput {
+div.nbinput.container,
+div.nboutput.container {
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;
@@ -95,92 +96,92 @@ div.nboutput {
     width: 100%;
 }
 @media (max-width: 540px) {
-    div.nbinput,
-    div.nboutput {
+    div.nbinput.container,
+    div.nboutput.container {
         flex-direction: column;
     }
 }
 
 /* input container */
-div.nbinput {
+div.nbinput.container {
     padding-top: 5px;
 }
 
 /* last container */
-div.nblast {
+div.nblast.container {
     padding-bottom: 5px;
 }
 
 /* input prompt */
-div.nbinput div.prompt pre {
-    color: #303F9F;
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
 }
 
 /* output prompt */
-div.nboutput div.prompt pre {
-    color: #D84315;
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
 }
 
 /* all prompts */
-div.nbinput div.prompt,
-div.nboutput div.prompt {
-    min-width: 9ex;
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 7ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
     flex: 0;
 }
 @media (max-width: 540px) {
-    div.nbinput div.prompt,
-    div.nboutput div.prompt {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
         text-align: left;
         padding: 0.4em;
     }
-    div.nboutput div.prompt.empty {
+    div.nboutput.container div.prompt.empty {
         padding: 0;
     }
 }
 
 /* disable scrollbars on prompts */
-div.nbinput div.prompt pre,
-div.nboutput div.prompt pre {
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
     overflow: hidden;
 }
 
 /* input/output area */
-div.nbinput div.input_area,
-div.nboutput div.output_area {
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
     padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
 @media (max-width: 540px) {
-    div.nbinput div.input_area,
-    div.nboutput div.output_area {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
         width: 100%;
     }
 }
 
 /* input area */
-div.nbinput div.input_area {
-    border: 1px solid #cfcfcf;
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f7f7f7;
+    background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
-div.nboutput div[class*=MathJax] {
+div.nboutput.container div[class*=MathJax] {
     text-align: left !important;
 }
 
-/* override sphinx.ext.pngmath center alignment in output cells */
-div.nboutput div.math p {
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
     text-align: left;
 }
 
 /* standard error */
-div.nboutput div.output_area.stderr {
+div.nboutput.container div.output_area.stderr {
     background: #fdd;
 }
 
@@ -223,55 +224,71 @@ div.nboutput div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 </style>
 <div class="section" id="Example:-CO2-at-Mauna-Loa">
 <h1>Example: CO2 at Mauna Loa<a class="headerlink" href="#Example:-CO2-at-Mauna-Loa" title="Permalink to this headline">¶</a></h1>
 <p>This GP example shows how to</p>
 <ul class="simple">
-<li>Design combinations of covariance functions</li>
-<li>Use additive GPs whose individual components can be used for
-prediction</li>
-<li>Perform maximum a-posteriori (MAP)</li>
+<li><p>Design combinations of covariance functions</p></li>
+<li><p>Use additive GPs whose individual components can be used for prediction</p></li>
+<li><p>Perform maximum a-posteriori (MAP)</p></li>
 </ul>
-<p>Since the late 1950’s, the Mauna Loa observatory has been taking regular
-measurments of atmospheric CO<span class="math notranslate nohighlight">\(_2\)</span>. It is the longest</p>
-<p>In the late 1950’s Charles Keeling invented a accurate way to measure
-atmospheric CO<span class="math notranslate nohighlight">\(_2\)</span> concentration. Since then, CO<span class="math notranslate nohighlight">\(_2\)</span>
-measurements have been recorded nearly continuously at the Mauna Loa
-observatory. Check out last hours measurement result
-<a class="reference external" href="https://www.co2.earth/daily-co2">here</a>.</p>
+<p>Since the late 1950’s, the Mauna Loa observatory has been taking regular measurments of atmospheric CO<span class="math notranslate nohighlight">\(_2\)</span>. It is the longest</p>
+<p>In the late 1950’s Charles Keeling invented a accurate way to measure atmospheric CO<span class="math notranslate nohighlight">\(_2\)</span> concentration. Since then, CO<span class="math notranslate nohighlight">\(_2\)</span> measurements have been recorded nearly continuously at the Mauna Loa observatory. Check out last hours measurement result <a class="reference external" href="https://www.co2.earth/daily-co2">here</a>.</p>
 <p><img alt="image0" src="http://sites.gsu.edu/geog1112/files/2014/07/MaunaLoaObservatory_small-2g29jvt.png" /></p>
-<p>Not much was known about how fossil fuel burning influences the climate
-in the late 1950s. The first couple years of data collection showed that
-CO<span class="math notranslate nohighlight">\(_2\)</span> levels rose and fell following summer and winter,
-tracking the growth and decay of vegetation in the northern hemisphere.
-As multiple years passed, the steady upward trend increasingly grew into
-focus. With over 70 years of collected data, the Keeling curve is one of
-the most important climate indicators.</p>
-<p>The history behind these measurements and their influence on climatology
-today and other interesting reading:</p>
+<p>Not much was known about how fossil fuel burning influences the climate in the late 1950s. The first couple years of data collection showed that CO<span class="math notranslate nohighlight">\(_2\)</span> levels rose and fell following summer and winter, tracking the growth and decay of vegetation in the northern hemisphere. As multiple years passed, the steady upward trend increasingly grew into focus. With over 70 years of collected data, the Keeling curve is one of the most important climate indicators.</p>
+<p>The history behind these measurements and their influence on climatology today and other interesting reading:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://scrippsco2.ucsd.edu/history_legacy">http://scrippsco2.ucsd.edu/history_legacy</a>/early_keeling_curve#</li>
-<li><a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/2016/05/23/why-has-a-drop-in-global-co2-emissions-not-caused-co2-levels-in-the-atmosphere-to-stabilize/#more-1412">https://scripps.ucsd.edu/programs/keelingcurve/2016/05/23/why-has-a-drop-in-global-co2-emissions-not-caused-co2-levels-in-the-atmosphere-to-stabilize/#more-1412</a></li>
-<li><a class="reference external" href="http://cdiac.ornl.gov/">http://cdiac.ornl.gov/</a></li>
+<li><p><a class="reference external" href="http://scrippsco2.ucsd.edu/history_legacy">http://scrippsco2.ucsd.edu/history_legacy</a>/early_keeling_curve#</p></li>
+<li><p><a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/2016/05/23/why-has-a-drop-in-global-co2-emissions-not-caused-co2-levels-in-the-atmosphere-to-stabilize/#more-1412">https://scripps.ucsd.edu/programs/keelingcurve/2016/05/23/why-has-a-drop-in-global-co2-emissions-not-caused-co2-levels-in-the-atmosphere-to-stabilize/#more-1412</a></p></li>
+<li><p><a class="reference external" href="http://cdiac.ornl.gov/">http://cdiac.ornl.gov/</a></p></li>
 </ul>
-<p>Let’s load in the data, tidy it up, and have a look. The <a class="reference external" href="http://scrippsco2.ucsd.edu/data/atmospheric_co2/mlo">raw data set
-is located
-here</a>. This
-notebook uses the <a class="reference external" href="http://bokeh.pydata.org/en/latest/">Bokeh package</a>
-for plots that benefit from interactivity.</p>
+<p>Let’s load in the data, tidy it up, and have a look. The <a class="reference external" href="http://scrippsco2.ucsd.edu/data/atmospheric_co2/mlo">raw data set is located here</a>. This notebook uses the <a class="reference external" href="http://bokeh.pydata.org/en/latest/">Bokeh package</a> for plots that benefit from interactivity.</p>
 <div class="section" id="Preparing-the-data">
 <h2>Preparing the data<a class="headerlink" href="#Preparing-the-data" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="kn">as</span> <span class="nn">tt</span>
+<span></span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="k">as</span> <span class="nn">tt</span>
 
 <span class="kn">from</span> <span class="nn">bokeh.plotting</span> <span class="kn">import</span> <span class="n">figure</span><span class="p">,</span> <span class="n">show</span>
 <span class="kn">from</span> <span class="nn">bokeh.models</span> <span class="kn">import</span> <span class="n">BoxAnnotation</span><span class="p">,</span> <span class="n">Span</span><span class="p">,</span> <span class="n">Label</span><span class="p">,</span> <span class="n">Legend</span>
@@ -284,7 +301,7 @@ for plots that benefit from interactivity.</p>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div class="bk-root">
     <a href="https://bokeh.pydata.org" target="_blank" class="bk-logo bk-logo-small bk-logo-notebook"></a>
     <span id="1001">Loading BokehJS ...</span>
@@ -568,15 +585,14 @@ var element = document.currentScript.previousSibling.previousSibling;
 </script></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">data_monthly</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;monthly_in_situ_co2_mlo.csv&quot;</span><span class="p">),</span> <span class="n">header</span><span class="o">=</span><span class="mi">56</span><span class="p">)</span>
 
 <span class="c1"># - replace -99.99 with NaN</span>
-<span class="n">data_monthly</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span><span class="o">=-</span><span class="mf">99.99</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">data_monthly</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span><span class="o">=-</span><span class="mf">99.99</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># fix column names</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2&quot;</span><span class="p">,</span> <span class="s2">&quot;seasonaly_adjusted&quot;</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">,</span>
@@ -586,7 +602,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 <span class="n">data_monthly</span> <span class="o">=</span> <span class="n">data_monthly</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
 
 <span class="c1"># drop rows with nan</span>
-<span class="n">data_monthly</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">data_monthly</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># fix time index</span>
 <span class="n">data_monthly</span><span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
@@ -599,11 +615,10 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -681,8 +696,7 @@ var element = document.currentScript.previousSibling.previousSibling;
 </div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -707,17 +721,9 @@ var element = document.currentScript.previousSibling.previousSibling;
 </pre></div>
 </div>
 </div>
-<p>This data might be familiar to you, since it was used as an example in
-the <a class="reference external" href="http://www.gaussianprocess.org/gpml/">Gaussian Processes for Machine
-Learning</a> book by Rasmussen &amp;
-Williams. The version of the data set they use starts in the late
-1950’s, but stops at the end of 2003. So that our PyMC3 example is
-somewhat comparable to their example, we use the stretch of data from
-before 2004 as the “training” set. The data from 2004 to current we’ll
-use to test our predictions.</p>
+<p>This data might be familiar to you, since it was used as an example in the <a class="reference external" href="http://www.gaussianprocess.org/gpml/">Gaussian Processes for Machine Learning</a> book by Rasmussen &amp; Williams. The version of the data set they use starts in the late 1950’s, but stops at the end of 2003. So that our PyMC3 example is somewhat comparable to their example, we use the stretch of data from before 2004 as the “training” set. The data from 2004 to current we’ll use to test our predictions.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -729,8 +735,7 @@ use to test our predictions.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -769,7 +774,7 @@ use to test our predictions.</p>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div class="bk-root" id="79ef21f5-1bd4-442b-b7f9-2efc8724e749" data-root-id="1003"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -806,38 +811,18 @@ var element = document.currentScript.previousSibling.previousSibling;
 })(window);
 </script></div>
 </div>
-<p>Bokeh plots are interactive, so panning and zooming can be done with the
-sidebar on the right hand side. The seasonal rise and fall is plainly
-apparent, as is the upward trend. Here is a link to an plots of <a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/">this
-curve at different time scales, and in the context of historical ice
-core data</a>.</p>
-<p>The 400 ppm level is highlighted with a dashed line. In addition to
-fitting a descriptive model, our goal will be to predict the first month
-the 400 ppm threshold is crossed, which was <a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/2013/05/20/now-what/#more-741">May,
-2013</a>.
-In the data set above, the CO<span class="math notranslate nohighlight">\(_2\)</span> average reading for May, 2013
-was about 399.98, close enough to be our correct target date.</p>
+<p>Bokeh plots are interactive, so panning and zooming can be done with the sidebar on the right hand side. The seasonal rise and fall is plainly apparent, as is the upward trend. Here is a link to an plots of <a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/">this curve at different time scales, and in the context of historical ice core data</a>.</p>
+<p>The 400 ppm level is highlighted with a dashed line. In addition to fitting a descriptive model, our goal will be to predict the first month the 400 ppm threshold is crossed, which was <a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/2013/05/20/now-what/#more-741">May, 2013</a>. In the data set above, the CO<span class="math notranslate nohighlight">\(_2\)</span> average reading for May, 2013 was about 399.98, close enough to be our correct target date.</p>
 </div>
 <div class="section" id="Modeling-the-Keeling-Curve-using-GPs">
 <h2>Modeling the Keeling Curve using GPs<a class="headerlink" href="#Modeling-the-Keeling-Curve-using-GPs" title="Permalink to this headline">¶</a></h2>
-<p>As a starting point, we use the GP model described in Rasmussen &amp;
-Williams. Instead of using flat priors on covariance function
-hyperparameters and then maximizing the marginal likelihood like is done
-in the textbook, we place somewhat informative priors on the
-hyperparameters and use optimization to find the MAP point. We use the
-<code class="docutils literal notranslate"><span class="pre">gp.Marginal</span></code> since Gaussian noise is assumed.</p>
-<p>The R+W model is a sum of three GPs for the signal, and one GP for the
-noise.</p>
+<p>As a starting point, we use the GP model described in Rasmussen &amp; Williams. Instead of using flat priors on covariance function hyperparameters and then maximizing the marginal likelihood like is done in the textbook, we place somewhat informative priors on the hyperparameters and use optimization to find the MAP point. We use the <code class="docutils literal notranslate"><span class="pre">gp.Marginal</span></code> since Gaussian noise is assumed.</p>
+<p>The R+W model is a sum of three GPs for the signal, and one GP for the noise.</p>
 <ol class="arabic simple">
-<li>A long term smooth rising trend represented by an exponentiated
-quadratic kernel.</li>
-<li>A periodic term that decays away from exact periodicity. This is
-represented by the product of a <code class="docutils literal notranslate"><span class="pre">Periodic</span></code> covariance function and
-an exponentiated quadratic.</li>
-<li>Small and medium term irregularities with a rational quadratic
-kernel.</li>
-<li>The noise is modeled as the sum of an Exponential and a white noise
-kernel</li>
+<li><p>A long term smooth rising trend represented by an exponentiated quadratic kernel.</p></li>
+<li><p>A periodic term that decays away from exact periodicity. This is represented by the product of a <code class="docutils literal notranslate"><span class="pre">Periodic</span></code> covariance function and an exponentiated quadratic.</p></li>
+<li><p>Small and medium term irregularities with a rational quadratic kernel.</p></li>
+<li><p>The noise is modeled as the sum of an Exponential and a white noise kernel</p></li>
 </ol>
 <p>The prior on CO<span class="math notranslate nohighlight">\(_2\)</span> as a function of time is,</p>
 <div class="math notranslate nohighlight">
@@ -848,12 +833,9 @@ kernel</li>
 </div>
 <div class="section" id="Hyperparameter-priors">
 <h2>Hyperparameter priors<a class="headerlink" href="#Hyperparameter-priors" title="Permalink to this headline">¶</a></h2>
-<p>We use fairly uninformative priors for the scale hyperparameters of the
-covariance functions, and informative Gamma parameters for lengthscales.
-The PDFs used for the lengthscale priors is shown below:</p>
+<p>We use fairly uninformative priors for the scale hyperparameters of the covariance functions, and informative Gamma parameters for lengthscales. The PDFs used for the lengthscale priors is shown below:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -884,7 +866,7 @@ The PDFs used for the lengthscale priors is shown below:</p>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div class="bk-root" id="de22963c-cda6-4a36-b209-8c9eced2fb07" data-root-id="1207"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -922,37 +904,17 @@ var element = document.currentScript.previousSibling.previousSibling;
 </script></div>
 </div>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">ℓ_pdecay</span></code>: The periodic decay. The smaller this parameter is, the
-faster the periodicity goes away. I doubt that the seasonality of the
-CO<span class="math notranslate nohighlight">\(_2\)</span> will be going away any time soon (hopefully), and
-there’s no evidence for that in the data. Most of the prior mass is
-from 60 to &gt;140 years.</li>
-<li><code class="docutils literal notranslate"><span class="pre">ℓ_psmooth</span></code>: The smoothness of the periodic component. It controls
-how “sinusoidal” the periodicity is. The plot of the data shows that
-seasonality is not an exact sine wave, but its not terribly different
-from one. We use a Gamma whose mode is at one, and doesn’t have too
-large of a variance, with most of the prior mass from around 0.5 and
-2.</li>
-<li><code class="docutils literal notranslate"><span class="pre">period</span></code>: The period. We put a very strong prior on <span class="math notranslate nohighlight">\(p\)</span>, the
-period that is centered at one. R+W fix <span class="math notranslate nohighlight">\(p=1\)</span>, since the period
-is annual.</li>
-<li><code class="docutils literal notranslate"><span class="pre">ℓ_med</span></code>: This is the lengthscale for the short to medium long
-variations. This prior has most of its mass below 6 years.</li>
-<li><code class="docutils literal notranslate"><span class="pre">α</span></code>: This is the shape parameter. This prior is centered at 3,
-since we’re expecting there to be some more variation than could be
-explained by an exponentiated quadratic.</li>
-<li><code class="docutils literal notranslate"><span class="pre">ℓ_trend</span></code>: The lengthscale of the long term trend. It has a wide
-prior with mass on a decade scale. Most of the mass is between 10 to
-60 years.</li>
-<li><code class="docutils literal notranslate"><span class="pre">ℓ_noise</span></code>: The lengthscale of the noise covariance. This noise
-should be very rapid, in the scale of several months to at most a
-year or two.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ℓ_pdecay</span></code>: The periodic decay. The smaller this parameter is, the faster the periodicity goes away. I doubt that the seasonality of the CO<span class="math notranslate nohighlight">\(_2\)</span> will be going away any time soon (hopefully), and there’s no evidence for that in the data. Most of the prior mass is from 60 to &gt;140 years.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ℓ_psmooth</span></code>: The smoothness of the periodic component. It controls how “sinusoidal” the periodicity is. The plot of the data shows that seasonality is not an exact sine wave, but its not terribly different from one. We use a Gamma whose mode is at one, and doesn’t have too large of a variance, with most of the prior mass from around 0.5 and 2.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code>: The period. We put a very strong prior on <span class="math notranslate nohighlight">\(p\)</span>, the period that is centered at one. R+W fix <span class="math notranslate nohighlight">\(p=1\)</span>, since the period is annual.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ℓ_med</span></code>: This is the lengthscale for the short to medium long variations. This prior has most of its mass below 6 years.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">α</span></code>: This is the shape parameter. This prior is centered at 3, since we’re expecting there to be some more variation than could be explained by an exponentiated quadratic.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ℓ_trend</span></code>: The lengthscale of the long term trend. It has a wide prior with mass on a decade scale. Most of the mass is between 10 to 60 years.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ℓ_noise</span></code>: The lengthscale of the noise covariance. This noise should be very rapid, in the scale of several months to at most a year or two.</p></li>
 </ul>
-<p>We know beforehand which GP components should have a larger magnitude,
-so we include this information in the scale parameters.</p>
+<p>We know beforehand which GP components should have a larger magnitude, so we include this information in the scale parameters.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -981,7 +943,7 @@ so we include this information in the scale parameters.</p>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div class="bk-root" id="8f7435ff-e9fe-4920-a073-bb435c2b3cbc" data-root-id="1532"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1018,70 +980,63 @@ var element = document.currentScript.previousSibling.previousSibling;
 })(window);
 </script></div>
 </div>
-<p>For all of the scale priors we use distributions that shrink the scale
-towards zero. The seasonal component and the long term trend have the
-least mass near zero, since they are the largest influences in the data.</p>
+<p>For all of the scale priors we use distributions that shrink the scale towards zero. The seasonal component and the long term trend have the least mass near zero, since they are the largest influences in the data.</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">η_per</span></code>: Scale of the periodic or seasonal component.</li>
-<li><code class="docutils literal notranslate"><span class="pre">η_med</span></code>: Scale of the short to medium term component.</li>
-<li><code class="docutils literal notranslate"><span class="pre">η_trend</span></code>: Scale of the long term trend.</li>
-<li><code class="docutils literal notranslate"><span class="pre">σ</span></code>: Scale of the white noise.</li>
-<li><code class="docutils literal notranslate"><span class="pre">η_noise</span></code>: Scale of correlated, short term noise.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">η_per</span></code>: Scale of the periodic or seasonal component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">η_med</span></code>: Scale of the short to medium term component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">η_trend</span></code>: Scale of the long term trend.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">σ</span></code>: Scale of the white noise.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">η_noise</span></code>: Scale of correlated, short term noise.</p></li>
 </ul>
 </div>
 <div class="section" id="The-model-in-PyMC3">
 <h2>The model in PyMC3<a class="headerlink" href="#The-model-in-PyMC3" title="Permalink to this headline">¶</a></h2>
-<p>Below is the actual model. Each of the three component GPs is
-constructed separately. Since we are doing MAP, we use <code class="docutils literal notranslate"><span class="pre">Marginal</span></code> GPs
-and lastly call the <code class="docutils literal notranslate"><span class="pre">.marginal_likelihood</span></code> method to specify the
-marginal posterior.</p>
+<p>Below is the actual model. Each of the three component GPs is constructed separately. Since we are doing MAP, we use <code class="docutils literal notranslate"><span class="pre">Marginal</span></code> GPs and lastly call the <code class="docutils literal notranslate"><span class="pre">.marginal_likelihood</span></code> method to specify the marginal posterior.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># pull out normalized data</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">data_early</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">data_early</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">data_early</span><span class="p">[</span><span class="s2">&quot;y_n&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
     <span class="c1"># yearly periodic component x long term trend</span>
-    <span class="err">η</span><span class="n">_per</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;η_per&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">_pdecay</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_pdecay&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.075</span><span class="p">)</span>
+    <span class="n">η_per</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;η_per&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">ℓ_pdecay</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_pdecay&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.075</span><span class="p">)</span>
     <span class="n">period</span>  <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;period&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">_psmooth</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_psmooth &quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">cov_seasonal</span> <span class="o">=</span> <span class="err">η</span><span class="n">_per</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Periodic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">_psmooth</span><span class="p">)</span> \
-                            <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">_pdecay</span><span class="p">)</span>
+    <span class="n">ℓ_psmooth</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_psmooth &quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">cov_seasonal</span> <span class="o">=</span> <span class="n">η_per</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Periodic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">ℓ_psmooth</span><span class="p">)</span> \
+                            <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ_pdecay</span><span class="p">)</span>
     <span class="n">gp_seasonal</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov_seasonal</span><span class="p">)</span>
 
     <span class="c1"># small/medium term irregularities</span>
-    <span class="err">η</span><span class="n">_med</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;η_med&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">_med</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_med&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
-    <span class="err">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">cov_medium</span> <span class="o">=</span> <span class="err">η</span><span class="n">_med</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">RatQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">_med</span><span class="p">,</span> <span class="err">α</span><span class="p">)</span>
+    <span class="n">η_med</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;η_med&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">ℓ_med</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_med&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">cov_medium</span> <span class="o">=</span> <span class="n">η_med</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">RatQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ_med</span><span class="p">,</span> <span class="n">α</span><span class="p">)</span>
     <span class="n">gp_medium</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov_medium</span><span class="p">)</span>
 
     <span class="c1"># long term trend</span>
-    <span class="err">η</span><span class="n">_trend</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;η_trend&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">_trend</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_trend&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">cov_trend</span> <span class="o">=</span> <span class="err">η</span><span class="n">_trend</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">_trend</span><span class="p">)</span>
+    <span class="n">η_trend</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="p">(</span><span class="s2">&quot;η_trend&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">ℓ_trend</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_trend&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">cov_trend</span> <span class="o">=</span> <span class="n">η_trend</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ_trend</span><span class="p">)</span>
     <span class="n">gp_trend</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov_trend</span><span class="p">)</span>
 
     <span class="c1"># noise model</span>
-    <span class="err">η</span><span class="n">_noise</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η_noise&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">_noise</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_noise&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-    <span class="err">σ</span>  <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span>  <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="n">cov_noise</span> <span class="o">=</span> <span class="err">η</span><span class="n">_noise</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern32</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">_noise</span><span class="p">)</span> <span class="o">+</span>\
-                <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">WhiteNoise</span><span class="p">(</span><span class="err">σ</span><span class="p">)</span>
+    <span class="n">η_noise</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η_noise&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">ℓ_noise</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_noise&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">σ</span>  <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span>  <span class="n">sigma</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">cov_noise</span> <span class="o">=</span> <span class="n">η_noise</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern32</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ_noise</span><span class="p">)</span> <span class="o">+</span>\
+                <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">WhiteNoise</span><span class="p">(</span><span class="n">σ</span><span class="p">)</span>
 
     <span class="c1"># The Gaussian process is a sum of these three components</span>
     <span class="n">gp</span> <span class="o">=</span> <span class="n">gp_seasonal</span> <span class="o">+</span> <span class="n">gp_medium</span> <span class="o">+</span> <span class="n">gp_trend</span>
@@ -1090,14 +1045,14 @@ marginal posterior.</p>
     <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="n">cov_noise</span><span class="p">)</span>
 
     <span class="c1"># this line calls an optimizer to find the MAP</span>
-    <span class="n">mp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">find_MAP</span><span class="p">(</span><span class="n">include_transformed</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">mp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">find_MAP</span><span class="p">(</span><span class="n">include_transformed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 /miniconda3/envs/pymc33.6/lib/python3.6/site-packages/theano/tensor/basic.py:6611: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   result[diagonal_slice] = x
@@ -1129,8 +1084,7 @@ logp = 1,652.8, ||grad|| = 3,427.6: 100%|██████████| 175/175
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1140,12 +1094,12 @@ logp = 1,652.8, ||grad|| = 3,427.6: 100%|██████████| 175/175
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>[&#39;period:0.9997243798567212&#39;,
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;period:0.9997243798567212&#39;,
  &#39;α:1.1714608197552643&#39;,
  &#39;η_med:0.024406917968904113&#39;,
  &#39;η_noise:0.007766128538735344&#39;,
@@ -1157,32 +1111,24 @@ logp = 1,652.8, ||grad|| = 3,427.6: 100%|██████████| 175/175
  &#39;ℓ_pdecay:130.94252551615494&#39;,
  &#39;ℓ_psmooth :0.7454857423480663&#39;,
  &#39;ℓ_trend:51.395648401746755&#39;]
-</pre></div>
+</pre></div></div>
 </div>
-</div>
-<p>At first glance the results look reasonable. The lengthscale that
-determines how fast the seasonality varies is about 126 years. This
-means that given the data, we wouldn’t expect such strong periodicity to
-vanish until centuries have passed. The trend lengthscale is also long,
-about 50 years.</p>
+<p>At first glance the results look reasonable. The lengthscale that determines how fast the seasonality varies is about 126 years. This means that given the data, we wouldn’t expect such strong periodicity to vanish until centuries have passed. The trend lengthscale is also long, about 50 years.</p>
 </div>
 <div class="section" id="Examining-the-fit-of-each-of-the-additive-GP-components">
 <h2>Examining the fit of each of the additive GP components<a class="headerlink" href="#Examining-the-fit-of-each-of-the-additive-GP-components" title="Permalink to this headline">¶</a></h2>
-<p>The code below looks at the fit of the total GP, and each component
-individually. The total fit and its <span class="math notranslate nohighlight">\(2\sigma\)</span> uncertainty is shown
-in red.</p>
+<p>The code below looks at the fit of the total GP, and each component individually. The total fit and its <span class="math notranslate nohighlight">\(2\sigma\)</span> uncertainty is shown in red.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># predict at a 15 day granularity</span>
 <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;3/15/1958&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;12/15/2003&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;15D&quot;</span><span class="p">)</span>
-<span class="n">tnew</span> <span class="o">=</span> <span class="n">dates_to_idx</span><span class="p">(</span><span class="n">dates</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">]</span>
+<span class="n">tnew</span> <span class="o">=</span> <span class="n">dates_to_idx</span><span class="p">(</span><span class="n">dates</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Predicting with gp ...&quot;</span><span class="p">)</span>
-<span class="n">mu</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tnew</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">mp</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicting with gp ...&quot;</span><span class="p">)</span>
+<span class="n">mu</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tnew</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">mp</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">mean_pred</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">std_co2</span> <span class="o">+</span> <span class="n">first_co2</span>
 <span class="n">var_pred</span>  <span class="o">=</span> <span class="n">var</span><span class="o">*</span><span class="n">std_co2</span><span class="o">**</span><span class="mi">2</span>
 
@@ -1192,27 +1138,27 @@ in red.</p>
                     <span class="s2">&quot;sd_total&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var_pred</span><span class="p">)},</span>
                    <span class="n">index</span><span class="o">=</span><span class="n">dates</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Predicting with gp_trend ...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicting with gp_trend ...&quot;</span><span class="p">)</span>
 <span class="n">mu</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">gp_trend</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tnew</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">mp</span><span class="p">,</span>
                            <span class="n">given</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;gp&quot;</span><span class="p">:</span> <span class="n">gp</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;noise&quot;</span><span class="p">:</span> <span class="n">cov_noise</span><span class="p">},</span>
-                           <span class="n">diag</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                           <span class="n">diag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">fit</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">mu_trend</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">std_co2</span> <span class="o">+</span> <span class="n">first_co2</span><span class="p">,</span>
                  <span class="n">sd_trend</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="o">*</span><span class="n">std_co2</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Predicting with gp_medium ...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicting with gp_medium ...&quot;</span><span class="p">)</span>
 <span class="n">mu</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">gp_medium</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tnew</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">mp</span><span class="p">,</span>
                             <span class="n">given</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;gp&quot;</span><span class="p">:</span> <span class="n">gp</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;noise&quot;</span><span class="p">:</span> <span class="n">cov_noise</span><span class="p">},</span>
-                            <span class="n">diag</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                            <span class="n">diag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">fit</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">mu_medium</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">std_co2</span> <span class="o">+</span> <span class="n">first_co2</span><span class="p">,</span>
                  <span class="n">sd_medium</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="o">*</span><span class="n">std_co2</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Predicting with gp_seasonal ...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicting with gp_seasonal ...&quot;</span><span class="p">)</span>
 <span class="n">mu</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">gp_seasonal</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tnew</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">mp</span><span class="p">,</span>
                               <span class="n">given</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;gp&quot;</span><span class="p">:</span> <span class="n">gp</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;noise&quot;</span><span class="p">:</span> <span class="n">cov_noise</span><span class="p">},</span>
-                              <span class="n">diag</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+                              <span class="n">diag</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">fit</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">mu_seasonal</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">std_co2</span> <span class="o">+</span> <span class="n">first_co2</span><span class="p">,</span>
                  <span class="n">sd_seasonal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">var</span><span class="o">*</span><span class="n">std_co2</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1227,7 +1173,7 @@ Predicting with gp ...
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 /miniconda3/envs/pymc33.6/lib/python3.6/site-packages/theano/tensor/basic.py:6611: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   result[diagonal_slice] = x
@@ -1246,7 +1192,7 @@ Predicting with gp_trend ...
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 /miniconda3/envs/pymc33.6/lib/python3.6/site-packages/theano/tensor/basic.py:6611: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   result[diagonal_slice] = x
@@ -1263,7 +1209,7 @@ Predicting with gp_medium ...
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 /miniconda3/envs/pymc33.6/lib/python3.6/site-packages/theano/tensor/basic.py:6611: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   result[diagonal_slice] = x
@@ -1280,7 +1226,7 @@ Predicting with gp_seasonal ...
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 /miniconda3/envs/pymc33.6/lib/python3.6/site-packages/theano/tensor/basic.py:6611: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   result[diagonal_slice] = x
@@ -1295,8 +1241,7 @@ Done
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1341,7 +1286,7 @@ Done
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div class="bk-root" id="6f338f04-0381-430f-a651-90f55917c9f1" data-root-id="1803"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1378,14 +1323,9 @@ var element = document.currentScript.previousSibling.previousSibling;
 })(window);
 </script></div>
 </div>
-<p>The fit matches the observed data very well. The trend, seasonality, and
-short/medium term effects also are cleanly separated out. If you zoom so
-the seasonal process fills the plot window (from x equals 1955 to 2004,
-from y equals 310 to 320), it appears to be widening as time goes on.
-Lets plot the first year of each decade:</p>
+<p>The fit matches the observed data very well. The trend, seasonality, and short/medium term effects also are cleanly separated out. If you zoom so the seasonal process fills the plot window (from x equals 1955 to 2004, from y equals 310 to 320), it appears to be widening as time goes on. Lets plot the first year of each decade:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1401,10 +1341,10 @@ Lets plot the first year of each decade:</p>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">years</span><span class="p">):</span>
     <span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;1/1/&quot;</span><span class="o">+</span><span class="n">year</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;12/31/&quot;</span><span class="o">+</span><span class="n">year</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;10D&quot;</span><span class="p">)</span>
-    <span class="n">tnew</span> <span class="o">=</span> <span class="n">dates_to_idx</span><span class="p">(</span><span class="n">dates</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">]</span>
+    <span class="n">tnew</span> <span class="o">=</span> <span class="n">dates_to_idx</span><span class="p">(</span><span class="n">dates</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
 
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Predicting year&quot;</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
-    <span class="n">mu</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">gp_seasonal</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tnew</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">mp</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predicting year&quot;</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span>
+    <span class="n">mu</span><span class="p">,</span> <span class="n">var</span> <span class="o">=</span> <span class="n">gp_seasonal</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tnew</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">mp</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                   <span class="n">given</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;gp&quot;</span><span class="p">:</span> <span class="n">gp</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;noise&quot;</span><span class="p">:</span> <span class="n">cov_noise</span><span class="p">})</span>
     <span class="n">mu_pred</span> <span class="o">=</span> <span class="n">mu</span><span class="o">*</span><span class="n">std_co2</span>
 
@@ -1429,7 +1369,7 @@ Predicting year 1960
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 /miniconda3/envs/pymc33.6/lib/python3.6/site-packages/theano/tensor/basic.py:6611: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   result[diagonal_slice] = x
@@ -1449,7 +1389,7 @@ Predicting year 2000
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div class="bk-root" id="eb10e5aa-b77c-4053-abab-175dc15cbba6" data-root-id="2261"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1486,37 +1426,22 @@ var element = document.currentScript.previousSibling.previousSibling;
 })(window);
 </script></div>
 </div>
-<p>This plot makes it clear that there is a broadening over time. So it
-would seem that as there is more CO<span class="math notranslate nohighlight">\(_2\)</span> in the atmosphere, <a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/2013/06/04/why-does-atmospheric-co2-peak-in-may/">the
-absorbtion/release cycle due to the growth and decay of vegetation in
-the northern
-hemisphere</a>
-becomes more slightly more pronounced.</p>
+<p>This plot makes it clear that there is a broadening over time. So it would seem that as there is more CO<span class="math notranslate nohighlight">\(_2\)</span> in the atmosphere, <a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/2013/06/04/why-does-atmospheric-co2-peak-in-may/">the absorbtion/release cycle due to the growth and decay of vegetation in the northern hemisphere</a> becomes more slightly more pronounced.</p>
 </div>
 <div class="section" id="What-day-will-the-CO2-level-break-400-ppm?">
 <h2>What day will the CO2 level break 400 ppm?<a class="headerlink" href="#What-day-will-the-CO2-level-break-400-ppm?" title="Permalink to this headline">¶</a></h2>
-<p>How well do our forecasts look? Clearly the observed data trends up and
-the seasonal effect is very pronounced. Does our GP model capture this
-well enough to make reasonable extrapolations? Our “training” set went
-up until the end of 2003, so we are going to predict from January 2014
-out to the end of 2017.</p>
-<p>Although there isn’t any particular significance to this event other
-than it being a nice round number, our side goal was to see how well we
-could predict the date when the 400 ppm mark is first crossed. <a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/2013/05/20/now-what/#more-741">This
-event first occurred during May,
-2013</a>
-and there were a few <a class="reference external" href="https://www.usatoday.com/story/tech/sciencefair/2016/09/29/carbon-dioxide-levels-400-ppm-scripps-mauna-loa-global-warming/91279952/">news articles about other significant
+<p>How well do our forecasts look? Clearly the observed data trends up and the seasonal effect is very pronounced. Does our GP model capture this well enough to make reasonable extrapolations? Our “training” set went up until the end of 2003, so we are going to predict from January 2014 out to the end of 2017.</p>
+<p>Although there isn’t any particular significance to this event other than it being a nice round number, our side goal was to see how well we could predict the date when the 400 ppm mark is first crossed. <a class="reference external" href="https://scripps.ucsd.edu/programs/keelingcurve/2013/05/20/now-what/#more-741">This event first occurred during May, 2013</a> and there were a few <a class="reference external" href="https://www.usatoday.com/story/tech/sciencefair/2016/09/29/carbon-dioxide-levels-400-ppm-scripps-mauna-loa-global-warming/91279952/">news articles about other significant
 milestones</a>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s2">&quot;11/15/2003&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;12/15/2020&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;10D&quot;</span><span class="p">)</span>
-<span class="n">tnew</span> <span class="o">=</span> <span class="n">dates_to_idx</span><span class="p">(</span><span class="n">dates</span><span class="p">)[:,</span><span class="bp">None</span><span class="p">]</span>
+<span class="n">tnew</span> <span class="o">=</span> <span class="n">dates_to_idx</span><span class="p">(</span><span class="n">dates</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
 
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Sampling gp predictions ...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sampling gp predictions ...&quot;</span><span class="p">)</span>
 <span class="n">mu_pred</span><span class="p">,</span> <span class="n">cov_pred</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">tnew</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">mp</span><span class="p">)</span>
 
 <span class="c1"># draw samples, and rescale</span>
@@ -1537,15 +1462,14 @@ Sampling gp predictions ...
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 /miniconda3/envs/pymc33.6/lib/python3.6/site-packages/theano/tensor/basic.py:6611: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   result[diagonal_slice] = x
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1591,7 +1515,7 @@ Sampling gp predictions ...
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div class="bk-root" id="e45a4135-e5c2-491a-8ce4-0b2afc618c64" data-root-id="2577"></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1628,32 +1552,12 @@ var element = document.currentScript.previousSibling.previousSibling;
 })(window);
 </script></div>
 </div>
-<p>The mean prediction and the <span class="math notranslate nohighlight">\(2\sigma\)</span> uncertainty is in red. A
-couple samples from the marginal posterior are also shown on there. It
-looks like our model was a little optimistic about how much CO2 is being
-released. The first time the <span class="math notranslate nohighlight">\(2\sigma\)</span> uncertainty crosses the 400
-ppm threshold is in May 2015, two years late.</p>
-<p>One reason this is occuring is because our GP prior had zero mean. This
-means we encoded prior information that says that the function should go
-to zero as we move away from our observed data. This assumption probably
-isn’t justified. It’s also possible that the CO<span class="math notranslate nohighlight">\(_2\)</span> trend is
-increasing faster than linearly – important knowledge for accurate
-predictions. Another possibility is the MAP estimate. Without looking at
-the full posterior, the uncertainty in our estimates is underestimated.
+<p>The mean prediction and the <span class="math notranslate nohighlight">\(2\sigma\)</span> uncertainty is in red. A couple samples from the marginal posterior are also shown on there. It looks like our model was a little optimistic about how much CO2 is being released. The first time the <span class="math notranslate nohighlight">\(2\sigma\)</span> uncertainty crosses the 400 ppm threshold is in May 2015, two years late.</p>
+<p>One reason this is occuring is because our GP prior had zero mean. This means we encoded prior information that says that the function should go to zero as we move away from our observed data. This assumption probably isn’t justified. It’s also possible that the CO<span class="math notranslate nohighlight">\(_2\)</span> trend is increasing faster than linearly – important knowledge for accurate predictions. Another possibility is the MAP estimate. Without looking at the full posterior, the uncertainty in our estimates is underestimated.
 How badly is unknown.</p>
-<p>Having a zero mean GP prior is causing the prediction to be pretty far
-off. Some possibilities for fixing this is to use a constant mean
-function, whose value could maybe be assigned the historical, or
-pre-industrial revolution, CO<span class="math notranslate nohighlight">\(_2\)</span> average. This may not be the
-best indicator for future CO<span class="math notranslate nohighlight">\(_2\)</span> levels though.</p>
-<p>Also, using only historical CO<span class="math notranslate nohighlight">\(_2\)</span> data may not be the best
-predictor. In addition to looking at the underlying behavior of what
-determines CO<span class="math notranslate nohighlight">\(_2\)</span> levels using a GP fit, we could also
-incorporate other information, such as the amount of CO<span class="math notranslate nohighlight">\(_2\)</span> that
-is released by fossil fuel burning.</p>
-<p>Next, we’ll see about using PyMC3’s GP functionality to improve the
-model, look at full posteriors, and incorporate other sources of data on
-drivers of CO<span class="math notranslate nohighlight">\(_2\)</span> levels.</p>
+<p>Having a zero mean GP prior is causing the prediction to be pretty far off. Some possibilities for fixing this is to use a constant mean function, whose value could maybe be assigned the historical, or pre-industrial revolution, CO<span class="math notranslate nohighlight">\(_2\)</span> average. This may not be the best indicator for future CO<span class="math notranslate nohighlight">\(_2\)</span> levels though.</p>
+<p>Also, using only historical CO<span class="math notranslate nohighlight">\(_2\)</span> data may not be the best predictor. In addition to looking at the underlying behavior of what determines CO<span class="math notranslate nohighlight">\(_2\)</span> levels using a GP fit, we could also incorporate other information, such as the amount of CO<span class="math notranslate nohighlight">\(_2\)</span> that is released by fossil fuel burning.</p>
+<p>Next, we’ll see about using PyMC3’s GP functionality to improve the model, look at full posteriors, and incorporate other sources of data on drivers of CO<span class="math notranslate nohighlight">\(_2\)</span> levels.</p>
 </div>
 </div>
 
@@ -1671,7 +1575,7 @@ drivers of CO<span class="math notranslate nohighlight">\(_2\)</span> levels.</p
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 1.7.9.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
         </p>
     </div>
 </div>

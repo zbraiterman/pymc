@@ -1,21 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Bayesian Survival Analysis &#8212; PyMC3 3.6 documentation</title>
+    <meta charset="utf-8" />
+    <title>Bayesian Survival Analysis &#8212; PyMC3 3.8 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script type="text/javascript" src="../_static/highlight.min.js"></script>
     <script type="text/javascript" src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
@@ -63,16 +64,16 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput,
-div.nbinput div.prompt,
-div.nbinput div.input_area,
-div.nbinput div[class*=highlight],
-div.nbinput div[class*=highlight] pre,
-div.nboutput,
-div.nbinput div.prompt,
-div.nbinput div.output_area,
-div.nboutput div[class*=highlight],
-div.nboutput div[class*=highlight] pre {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -81,13 +82,13 @@ div.nboutput div[class*=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class*=highlight] pre {
+div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
 /* input/output containers */
-div.nbinput,
-div.nboutput {
+div.nbinput.container,
+div.nboutput.container {
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;
@@ -95,92 +96,92 @@ div.nboutput {
     width: 100%;
 }
 @media (max-width: 540px) {
-    div.nbinput,
-    div.nboutput {
+    div.nbinput.container,
+    div.nboutput.container {
         flex-direction: column;
     }
 }
 
 /* input container */
-div.nbinput {
+div.nbinput.container {
     padding-top: 5px;
 }
 
 /* last container */
-div.nblast {
+div.nblast.container {
     padding-bottom: 5px;
 }
 
 /* input prompt */
-div.nbinput div.prompt pre {
-    color: #303F9F;
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
 }
 
 /* output prompt */
-div.nboutput div.prompt pre {
-    color: #D84315;
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
 }
 
 /* all prompts */
-div.nbinput div.prompt,
-div.nboutput div.prompt {
-    min-width: 9ex;
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 7ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
     flex: 0;
 }
 @media (max-width: 540px) {
-    div.nbinput div.prompt,
-    div.nboutput div.prompt {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
         text-align: left;
         padding: 0.4em;
     }
-    div.nboutput div.prompt.empty {
+    div.nboutput.container div.prompt.empty {
         padding: 0;
     }
 }
 
 /* disable scrollbars on prompts */
-div.nbinput div.prompt pre,
-div.nboutput div.prompt pre {
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
     overflow: hidden;
 }
 
 /* input/output area */
-div.nbinput div.input_area,
-div.nboutput div.output_area {
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
     padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
 @media (max-width: 540px) {
-    div.nbinput div.input_area,
-    div.nboutput div.output_area {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
         width: 100%;
     }
 }
 
 /* input area */
-div.nbinput div.input_area {
-    border: 1px solid #cfcfcf;
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f7f7f7;
+    background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
-div.nboutput div[class*=MathJax] {
+div.nboutput.container div[class*=MathJax] {
     text-align: left !important;
 }
 
-/* override sphinx.ext.pngmath center alignment in output cells */
-div.nboutput div.math p {
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
     text-align: left;
 }
 
 /* standard error */
-div.nboutput div.output_area.stderr {
+div.nboutput.container div.output_area.stderr {
     background: #fdd;
 }
 
@@ -223,23 +224,48 @@ div.nboutput div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 </style>
 <div class="section" id="Bayesian-Survival-Analysis">
 <h1>Bayesian Survival Analysis<a class="headerlink" href="#Bayesian-Survival-Analysis" title="Permalink to this headline">¶</a></h1>
 <p>Author: Austin Rochford</p>
-<p><a class="reference external" href="https://en.wikipedia.org/wiki/Survival_analysis">Survival analysis</a>
-studies the distribution of the time to an event. Its applications span
-many fields across medicine, biology, engineering, and social science.
-This tutorial shows how to fit and analyze a Bayesian survival model in
-Python using PyMC3.</p>
-<p>We illustrate these concepts by analyzing a <a class="reference external" href="https://vincentarelbundock.github.io/Rdatasets/doc/HSAUR/mastectomy.html">mastectomy data
-set</a>
-from <code class="docutils literal notranslate"><span class="pre">R</span></code>’s
-<a class="reference external" href="https://cran.r-project.org/web/packages/HSAUR/index.html">HSAUR</a>
-package.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Survival_analysis">Survival analysis</a> studies the distribution of the time to an event. Its applications span many fields across medicine, biology, engineering, and social science. This tutorial shows how to fit and analyze a Bayesian survival model in Python using PyMC3.</p>
+<p>We illustrate these concepts by analyzing a <a class="reference external" href="https://vincentarelbundock.github.io/Rdatasets/doc/HSAUR/mastectomy.html">mastectomy data set</a> from <code class="docutils literal notranslate"><span class="pre">R</span></code>’s <a class="reference external" href="https://cran.r-project.org/web/packages/HSAUR/index.html">HSAUR</a> package.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -248,24 +274,22 @@ package.</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
 <span class="kn">from</span> <span class="nn">pymc3.distributions.timeseries</span> <span class="kn">import</span> <span class="n">GaussianRandomWalk</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">theano</span> <span class="kn">import</span> <span class="n">tensor</span> <span class="k">as</span> <span class="n">T</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -278,8 +302,7 @@ package.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -288,11 +311,10 @@ package.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -352,8 +374,7 @@ package.</p>
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -362,39 +383,22 @@ package.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>44
-</pre></div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+44
+</pre></div></div>
 </div>
-</div>
-<p>Each row represents observations from a woman diagnosed with breast
-cancer that underwent a mastectomy. The column <code class="docutils literal notranslate"><span class="pre">time</span></code> represents the
-time (in months) post-surgery that the woman was observed. The column
-<code class="docutils literal notranslate"><span class="pre">event</span></code> indicates whether or not the woman died during the observation
-period. The column <code class="docutils literal notranslate"><span class="pre">metastized</span></code> represents whether the cancer had
-<a class="reference external" href="https://en.wikipedia.org/wiki/Metastatic_breast_cancer">metastized</a>
-prior to surgery.</p>
-<p>This tutorial analyzes the relationship between survival time
-post-mastectomy and whether or not the cancer had metastized.</p>
+<p>Each row represents observations from a woman diagnosed with breast cancer that underwent a mastectomy. The column <code class="docutils literal notranslate"><span class="pre">time</span></code> represents the time (in months) post-surgery that the woman was observed. The column <code class="docutils literal notranslate"><span class="pre">event</span></code> indicates whether or not the woman died during the observation period. The column <code class="docutils literal notranslate"><span class="pre">metastized</span></code> represents whether the cancer had <a class="reference external" href="https://en.wikipedia.org/wiki/Metastatic_breast_cancer">metastized</a> prior to surgery.</p>
+<p>This tutorial analyzes the relationship between survival time post-mastectomy and whether or not the cancer had metastized.</p>
 <div class="section" id="A-crash-course-in-survival-analysis">
 <h2>A crash course in survival analysis<a class="headerlink" href="#A-crash-course-in-survival-analysis" title="Permalink to this headline">¶</a></h2>
-<p>First we introduce a (very little) bit of theory. If the random variable
-<span class="math notranslate nohighlight">\(T\)</span> is the time to the event we are studying, survival analysis is
-primarily concerned with the survival function</p>
+<p>First we introduce a (very little) bit of theory. If the random variable <span class="math notranslate nohighlight">\(T\)</span> is the time to the event we are studying, survival analysis is primarily concerned with the survival function</p>
 <div class="math notranslate nohighlight">
 \[S(t) = P(T &gt; t) = 1 - F(t),\]</div>
-<p>where <span class="math notranslate nohighlight">\(F\)</span> is the
-<a class="reference external" href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">CDF</a>
-of <span class="math notranslate nohighlight">\(T\)</span>. It is mathematically convenient to express the survival
-function in terms of the <a class="reference external" href="https://en.wikipedia.org/wiki/Survival_analysis#Hazard_function_and_cumulative_hazard_function">hazard
-rate</a>,
-<span class="math notranslate nohighlight">\(\lambda(t)\)</span>. The hazard rate is the instantaneous probability
-that the event occurs at time <span class="math notranslate nohighlight">\(t\)</span> given that it has not yet
-occured. That is,</p>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> is the <a class="reference external" href="https://en.wikipedia.org/wiki/Cumulative_distribution_function">CDF</a> of <span class="math notranslate nohighlight">\(T\)</span>. It is mathematically convenient to express the survival function in terms of the <a class="reference external" href="https://en.wikipedia.org/wiki/Survival_analysis#Hazard_function_and_cumulative_hazard_function">hazard rate</a>, <span class="math notranslate nohighlight">\(\lambda(t)\)</span>. The hazard rate is the instantaneous probability that the event occurs at time <span class="math notranslate nohighlight">\(t\)</span> given that it has not yet occured. That is,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{align*}
 \lambda(t)
@@ -406,24 +410,14 @@ occured. That is,</p>
 <p>Solving this differential equation for the survival function shows that</p>
 <div class="math notranslate nohighlight">
 \[S(t) = \exp\left(-\int_0^s \lambda(s)\ ds\right).\]</div>
-<p>This representation of the survival function shows that the cumulative
-hazard function</p>
+<p>This representation of the survival function shows that the cumulative hazard function</p>
 <div class="math notranslate nohighlight">
 \[\Lambda(t) = \int_0^t \lambda(s)\ ds\]</div>
-<p>is an important quantity in survival analysis, since we may consicesly
-write <span class="math notranslate nohighlight">\(S(t) = \exp(-\Lambda(t)).\)</span></p>
-<p>An important, but subtle, point in survival analysis is
-<a class="reference external" href="https://en.wikipedia.org/wiki/Survival_analysis#Censoring">censoring</a>.
-Even though the quantity we are interested in estimating is the time
-between surgery and death, we do not observe the death of every subject.
-At the point in time that we perform our analysis, some of our subjects
-will thankfully still be alive. In the case of our mastectomy study,
-<code class="docutils literal notranslate"><span class="pre">df.event</span></code> is one if the subject’s death was observed (the observation
-is not censored) and is zero if the death was not observed (the
-observation is censored).</p>
+<p>is an important quantity in survival analysis, since we may consicesly write <span class="math notranslate nohighlight">\(S(t) = \exp(-\Lambda(t)).\)</span></p>
+<p>An important, but subtle, point in survival analysis is <a class="reference external" href="https://en.wikipedia.org/wiki/Survival_analysis#Censoring">censoring</a>. Even though the quantity we are interested in estimating is the time between surgery and death, we do not observe the death of every subject. At the point in time that we perform our analysis, some of our subjects will thankfully still be alive. In the case of our mastectomy study, <code class="docutils literal notranslate"><span class="pre">df.event</span></code> is one if the subject’s death was observed (the observation is not
+censored) and is zero if the death was not observed (the observation is censored).</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -432,20 +426,17 @@ observation is censored).</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>0.5909090909090909
-</pre></div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+0.5909090909090909
+</pre></div></div>
 </div>
-</div>
-<p>Just over 40% of our observations are censored. We visualize the
-observed durations and indicate which observations are censored below.</p>
+<p>Just over 40% of our observations are censored. We visualize the observed durations and indicate which observations are censored below.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -480,70 +471,30 @@ observed durations and indicate which observations are censored below.</p>
 <img alt="../_images/notebooks_survival_analysis_10_0.png" src="../_images/notebooks_survival_analysis_10_0.png" />
 </div>
 </div>
-<p>When an observation is censored (<code class="docutils literal notranslate"><span class="pre">df.event</span></code> is zero), <code class="docutils literal notranslate"><span class="pre">df.time</span></code> is
-not the subject’s survival time. All we can conclude from such a
-censored obsevation is that the subject’s true survival time exceeds
-<code class="docutils literal notranslate"><span class="pre">df.time</span></code>.</p>
-<p>This is enough basic surival analysis theory for the purposes of this
-tutorial; for a more extensive introduction, consult Aalen et al. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Aalen, Odd, Ornulf Borgan, and Hakon Gjessing. Survival and event
-history analysis: a process point of view. Springer Science &amp;
-Business Media, 2008.</td></tr>
-</tbody>
-</table>
+<p>When an observation is censored (<code class="docutils literal notranslate"><span class="pre">df.event</span></code> is zero), <code class="docutils literal notranslate"><span class="pre">df.time</span></code> is not the subject’s survival time. All we can conclude from such a censored obsevation is that the subject’s true survival time exceeds <code class="docutils literal notranslate"><span class="pre">df.time</span></code>.</p>
+<p>This is enough basic surival analysis theory for the purposes of this tutorial; for a more extensive introduction, consult Aalen et al. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Aalen, Odd, Ornulf Borgan, and Hakon Gjessing. Survival and event history analysis: a process point of view. Springer Science &amp; Business Media, 2008.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="Bayesian-proportional-hazards-model">
 <h2>Bayesian proportional hazards model<a class="headerlink" href="#Bayesian-proportional-hazards-model" title="Permalink to this headline">¶</a></h2>
-<p>The two most basic estimators in survial analysis are the <a class="reference external" href="https://en.wikipedia.org/wiki/Kaplan%E2%80%93Meier_estimator">Kaplan-Meier
-estimator</a>
-of the survival function and the <a class="reference external" href="https://en.wikipedia.org/wiki/Nelson%E2%80%93Aalen_estimator">Nelson-Aalen
-estimator</a>
-of the cumulative hazard function. However, since we want to understand
-the impact of metastization on survival time, a risk regression model is
-more appropriate. Perhaps the most commonly used risk regression model
-is <a class="reference external" href="https://en.wikipedia.org/wiki/Proportional_hazards_model">Cox’s proportional hazards
-model</a>. In
-this model, if we have covariates <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and regression
-coefficients <span class="math notranslate nohighlight">\(\beta\)</span>, the hazard rate is modeled as</p>
+<p>The two most basic estimators in survial analysis are the <a class="reference external" href="https://en.wikipedia.org/wiki/Kaplan%E2%80%93Meier_estimator">Kaplan-Meier estimator</a> of the survival function and the <a class="reference external" href="https://en.wikipedia.org/wiki/Nelson%E2%80%93Aalen_estimator">Nelson-Aalen estimator</a> of the cumulative hazard function. However, since we want to understand the impact of metastization on survival time, a risk regression model is more appropriate. Perhaps the most commonly used risk regression model is <a class="reference external" href="https://en.wikipedia.org/wiki/Proportional_hazards_model">Cox’s
+proportional hazards model</a>. In this model, if we have covariates <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and regression coefficients <span class="math notranslate nohighlight">\(\beta\)</span>, the hazard rate is modeled as</p>
 <div class="math notranslate nohighlight">
 \[\lambda(t) = \lambda_0(t) \exp(\mathbf{x} \beta).\]</div>
-<p>Here <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> is the baseline hazard, which is independent
-of the covariates <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. In this example, the covariates
-are the one-dimensonal vector <code class="docutils literal notranslate"><span class="pre">df.metastized</span></code>.</p>
-<p>Unlike in many regression situations, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> should not
-include a constant term corresponding to an intercept. If
-<span class="math notranslate nohighlight">\(\mathbf{x}\)</span> includes a constant term corresponding to an
-intercept, the model becomes
-<a class="reference external" href="https://en.wikipedia.org/wiki/Identifiability">unidentifiable</a>. To
-illustrate this unidentifiability, suppose that</p>
+<p>Here <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> is the baseline hazard, which is independent of the covariates <span class="math notranslate nohighlight">\(\mathbf{x}\)</span>. In this example, the covariates are the one-dimensonal vector <code class="docutils literal notranslate"><span class="pre">df.metastized</span></code>.</p>
+<p>Unlike in many regression situations, <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> should not include a constant term corresponding to an intercept. If <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> includes a constant term corresponding to an intercept, the model becomes <a class="reference external" href="https://en.wikipedia.org/wiki/Identifiability">unidentifiable</a>. To illustrate this unidentifiability, suppose that</p>
 <div class="math notranslate nohighlight">
 \[\lambda(t) = \lambda_0(t) \exp(\beta_0 + \mathbf{x} \beta) = \lambda_0(t) \exp(\beta_0) \exp(\mathbf{x} \beta).\]</div>
-<p>If <span class="math notranslate nohighlight">\(\tilde{\beta}_0 = \beta_0 + \delta\)</span> and
-<span class="math notranslate nohighlight">\(\tilde{\lambda}_0(t) = \lambda_0(t) \exp(-\delta)\)</span>, then
-<span class="math notranslate nohighlight">\(\lambda(t) = \tilde{\lambda}_0(t) \exp(\tilde{\beta}_0 + \mathbf{x} \beta)\)</span>
-as well, making the model with <span class="math notranslate nohighlight">\(\beta_0\)</span> unidentifiable.</p>
-<p>In order to perform Bayesian inference with the Cox model, we must
-specify priors on <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span>. We place a
-normal prior on <span class="math notranslate nohighlight">\(\beta\)</span>,
-<span class="math notranslate nohighlight">\(\beta \sim N(\mu_{\beta}, \sigma_{\beta}^2),\)</span> where
-<span class="math notranslate nohighlight">\(\mu_{\beta} \sim N(0, 10^2)\)</span> and
-<span class="math notranslate nohighlight">\(\sigma_{\beta} \sim U(0, 10)\)</span>.</p>
-<p>A suitable prior on <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> is less obvious. We choose a
-semiparametric prior, where <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> is a piecewise constant
-function. This prior requires us to partition the time range in question
-into intervals with endpoints <span class="math notranslate nohighlight">\(0 \leq s_1 &lt; s_2 &lt; \cdots &lt; s_N\)</span>.
-With this partition, <span class="math notranslate nohighlight">\(\lambda_0 (t) = \lambda_j\)</span> if
-<span class="math notranslate nohighlight">\(s_j \leq t &lt; s_{j + 1}\)</span>. With <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> constrained to
-have this form, all we need to do is choose priors for the <span class="math notranslate nohighlight">\(N - 1\)</span>
-values <span class="math notranslate nohighlight">\(\lambda_j\)</span>. We use independent vague priors
-<span class="math notranslate nohighlight">\(\lambda_j \sim \operatorname{Gamma}(10^{-2}, 10^{-2}).\)</span> For our
-mastectomy example, we make each interval three months long.</p>
+<p>If <span class="math notranslate nohighlight">\(\tilde{\beta}_0 = \beta_0 + \delta\)</span> and <span class="math notranslate nohighlight">\(\tilde{\lambda}_0(t) = \lambda_0(t) \exp(-\delta)\)</span>, then <span class="math notranslate nohighlight">\(\lambda(t) = \tilde{\lambda}_0(t) \exp(\tilde{\beta}_0 + \mathbf{x} \beta)\)</span> as well, making the model with <span class="math notranslate nohighlight">\(\beta_0\)</span> unidentifiable.</p>
+<p>In order to perform Bayesian inference with the Cox model, we must specify priors on <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span>. We place a normal prior on <span class="math notranslate nohighlight">\(\beta\)</span>, <span class="math notranslate nohighlight">\(\beta \sim N(\mu_{\beta}, \sigma_{\beta}^2),\)</span> where <span class="math notranslate nohighlight">\(\mu_{\beta} \sim N(0, 10^2)\)</span> and <span class="math notranslate nohighlight">\(\sigma_{\beta} \sim U(0, 10)\)</span>.</p>
+<p>A suitable prior on <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> is less obvious. We choose a semiparametric prior, where <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> is a piecewise constant function. This prior requires us to partition the time range in question into intervals with endpoints <span class="math notranslate nohighlight">\(0 \leq s_1 &lt; s_2 &lt; \cdots &lt; s_N\)</span>. With this partition, <span class="math notranslate nohighlight">\(\lambda_0 (t) = \lambda_j\)</span> if <span class="math notranslate nohighlight">\(s_j \leq t &lt; s_{j + 1}\)</span>. With <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> constrained to have this form, all we need to do is choose priors for the <span class="math notranslate nohighlight">\(N - 1\)</span> values
+<span class="math notranslate nohighlight">\(\lambda_j\)</span>. We use independent vague priors <span class="math notranslate nohighlight">\(\lambda_j \sim \operatorname{Gamma}(10^{-2}, 10^{-2}).\)</span> For our mastectomy example, we make each interval three months long.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -554,11 +505,9 @@ mastectomy example, we make each interval three months long.</p>
 </pre></div>
 </div>
 </div>
-<p>We see how deaths and censored observations are distributed in these
-intervals.</p>
+<p>We see how deaths and censored observations are distributed in these intervals.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -588,26 +537,16 @@ intervals.</p>
 <img alt="../_images/notebooks_survival_analysis_15_0.png" src="../_images/notebooks_survival_analysis_15_0.png" />
 </div>
 </div>
-<p>With the prior distributions on <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span>
-chosen, we now show how the model may be fit using MCMC simulation with
-<code class="docutils literal notranslate"><span class="pre">pymc3</span></code>. The key observation is that the piecewise-constant
-proportional hazard model is <a class="reference external" href="http://data.princeton.edu/wws509/notes/c7s4.html">closely
-related</a> to a
-Poisson regression model. (The models are not identical, but their
-likelihoods differ by a factor that depends only on the observed data
-and not the parameters <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\lambda_j\)</span>. For details,
-see Germán Rodríguez’s WWS 509 <a class="reference external" href="http://data.princeton.edu/wws509/notes/c7s4.html">course
-notes</a>.)</p>
-<p>We define indicator variables based on whether or the <span class="math notranslate nohighlight">\(i\)</span>-th
-suject died in the <span class="math notranslate nohighlight">\(j\)</span>-th interval,</p>
+<p>With the prior distributions on <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\lambda_0(t)\)</span> chosen, we now show how the model may be fit using MCMC simulation with <code class="docutils literal notranslate"><span class="pre">pymc3</span></code>. The key observation is that the piecewise-constant proportional hazard model is <a class="reference external" href="http://data.princeton.edu/wws509/notes/c7s4.html">closely related</a> to a Poisson regression model. (The models are not identical, but their likelihoods differ by a factor that depends only on the observed data and not the parameters <span class="math notranslate nohighlight">\(\beta\)</span> and
+<span class="math notranslate nohighlight">\(\lambda_j\)</span>. For details, see Germán Rodríguez’s WWS 509 <a class="reference external" href="http://data.princeton.edu/wws509/notes/c7s4.html">course notes</a>.)</p>
+<p>We define indicator variables based on whether or the <span class="math notranslate nohighlight">\(i\)</span>-th suject died in the <span class="math notranslate nohighlight">\(j\)</span>-th interval,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}d_{i, j} = \begin{cases}
     1 &amp; \textrm{if subject } i \textrm{ died in interval } j \\
     0 &amp; \textrm{otherwise}
 \end{cases}.\end{split}\]</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -618,11 +557,9 @@ suject died in the <span class="math notranslate nohighlight">\(j\)</span>-th in
 </pre></div>
 </div>
 </div>
-<p>We also define <span class="math notranslate nohighlight">\(t_{i, j}\)</span> to be the amount of time the
-<span class="math notranslate nohighlight">\(i\)</span>-th subject was at risk in the <span class="math notranslate nohighlight">\(j\)</span>-th interval.</p>
+<p>We also define <span class="math notranslate nohighlight">\(t_{i, j}\)</span> to be the amount of time the <span class="math notranslate nohighlight">\(i\)</span>-th subject was at risk in the <span class="math notranslate nohighlight">\(j\)</span>-th interval.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -631,15 +568,10 @@ suject died in the <span class="math notranslate nohighlight">\(j\)</span>-th in
 </pre></div>
 </div>
 </div>
-<p>Finally, denote the risk incurred by the <span class="math notranslate nohighlight">\(i\)</span>-th subject in the
-<span class="math notranslate nohighlight">\(j\)</span>-th interval as
-<span class="math notranslate nohighlight">\(\lambda_{i, j} = \lambda_j \exp(\mathbf{x}_i \beta)\)</span>.</p>
-<p>We may approximate <span class="math notranslate nohighlight">\(d_{i, j}\)</span> with a Possion random variable with
-mean <span class="math notranslate nohighlight">\(t_{i, j}\ \lambda_{i, j}\)</span>. This approximation leads to the
-following <code class="docutils literal notranslate"><span class="pre">pymc3</span></code> model.</p>
+<p>Finally, denote the risk incurred by the <span class="math notranslate nohighlight">\(i\)</span>-th subject in the <span class="math notranslate nohighlight">\(j\)</span>-th interval as <span class="math notranslate nohighlight">\(\lambda_{i, j} = \lambda_j \exp(\mathbf{x}_i \beta)\)</span>.</p>
+<p>We may approximate <span class="math notranslate nohighlight">\(d_{i, j}\)</span> with a Possion random variable with mean <span class="math notranslate nohighlight">\(t_{i, j}\ \lambda_{i, j}\)</span>. This approximation leads to the following <code class="docutils literal notranslate"><span class="pre">pymc3</span></code> model.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -648,8 +580,7 @@ following <code class="docutils literal notranslate"><span class="pre">pymc3</sp
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -668,8 +599,7 @@ following <code class="docutils literal notranslate"><span class="pre">pymc3</sp
 </div>
 <p>We now sample from the model.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -679,8 +609,7 @@ following <code class="docutils literal notranslate"><span class="pre">pymc3</sp
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -692,7 +621,7 @@ following <code class="docutils literal notranslate"><span class="pre">pymc3</sp
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
@@ -704,11 +633,9 @@ There were 89 divergences after tuning. Increase `target_accept` or reparameteri
 The number of effective samples is smaller than 25% for some parameters.
 </pre></div></div>
 </div>
-<p>We see that the hazard rate for subjects whose cancer has metastized is
-about double the rate of those whose cancer has not metastized.</p>
+<p>We see that the hazard rate for subjects whose cancer has metastized is about double the rate of those whose cancer has not metastized.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -717,18 +644,16 @@ about double the rate of those whose cancer has not metastized.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>2.2134437358971764
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+2.2134437358971764
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -744,8 +669,7 @@ about double the rate of those whose cancer has not metastized.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -760,11 +684,9 @@ about double the rate of those whose cancer has not metastized.</p>
 <img alt="../_images/notebooks_survival_analysis_29_0.png" src="../_images/notebooks_survival_analysis_29_0.png" />
 </div>
 </div>
-<p>We now examine the effect of metastization on both the cumulative hazard
-and on the survival function.</p>
+<p>We now examine the effect of metastization on both the cumulative hazard and on the survival function.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -774,8 +696,7 @@ and on the survival function.</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -788,12 +709,11 @@ and on the survival function.</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">plot_with_hpd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hazard</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
+<span></span><span class="k">def</span> <span class="nf">plot_with_hpd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hazard</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">):</span>
     <span class="n">mean</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">hazard</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
 
     <span class="n">percentiles</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">alpha</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">-</span> <span class="n">alpha</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">])</span>
@@ -805,12 +725,11 @@ and on the survival function.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">hazard_ax</span><span class="p">,</span> <span class="n">surv_ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">hazard_ax</span><span class="p">,</span> <span class="n">surv_ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="n">plot_with_hpd</span><span class="p">(</span><span class="n">interval_bounds</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">base_hazard</span><span class="p">,</span> <span class="n">cum_hazard</span><span class="p">,</span>
               <span class="n">hazard_ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">blue</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Had not metastized&#39;</span><span class="p">)</span>
@@ -845,31 +764,15 @@ and on the survival function.</p>
 <img alt="../_images/notebooks_survival_analysis_34_0.png" src="../_images/notebooks_survival_analysis_34_0.png" />
 </div>
 </div>
-<p>We see that the cumulative hazard for metastized subjects increases more
-rapidly initially (through about seventy months), after which it
-increases roughly in parallel with the baseline cumulative hazard.</p>
-<p>These plots also show the pointwise 95% high posterior density interval
-for each function. One of the distinct advantages of the Bayesian model
-fit with <code class="docutils literal notranslate"><span class="pre">pymc3</span></code> is the inherent quantification of uncertainty in our
-estimates.</p>
+<p>We see that the cumulative hazard for metastized subjects increases more rapidly initially (through about seventy months), after which it increases roughly in parallel with the baseline cumulative hazard.</p>
+<p>These plots also show the pointwise 95% high posterior density interval for each function. One of the distinct advantages of the Bayesian model fit with <code class="docutils literal notranslate"><span class="pre">pymc3</span></code> is the inherent quantification of uncertainty in our estimates.</p>
 <div class="section" id="Time-varying-effects">
 <h3>Time varying effects<a class="headerlink" href="#Time-varying-effects" title="Permalink to this headline">¶</a></h3>
-<p>Another of the advantages of the model we have built is its flexibility.
-From the plots above, we may reasonable believe that the additional
-hazard due to metastization varies over time; it seems plausible that
-cancer that has metastized increases the hazard rate immediately after
-the mastectomy, but that the risk due to metastization decreases over
-time. We can accomodate this mechanism in our model by allowing the
-regression coefficients to vary over time. In the time-varying
-coefficent model, if <span class="math notranslate nohighlight">\(s_j \leq t &lt; s_{j + 1}\)</span>, we let
-<span class="math notranslate nohighlight">\(\lambda(t) = \lambda_j \exp(\mathbf{x} \beta_j).\)</span> The sequence of
-regression coefficients <span class="math notranslate nohighlight">\(\beta_1, \beta_2, \ldots, \beta_{N - 1}\)</span>
-form a normal random walk with <span class="math notranslate nohighlight">\(\beta_1 \sim N(0, 1)\)</span>,
-<span class="math notranslate nohighlight">\(\beta_j\ |\ \beta_{j - 1} \sim N(\beta_{j - 1}, 1)\)</span>.</p>
+<p>Another of the advantages of the model we have built is its flexibility. From the plots above, we may reasonable believe that the additional hazard due to metastization varies over time; it seems plausible that cancer that has metastized increases the hazard rate immediately after the mastectomy, but that the risk due to metastization decreases over time. We can accomodate this mechanism in our model by allowing the regression coefficients to vary over time. In the time-varying coefficent model,
+if <span class="math notranslate nohighlight">\(s_j \leq t &lt; s_{j + 1}\)</span>, we let <span class="math notranslate nohighlight">\(\lambda(t) = \lambda_j \exp(\mathbf{x} \beta_j).\)</span> The sequence of regression coefficients <span class="math notranslate nohighlight">\(\beta_1, \beta_2, \ldots, \beta_{N - 1}\)</span> form a normal random walk with <span class="math notranslate nohighlight">\(\beta_1 \sim N(0, 1)\)</span>, <span class="math notranslate nohighlight">\(\beta_j\ |\ \beta_{j - 1} \sim N(\beta_{j - 1}, 1)\)</span>.</p>
 <p>We implement this model in <code class="docutils literal notranslate"><span class="pre">pymc3</span></code> as follows.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [ ]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -887,8 +790,7 @@ form a normal random walk with <span class="math notranslate nohighlight">\(\bet
 </div>
 <p>We proceed to sample from this model.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -900,7 +802,7 @@ form a normal random walk with <span class="math notranslate nohighlight">\(\bet
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
@@ -915,8 +817,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -931,13 +832,9 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <img alt="../_images/notebooks_survival_analysis_40_0.png" src="../_images/notebooks_survival_analysis_40_0.png" />
 </div>
 </div>
-<p>We see from the plot of <span class="math notranslate nohighlight">\(\beta_j\)</span> over time below that initially
-<span class="math notranslate nohighlight">\(\beta_j &gt; 0\)</span>, indicating an elevated hazard rate due to
-metastization, but that this risk declines as <span class="math notranslate nohighlight">\(\beta_j &lt; 0\)</span>
-eventually.</p>
+<p>We see from the plot of <span class="math notranslate nohighlight">\(\beta_j\)</span> over time below that initially <span class="math notranslate nohighlight">\(\beta_j &gt; 0\)</span>, indicating an elevated hazard rate due to metastization, but that this risk declines as <span class="math notranslate nohighlight">\(\beta_j &lt; 0\)</span> eventually.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -969,7 +866,7 @@ eventually.</p>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 &#39;c&#39; argument looks like a single numeric RGB or RGBA sequence, which should be avoided as value-mapping will have precedence in case its length matches with &#39;x&#39; &amp; &#39;y&#39;.  Please use a 2-D array with a single row if you really want to specify the same RGB or RGBA value for all points.
 &#39;c&#39; argument looks like a single numeric RGB or RGBA sequence, which should be avoided as value-mapping will have precedence in case its length matches with &#39;x&#39; &amp; &#39;y&#39;.  Please use a 2-D array with a single row if you really want to specify the same RGB or RGBA value for all points.
@@ -982,16 +879,10 @@ eventually.</p>
 <img alt="../_images/notebooks_survival_analysis_42_1.png" src="../_images/notebooks_survival_analysis_42_1.png" />
 </div>
 </div>
-<p>The coefficients <span class="math notranslate nohighlight">\(\beta_j\)</span> begin declining rapidly around one
-hundred months post-mastectomy, which seems reasonable, given that only
-three of twelve subjects whose cancer had metastized lived past this
-point died during the study.</p>
-<p>The change in our estimate of the cumulative hazard and survival
-functions due to time-varying effects is also quite apparent in the
-following plots.</p>
+<p>The coefficients <span class="math notranslate nohighlight">\(\beta_j\)</span> begin declining rapidly around one hundred months post-mastectomy, which seems reasonable, given that only three of twelve subjects whose cancer had metastized lived past this point died during the study.</p>
+<p>The change in our estimate of the cumulative hazard and survival functions due to time-varying effects is also quite apparent in the following plots.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1001,8 +892,7 @@ following plots.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1036,12 +926,11 @@ following plots.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">hazard_ax</span><span class="p">,</span> <span class="n">surv_ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">hazard_ax</span><span class="p">,</span> <span class="n">surv_ax</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="n">plot_with_hpd</span><span class="p">(</span><span class="n">interval_bounds</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">tv_base_hazard</span><span class="p">,</span> <span class="n">cum_hazard</span><span class="p">,</span>
               <span class="n">hazard_ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">blue</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Had not metastized&#39;</span><span class="p">)</span>
@@ -1077,16 +966,8 @@ following plots.</p>
 <img alt="../_images/notebooks_survival_analysis_46_0.png" src="../_images/notebooks_survival_analysis_46_0.png" />
 </div>
 </div>
-<p>We have really only scratched the surface of both survival analysis and
-the Bayesian approach to survival analysis. More information on Bayesian
-survival analysis is available in Ibrahim et al. (2005). (For example,
-we may want to account for individual frailty in either or original or
-time-varying models.)</p>
-<p>This tutorial is available as an <a class="reference external" href="http://ipython.org/">IPython</a>
-notebook
-<a class="reference external" href="https://gist.github.com/AustinRochford/4c6b07e51a2247d678d6">here</a>.
-It is adapted from a blog post that first appeared
-<a class="reference external" href="http://austinrochford.com/posts/2015-10-05-bayes-survival.html">here</a>.</p>
+<p>We have really only scratched the surface of both survival analysis and the Bayesian approach to survival analysis. More information on Bayesian survival analysis is available in Ibrahim et al. (2005). (For example, we may want to account for individual frailty in either or original or time-varying models.)</p>
+<p>This tutorial is available as an <a class="reference external" href="http://ipython.org/">IPython</a> notebook <a class="reference external" href="https://gist.github.com/AustinRochford/4c6b07e51a2247d678d6">here</a>. It is adapted from a blog post that first appeared <a class="reference external" href="http://austinrochford.com/posts/2015-10-05-bayes-survival.html">here</a>.</p>
 </div>
 </div>
 </div>
@@ -1105,7 +986,7 @@ It is adapted from a blog post that first appeared
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 1.7.9.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
         </p>
     </div>
 </div>

@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Random Variables &#8212; PyMC3 3.8 documentation</title>
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/default.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <script type="text/javascript" src="../_static/highlight.min.js"></script>
+    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<script>hljs.initHighlightingOnLoad();</script>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+
+
+  </head><body>
+<div class="ui vertical center aligned">
+
+    <div class="ui container">
+        <div class="ui large secondary pointing menu">
+            <a class="item" href="/">
+                <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
+            </a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+            
+            <div class="right menu">
+                <div class="item">
+                    <form class="ui icon input" action="../search.html" method="get">
+                        <input type="text" placeholder="Search..." name="q" />
+                        <i class="search link icon"></i>
+                    </form>
+                </div>
+                <a class="item" href="https://github.com/pymc-devs/pymc3"><i class="github blue icon large"></i></a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="ui container" role="main">
+    
+
+    <div class="ui vertical segment">
+        
+  <div class="section" id="random-variables">
+<h1>Random Variables<a class="headerlink" href="#random-variables" title="Permalink to this headline">¶</a></h1>
+<p>The normal PyMC3 programmer will typically not need to interact with these classes, except possibly when debugging.  Otherwise they are primarily of interest to developers.</p>
+<dl class="class">
+<dt id="pymc3.model.PyMC3Variable">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">PyMC3Variable</code><span class="sig-paren">(</span><em class="sig-param">type</em>, <em class="sig-param">owner=None</em>, <em class="sig-param">index=None</em>, <em class="sig-param">name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.PyMC3Variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to wrap Theano TensorVariable for custom behavior.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="pymc3.model.ValueGradFunction">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">ValueGradFunction</code><span class="sig-paren">(</span><em class="sig-param">cost</em>, <em class="sig-param">grad_vars</em>, <em class="sig-param">extra_vars=None</em>, <em class="sig-param">dtype=None</em>, <em class="sig-param">casting='no'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a theano function that computes a value and its gradient.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>cost</strong><span class="classifier">theano variable</span></dt><dd><p>The value that we compute with its gradient.</p>
+</dd>
+<dt><strong>grad_vars</strong><span class="classifier">list of named theano variables or None</span></dt><dd><p>The arguments with respect to which the gradient is computed.</p>
+</dd>
+<dt><strong>extra_vars</strong><span class="classifier">list of named theano variables or None</span></dt><dd><p>Other arguments of the function that are assumed constant. They
+are stored in shared variables and can be set using
+<cite>set_extra_values</cite>.</p>
+</dd>
+<dt><strong>dtype</strong><span class="classifier">str, default=theano.config.floatX</span></dt><dd><p>The dtype of the arrays.</p>
+</dd>
+<dt><strong>casting</strong><span class="classifier">{‘no’, ‘equiv’, ‘save’, ‘same_kind’, ‘unsafe’}, default=’no’</span></dt><dd><p>Casting rule for casting <cite>grad_args</cite> to the array dtype.
+See <cite>numpy.can_cast</cite> for a description of the options.
+Keep in mind that we cast the variables to the array <em>and</em>
+back from the array dtype to the variable dtype.</p>
+</dd>
+<dt><strong>kwargs</strong></dt><dd><p>Extra arguments are passed on to <cite>theano.function</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>The number of elements in the parameter array.</p>
+</dd>
+<dt><a class="reference internal" href="#pymc3.model.ValueGradFunction.profile" title="pymc3.model.ValueGradFunction.profile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">profile</span></code></a><span class="classifier">theano profiling object or None</span></dt><dd><p>Profiling information of the underlying theano function.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pymc3.model.ValueGradFunction.array_to_dict">
+<code class="sig-name descname">array_to_dict</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">array</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.array_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an array to a dictionary containing the grad_vars.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.model.ValueGradFunction.array_to_full_dict">
+<code class="sig-name descname">array_to_full_dict</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">array</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.array_to_full_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an array to a dictionary with grad_vars and extra_vars.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.model.ValueGradFunction.dict_to_array">
+<code class="sig-name descname">dict_to_array</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">point</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.dict_to_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a dictionary with values for grad_vars to an array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.model.ValueGradFunction.profile">
+<em class="property">property </em><code class="sig-name descname">profile</code><a class="headerlink" href="#pymc3.model.ValueGradFunction.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Profiling information of the underlying theano function.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pymc3.model.FreeRV">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">FreeRV</code><span class="sig-paren">(</span><em class="sig-param">type=None</em>, <em class="sig-param">owner=None</em>, <em class="sig-param">index=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">distribution=None</em>, <em class="sig-param">total_size=None</em>, <em class="sig-param">model=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.FreeRV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unobserved random variable that a model is specified in terms of.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>type</strong><span class="classifier">theano type (optional)</span></dt><dd></dd>
+<dt><strong>owner</strong><span class="classifier">theano owner (optional)</span></dt><dd></dd>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>distribution</strong><span class="classifier">Distribution</span></dt><dd></dd>
+<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
+<dt><strong>total_size</strong><span class="classifier">scalar Tensor (optional)</span></dt><dd><p>needed for upscaling logp</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pymc3.model.FreeRV.init_value">
+<em class="property">property </em><code class="sig-name descname">init_value</code><a class="headerlink" href="#pymc3.model.FreeRV.init_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience attribute to return tag.test_value</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pymc3.model.ObservedRV">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">ObservedRV</code><span class="sig-paren">(</span><em class="sig-param">type=None</em>, <em class="sig-param">owner=None</em>, <em class="sig-param">index=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">data=None</em>, <em class="sig-param">distribution=None</em>, <em class="sig-param">total_size=None</em>, <em class="sig-param">model=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ObservedRV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Observed random variable that a model is specified in terms of.
+Potentially partially observed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>type</strong><span class="classifier">theano type (optional)</span></dt><dd></dd>
+<dt><strong>owner</strong><span class="classifier">theano owner (optional)</span></dt><dd></dd>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>distribution</strong><span class="classifier">Distribution</span></dt><dd></dd>
+<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
+<dt><strong>total_size</strong><span class="classifier">scalar Tensor (optional)</span></dt><dd><p>needed for upscaling logp</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pymc3.model.ObservedRV.init_value">
+<em class="property">property </em><code class="sig-name descname">init_value</code><a class="headerlink" href="#pymc3.model.ObservedRV.init_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience attribute to return tag.test_value</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pymc3.model.MultiObservedRV">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">MultiObservedRV</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">data</em>, <em class="sig-param">distribution</em>, <em class="sig-param">total_size=None</em>, <em class="sig-param">model=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.MultiObservedRV" title="Permalink to this definition">¶</a></dt>
+<dd><p>Observed random variable that a model is specified in terms of.
+Potentially partially observed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>type</strong><span class="classifier">theano type (optional)</span></dt><dd></dd>
+<dt><strong>owner</strong><span class="classifier">theano owner (optional)</span></dt><dd></dd>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>distribution</strong><span class="classifier">Distribution</span></dt><dd></dd>
+<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
+<dt><strong>total_size</strong><span class="classifier">scalar Tensor (optional)</span></dt><dd><p>needed for upscaling logp</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="pymc3.model.TransformedRV">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">TransformedRV</code><span class="sig-paren">(</span><em class="sig-param">type=None</em>, <em class="sig-param">owner=None</em>, <em class="sig-param">index=None</em>, <em class="sig-param">name=None</em>, <em class="sig-param">distribution=None</em>, <em class="sig-param">model=None</em>, <em class="sig-param">transform=None</em>, <em class="sig-param">total_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.TransformedRV" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>type</strong><span class="classifier">theano type (optional)</span></dt><dd></dd>
+<dt><strong>owner</strong><span class="classifier">theano owner (optional)</span></dt><dd></dd>
+<dt><strong>name</strong><span class="classifier">str</span></dt><dd></dd>
+<dt><strong>distribution</strong><span class="classifier">Distribution</span></dt><dd></dd>
+<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
+<dt><strong>total_size</strong><span class="classifier">scalar Tensor (optional)</span></dt><dd><p>needed for upscaling logp</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pymc3.model.TransformedRV.init_value">
+<em class="property">property </em><code class="sig-name descname">init_value</code><a class="headerlink" href="#pymc3.model.TransformedRV.init_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convenience attribute to return tag.test_value</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+</div>
+<div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <a href="https://github.com/pymc-devs/pymc3"><i class="github icon large"></i></a>
+        <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
+        <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
+    </div>
+    <div class="ui center aligned container">
+        <p>
+            &copy; Copyright 2018, The PyMC Development Team.
+        </p>
+        <p>
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+        </p>
+    </div>
+</div>
+  </body>
+</html>

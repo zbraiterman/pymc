@@ -1,21 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Introduction &#8212; PyMC3 3.6 documentation</title>
+    <meta charset="utf-8" />
+    <title>Introduction &#8212; PyMC3 3.8 documentation</title>
     <link rel="stylesheet" href="_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/default.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script type="text/javascript" src="_static/highlight.min.js"></script>
     <script type="text/javascript" src="_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="_static/PyMC3.ico"/>
@@ -68,16 +69,16 @@
 <h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
 <p>PyMC3 strives to make Bayesian modeling as simple and painless as possible,  allowing users to focus on their scientific problem, rather than on the methods used to solve it. Here is a partial list of its features:</p>
 <ul class="simple">
-<li>Modern methods for fitting Bayesian models, including MCMC and VI.</li>
-<li>Includes a large suite of well-documented statistical distributions.</li>
-<li>Uses Theano as the computational backend, allowing for fast expression evaluation, automatic gradient calculation, and GPU computing.</li>
-<li>Built-in support for Gaussian process modeling.</li>
-<li>Model summarization and plotting.</li>
-<li>Model checking and convergence detection.</li>
-<li>Extensible: easily incorporates custom step methods and unusual probability
-distributions.</li>
-<li>Bayesian models can be embedded in larger programs, and results can be analyzed
-with the full power of Python.</li>
+<li><p>Modern methods for fitting Bayesian models, including MCMC and VI.</p></li>
+<li><p>Includes a large suite of well-documented statistical distributions.</p></li>
+<li><p>Uses Theano as the computational backend, allowing for fast expression evaluation, automatic gradient calculation, and GPU computing.</p></li>
+<li><p>Built-in support for Gaussian process modeling.</p></li>
+<li><p>Model summarization and plotting.</p></li>
+<li><p>Model checking and convergence detection.</p></li>
+<li><p>Extensible: easily incorporates custom step methods and unusual probability
+distributions.</p></li>
+<li><p>Bayesian models can be embedded in larger programs, and results can be analyzed
+with the full power of Python.</p></li>
 </ul>
 </div>
 <div class="section" id="what-s-new-in-version-3">
@@ -85,14 +86,14 @@ with the full power of Python.</li>
 <p>The third major version of PyMC has benefitted from being re-written from scratch. Substantial improvements in the user interface and performance have resulted from this. While PyMC2 relied on Fortran extensions (via f2py) for most of the computational heavy-lifting, PyMC3 leverages Theano, a library from the Montréal Institute for Learning Algorithms (MILA), for array-based expression evaluation, to perform its computation. What this provides, above all else, is fast automatic differentiation, which is at the heart of the gradient-based sampling and optimization methods currently providing inference for probabilistic programming.</p>
 <p>Major changes from previous versions:</p>
 <ul class="simple">
-<li>New flexible object model and syntax (not backward-compatible with PyMC2).</li>
-<li>Gradient-based MCMC methods, including Hamiltonian Monte Carlo (HMC), the No U-turn Sampler (NUTS), and Stein Variational Gradient Descent.</li>
-<li>Variational inference methods, including automatic differentiation variational inference (ADVI) and operator variational inference (OPVI).</li>
-<li>An interface for easy formula-based specification of generalized linear models (GLM).</li>
-<li>Elliptical slice sampling.</li>
-<li>Specialized distributions for representing time series.</li>
-<li>A library of Jupyter notebooks that provide case studies and fully developed usage examples.</li>
-<li>Much more!</li>
+<li><p>New flexible object model and syntax (not backward-compatible with PyMC2).</p></li>
+<li><p>Gradient-based MCMC methods, including Hamiltonian Monte Carlo (HMC), the No U-turn Sampler (NUTS), and Stein Variational Gradient Descent.</p></li>
+<li><p>Variational inference methods, including automatic differentiation variational inference (ADVI) and operator variational inference (OPVI).</p></li>
+<li><p>An interface for easy formula-based specification of generalized linear models (GLM).</p></li>
+<li><p>Elliptical slice sampling.</p></li>
+<li><p>Specialized distributions for representing time series.</p></li>
+<li><p>A library of Jupyter notebooks that provide case studies and fully developed usage examples.</p></li>
+<li><p>Much more!</p></li>
 </ul>
 <p>While the addition of Theano adds a level of complexity to the development of PyMC, fundamentally altering how the underlying computation is performed, we have worked hard to maintain the elegant simplicity of the original PyMC model specification syntax.</p>
 </div>
@@ -121,7 +122,7 @@ Python 3 compatibility, improved summary plots, and some important bug fixes.</p
 <h2>Usage Overview<a class="headerlink" href="#usage-overview" title="Permalink to this headline">¶</a></h2>
 <p>For a detailed overview of building models in PyMC3, please read the appropriate sections in the rest of the documentation. For a flavor of what PyMC3 models look like, here is a quick example.</p>
 <p>First, import the PyMC3 functions and classes you will need for building your model. You can import the entire module via <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">pymc3</span> <span class="pre">as</span> <span class="pre">pm</span></code>, or just bring in what you need:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pymc3</span> <span class="k">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Normal</span><span class="p">,</span> <span class="n">invlogit</span><span class="p">,</span> <span class="n">Binomial</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">forestplot</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pymc3</span> <span class="kn">import</span> <span class="n">Model</span><span class="p">,</span> <span class="n">Normal</span><span class="p">,</span> <span class="n">invlogit</span><span class="p">,</span> <span class="n">Binomial</span><span class="p">,</span> <span class="n">sample</span><span class="p">,</span> <span class="n">forestplot</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </pre></div>
 </div>
@@ -168,8 +169,8 @@ Interrupted at 11,900 [5%]: Average Loss = 15.168
 <div class="section" id="see-also">
 <h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="nb_tutorials/index.html">Tutorials</a></li>
-<li><a class="reference external" href="nb_examples/index.html">Examples</a></li>
+<li><p><a class="reference external" href="nb_tutorials/index.html">Tutorials</a></p></li>
+<li><p><a class="reference external" href="nb_examples/index.html">Examples</a></p></li>
 </ul>
 </div>
 </div>
@@ -188,7 +189,7 @@ Interrupted at 11,900 [5%]: Average Loss = 15.168
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 1.7.9.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
         </p>
     </div>
 </div>

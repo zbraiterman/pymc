@@ -1,21 +1,22 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Example: Mauna Loa CO\(_2\) continued &#8212; PyMC3 3.6 documentation</title>
+    <meta charset="utf-8" />
+    <title>Example: Mauna Loa CO\(_2\) continued &#8212; PyMC3 3.8 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script type="text/javascript" src="../_static/highlight.min.js"></script>
     <script type="text/javascript" src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
@@ -63,16 +64,16 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput,
-div.nbinput div.prompt,
-div.nbinput div.input_area,
-div.nbinput div[class*=highlight],
-div.nbinput div[class*=highlight] pre,
-div.nboutput,
-div.nbinput div.prompt,
-div.nbinput div.output_area,
-div.nboutput div[class*=highlight],
-div.nboutput div[class*=highlight] pre {
+div.nbinput.container,
+div.nbinput.container div.prompt,
+div.nbinput.container div.input_area,
+div.nbinput.container div[class*=highlight],
+div.nbinput.container div[class*=highlight] pre,
+div.nboutput.container,
+div.nboutput.container div.prompt,
+div.nboutput.container div.output_area,
+div.nboutput.container div[class*=highlight],
+div.nboutput.container div[class*=highlight] pre {
     background: none;
     border: none;
     padding: 0 0;
@@ -81,13 +82,13 @@ div.nboutput div[class*=highlight] pre {
 }
 
 /* avoid gaps between output lines */
-div.nboutput div[class*=highlight] pre {
+div.nboutput.container div[class*=highlight] pre {
     line-height: normal;
 }
 
 /* input/output containers */
-div.nbinput,
-div.nboutput {
+div.nbinput.container,
+div.nboutput.container {
     display: -webkit-flex;
     display: flex;
     align-items: flex-start;
@@ -95,92 +96,92 @@ div.nboutput {
     width: 100%;
 }
 @media (max-width: 540px) {
-    div.nbinput,
-    div.nboutput {
+    div.nbinput.container,
+    div.nboutput.container {
         flex-direction: column;
     }
 }
 
 /* input container */
-div.nbinput {
+div.nbinput.container {
     padding-top: 5px;
 }
 
 /* last container */
-div.nblast {
+div.nblast.container {
     padding-bottom: 5px;
 }
 
 /* input prompt */
-div.nbinput div.prompt pre {
-    color: #303F9F;
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
 }
 
 /* output prompt */
-div.nboutput div.prompt pre {
-    color: #D84315;
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
 }
 
 /* all prompts */
-div.nbinput div.prompt,
-div.nboutput div.prompt {
-    min-width: 9ex;
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    min-width: 7ex;
     padding-top: 0.4em;
     padding-right: 0.4em;
     text-align: right;
     flex: 0;
 }
 @media (max-width: 540px) {
-    div.nbinput div.prompt,
-    div.nboutput div.prompt {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
         text-align: left;
         padding: 0.4em;
     }
-    div.nboutput div.prompt.empty {
+    div.nboutput.container div.prompt.empty {
         padding: 0;
     }
 }
 
 /* disable scrollbars on prompts */
-div.nbinput div.prompt pre,
-div.nboutput div.prompt pre {
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
     overflow: hidden;
 }
 
 /* input/output area */
-div.nbinput div.input_area,
-div.nboutput div.output_area {
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
     padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
 }
 @media (max-width: 540px) {
-    div.nbinput div.input_area,
-    div.nboutput div.output_area {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
         width: 100%;
     }
 }
 
 /* input area */
-div.nbinput div.input_area {
-    border: 1px solid #cfcfcf;
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f7f7f7;
+    background: #f5f5f5;
 }
 
 /* override MathJax center alignment in output cells */
-div.nboutput div[class*=MathJax] {
+div.nboutput.container div[class*=MathJax] {
     text-align: left !important;
 }
 
-/* override sphinx.ext.pngmath center alignment in output cells */
-div.nboutput div.math p {
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
     text-align: left;
 }
 
 /* standard error */
-div.nboutput div.output_area.stderr {
+div.nboutput.container div.output_area.stderr {
     background: #fdd;
 }
 
@@ -223,78 +224,79 @@ div.nboutput div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 </style>
-<div class="section" id="Example:-Mauna-Loa-CO-continued">
-<h1>Example: Mauna Loa CO<span class="math notranslate nohighlight">\(_2\)</span> continued<a class="headerlink" href="#Example:-Mauna-Loa-CO-continued" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="Example:-Mauna-Loa-CO_2-continued">
+<h1>Example: Mauna Loa CO<span class="math notranslate nohighlight">\(_2\)</span> continued<a class="headerlink" href="#Example:-Mauna-Loa-CO_2-continued" title="Permalink to this headline">¶</a></h1>
 <p>This GP example shows how to</p>
 <ul class="simple">
-<li>Fit fully Bayesian GPs with NUTS</li>
-<li>Model inputs whose exact locations are uncertain (uncertainty in ‘x’)</li>
-<li>Design a semiparametric Gaussian process model</li>
-<li>Build a changepoint covariance function / kernel</li>
-<li>Definine a custom mean and a custom covariance function</li>
+<li><p>Fit fully Bayesian GPs with NUTS</p></li>
+<li><p>Model inputs whose exact locations are uncertain (uncertainty in ‘x’)</p></li>
+<li><p>Design a semiparametric Gaussian process model</p></li>
+<li><p>Build a changepoint covariance function / kernel</p></li>
+<li><p>Definine a custom mean and a custom covariance function</p></li>
 </ul>
-<div class="figure" id="id2">
-<img alt="Earth Systems Research Laboratory" src="https://www.esrl.noaa.gov/gmd/obop/mlo/pictures/sunsetmaunaloa1.jpg" />
-<p class="caption"><span class="caption-text">Earth Systems Research Laboratory</span></p>
-</div>
+<p><img alt="Earth Systems Research Laboratory" src="https://www.esrl.noaa.gov/gmd/obop/mlo/pictures/sunsetmaunaloa1.jpg" /></p>
 </div>
 <div class="section" id="Ice-Core-Data">
 <h1>Ice Core Data<a class="headerlink" href="#Ice-Core-Data" title="Permalink to this headline">¶</a></h1>
-<p>The first data set we’ll look at is CO2 measurments from ice core data.
-This data goes back to the year 13 AD. The data after the year 1958 is
-an average of ice core measurments and more accurate data taken from
-Mauna Loa. <strong>I’m very greatful to Tobias Erhardt from the University of
-Bërn for his generous insight on the science of how some of the
-processes touched on actually work.</strong> Any mistakes are my own of course.</p>
-<p>This data is less accurate than the Mauna Loa atmospheric CO2
-measurments. Snow that falls on Antarctica accumulates gradually and
-hardens into ice over time, which is referred to as <em>firn</em>. CO2 measured
-in the Law Dome ice cores come from air bubbles trapped in the ice. If
-this ice were flash frozen, the amount of CO2 contained in the air
-bubbles would reflect the amount of CO2 in the atmosphere at the exact
-date and time of the freeze. Instead, the process happens gradually, so
-the trapped air has time to diffuse throughout the solidifying ice. The
-process of the layering, freezing and solidifying of the firn happens
-over the scale of years. For the Law Dome data used here, the CO2
-measurments listed in the data represent an average CO2 across about 2-4
-years in total.</p>
-<p>Also, the ordering of the data points is fixed. There is no way for
-older ice layers to end up on top of newer ice layers. This enforces
-that we place a prior on the measurment locations whose order is
-restricted.</p>
-<p>The dates of the ice core measurements have some uncertainty. They may
-be accurate on a yearly level due to how the ice layers on it self every
-year, but the date isn’t likely to be reliable as to the season when the
-measurment was taken. Also, the CO2 level observed may be some sort of
-average of the overall yearly level.</p>
-<p>As we saw in the previous example, there is a strong seasonal component
-in CO2 levels that won’t be observable in this data set. In PyMC3, we
-can easily include both errors in <span class="math notranslate nohighlight">\(y\)</span> and errors in <span class="math notranslate nohighlight">\(x\)</span>. To
-demonstrate this, we remove the latter part of the data (which are
-averaged with Mauna Loa readings) so we have only the ice core
-measurements. We fit the Gaussian process model using the No-U-Turn MCMC
-sampler.</p>
+<p>The first data set we’ll look at is CO2 measurments from ice core data. This data goes back to the year 13 AD. The data after the year 1958 is an average of ice core measurments and more accurate data taken from Mauna Loa. <strong>I’m very greatful to Tobias Erhardt from the University of Bërn for his generous insight on the science of how some of the processes touched on actually work.</strong> Any mistakes are my own of course.</p>
+<p>This data is less accurate than the Mauna Loa atmospheric CO2 measurments. Snow that falls on Antarctica accumulates gradually and hardens into ice over time, which is referred to as <em>firn</em>. CO2 measured in the Law Dome ice cores come from air bubbles trapped in the ice. If this ice were flash frozen, the amount of CO2 contained in the air bubbles would reflect the amount of CO2 in the atmosphere at the exact date and time of the freeze. Instead, the process happens gradually, so the trapped air
+has time to diffuse throughout the solidifying ice. The process of the layering, freezing and solidifying of the firn happens over the scale of years. For the Law Dome data used here, the CO2 measurments listed in the data represent an average CO2 across about 2-4 years in total.</p>
+<p>Also, the ordering of the data points is fixed. There is no way for older ice layers to end up on top of newer ice layers. This enforces that we place a prior on the measurment locations whose order is restricted.</p>
+<p>The dates of the ice core measurements have some uncertainty. They may be accurate on a yearly level due to how the ice layers on it self every year, but the date isn’t likely to be reliable as to the season when the measurment was taken. Also, the CO2 level observed may be some sort of average of the overall yearly level.</p>
+<p>As we saw in the previous example, there is a strong seasonal component in CO2 levels that won’t be observable in this data set. In PyMC3, we can easily include both errors in <span class="math notranslate nohighlight">\(y\)</span> and errors in <span class="math notranslate nohighlight">\(x\)</span>. To demonstrate this, we remove the latter part of the data (which are averaged with Mauna Loa readings) so we have only the ice core measurements. We fit the Gaussian process model using the No-U-Turn MCMC sampler.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="kn">as</span> <span class="nn">pm</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span></span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">theano</span>
-<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="kn">as</span> <span class="nn">tt</span>
+<span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="k">as</span> <span class="nn">tt</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -304,7 +306,7 @@ sampler.</p>
 
 <span class="c1">#### DATA AFTER 1958 is an average of ice core and mauna loa data, so remove it</span>
 <span class="n">ice</span> <span class="o">=</span> <span class="n">ice</span><span class="p">[</span><span class="n">ice</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">1958</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Number of data points:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ice</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of data points:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ice</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -317,8 +319,7 @@ Number of data points: 111
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -338,25 +339,13 @@ Number of data points: 111
 <img alt="../_images/notebooks_GP-MaunaLoa2_5_0.png" src="../_images/notebooks_GP-MaunaLoa2_5_0.png" />
 </div>
 </div>
-<p>The industrial revolution era occured around the years 1760 to 1840.
-This point is clearly visible in the graph, where CO2 levels rise
-dramatically after being fairly stationary at around 280 ppm for over a
-thousand years.</p>
+<p>The industrial revolution era occured around the years 1760 to 1840. This point is clearly visible in the graph, where CO2 levels rise dramatically after being fairly stationary at around 280 ppm for over a thousand years.</p>
 <div class="section" id="Uncertainty-in-‘x’">
 <h2>Uncertainty in ‘x’<a class="headerlink" href="#Uncertainty-in-‘x’" title="Permalink to this headline">¶</a></h2>
-<p>To model uncertainty in <span class="math notranslate nohighlight">\(x\)</span>, or time, we place a prior
-distribution over each of the observation dates. So that the prior is
-standardized, we specifically use a PyMC3 random variable to model the
-difference between the date given in the data set, and it’s error. We
-assume that these differences are normal with mean zero, and standard
-deviation of two years. We also enforce that the observations have a
-strict ordering in time using the <code class="docutils literal notranslate"><span class="pre">ordered</span></code> transform.</p>
-<p>For just the ice core data, the uncertainty in <span class="math notranslate nohighlight">\(x\)</span> is not very
-important. In the last example, we’ll see how it plays a more
-influential role in the model.</p>
+<p>To model uncertainty in <span class="math notranslate nohighlight">\(x\)</span>, or time, we place a prior distribution over each of the observation dates. So that the prior is standardized, we specifically use a PyMC3 random variable to model the difference between the date given in the data set, and it’s error. We assume that these differences are normal with mean zero, and standard deviation of two years. We also enforce that the observations have a strict ordering in time using the <code class="docutils literal notranslate"><span class="pre">ordered</span></code> transform.</p>
+<p>For just the ice core data, the uncertainty in <span class="math notranslate nohighlight">\(x\)</span> is not very important. In the last example, we’ll see how it plays a more influential role in the model.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -376,8 +365,7 @@ influential role in the model.</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -393,11 +381,9 @@ influential role in the model.</p>
 </pre></div>
 </div>
 </div>
-<p>We use an informative prior on the lengthscale that places most of the
-mass between a few and 20 centuries.</p>
+<p>We use an informative prior on the lengthscale that places most of the mass between a few and 20 centuries.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -417,16 +403,15 @@ mass between a few and 20 centuries.</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="err">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="err">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="err">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">cov</span> <span class="o">=</span> <span class="err">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">RatQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">α</span><span class="p">,</span> <span class="err">ℓ</span><span class="p">)</span>
+    <span class="n">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">RatQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">ℓ</span><span class="p">)</span>
 
     <span class="n">gp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov</span><span class="p">)</span>
 
@@ -436,17 +421,14 @@ mass between a few and 20 centuries.</p>
     <span class="n">t_uncert</span> <span class="o">=</span> <span class="n">t_n</span> <span class="o">-</span> <span class="n">t_diff</span>
 
     <span class="c1"># white noise variance</span>
-    <span class="err">σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t_uncert</span><span class="p">[:,</span><span class="bp">None</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="err">σ</span><span class="p">)</span>
+    <span class="n">σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t_uncert</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="n">σ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>Next we can sample with the NUTS MCMC algorithm. We run two chains but
-set the number of cores to one, since the linear algebra libraries used
-internally by Theano are multicore.</p>
+<p>Next we can sample with the NUTS MCMC algorithm. We run two chains but set the number of cores to one, since the linear algebra libraries used internally by Theano are multicore.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -458,7 +440,7 @@ internally by Theano are multicore.</p>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
@@ -470,8 +452,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -486,14 +467,10 @@ The number of effective samples is smaller than 25% for some parameters.
 <img alt="../_images/notebooks_GP-MaunaLoa2_15_0.png" src="../_images/notebooks_GP-MaunaLoa2_15_0.png" />
 </div>
 </div>
-<p>In the traceplot for <code class="docutils literal notranslate"><span class="pre">t_diff</span></code>, we can see that the posterior peaks for
-the different inputs haven’t moved much, but the uncertainty in location
-is accounted for by the sampling.</p>
-<p>The posterior distributions for the other unknown hyperparameters is
-below.</p>
+<p>In the traceplot for <code class="docutils literal notranslate"><span class="pre">t_diff</span></code>, we can see that the posterior peaks for the different inputs haven’t moved much, but the uncertainty in location is accounted for by the sampling.</p>
+<p>The posterior distributions for the other unknown hyperparameters is below.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -511,14 +488,13 @@ below.</p>
 <div class="section" id="Predictions">
 <h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2150</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">fnew</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew&quot;</span><span class="p">,</span> <span class="n">Xnew</span><span class="o">=</span><span class="n">tnew</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span>
+    <span class="n">fnew</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew&quot;</span><span class="p">,</span> <span class="n">Xnew</span><span class="o">=</span><span class="n">tnew</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
     <span class="n">ppc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_ppc</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="n">fnew</span><span class="p">])</span>
@@ -528,14 +504,13 @@ below.</p>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 100%|██████████| 100/100 [08:44&lt;00:00,  5.25s/it]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -543,7 +518,7 @@ below.</p>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">plot_gp_dist</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">tnew</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">plot_samples</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">plot_gp_dist</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">tnew</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">plot_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;k.&quot;</span><span class="p">);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2200</span><span class="p">]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;CO2&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">);</span>
@@ -557,33 +532,18 @@ below.</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_20_0.png" src="../_images/notebooks_GP-MaunaLoa2_20_0.png" />
 </div>
 </div>
-<p>Two features are apparent in this plot. One is the <a class="reference external" href="https://www.nature.com/articles/ngeo2769">little ice
-age</a>, whose effects on CO2
-occurs from around 1600 to 1800. The next is the industrial revolution,
-when people began releasing large amounts of CO2 into the atmosphere.</p>
+<p>Two features are apparent in this plot. One is the <a class="reference external" href="https://www.nature.com/articles/ngeo2769">little ice age</a>, whose effects on CO2 occurs from around 1600 to 1800. The next is the industrial revolution, when people began releasing large amounts of CO2 into the atmosphere.</p>
 </div>
 </div>
 <div class="section" id="Semiparametric-Gaussian-process">
 <h2>Semiparametric Gaussian process<a class="headerlink" href="#Semiparametric-Gaussian-process" title="Permalink to this headline">¶</a></h2>
-<p>The forecast past the latest data point in 1958 rises, then flattens,
-then dips back downwards. Should we trust this forecast? We know it
-hasn’t been born out (see the previous notebook) as CO2 levels have
-continued to rise.</p>
-<p>We didn’t specify a mean function in our model, so we’ve assumed that
-our GP has a mean of zero. This means that as we forecast into the
-future, the function will eventually return to zero. Is this reasonable
-in this case? There have been no global events that suggest that
-atmospheric CO2 will not continue on its current trend.</p>
+<p>The forecast past the latest data point in 1958 rises, then flattens, then dips back downwards. Should we trust this forecast? We know it hasn’t been born out (see the previous notebook) as CO2 levels have continued to rise.</p>
+<p>We didn’t specify a mean function in our model, so we’ve assumed that our GP has a mean of zero. This means that as we forecast into the future, the function will eventually return to zero. Is this reasonable in this case? There have been no global events that suggest that atmospheric CO2 will not continue on its current trend.</p>
 <div class="section" id="A-linear-model-for-changepoints">
 <h3>A linear model for changepoints<a class="headerlink" href="#A-linear-model-for-changepoints" title="Permalink to this headline">¶</a></h3>
-<p>We adopt the formulation used by <a class="reference external" href="https://peerj.com/preprints/3190.pdf">Facebooks
-prophet</a> time series model.
-This is a linear peicewise function, where each segments endpoints are
-restricted to be connect to one another. Some example functions are
-plotted below.</p>
+<p>We adopt the formulation used by <a class="reference external" href="https://peerj.com/preprints/3190.pdf">Facebooks prophet</a> time series model. This is a linear peicewise function, where each segments endpoints are restricted to be connect to one another. Some example functions are plotted below.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -595,12 +555,9 @@ plotted below.</p>
 </pre></div>
 </div>
 </div>
-<p>For later use, we reprogram this function using symbolic theano
-variables. The code is a bit inscrutible, but it returns the same thing
-as <code class="docutils literal notranslate"><span class="pre">dm_changepoitns</span></code> while avoiding the use of a loop.</p>
+<p>For later use, we reprogram this function using symbolic theano variables. The code is a bit inscrutible, but it returns the same thing as <code class="docutils literal notranslate"><span class="pre">dm_changepoitns</span></code> while avoiding the use of a loop.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -609,13 +566,9 @@ as <code class="docutils literal notranslate"><span class="pre">dm_changepoitns<
 </pre></div>
 </div>
 </div>
-<p>From looking at the graph, some possible locations for changepoints are
-at 1600, 1800 and maybe 1900. These bookend the little ice age, the
-start of the industrial revolution, and the start of more modern
-industrial practices.</p>
+<p>From looking at the graph, some possible locations for changepoints are at 1600, 1800 and maybe 1900. These bookend the little ice age, the start of the industrial revolution, and the start of more modern industrial practices.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -625,11 +578,9 @@ industrial practices.</p>
 </pre></div>
 </div>
 </div>
-<p>There are several parameters (which we will estimate), some test values
-and a plot of the resulting function is shown below</p>
+<p>There are several parameters (which we will estimate), some test values and a plot of the resulting function is shown below</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -645,8 +596,7 @@ and a plot of the resulting function is shown below</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -665,15 +615,9 @@ and a plot of the resulting function is shown below</p>
 </div>
 <div class="section" id="A-custom-changepoint-mean-function">
 <h3>A custom changepoint mean function<a class="headerlink" href="#A-custom-changepoint-mean-function" title="Permalink to this headline">¶</a></h3>
-<p>We could encode this mean function directly, but if we wrap it inside of
-a <code class="docutils literal notranslate"><span class="pre">Mean</span></code> object, then it easier to use other Gaussian process
-functionality, like the <code class="docutils literal notranslate"><span class="pre">.conditional</span></code> and <code class="docutils literal notranslate"><span class="pre">.predict</span></code> methods. Look
-here <a class="reference external" href="https://docs.pymc.io/notebooks/GP-MeansAndCovs.html#Defining-a-custom-mean-function">for more information on custom mean and covariance
-functions</a>.
-We only need to define <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and <code class="docutils literal notranslate"><span class="pre">__call__</span></code> functions.</p>
+<p>We could encode this mean function directly, but if we wrap it inside of a <code class="docutils literal notranslate"><span class="pre">Mean</span></code> object, then it easier to use other Gaussian process functionality, like the <code class="docutils literal notranslate"><span class="pre">.conditional</span></code> and <code class="docutils literal notranslate"><span class="pre">.predict</span></code> methods. Look here <a class="reference external" href="https://docs.pymc.io/notebooks/GP-MeansAndCovs.html#Defining-a-custom-mean-function">for more information on custom mean and covariance functions</a>. We only need to define <code class="docutils literal notranslate"><span class="pre">__init__</span></code> and <code class="docutils literal notranslate"><span class="pre">__call__</span></code> functions.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -691,18 +635,13 @@ We only need to define <code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 </div>
-<p>It is inefficient to recreate <code class="docutils literal notranslate"><span class="pre">A</span></code> every time the mean function is
-evaluated, but we’ll need to do this when the number of inputs changes
-when making predictions.</p>
+<p>It is inefficient to recreate <code class="docutils literal notranslate"><span class="pre">A</span></code> every time the mean function is evaluated, but we’ll need to do this when the number of inputs changes when making predictions.</p>
 </div>
 <div class="section" id="Semiparametric-changepoint-model">
 <h3>Semiparametric changepoint model<a class="headerlink" href="#Semiparametric-changepoint-model" title="Permalink to this headline">¶</a></h3>
-<p>Next is the updated model with the changepoint mean function. Like
-Prophet, we use a heavy tailed <code class="docutils literal notranslate"><span class="pre">Laplace</span></code> prior on the slope
-parameters.</p>
+<p>Next is the updated model with the changepoint mean function. Like Prophet, we use a heavy tailed <code class="docutils literal notranslate"><span class="pre">Laplace</span></code> prior on the slope parameters.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -718,16 +657,15 @@ parameters.</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="err">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="err">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="err">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">cov</span> <span class="o">=</span> <span class="err">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">RatQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">α</span><span class="p">,</span> <span class="err">ℓ</span><span class="p">)</span>
+    <span class="n">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cov</span> <span class="o">=</span> <span class="n">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">RatQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">ℓ</span><span class="p">)</span>
 
     <span class="c1"># peicewise linear mean function</span>
     <span class="n">k</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -744,14 +682,13 @@ parameters.</p>
     <span class="n">t_uncert</span> <span class="o">=</span> <span class="n">t_n</span> <span class="o">-</span> <span class="n">t_diff</span>
 
     <span class="c1"># white noise variance</span>
-    <span class="err">σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t_uncert</span><span class="p">[:,</span><span class="bp">None</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="err">σ</span><span class="p">)</span>
+    <span class="n">σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t_uncert</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="n">σ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -763,7 +700,7 @@ parameters.</p>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
@@ -775,8 +712,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -795,15 +731,14 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="section" id="Predictions">
 <h3>Predictions<a class="headerlink" href="#Predictions" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2200</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">fnew</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew&quot;</span><span class="p">,</span> <span class="n">Xnew</span><span class="o">=</span><span class="n">tnew</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span>
+    <span class="n">fnew</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew&quot;</span><span class="p">,</span> <span class="n">Xnew</span><span class="o">=</span><span class="n">tnew</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
     <span class="n">ppc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_ppc</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="n">fnew</span><span class="p">])</span>
@@ -813,14 +748,13 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 100%|██████████| 100/100 [08:42&lt;00:00,  5.22s/it]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -828,7 +762,7 @@ The number of effective samples is smaller than 25% for some parameters.
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">plot_gp_dist</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">tnew</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">plot_samples</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">plot_gp_dist</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">tnew</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">plot_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;k.&quot;</span><span class="p">);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2200</span><span class="p">]);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;CO2 (ppm)&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">);</span>
@@ -842,53 +776,36 @@ The number of effective samples is smaller than 25% for some parameters.
 <img alt="../_images/notebooks_GP-MaunaLoa2_40_0.png" src="../_images/notebooks_GP-MaunaLoa2_40_0.png" />
 </div>
 </div>
-<p>These results look better, but we had to choose exactly where the
-changepoints were. Instead of using a changepoint in the mean function,
-we could also specify this same changepoint behavior in the form of a
-covariance function. One benefit of the latter formulation is that the
-changepoint can be a more realistic smooth transition, instead of a
-discrete breakpoint. In the next section, we’ll look at how to do this.</p>
+<p>These results look better, but we had to choose exactly where the changepoints were. Instead of using a changepoint in the mean function, we could also specify this same changepoint behavior in the form of a covariance function. One benefit of the latter formulation is that the changepoint can be a more realistic smooth transition, instead of a discrete breakpoint. In the next section, we’ll look at how to do this.</p>
 </div>
 </div>
 </div>
 <div class="section" id="A-custom-changepoint-covariance-function">
 <h1>A custom changepoint covariance function<a class="headerlink" href="#A-custom-changepoint-covariance-function" title="Permalink to this headline">¶</a></h1>
-<p>More complex covariance functions can be constructed by composing base
-covariance functions in several ways. For instance, two of the most
-commonly used operations are</p>
+<p>More complex covariance functions can be constructed by composing base covariance functions in several ways. For instance, two of the most commonly used operations are</p>
 <ul class="simple">
-<li>The sum of two covariance functions is a covariance function</li>
-<li>The product of two covariance functions is a covariance function</li>
+<li><p>The sum of two covariance functions is a covariance function</p></li>
+<li><p>The product of two covariance functions is a covariance function</p></li>
 </ul>
-<p>We can also construct a covariance function by scaling a base covariance
-function (<span class="math notranslate nohighlight">\(k_b\)</span>) by any arbitrary function,</p>
+<p>We can also construct a covariance function by scaling a base covariance function (<span class="math notranslate nohighlight">\(k_b\)</span>) by any arbitrary function,</p>
 <div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}k(x, x) = s(x) k_{\mathrm{b}}(x, x') s(x') \,.\\The scaling function can be parameterized by known parameters, or\end{aligned}\end{align} \]</div>
-<p>unknown parameters can be inferred.</p>
-<p>To specifically construct a covariance function that describes a
-changepoint, we could propose a scaling function <span class="math notranslate nohighlight">\(s(x)\)</span> that
-specifies the region where the base covariance is active. The simplest
-option is the step function,</p>
+\[k(x, x) = s(x) k_{\mathrm{b}}(x, x') s(x') \,.\]</div>
+<p>The scaling function can be parameterized by known parameters, or unknown parameters can be inferred.</p>
+<p>To specifically construct a covariance function that describes a changepoint, we could propose a scaling function <span class="math notranslate nohighlight">\(s(x)\)</span> that specifies the region where the base covariance is active. The simplest option is the step function,</p>
 <div class="math notranslate nohighlight">
 \[\begin{split} s(x;\, x_0) =
 \begin{cases}
    0 &amp; x \leq x_0 \\
    1 &amp; x_0 &lt; x
 \end{cases}\end{split}\]</div>
-<p>which is parameterized by the changepoint <span class="math notranslate nohighlight">\(x_0\)</span>. The covariance
-function <span class="math notranslate nohighlight">\(s(x; x_0) k_b(x, x') s(x'; x_0)\)</span> is only active in the
-region <span class="math notranslate nohighlight">\(x \leq x_0\)</span>.</p>
-<p>The PyMC3 contains the <code class="docutils literal notranslate"><span class="pre">ScaledCov</span></code> covariance function. As arguments,
-it takes a base covariance, a scaling function, and the tuple of the
-arguments for the base covariance. To construct this in PyMC3, we first
-define the scaling function:</p>
+<p>which is parameterized by the changepoint <span class="math notranslate nohighlight">\(x_0\)</span>. The covariance function <span class="math notranslate nohighlight">\(s(x; x_0) k_b(x, x') s(x'; x_0)\)</span> is only active in the region <span class="math notranslate nohighlight">\(x \leq x_0\)</span>.</p>
+<p>The PyMC3 contains the <code class="docutils literal notranslate"><span class="pre">ScaledCov</span></code> covariance function. As arguments, it takes a base covariance, a scaling function, and the tuple of the arguments for the base covariance. To construct this in PyMC3, we first define the scaling function:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">step_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">greater</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<span></span><span class="k">def</span> <span class="nf">step_function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">greater</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">greater</span><span class="p">:</span>
         <span class="c1"># s = 1 for x &lt; x_0</span>
         <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">sgn</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -898,68 +815,59 @@ define the scaling function:</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">step_function</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">x0</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">greater</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span></span><span class="n">step_function</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">x0</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">greater</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([0., 0., 0., 0., 0., 1., 1., 1., 1., 1.])
-</pre></div>
-</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([0., 0., 0., 0., 0., 1., 1., 1., 1., 1.])
+</pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">step_function</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">x0</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">greater</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span></span><span class="n">step_function</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">x0</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">greater</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
-<div class="output_area highlight-none notranslate"><div class="highlight"><pre>
-<span></span>array([1., 1., 1., 1., 1., 0., 0., 0., 0., 0.])
-</pre></div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([1., 1., 1., 1., 1., 0., 0., 0., 0., 0.])
+</pre></div></div>
 </div>
-</div>
-<p>Then we can define the the following covariance function. We compute it
-over <span class="math notranslate nohighlight">\(x \in (0, 100)\)</span>. The base covariance has a lengthscale of
-10, and <span class="math notranslate nohighlight">\(x_0 = 40\)</span>. Since we are using a step function, it is
-“active” for <span class="math notranslate nohighlight">\(x &lt; 40\)</span>.</p>
+<p>Then we can define the the following covariance function. We compute it over <span class="math notranslate nohighlight">\(x \in (0, 100)\)</span>. The base covariance has a lengthscale of 10, and <span class="math notranslate nohighlight">\(x_0 = 40\)</span>. Since we are using a step function, it is “active” for <span class="math notranslate nohighlight">\(x &lt; 40\)</span>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">cov</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">sc_cov</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ScaledCov</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">step_function</span><span class="p">,</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="bp">False</span><span class="p">))</span>
+<span class="n">sc_cov</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ScaledCov</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">step_function</span><span class="p">,</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">K</span> <span class="o">=</span> <span class="n">sc_cov</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">sc_cov</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 <span class="n">m</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;magma&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -971,26 +879,23 @@ over <span class="math notranslate nohighlight">\(x \in (0, 100)\)</span>. The b
 <img alt="../_images/notebooks_GP-MaunaLoa2_49_0.png" src="../_images/notebooks_GP-MaunaLoa2_49_0.png" />
 </div>
 </div>
-<p>But his isn’t a changepoint covariance function yet. We can add two of
-these together. For <span class="math notranslate nohighlight">\(x &lt; 40\)</span>, Lets use a base covariance that is a
-<code class="docutils literal notranslate"><span class="pre">Matern32</span></code> with a lengthscale of 5 and an amplitude of 0.25.</p>
+<p>But his isn’t a changepoint covariance function yet. We can add two of these together. For <span class="math notranslate nohighlight">\(x &lt; 40\)</span>, Lets use a base covariance that is a <code class="docutils literal notranslate"><span class="pre">Matern32</span></code> with a lengthscale of 5 and an amplitude of 0.25.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">cov1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">sc_cov1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ScaledCov</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cov1</span><span class="p">,</span> <span class="n">step_function</span><span class="p">,</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="bp">False</span><span class="p">))</span>
+<span class="n">sc_cov1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ScaledCov</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cov1</span><span class="p">,</span> <span class="n">step_function</span><span class="p">,</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
 
 <span class="n">cov2</span> <span class="o">=</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern32</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">sc_cov2</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ScaledCov</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cov2</span><span class="p">,</span> <span class="n">step_function</span><span class="p">,</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="bp">True</span><span class="p">))</span>
+<span class="n">sc_cov2</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ScaledCov</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cov2</span><span class="p">,</span> <span class="n">step_function</span><span class="p">,</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
 
 <span class="n">sc_cov</span> <span class="o">=</span> <span class="n">sc_cov1</span> <span class="o">+</span> <span class="n">sc_cov2</span>
 
 <span class="c1"># plot over 0 &lt; x &lt; 100</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">K</span> <span class="o">=</span> <span class="n">sc_cov</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">sc_cov</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 <span class="n">m</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;magma&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -1002,11 +907,9 @@ these together. For <span class="math notranslate nohighlight">\(x &lt; 40\)</sp
 <img alt="../_images/notebooks_GP-MaunaLoa2_51_0.png" src="../_images/notebooks_GP-MaunaLoa2_51_0.png" />
 </div>
 </div>
-<p>What do samples from the Gaussian process prior with this covariance
-look like?</p>
+<p>What do samples from the Gaussian process prior with this covariance look like?</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1023,13 +926,10 @@ look like?</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_53_0.png" src="../_images/notebooks_GP-MaunaLoa2_53_0.png" />
 </div>
 </div>
-<p>Before <span class="math notranslate nohighlight">\(x = 40\)</span>, the function is smooth and slowly changing. After
-<span class="math notranslate nohighlight">\(x = 40\)</span>, the samples are less smooth and change quickly.</p>
-<p>Instead of a sharp cutoff, It is usually more realistic to have a smooth
-transition. For this we can use the logistic function, shown below:</p>
+<p>Before <span class="math notranslate nohighlight">\(x = 40\)</span>, the function is smooth and slowly changing. After <span class="math notranslate nohighlight">\(x = 40\)</span>, the samples are less smooth and change quickly.</p>
+<p>Instead of a sharp cutoff, It is usually more realistic to have a smooth transition. For this we can use the logistic function, shown below:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1054,8 +954,7 @@ transition. For this we can use the logistic function, shown below:</p>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1065,11 +964,9 @@ transition. For this we can use the logistic function, shown below:</p>
 </pre></div>
 </div>
 </div>
-<p>The same covariance function as before, but with a gradual changepoint
-is shown below.</p>
+<p>The same covariance function as before, but with a gradual changepoint is shown below.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [39]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[39]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1083,7 +980,7 @@ is shown below.</p>
 
 <span class="c1"># plot over 0 &lt; x &lt; 100</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
-<span class="n">K</span> <span class="o">=</span> <span class="n">sc_cov</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">sc_cov</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
 <span class="n">m</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;magma&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -1095,11 +992,9 @@ is shown below.</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_58_0.png" src="../_images/notebooks_GP-MaunaLoa2_58_0.png" />
 </div>
 </div>
-<p>Below, you can see that the transition of the prior functions from one
-region to the next is more gradual,</p>
+<p>Below, you can see that the transition of the prior functions from one region to the next is more gradual,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [40]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1116,32 +1011,24 @@ region to the next is more gradual,</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_60_0.png" src="../_images/notebooks_GP-MaunaLoa2_60_0.png" />
 </div>
 </div>
-<p>Lets try this model out instead of the semiparametric changepoint
-version.</p>
+<p>Lets try this model out instead of the semiparametric changepoint version.</p>
 <p>The features of this model are:</p>
 <ul class="simple">
-<li>One covariance for short term variation across all time points</li>
-<li>The parameter <code class="docutils literal notranslate"><span class="pre">x0</span></code> is the location of the industrial revolution. It
-is given a prior that has most of its support between years 1760 and
-1840, centered at 1800.</li>
-<li>We can easily use the parameter as the <code class="docutils literal notranslate"><span class="pre">shift</span></code> parameter in the 2nd
-degree <code class="docutils literal notranslate"><span class="pre">Polynomial</span></code> (quadratic) covariance, and as the location of
-the changepoint in the changepoint covariance.</li>
-<li>A changepoint covariance that is <code class="docutils literal notranslate"><span class="pre">ExpQuad</span></code> prior to the industrial
-revolution, and <code class="docutils literal notranslate"><span class="pre">ExpQuad</span> <span class="pre">+</span> <span class="pre">Polynomial(degree=2)</span></code> afterwards.</li>
-<li>We use the same scaling and lengthscale parameters for each of the
-two base covariances in the changepoint covariance.</li>
-<li>Still modeling uncertainty in <code class="docutils literal notranslate"><span class="pre">x</span></code> as before</li>
+<li><p>One covariance for short term variation across all time points</p></li>
+<li><p>The parameter <code class="docutils literal notranslate"><span class="pre">x0</span></code> is the location of the industrial revolution. It is given a prior that has most of its support between years 1760 and 1840, centered at 1800.</p></li>
+<li><p>We can easily use the parameter as the <code class="docutils literal notranslate"><span class="pre">shift</span></code> parameter in the 2nd degree <code class="docutils literal notranslate"><span class="pre">Polynomial</span></code> (quadratic) covariance, and as the location of the changepoint in the changepoint covariance.</p></li>
+<li><p>A changepoint covariance that is <code class="docutils literal notranslate"><span class="pre">ExpQuad</span></code> prior to the industrial revolution, and <code class="docutils literal notranslate"><span class="pre">ExpQuad</span> <span class="pre">+</span> <span class="pre">Polynomial(degree=2)</span></code> afterwards.</p></li>
+<li><p>We use the same scaling and lengthscale parameters for each of the two base covariances in the changepoint covariance.</p></li>
+<li><p>Still modeling uncertainty in <code class="docutils literal notranslate"><span class="pre">x</span></code> as before</p></li>
 </ul>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [41]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="err">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="err">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">η</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ℓ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
     <span class="c1"># changepoint occurs near the year 1800, sometime between 1760, 1840</span>
     <span class="n">x0</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;x0&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
@@ -1150,10 +1037,10 @@ two base covariances in the changepoint covariance.</li>
     <span class="c1"># a constant for the</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
     <span class="c1"># quadratic polynomial scale</span>
-    <span class="err">η</span><span class="n">q</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηq&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ηq</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηq&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
-    <span class="n">cov1</span> <span class="o">=</span> <span class="err">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="p">)</span>
-    <span class="n">cov2</span> <span class="o">=</span> <span class="err">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="p">)</span> <span class="o">+</span> <span class="err">η</span><span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">cov1</span> <span class="o">=</span> <span class="n">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ</span><span class="p">)</span>
+    <span class="n">cov2</span> <span class="o">=</span> <span class="n">η</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ</span><span class="p">)</span> <span class="o">+</span> <span class="n">ηq</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
 
     <span class="c1"># construct changepoint cov</span>
     <span class="n">sc_cov1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ScaledCov</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cov1</span><span class="p">,</span> <span class="n">logistic</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">x0</span><span class="p">))</span>
@@ -1161,9 +1048,9 @@ two base covariances in the changepoint covariance.</li>
     <span class="n">cov_c</span> <span class="o">=</span> <span class="n">sc_cov1</span> <span class="o">+</span> <span class="n">sc_cov2</span>
 
     <span class="c1"># short term variation</span>
-    <span class="err">η</span><span class="n">s</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηs&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">s</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓs&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">cov_s</span> <span class="o">=</span> <span class="err">η</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">ηs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηs&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ℓs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓs&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cov_s</span> <span class="o">=</span> <span class="n">ηs</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓs</span><span class="p">)</span>
 
     <span class="n">gp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov_s</span> <span class="o">+</span> <span class="n">cov_c</span><span class="p">)</span>
 
@@ -1171,14 +1058,13 @@ two base covariances in the changepoint covariance.</li>
     <span class="n">t_uncert</span> <span class="o">=</span> <span class="n">t_n</span> <span class="o">-</span> <span class="n">t_diff</span>
 
     <span class="c1"># white noise variance</span>
-    <span class="err">σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t_uncert</span><span class="p">[:,</span><span class="bp">None</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="err">σ</span><span class="p">)</span>
+    <span class="n">σ</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;σ&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t_uncert</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="n">σ</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [42]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1190,7 +1076,7 @@ two base covariances in the changepoint covariance.</li>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
@@ -1201,8 +1087,7 @@ NUTS: [σ, t_diff, ℓs, ηs, ηq, c, a, x0, ℓ, η]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [43]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[43]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1218,15 +1103,14 @@ NUTS: [σ, t_diff, ℓs, ηs, ηq, c, a, x0, ℓ, η]
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [44]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[44]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2300</span><span class="p">,</span> <span class="mi">2200</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">fnew</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew&quot;</span><span class="p">,</span> <span class="n">Xnew</span><span class="o">=</span><span class="n">tnew</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span>
+    <span class="n">fnew</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew&quot;</span><span class="p">,</span> <span class="n">Xnew</span><span class="o">=</span><span class="n">tnew</span><span class="p">[:,</span><span class="kc">None</span><span class="p">])</span>
 
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
     <span class="n">ppc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_ppc</span><span class="p">(</span><span class="n">tr</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">vars</span><span class="o">=</span><span class="p">[</span><span class="n">fnew</span><span class="p">])</span>
@@ -1236,14 +1120,13 @@ NUTS: [σ, t_diff, ℓs, ηs, ηq, c, a, x0, ℓ, η]
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 100%|██████████| 100/100 [11:35&lt;00:00,  6.95s/it]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [45]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[45]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1251,7 +1134,7 @@ NUTS: [σ, t_diff, ℓs, ηs, ηq, c, a, x0, ℓ, η]
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-<span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">plot_gp_dist</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">tnew</span><span class="p">,</span> <span class="n">plot_samples</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
+<span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">plot_gp_dist</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">tnew</span><span class="p">,</span> <span class="n">plot_samples</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;k.&quot;</span><span class="p">);</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">23</span><span class="p">));</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">]);</span>
@@ -1268,32 +1151,19 @@ NUTS: [σ, t_diff, ℓs, ηs, ηq, c, a, x0, ℓ, η]
 <img alt="../_images/notebooks_GP-MaunaLoa2_68_0.png" src="../_images/notebooks_GP-MaunaLoa2_68_0.png" />
 </div>
 </div>
-<p>The predictions for this model look much more realistic. The product of
-a 2nd degree polynomial with an <code class="docutils literal notranslate"><span class="pre">ExpQuad</span></code> looks like a good model to
-forecast with. It allows for the amount of CO2 to increase in a
-not-exactly-linear fashion. We can see from the predictions that</p>
+<p>The predictions for this model look much more realistic. The product of a 2nd degree polynomial with an <code class="docutils literal notranslate"><span class="pre">ExpQuad</span></code> looks like a good model to forecast with. It allows for the amount of CO2 to increase in a not-exactly-linear fashion. We can see from the predictions that</p>
 <ul class="simple">
-<li>The amount of CO2 could increase at a faster rate</li>
-<li>The amount of CO2 should increase more or less linearly</li>
-<li>It is possible for the CO2 to start to decrease</li>
+<li><p>The amount of CO2 could increase at a faster rate</p></li>
+<li><p>The amount of CO2 should increase more or less linearly</p></li>
+<li><p>It is possible for the CO2 to start to decrease</p></li>
 </ul>
 <div class="section" id="Incorporating-Atmospheric-CO2-measurements">
 <h2>Incorporating Atmospheric CO2 measurements<a class="headerlink" href="#Incorporating-Atmospheric-CO2-measurements" title="Permalink to this headline">¶</a></h2>
-<p>Next, we incorporate the CO2 measurements from the Mauna Loa
-observatory. These data points were taken monthly from atmospheric
-levels. Unlike the ice core data, there is no uncertainty in these
-measurements. While modeling both of these data sets together, the value
-of including the uncertainty in the ice core measurement time will be
-more apparent. Hintcasting the Mauna Loa seasonality using ice core data
-doesn’t make too much sense, since the seasonality pattern at the south
-pole is different than that in the northern hemisphere in Hawaii. We’ll
-show it anyways though since it’s possible, and may be useful in other
-contexts.</p>
-<p>First let’s load in the data, and then plot it alongside the ice core
-data.</p>
+<p>Next, we incorporate the CO2 measurements from the Mauna Loa observatory. These data points were taken monthly from atmospheric levels. Unlike the ice core data, there is no uncertainty in these measurements. While modeling both of these data sets together, the value of including the uncertainty in the ice core measurement time will be more apparent. Hintcasting the Mauna Loa seasonality using ice core data doesn’t make too much sense, since the seasonality pattern at the south pole is different
+than that in the northern hemisphere in Hawaii. We’ll show it anyways though since it’s possible, and may be useful in other contexts.</p>
+<p>First let’s load in the data, and then plot it alongside the ice core data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1319,15 +1189,14 @@ data.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">airdata</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;monthly_in_situ_co2_mlo.csv&quot;</span><span class="p">),</span> <span class="n">header</span><span class="o">=</span><span class="mi">56</span><span class="p">)</span>
 
 <span class="c1"># - replace -99.99 with NaN</span>
-<span class="n">airdata</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span><span class="o">=-</span><span class="mf">99.99</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">airdata</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">to_replace</span><span class="o">=-</span><span class="mf">99.99</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># fix column names</span>
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;month&quot;</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="s2">&quot;CO2&quot;</span><span class="p">,</span> <span class="s2">&quot;seasonaly_adjusted&quot;</span><span class="p">,</span> <span class="s2">&quot;fit&quot;</span><span class="p">,</span>
@@ -1337,7 +1206,7 @@ data.</p>
 <span class="n">airdata</span> <span class="o">=</span> <span class="n">airdata</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
 
 <span class="c1"># drop rows with nan</span>
-<span class="n">airdata</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">airdata</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="c1"># fix time index</span>
 <span class="n">airdata</span><span class="p">[</span><span class="s2">&quot;day&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span>
@@ -1352,11 +1221,10 @@ data.</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>Out[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
-<div class="output_area docutils container">
+<div class="output_area rendered_html docutils container">
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -1409,11 +1277,9 @@ data.</p>
 </table>
 </div></div>
 </div>
-<p>Like was done in the first notebook, we reserve the data from 2004
-onwards as the test set.</p>
+<p>Like was done in the first notebook, we reserve the data from 2004 onwards as the test set.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1424,8 +1290,7 @@ onwards as the test set.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1444,11 +1309,9 @@ onwards as the test set.</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_75_0.png" src="../_images/notebooks_GP-MaunaLoa2_75_0.png" />
 </div>
 </div>
-<p>If we zoom in on the late 1950’s, we can see that the atmospheric data
-has a seasonal component, while the ice core data does not.</p>
+<p>If we zoom in on the late 1950’s, we can see that the atmospheric data has a seasonal component, while the ice core data does not.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1469,27 +1332,16 @@ has a seasonal component, while the ice core data does not.</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_77_0.png" src="../_images/notebooks_GP-MaunaLoa2_77_0.png" />
 </div>
 </div>
-<p>Since the ice core data isn’t measured accurately, it wont be possible
-to backcast the seasonal component <em>unless we model uncertainty in x</em>.</p>
-<p>To model both the data together, we will combine the model we’ve built
-up using the ice core data, and combine it with elements from the
-previous notebook on the Mauna Loa data. From the previous notebook we
-will additionally include the</p>
+<p>Since the ice core data isn’t measured accurately, it wont be possible to backcast the seasonal component <em>unless we model uncertainty in x</em>.</p>
+<p>To model both the data together, we will combine the model we’ve built up using the ice core data, and combine it with elements from the previous notebook on the Mauna Loa data. From the previous notebook we will additionally include the</p>
 <ul class="simple">
-<li>The <code class="docutils literal notranslate"><span class="pre">Perioidic</span></code>, seasonal component</li>
-<li>The <code class="docutils literal notranslate"><span class="pre">RatQuad</span></code> covariance for short range, annual scale variations</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Perioidic</span></code>, seasonal component</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">RatQuad</span></code> covariance for short range, annual scale variations</p></li>
 </ul>
-<p>Also, since we are using two different data sets, there should be two
-different <code class="docutils literal notranslate"><span class="pre">y</span></code>-direction uncertainties, one for the ice core data, and
-one for the atmospheric data. Do accomplish this, we make a custom
-<code class="docutils literal notranslate"><span class="pre">WhiteNoise</span></code> covariance function that has two <code class="docutils literal notranslate"><span class="pre">σ</span></code> parameters.</p>
-<p>All custom covariance functions need to have the same three methods
-defined, <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, <code class="docutils literal notranslate"><span class="pre">diag</span></code>, and <code class="docutils literal notranslate"><span class="pre">full</span></code>. <code class="docutils literal notranslate"><span class="pre">full</span></code> returns the full
-covariance, given either <code class="docutils literal notranslate"><span class="pre">X</span></code> or <code class="docutils literal notranslate"><span class="pre">X</span></code> and a different <code class="docutils literal notranslate"><span class="pre">Xs</span></code>. <code class="docutils literal notranslate"><span class="pre">diag</span></code>
-returns only the diagonal, and <code class="docutils literal notranslate"><span class="pre">__init__</span></code> saves the input parameters.</p>
+<p>Also, since we are using two different data sets, there should be two different <code class="docutils literal notranslate"><span class="pre">y</span></code>-direction uncertainties, one for the ice core data, and one for the atmospheric data. Do accomplish this, we make a custom <code class="docutils literal notranslate"><span class="pre">WhiteNoise</span></code> covariance function that has two <code class="docutils literal notranslate"><span class="pre">σ</span></code> parameters.</p>
+<p>All custom covariance functions need to have the same three methods defined, <code class="docutils literal notranslate"><span class="pre">__init__</span></code>, <code class="docutils literal notranslate"><span class="pre">diag</span></code>, and <code class="docutils literal notranslate"><span class="pre">full</span></code>. <code class="docutils literal notranslate"><span class="pre">full</span></code> returns the full covariance, given either <code class="docutils literal notranslate"><span class="pre">X</span></code> or <code class="docutils literal notranslate"><span class="pre">X</span></code> and a different <code class="docutils literal notranslate"><span class="pre">Xs</span></code>. <code class="docutils literal notranslate"><span class="pre">diag</span></code> returns only the diagonal, and <code class="docutils literal notranslate"><span class="pre">__init__</span></code> saves the input parameters.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1501,7 +1353,7 @@ returns only the diagonal, and <code class="docutils literal notranslate"><span 
 <span class="sd">    The total number of data points n = n1 + n2</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">,</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">CustomWhiteNoise</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CustomWhiteNoise</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma1</span> <span class="o">=</span> <span class="n">sigma1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sigma2</span> <span class="o">=</span> <span class="n">sigma2</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n1</span> <span class="o">=</span> <span class="n">n1</span>
@@ -1512,19 +1364,17 @@ returns only the diagonal, and <code class="docutils literal notranslate"><span 
         <span class="n">d2</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sigma2</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">n2</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tt</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Xs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">Xs</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Xs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">Xs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">tt</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">tt</span><span class="o">.</span><span class="n">alloc</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Xs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
-<p>Next we need to organize and combine the two data sets. Remeber that the
-unit on the x-axis is centuries, not years.</p>
+<p>Next we need to organize and combine the two data sets. Remeber that the unit on the x-axis is centuries, not years.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1538,30 +1388,17 @@ unit on the x-axis is centuries, not years.</p>
 </pre></div>
 </div>
 </div>
-<p>The specification of the model is below. Since the data set is larger,
-we find the MAP estimate, instead of doing MCMC. We also choose our
-priors for the hyperparameters more carefully. For the changepoint
-covariance, we model the post-industrial revolution data with an
-<code class="docutils literal notranslate"><span class="pre">ExpQuad</span></code> covariance that has the same longer lengthscale as before
-the industrial revolution. The idea is that whatever process was at work
-before, is still there after. But then we add the product of a
-<code class="docutils literal notranslate"><span class="pre">Polynomial(degree=2)</span></code> and a <code class="docutils literal notranslate"><span class="pre">Matern52</span></code>. We fix the lengthscale of
-the <code class="docutils literal notranslate"><span class="pre">Matern52</span></code> to two. Since it has only been about two centuries
-since the industrial revolution, we force the Polynomial component to
-decay at that time scale. This forces the uncertainty to rise at this
-time scale. The 2nd degree polynomial and Matern52 product expresses our
-prior belief that the CO2 levels may increase semi-quadratically, or
-decrease semi-quadratically. Since the scaling parameter for this may
-also end up being zero.</p>
+<p>The specification of the model is below. Since the data set is larger, we find the MAP estimate, instead of doing MCMC. We also choose our priors for the hyperparameters more carefully. For the changepoint covariance, we model the post-industrial revolution data with an <code class="docutils literal notranslate"><span class="pre">ExpQuad</span></code> covariance that has the same longer lengthscale as before the industrial revolution. The idea is that whatever process was at work before, is still there after. But then we add the product of a
+<code class="docutils literal notranslate"><span class="pre">Polynomial(degree=2)</span></code> and a <code class="docutils literal notranslate"><span class="pre">Matern52</span></code>. We fix the lengthscale of the <code class="docutils literal notranslate"><span class="pre">Matern52</span></code> to two. Since it has only been about two centuries since the industrial revolution, we force the Polynomial component to decay at that time scale. This forces the uncertainty to rise at this time scale. The 2nd degree polynomial and Matern52 product expresses our prior belief that the CO2 levels may increase semi-quadratically, or decrease semi-quadratically. Since the scaling parameter for this may also end
+up being zero.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="err">η</span><span class="n">c</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ηc&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">c</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓc&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ηc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ηc&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ℓc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓc&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="c1"># changepoint occurs near the year 1800, sometime between 1760, 1840</span>
     <span class="n">x0</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;x0&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
@@ -1571,12 +1408,12 @@ also end up being zero.</p>
     <span class="n">c</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># quadratic polynomial scale</span>
-    <span class="err">η</span><span class="n">q</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηq&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">q</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># 2 century impact, since we only have 2 C of post IR data</span>
+    <span class="n">ηq</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηq&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ℓq</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="c1"># 2 century impact, since we only have 2 C of post IR data</span>
 
-    <span class="n">cov1</span> <span class="o">=</span> <span class="err">η</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">c</span><span class="p">)</span>
-    <span class="n">cov2</span> <span class="o">=</span> <span class="err">η</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">c</span><span class="p">)</span> <span class="o">+</span> \
-           <span class="err">η</span><span class="n">q</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">q</span><span class="p">)</span> <span class="c1"># ~2 century impact</span>
+    <span class="n">cov1</span> <span class="o">=</span> <span class="n">ηc</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓc</span><span class="p">)</span>
+    <span class="n">cov2</span> <span class="o">=</span> <span class="n">ηc</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓc</span><span class="p">)</span> <span class="o">+</span> \
+           <span class="n">ηq</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern52</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓq</span><span class="p">)</span> <span class="c1"># ~2 century impact</span>
 
     <span class="c1"># construct changepoint cov</span>
     <span class="n">sc_cov1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ScaledCov</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cov1</span><span class="p">,</span> <span class="n">logistic</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">x0</span><span class="p">))</span>
@@ -1584,25 +1421,25 @@ also end up being zero.</p>
     <span class="n">gp_c</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">sc_cov1</span> <span class="o">+</span> <span class="n">sc_cov2</span><span class="p">)</span>
 
     <span class="c1"># short term variation</span>
-    <span class="err">η</span><span class="n">s</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηs&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">s</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓs&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-    <span class="err">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">cov_s</span> <span class="o">=</span> <span class="err">η</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">RatQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">α</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">ηs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηs&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ℓs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓs&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">α</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;α&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">cov_s</span> <span class="o">=</span> <span class="n">ηs</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">RatQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">α</span><span class="p">,</span> <span class="n">ℓs</span><span class="p">)</span>
     <span class="n">gp_s</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov_s</span><span class="p">)</span>
 
     <span class="c1"># medium term variation</span>
-    <span class="err">η</span><span class="n">m</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηm&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">m</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓm&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">cov_m</span> <span class="o">=</span> <span class="err">η</span><span class="n">m</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">ηm</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηm&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">ℓm</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓm&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">cov_m</span> <span class="o">=</span> <span class="n">ηm</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓm</span><span class="p">)</span>
     <span class="n">gp_m</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov_m</span><span class="p">)</span>
 
     <span class="c1">## periodic</span>
-    <span class="err">η</span><span class="n">p</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηp&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">p_decay</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓp_decay&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">p_smooth</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;ℓp_smooth &quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+    <span class="n">ηp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;ηp&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ℓp_decay</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓp_decay&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">ℓp_smooth</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;ℓp_smooth &quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
     <span class="n">period</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="mf">0.01</span>  <span class="c1"># we know the period is annual</span>
-    <span class="n">cov_p</span> <span class="o">=</span> <span class="err">η</span><span class="n">p</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Periodic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">p_smooth</span><span class="p">)</span> \
-                  <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">p_decay</span><span class="p">)</span>
+    <span class="n">cov_p</span> <span class="o">=</span> <span class="n">ηp</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Periodic</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">period</span><span class="p">,</span> <span class="n">ℓp_smooth</span><span class="p">)</span> \
+                  <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓp_decay</span><span class="p">)</span>
     <span class="n">gp_p</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">Marginal</span><span class="p">(</span><span class="n">cov_func</span><span class="o">=</span><span class="n">cov_p</span><span class="p">)</span>
 
     <span class="n">gp</span> <span class="o">=</span> <span class="n">gp_c</span> <span class="o">+</span> <span class="n">gp_m</span> <span class="o">+</span> <span class="n">gp_s</span> <span class="o">+</span> <span class="n">gp_p</span>
@@ -1615,21 +1452,20 @@ also end up being zero.</p>
     <span class="n">t_combined</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">t_uncert</span><span class="p">,</span> <span class="n">t_n</span><span class="p">[</span><span class="mi">111</span><span class="p">:]),</span> <span class="mi">0</span><span class="p">)</span>
 
     <span class="c1"># Noise covariance, using boundary avoiding priors for MAP estimation</span>
-    <span class="err">σ</span><span class="mi">1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;σ1&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-    <span class="err">σ</span><span class="mi">2</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;σ2&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-    <span class="err">η</span><span class="n">_noise</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η_noise&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="err">ℓ</span><span class="n">_noise</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_noise&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-    <span class="n">cov_noise</span> <span class="o">=</span> <span class="err">η</span><span class="n">_noise</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern32</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="err">ℓ</span><span class="n">_noise</span><span class="p">)</span> <span class="o">+</span>\
-                <span class="n">CustomWhiteNoise</span><span class="p">(</span><span class="err">σ</span><span class="mi">1</span><span class="p">,</span> <span class="err">σ</span><span class="mi">2</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">545</span><span class="p">)</span>
+    <span class="n">σ1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;σ1&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">σ2</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;σ2&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="n">η_noise</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;η_noise&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ℓ_noise</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;ℓ_noise&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">cov_noise</span> <span class="o">=</span> <span class="n">η_noise</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern32</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ℓ_noise</span><span class="p">)</span> <span class="o">+</span>\
+                <span class="n">CustomWhiteNoise</span><span class="p">(</span><span class="n">σ1</span><span class="p">,</span> <span class="n">σ2</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="mi">545</span><span class="p">)</span>
 
 
-    <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t_combined</span><span class="p">[:,</span><span class="bp">None</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="n">cov_noise</span><span class="p">)</span>
+    <span class="n">y_</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">marginal_likelihood</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">t_combined</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="n">y_n</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="n">cov_noise</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1641,7 +1477,7 @@ also end up being zero.</p>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
@@ -1652,8 +1488,7 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1669,20 +1504,18 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1700</span><span class="p">,</span> <span class="mi">2040</span><span class="p">,</span> <span class="mi">3000</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">fnew</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew&quot;</span><span class="p">,</span> <span class="n">tnew</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">])</span>
+    <span class="n">fnew</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew&quot;</span><span class="p">,</span> <span class="n">tnew</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1694,21 +1527,14 @@ Only one chain was sampled, this makes it impossible to run some convergence che
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 100%|██████████| 200/200 [39:50&lt;00:00, 11.95s/it]
 </pre></div></div>
 </div>
-<p>Below are is a plot of the data since the 18th century (Mauna Loa and
-Law Dome ice core data) used to fit the model. The light blue lines are
-a bit hard to make out at this level of zoom, but they are samples from
-the posterior of the Gaussian process. They both interpolate the
-observed data, and represent plausible trajectories of the future
-forecast. These samples can alternatively be used to define credible
-intervals.</p>
+<p>Below are is a plot of the data since the 18th century (Mauna Loa and Law Dome ice core data) used to fit the model. The light blue lines are a bit hard to make out at this level of zoom, but they are samples from the posterior of the Gaussian process. They both interpolate the observed data, and represent plausible trajectories of the future forecast. These samples can alternatively be used to define credible intervals.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1734,13 +1560,9 @@ intervals.</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_90_0.png" src="../_images/notebooks_GP-MaunaLoa2_90_0.png" />
 </div>
 </div>
-<p>Lets zoom in for a closer look at the uncertainty intervals at the area
-around when the CO2 levels first cross 400 ppm. We can see that the
-posterior samples give a range of plausible future trajectories. Note
-that the data plotted in orange <strong>were not</strong> used in fitting the model.</p>
+<p>Lets zoom in for a closer look at the uncertainty intervals at the area around when the CO2 levels first cross 400 ppm. We can see that the posterior samples give a range of plausible future trajectories. Note that the data plotted in orange <strong>were not</strong> used in fitting the model.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1765,37 +1587,22 @@ that the data plotted in orange <strong>were not</strong> used in fitting the mo
 <img alt="../_images/notebooks_GP-MaunaLoa2_92_0.png" src="../_images/notebooks_GP-MaunaLoa2_92_0.png" />
 </div>
 </div>
-<p>If you compare this to the first Mauna Loa example notebook, the
-predictions are much better. The date when the CO2 level first hits 400
-is predicted much more accurately. This improvement in the bias is due
-to including the <code class="docutils literal notranslate"><span class="pre">Polynomial</span> <span class="pre">*</span> <span class="pre">Matern52</span></code> term, and the changepoint
-model.</p>
-<p>We can also look at what the model says about CO2 levels back in time.
-Since we allowed the <code class="docutils literal notranslate"><span class="pre">x</span></code> measurements to have uncertainty, we are able
-to fit the seasonal component back in time. To be sure, backcasting
-Mauna Loa CO2 measurements using ice core data doesn’t really make sense
-from a scientific point of view, because CO2 levels due to seasonal
-variation are different depending on your location on the planet. Mauna
-Loa will have a much more pronouced cyclical pattern because the
-northern hemesphere has much more vegetation. The amount of vegetation
-largely drives the seasonality due to the growth and die off of plants
-in summers and winters. But just because it’s cool, lets look at the fit
-of the model here anyway:</p>
+<p>If you compare this to the first Mauna Loa example notebook, the predictions are much better. The date when the CO2 level first hits 400 is predicted much more accurately. This improvement in the bias is due to including the <code class="docutils literal notranslate"><span class="pre">Polynomial</span> <span class="pre">*</span> <span class="pre">Matern52</span></code> term, and the changepoint model.</p>
+<p>We can also look at what the model says about CO2 levels back in time. Since we allowed the <code class="docutils literal notranslate"><span class="pre">x</span></code> measurements to have uncertainty, we are able to fit the seasonal component back in time. To be sure, backcasting Mauna Loa CO2 measurements using ice core data doesn’t really make sense from a scientific point of view, because CO2 levels due to seasonal variation are different depending on your location on the planet. Mauna Loa will have a much more pronouced cyclical pattern because the northern
+hemesphere has much more vegetation. The amount of vegetation largely drives the seasonality due to the growth and die off of plants in summers and winters. But just because it’s cool, lets look at the fit of the model here anyway:</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">fnew2</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew2&quot;</span><span class="p">,</span> <span class="n">tnew</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">])</span>
+    <span class="n">fnew2</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew2&quot;</span><span class="p">,</span> <span class="n">tnew</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1807,14 +1614,13 @@ of the model here anyway:</p>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 100%|██████████| 200/200 [01:16&lt;00:00,  2.63it/s]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1822,7 +1628,7 @@ of the model here anyway:</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">tnew</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">y_sd</span> <span class="o">*</span> <span class="n">ppc</span><span class="p">[</span><span class="s2">&quot;fnew2&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">200</span><span class="p">:</span><span class="mi">10</span><span class="p">,:]</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">y_mu</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1001</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="o">-</span><span class="mi">1001</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;samples from the GP posterior&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">t_n</span><span class="p">[:</span><span class="mi">111</span><span class="p">][:,</span><span class="bp">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">tr</span><span class="p">[</span><span class="s2">&quot;t_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">y</span><span class="p">[:</span><span class="mi">111</span><span class="p">],</span> <span class="s2">&quot;oy&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="p">(</span><span class="n">t_n</span><span class="p">[:</span><span class="mi">111</span><span class="p">][:,</span><span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">tr</span><span class="p">[</span><span class="s2">&quot;t_diff&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">),</span> <span class="n">y</span><span class="p">[:</span><span class="mi">111</span><span class="p">],</span> <span class="s2">&quot;oy&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="s2">&quot;oy&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;data location posterior samples reflecting ice core time measurement uncertainty&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;observed data&quot;</span><span class="p">);</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">air_test</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">air_test</span><span class="o">.</span><span class="n">CO2</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">);</span>
@@ -1842,29 +1648,21 @@ of the model here anyway:</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_96_0.png" src="../_images/notebooks_GP-MaunaLoa2_96_0.png" />
 </div>
 </div>
-<p>We can see that far back in time, we can backcast even the seasonal
-behavior to some degree. The ~two year of uncertainty in the <code class="docutils literal notranslate"><span class="pre">x</span></code>
-locations allows them to be shifted onto the nearest part of the
-seasonal oscillation for that year. The magnitude of the oscillation is
-the same as it is now in modern times. While the cycle in each of the
-posterior samples is still has an annual period, its exact morphology is
-less certain since we are far in time from the dates when the Mauna Loa
-data was collected.</p>
+<p>We can see that far back in time, we can backcast even the seasonal behavior to some degree. The ~two year of uncertainty in the <code class="docutils literal notranslate"><span class="pre">x</span></code> locations allows them to be shifted onto the nearest part of the seasonal oscillation for that year. The magnitude of the oscillation is the same as it is now in modern times. While the cycle in each of the posterior samples is still has an annual period, its exact morphology is less certain since we are far in time from the dates when the Mauna Loa data was
+collected.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">tnew</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span>
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">fnew3</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew3&quot;</span><span class="p">,</span> <span class="n">tnew</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">])</span>
+    <span class="n">fnew3</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span><span class="s2">&quot;fnew3&quot;</span><span class="p">,</span> <span class="n">tnew</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1876,14 +1674,13 @@ data was collected.</p>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="stderr output_area docutils container">
+<div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 100%|██████████| 200/200 [00:58&lt;00:00,  3.40it/s]
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre>
-<span></span>In [36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1906,22 +1703,11 @@ data was collected.</p>
 <img alt="../_images/notebooks_GP-MaunaLoa2_100_0.png" src="../_images/notebooks_GP-MaunaLoa2_100_0.png" />
 </div>
 </div>
-<p>Even as we go back before the year zero BCE, the general backcasted
-seasonality pattern remains intact, though it does begin to vary more
-wildly.</p>
+<p>Even as we go back before the year zero BCE, the general backcasted seasonality pattern remains intact, though it does begin to vary more wildly.</p>
 <div class="section" id="Conclusion">
 <h3>Conclusion<a class="headerlink" href="#Conclusion" title="Permalink to this headline">¶</a></h3>
-<p>The goal of this notebook is to help provide some ideas of ways to take
-advantage of the flexibility of PyMC3’s GP modeling capabilities. Data
-rarely comes in neat, evenly sampled intervals from a single source,
-which is no problem for GP models in general. To enable modeling
-interesting behavior, it is easy to define custom covariance and mean
-functions. There is no need to worry about figuring out the gradients,
-since this is taken care of by Theano’s autodiff capabilities. Being
-able to use the extremely high quality NUTS sampler in PyMC3 with GP
-models means that it’s possible to use samples from the posterior
-distribution as possible forecasts, which take into account uncertainty
-in the mean or covariance function hyperparameters.</p>
+<p>The goal of this notebook is to help provide some ideas of ways to take advantage of the flexibility of PyMC3’s GP modeling capabilities. Data rarely comes in neat, evenly sampled intervals from a single source, which is no problem for GP models in general. To enable modeling interesting behavior, it is easy to define custom covariance and mean functions. There is no need to worry about figuring out the gradients, since this is taken care of by Theano’s autodiff capabilities. Being able to use
+the extremely high quality NUTS sampler in PyMC3 with GP models means that it’s possible to use samples from the posterior distribution as possible forecasts, which take into account uncertainty in the mean or covariance function hyperparameters.</p>
 </div>
 </div>
 </div>
@@ -1940,7 +1726,7 @@ in the mean or covariance function hyperparameters.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 1.7.9.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
         </p>
     </div>
 </div>
