@@ -877,27 +877,16 @@ Sparsity: 0.9369533063577546
 <p><a class="reference external" href="http://papers.nips.cc/paper/3208-probabilistic-matrix-factorization.pdf">Probabilistic Matrix Factorization (PMF)</a> [3] is a probabilistic approach to the collaborative filtering problem that takes a Bayesian perspective. The ratings <span class="math notranslate nohighlight">\(R\)</span> are modeled as draws from a Gaussian distribution. The mean for <span class="math notranslate nohighlight">\(R_{ij}\)</span> is <span class="math notranslate nohighlight">\(U_i V_j^T\)</span>. The precision <span class="math notranslate nohighlight">\(\alpha\)</span> is a fixed parameter that reflects the uncertainty of the estimations; the normal distribution is commonly reparameterized
 in terms of precision, which is the inverse of the variance. Complexity is controlled by placing zero-mean spherical Gaussian priors on <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>. In other words, each row of <span class="math notranslate nohighlight">\(U\)</span> is drawn from a multivariate Gaussian with mean <span class="math notranslate nohighlight">\(\mu = 0\)</span> and precision which is some multiple of the identity matrix <span class="math notranslate nohighlight">\(I\)</span>. Those multiples are <span class="math notranslate nohighlight">\(\alpha_U\)</span> for <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(\alpha_V\)</span> for <span class="math notranslate nohighlight">\(V\)</span>. So our model is defined by:</p>
 <p><span class="math notranslate nohighlight">\(\newcommand\given[1][]{\:#1\vert\:}\)</span></p>
-<p>:nbsphinx-math:<a href="#id1"><span class="problematic" id="id2">`</span></a>begin{equation}
-P(R given U, V, alpha^2) =</p>
-<blockquote>
-<div><dl class="simple">
-<dt>prod_{i=1}^N prod_{j=1}^M</dt><dd><p>left[ mathcal{N}(R_{ij} given U_i V_j^T, alpha^{-1}) right]^{I_{ij}}</p>
-</dd>
-</dl>
-</div></blockquote>
-<p>end{equation}`</p>
-<p>:nbsphinx-math:<a href="#id3"><span class="problematic" id="id4">`</span></a>begin{equation}
-P(U given alpha_U^2) =</p>
-<blockquote>
-<div><p>prod_{i=1}^N mathcal{N}(U_i given 0, alpha_U^{-1} boldsymbol{I})</p>
-</div></blockquote>
-<p>end{equation}`</p>
-<p>:nbsphinx-math:<a href="#id5"><span class="problematic" id="id6">`</span></a>begin{equation}
-P(V given alpha_U^2) =</p>
-<blockquote>
-<div><p>prod_{j=1}^M mathcal{N}(V_j given 0, alpha_V^{-1} boldsymbol{I})</p>
-</div></blockquote>
-<p>end{equation}`</p>
+<div class="math notranslate nohighlight">
+\[P(R \given U, V, \alpha^2) =
+    \prod_{i=1}^N \prod_{j=1}^M
+        \left[ \mathcal{N}(R_{ij} \given U_i V_j^T, \alpha^{-1}) \right]^{I_{ij}}\]</div>
+<div class="math notranslate nohighlight">
+\[P(U \given \alpha_U^2) =
+    \prod_{i=1}^N \mathcal{N}(U_i \given 0, \alpha_U^{-1} \boldsymbol{I})\]</div>
+<div class="math notranslate nohighlight">
+\[P(V \given \alpha_U^2) =
+    \prod_{j=1}^M \mathcal{N}(V_j \given 0, \alpha_V^{-1} \boldsymbol{I})\]</div>
 <p>Given small precision parameters, the priors on <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> ensure our latent variables do not grow too far from 0. This prevents overly strong user preferences and item factor compositions from being learned. This is commonly known as complexity control, where the complexity of the model here is measured by the magnitude of the latent variables. Controlling complexity like this helps prevent overfitting, which allows the model to generalize better for unseen data. We must also
 choose an appropriate <span class="math notranslate nohighlight">\(\alpha\)</span> value for the normal distribution for <span class="math notranslate nohighlight">\(R\)</span>. So the challenge becomes choosing appropriate values for <span class="math notranslate nohighlight">\(\alpha_U\)</span>, <span class="math notranslate nohighlight">\(\alpha_V\)</span>, and <span class="math notranslate nohighlight">\(\alpha\)</span>. This challenge can be tackled with the soft weight-sharing methods discussed by <a class="reference external" href="http://www.cs.toronto.edu/~fritz/absps/sunspots.pdf">Nowland and Hinton, 1992</a> [4]. However, for the purposes of this analysis, we will stick to using point estimates obtained from our data.</p>
 <div class="nbinput nblast docutils container">
@@ -1024,12 +1013,9 @@ choose an appropriate <span class="math notranslate nohighlight">\(\alpha\)</spa
 </div>
 <p>We could define some kind of default trace property like we did for the MAP, but that would mean using possibly nonsensical values for <code class="docutils literal notranslate"><span class="pre">nsamples</span></code> and <code class="docutils literal notranslate"><span class="pre">cores</span></code>. Better to leave it as a non-optional call to <code class="docutils literal notranslate"><span class="pre">draw_samples</span></code>. Finally, we’ll need a function to make predictions using our inferred values for <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>. For user <span class="math notranslate nohighlight">\(i\)</span> and movie <span class="math notranslate nohighlight">\(j\)</span>, a prediction is generated by drawing from <span class="math notranslate nohighlight">\(\mathcal{N}(U_i V_j^T, \alpha)\)</span>. To generate predictions from the sampler, we
 generate an <span class="math notranslate nohighlight">\(R\)</span> matrix for each <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> sampled, then we combine these by averaging over the <span class="math notranslate nohighlight">\(K\)</span> samples.</p>
-<p>:nbsphinx-math:<a href="#id7"><span class="problematic" id="id8">`</span></a>begin{equation}
-P(R_{ij}^* given R, alpha, alpha_U, alpha_V) approx</p>
-<blockquote>
-<div><p>frac{1}{K} sum_{k=1}^K mathcal{N}(U_i V_j^T, alpha)</p>
-</div></blockquote>
-<p>end{equation}`</p>
+<div class="math notranslate nohighlight">
+\[P(R_{ij}^* \given R, \alpha, \alpha_U, \alpha_V) \approx
+    \frac{1}{K} \sum_{k=1}^K \mathcal{N}(U_i V_j^T, \alpha)\]</div>
 <p>We’ll want to inspect the individual <span class="math notranslate nohighlight">\(R\)</span> matrices before averaging them for diagnostic purposes. So we’ll write code for the averaging piece during evaluation. The function below simply draws an <span class="math notranslate nohighlight">\(R\)</span> matrix given a <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> and the fixed <span class="math notranslate nohighlight">\(\alpha\)</span> stored in the PMF object.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
@@ -1060,12 +1046,9 @@ the interest of time and space, these will not be implemented here.</p>
 <div class="section" id="Metrics">
 <h3>Metrics<a class="headerlink" href="#Metrics" title="Permalink to this headline">¶</a></h3>
 <p>In order to understand how effective our models are, we’ll need to be able to evaluate them. We’ll be evaluating in terms of root mean squared error (RMSE), which looks like this:</p>
-<p>:nbsphinx-math:<a href="#id9"><span class="problematic" id="id10">`</span></a>begin{equation}
-RMSE = sqrt{ frac{ sum_{i=1}^N sum_{j=1}^M I_{ij} (R_{ij} - R_{ij}^*)^2 }</p>
-<blockquote>
-<div><p>{ sum_{i=1}^N sum_{j=1}^M I_{ij} } }</p>
-</div></blockquote>
-<p>end{equation}`</p>
+<div class="math notranslate nohighlight">
+\[RMSE = \sqrt{ \frac{ \sum_{i=1}^N \sum_{j=1}^M I_{ij} (R_{ij} - R_{ij}^*)^2 }
+                   { \sum_{i=1}^N \sum_{j=1}^M I_{ij} } }\]</div>
 <p>In this case, the RMSE can be thought of as the standard deviation of our predictions from the actual user preferences.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
