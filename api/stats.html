@@ -182,8 +182,8 @@ Bayesian bootstrap.</p>
 <span class="gp">   ...: </span>
 <span class="gh">Out[1]: </span><span class="go"></span>
 <span class="go">             rank    waic    p_waic    d_waic    weight       se       dse warning waic_scale</span>
-<span class="go">non centered    0  61.292  0.800621         0  0.528547   2.5329         0   False   deviance</span>
-<span class="go">centered        1  61.516  0.901656  0.223908  0.471453  2.64374  0.155474   False   deviance</span>
+<span class="go">non centered    0  61.292  0.800621         0  0.527655  2.47879         0   False   deviance</span>
+<span class="go">centered        1  61.516  0.901656  0.223908  0.472345  2.59018  0.155474   False   deviance</span>
 </pre></div>
 </div>
 <p>Compare the models using LOO-CV, returning the IC in log scale and calculating the
@@ -379,7 +379,7 @@ for unimodal distributions.</p>
 <span class="gp">   ...: </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
 <span class="gp">   ...: </span><span class="n">az</span><span class="o">.</span><span class="n">hpd</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">credible_interval</span><span class="o">=.</span><span class="mi">68</span><span class="p">)</span>
 <span class="gp">   ...: </span>
-<span class="gh">Out[1]: </span><span class="go">array([-0.98683183,  0.98103368])</span>
+<span class="gh">Out[1]: </span><span class="go">array([-0.98996603,  0.99474441])</span>
 </pre></div>
 </div>
 </dd></dl>
