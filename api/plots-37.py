@@ -1,5 +1,1 @@
-az.plot_pair(centered,
-            var_names=['theta', 'mu'],
-            coords=coords,
-            textsize=18,
-            kind='hexbin')
+az.plot_density([centered, non_centered], var_names=["mu"], bw=.9)

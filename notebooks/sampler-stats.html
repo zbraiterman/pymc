@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Sampler statistics &#8212; PyMC3 3.8 documentation</title>
+    <title>Sampler statistics &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -224,6 +224,27 @@ div.nboutput.container div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
 
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
@@ -300,16 +321,42 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Multiprocess sampling (2 chains in 2 jobs)
 NUTS: [mu1]
-Sampling 2 chains: 100%|██████████| 6000/6000 [00:05&lt;00:00, 1064.53draws/s]
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/mkl_fft/_numpy_fft.py:1044: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  output = mkl_fft.rfftn_numpy(a, s, axes)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='6000' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [6000/6000 00:07<00:00 Sampling 2 chains, 0 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws total) took 9 seconds.
 </pre></div></div>
 </div>
 <p>NUTS provides the following statistics:</p>
@@ -372,7 +419,7 @@ model or estimating the posterior variances from past samples might help.</p></l
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x1c2124a8d0&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7fbc86827550&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -401,7 +448,7 @@ model or estimating the posterior variances from past samples might help.</p></l
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&lt;matplotlib.lines.Line2D at 0x1c212cc4a8&gt;]
+[&lt;matplotlib.lines.Line2D at 0x7fbc8630a690&gt;]
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -422,28 +469,19 @@ model or estimating the posterior variances from past samples might help.</p></l
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.axes._subplots.AxesSubplot at 0x1c21520438&gt;
+&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fbc862fdd50&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_sampler-stats_12_2.png" src="../_images/notebooks_sampler-stats_12_2.png" />
+<img alt="../_images/notebooks_sampler-stats_12_1.png" src="../_images/notebooks_sampler-stats_12_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -461,7 +499,7 @@ model or estimating the posterior variances from past samples might help.</p></l
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-0.8156558694178427
+0.8062428977787616
 </pre></div></div>
 </div>
 <p>Find the index of all diverging transitions:</p>
@@ -498,28 +536,19 @@ model or estimating the posterior variances from past samples might help.</p></l
 </div>
 </div>
 <div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.legend.Legend at 0x1c21831e10&gt;
+&lt;matplotlib.legend.Legend at 0x7fbc86b0f450&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_sampler-stats_17_2.png" src="../_images/notebooks_sampler-stats_17_2.png" />
+<img alt="../_images/notebooks_sampler-stats_17_1.png" src="../_images/notebooks_sampler-stats_17_1.png" />
 </div>
 </div>
 <p>If the overall distribution of energy levels has longer tails, the efficiency of the sampler will deteriorate quickly.</p>
@@ -551,7 +580,7 @@ model or estimating the posterior variances from past samples might help.</p></l
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
@@ -560,9 +589,35 @@ Multiprocess sampling (2 chains in 2 jobs)
 CompoundStep
 &gt;BinaryMetropolis: [mu1]
 &gt;Metropolis: [mu2]
-Sampling 2 chains: 100%|██████████| 22000/22000 [00:06&lt;00:00, 3399.17draws/s]
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/mkl_fft/_numpy_fft.py:1044: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  output = mkl_fft.rfftn_numpy(a, s, axes)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='22000' class='' max='22000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [22000/22000 00:13<00:00 Sampling 2 chains, 0 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 1_000 tune and 10_000 draw iterations (2_000 + 20_000 draws total) took 13 seconds.
 The number of effective samples is smaller than 10% for some parameters.
 </pre></div></div>
 </div>
@@ -581,7 +636,7 @@ The number of effective samples is smaller than 10% for some parameters.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-{&#39;accept&#39;, &#39;p_jump&#39;, &#39;tune&#39;}
+{&#39;accept&#39;, &#39;accepted&#39;, &#39;p_jump&#39;, &#39;scaling&#39;, &#39;tune&#39;}
 </pre></div></div>
 </div>
 <p>Both samplers export <code class="docutils literal notranslate"><span class="pre">accept</span></code>, so we get one acceptance probability for each sampler:</p>
@@ -600,13 +655,39 @@ The number of effective samples is smaller than 10% for some parameters.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([[0.25      , 1.5632343 ],
-       [0.25      , 0.53344289],
-       [1.        , 0.00924178],
+array([[2.50000000e-01, 3.96972963e-05],
+       [2.50000000e-01, 1.32994734e-01],
+       [1.00000000e+00, 1.71805501e-02],
        ...,
-       [1.        , 0.09734532],
-       [1.        , 0.05016997],
-       [1.        , 0.41670172]])
+       [1.00000000e+00, 4.23641715e-02],
+       [2.50000000e-01, 2.22210183e-03],
+       [2.50000000e-01, 1.80279632e-01]])
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+numpy   1.18.5
+seaborn 0.10.1
+pymc3   3.9.0
+pandas  1.0.4
+last updated: Mon Jun 15 2020
+
+CPython 3.7.7
+IPython 7.15.0
+watermark 2.0.2
 </pre></div></div>
 </div>
 </div>
@@ -626,7 +707,7 @@ array([[0.25      , 1.5632343 ],
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

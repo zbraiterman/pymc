@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Generalized Linear Models &#8212; PyMC3 3.8 documentation</title>
+    <title>Generalized Linear Models &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -68,20 +69,20 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str - name, associated with the linear component</span></dt><dd></dd>
-<dt><strong>x</strong><span class="classifier">pd.DataFrame or np.ndarray</span></dt><dd></dd>
-<dt><strong>y</strong><span class="classifier">pd.Series or np.array</span></dt><dd></dd>
-<dt><strong>intercept</strong><span class="classifier">bool - fit with intercept or not?</span></dt><dd></dd>
-<dt><strong>labels</strong><span class="classifier">list - replace variable names with these labels</span></dt><dd></dd>
-<dt><strong>priors</strong><span class="classifier">dict - priors for coefficients</span></dt><dd><dl class="simple">
+<dt><strong>name: str - name, associated with the linear component</strong></dt><dd></dd>
+<dt><strong>x: pd.DataFrame or np.ndarray</strong></dt><dd></dd>
+<dt><strong>y: pd.Series or np.array</strong></dt><dd></dd>
+<dt><strong>intercept: bool - fit with intercept or not?</strong></dt><dd></dd>
+<dt><strong>labels: list - replace variable names with these labels</strong></dt><dd></dd>
+<dt><strong>priors: dict - priors for coefficients</strong></dt><dd><dl class="simple">
 <dt>use <cite>Intercept</cite> key for defining Intercept prior</dt><dd><p>defaults to Flat.dist()</p>
 </dd>
 <dt>use <cite>Regressor</cite> key for defining default prior for all regressors</dt><dd><p>defaults to Normal.dist(mu=0, tau=1.0E-6)</p>
 </dd>
 </dl>
 </dd>
-<dt><strong>vars</strong><span class="classifier">dict - random variables instead of creating new ones</span></dt><dd></dd>
-<dt><strong>offset</strong><span class="classifier">scalar, or numpy/theano array with the same shape as y</span></dt><dd><p>this can be used to specify an a priori known component to be
+<dt><strong>vars: dict - random variables instead of creating new ones</strong></dt><dd></dd>
+<dt><strong>offset: scalar, or numpy/theano array with the same shape as y</strong></dt><dd><p>this can be used to specify an a priori known component to be
 included in the linear predictor during fitting.</p>
 </dd>
 </dl>
@@ -91,13 +92,13 @@ included in the linear predictor during fitting.</p>
 <dt id="pymc3.glm.linear.LinearComponent.from_formula">
 <em class="property">classmethod </em><code class="sig-name descname">from_formula</code><span class="sig-paren">(</span><em class="sig-param">formula</em>, <em class="sig-param">data</em>, <em class="sig-param">priors=None</em>, <em class="sig-param">vars=None</em>, <em class="sig-param">name=''</em>, <em class="sig-param">model=None</em>, <em class="sig-param">offset=0.0</em>, <em class="sig-param">eval_env=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.glm.linear.LinearComponent.from_formula" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates linear component from <cite>patsy</cite> formula.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>formula</strong><span class="classifier">str - a patsy formula</span></dt><dd></dd>
-<dt><strong>data</strong><span class="classifier">a dict-like object that can be used to look up variables referenced</span></dt><dd><p>in <cite>formula</cite></p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>formula: str - a patsy formula</strong></dt><dd></dd>
+<dt><strong>data: a dict-like object that can be used to look up variables referenced</strong></dt><dd><p>in <cite>formula</cite></p>
 </dd>
-<dt><strong>eval_env</strong><span class="classifier">either a <cite>patsy.EvalEnvironment</cite> or else a depth represented as</span></dt><dd><p>an integer which will be passed to <cite>patsy.EvalEnvironment.capture()</cite>.
+<dt><strong>eval_env: either a `patsy.EvalEnvironment` or else a depth represented as</strong></dt><dd><p>an integer which will be passed to <cite>patsy.EvalEnvironment.capture()</cite>.
 See <cite>patsy.dmatrix</cite> and <cite>patsy.EvalEnvironment</cite> for details.</p>
 </dd>
 <dt><strong>Other arguments are documented in the constructor.</strong></dt><dd></dd>
@@ -115,22 +116,22 @@ See <cite>patsy.dmatrix</cite> and <cite>patsy.EvalEnvironment</cite> for detail
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str - name, associated with the linear component</span></dt><dd></dd>
-<dt><strong>x</strong><span class="classifier">pd.DataFrame or np.ndarray</span></dt><dd></dd>
-<dt><strong>y</strong><span class="classifier">pd.Series or np.array</span></dt><dd></dd>
-<dt><strong>intercept</strong><span class="classifier">bool - fit with intercept or not?</span></dt><dd></dd>
-<dt><strong>labels</strong><span class="classifier">list - replace variable names with these labels</span></dt><dd></dd>
-<dt><strong>priors</strong><span class="classifier">dict - priors for coefficients</span></dt><dd><dl class="simple">
+<dt><strong>name: str - name, associated with the linear component</strong></dt><dd></dd>
+<dt><strong>x: pd.DataFrame or np.ndarray</strong></dt><dd></dd>
+<dt><strong>y: pd.Series or np.array</strong></dt><dd></dd>
+<dt><strong>intercept: bool - fit with intercept or not?</strong></dt><dd></dd>
+<dt><strong>labels: list - replace variable names with these labels</strong></dt><dd></dd>
+<dt><strong>priors: dict - priors for coefficients</strong></dt><dd><dl class="simple">
 <dt>use <cite>Intercept</cite> key for defining Intercept prior</dt><dd><p>defaults to Flat.dist()</p>
 </dd>
 <dt>use <cite>Regressor</cite> key for defining default prior for all regressors</dt><dd><p>defaults to Normal.dist(mu=0, tau=1.0E-6)</p>
 </dd>
 </dl>
 </dd>
-<dt><strong>init</strong><span class="classifier">dict - test_vals for coefficients</span></dt><dd></dd>
-<dt><strong>vars</strong><span class="classifier">dict - random variables instead of creating new ones</span></dt><dd></dd>
-<dt><strong>family</strong><span class="classifier">pymc3..families object</span></dt><dd></dd>
-<dt><strong>offset</strong><span class="classifier">scalar, or numpy/theano array with the same shape as y</span></dt><dd><p>this can be used to specify an a priori known component to be
+<dt><strong>init: dict - test_vals for coefficients</strong></dt><dd></dd>
+<dt><strong>vars: dict - random variables instead of creating new ones</strong></dt><dd></dd>
+<dt><strong>family: pymc3..families object</strong></dt><dd></dd>
+<dt><strong>offset: scalar, or numpy/theano array with the same shape as y</strong></dt><dd><p>this can be used to specify an a priori known component to be
 included in the linear predictor during fitting.</p>
 </dd>
 </dl>
@@ -140,13 +141,13 @@ included in the linear predictor during fitting.</p>
 <dt id="pymc3.glm.linear.GLM.from_formula">
 <em class="property">classmethod </em><code class="sig-name descname">from_formula</code><span class="sig-paren">(</span><em class="sig-param">formula</em>, <em class="sig-param">data</em>, <em class="sig-param">priors=None</em>, <em class="sig-param">vars=None</em>, <em class="sig-param">family='normal'</em>, <em class="sig-param">name=''</em>, <em class="sig-param">model=None</em>, <em class="sig-param">offset=0.0</em>, <em class="sig-param">eval_env=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.glm.linear.GLM.from_formula" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates GLM from formula.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>formula</strong><span class="classifier">str - a <cite>patsy</cite> formula</span></dt><dd></dd>
-<dt><strong>data</strong><span class="classifier">a dict-like object that can be used to look up variables referenced</span></dt><dd><p>in <cite>formula</cite></p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>formula: str - a `patsy` formula</strong></dt><dd></dd>
+<dt><strong>data: a dict-like object that can be used to look up variables referenced</strong></dt><dd><p>in <cite>formula</cite></p>
 </dd>
-<dt><strong>eval_env</strong><span class="classifier">either a <cite>patsy.EvalEnvironment</cite> or else a depth represented as</span></dt><dd><p>an integer which will be passed to <cite>patsy.EvalEnvironment.capture()</cite>.
+<dt><strong>eval_env: either a `patsy.EvalEnvironment` or else a depth represented as</strong></dt><dd><p>an integer which will be passed to <cite>patsy.EvalEnvironment.capture()</cite>.
 See <cite>patsy.dmatrix</cite> and <cite>patsy.EvalEnvironment</cite> for details.</p>
 </dd>
 <dt><strong>Other arguments are documented in the constructor.</strong></dt><dd></dd>
@@ -173,7 +174,7 @@ See <cite>patsy.dmatrix</cite> and <cite>patsy.EvalEnvironment</cite> for detail
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Sequential Monte Carlo - Approximate Bayesian Computation &#8212; PyMC3 3.8 documentation</title>
+    <title>Sequential Monte Carlo - Approximate Bayesian Computation &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -225,6 +225,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -259,10 +280,32 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;arviz-darkgrid&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="Sequential-Monte-Carlo---Approximate-Bayesian-Computation">
 <h1>Sequential Monte Carlo - Approximate Bayesian Computation<a class="headerlink" href="#Sequential-Monte-Carlo---Approximate-Bayesian-Computation" title="Permalink to this headline">¶</a></h1>
-<p>Approximate Bayesian Computation methods (also called likelihood free inference methods), are a group of techniques developed for inferring posterior distributions in cases where the likelihood function is intractable or costly to evaluate. This does not mean that the likelihood function is not part of the analysis, rather that it is not directly evaluated.</p>
-<p>ABC comes useful when modelling complex phenomena in certain fields of study, like systems biology. Such models often contain unobservable random quantities, which make the likelihood function hard to specify, but data can be simulated from the model.</p>
+<p>Approximate Bayesian Computation methods (also called likelihood free inference methods), are a group of techniques developed for inferring posterior distributions in cases where the likelihood function is intractable or costly to evaluate. This does not mean that the likelihood function is not part of the analysis, it just the we are approximating the likelihood, and hence the name of the ABC methods.</p>
+<p>ABC comes useful when modeling complex phenomena in certain fields of study, like systems biology. Such models often contain unobservable random quantities, which make the likelihood function hard to specify, but data can be simulated from the model.</p>
 <p>These methods follow a general form:</p>
 <p>1- Sample a parameter <span class="math notranslate nohighlight">\(\theta^*\)</span> from a prior/proposal distribution <span class="math notranslate nohighlight">\(\pi(\theta)\)</span>.</p>
 <p>2- Simulate a data set <span class="math notranslate nohighlight">\(y^*\)</span> using a function that takes <span class="math notranslate nohighlight">\(\theta\)</span> and returns a data set of the same dimensions as the observed data set <span class="math notranslate nohighlight">\(y_0\)</span> (simulator).</p>
@@ -270,29 +313,17 @@ div.rendered_html tbody tr:hover {
 <p>In some cases a distance function is computed between two summary statistics <span class="math notranslate nohighlight">\(d(S(y_0), S(y^*))\)</span>, avoiding the issue of computing distances for entire datasets.</p>
 <p>As a result we obtain a sample of parameters from a distribution <span class="math notranslate nohighlight">\(\pi(\theta | d(y_0, y^*)) \leqslant \epsilon\)</span>.</p>
 <p>If <span class="math notranslate nohighlight">\(\epsilon\)</span> is sufficiently small this distribution will be a good approximation of the posterior distribution <span class="math notranslate nohighlight">\(\pi(\theta | y_0)\)</span>.</p>
-<p><a class="reference external" href="https://docs.pymc.io/notebooks/SMC2_gaussians.html?highlight=smc">Sequential monte carlo</a> ABC is a method that iteratevly morphs the prior into a posterior by propagating the sampled parameters through a series of proposal distributions <span class="math notranslate nohighlight">\(\phi(\theta^{(i)})\)</span>, weighting the accepted parameters <span class="math notranslate nohighlight">\(\theta^{(i)}\)</span> like:</p>
+<p><a class="reference external" href="https://docs.pymc.io/notebooks/SMC2_gaussians.html?highlight=smc">Sequential monte carlo</a> ABC is a method that iteratively morphs the prior into a posterior by propagating the sampled parameters through a series of proposal distributions <span class="math notranslate nohighlight">\(\phi(\theta^{(i)})\)</span>, weighting the accepted parameters <span class="math notranslate nohighlight">\(\theta^{(i)}\)</span> like:</p>
 <div class="math notranslate nohighlight">
 \[w^{(i)} \propto \frac{\pi(\theta^{(i)})}{\phi(\theta^{(i)})}\]</div>
 <p>It combines the advantages of traditional SMC, i.e. ability to sample from distributions with multiple peaks, but without the need for evaluating the likelihood function.</p>
 <p><em>(Lintusaari, 2016), (Toni, T., 2008), (Nuñez, Prangle, 2015)</em></p>
+</div>
+<div class="section" id="Old-good-Gaussian-fit">
+<h1>Old good Gaussian fit<a class="headerlink" href="#Old-good-Gaussian-fit" title="Permalink to this headline">¶</a></h1>
+<p>To illustrate how to use ABC within PyMC3 we are going to start with a very simple example estimating the mean and standard deviation of Gaussian data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
-<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="A-trivial-example">
-<h1>A trivial example<a class="headerlink" href="#A-trivial-example" title="Permalink to this headline">¶</a></h1>
-<p>Estimating the mean and standard deviation of normal data</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -300,26 +331,38 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<p>Clearly under normal circumstances using a Gaussian likelihood will do the job very well. But that would defeat the purpose of this example, the notebook would end here and everything would be very boring. So, instead of that we are going to define a simulator. A very straightforward simulator for normal data is a pseudo random number generator, in real life our simulator will be most likely something fancier.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">normal_sim</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="k">def</span> <span class="nf">normal_sim</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Defining an ABC model in PyMC3 is in general, very similar to defining other PyMC3 models. The two important differences are: we need to define a <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> <em>distribution</em> and we need to use <code class="docutils literal notranslate"><span class="pre">sample_smc</span></code> with <code class="docutils literal notranslate"><span class="pre">kernel=&quot;ABC&quot;</span></code>. The <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> works as a generic interface to pass the synthetic data generating function (<em>normal_sim</em> in this example), its parameters, the observed data and optionally a distance function and a summary statistics. In the following code we are using the default
+distance, <code class="docutils literal notranslate"><span class="pre">gaussian_kernel</span></code>, and the <code class="docutils literal notranslate"><span class="pre">sort</span></code> summary_statistic. As the name suggests <code class="docutils literal notranslate"><span class="pre">sort</span></code> sorts the data before computing the distance.</p>
+<p>Finally, SMC-ABC offers the option to store the simulated data. This can he handy as simulators can be expensive to evaluate and we may want to use the simulated data for example for posterior predictive checks.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">example</span><span class="p">:</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Simulator</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">normal_sim</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-    <span class="n">trace_example</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_smc</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;ABC&quot;</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Simulator</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">normal_sim</span><span class="p">,</span>
+                     <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span>
+                     <span class="n">sum_stat</span><span class="o">=</span><span class="s2">&quot;sort&quot;</span><span class="p">,</span>
+                     <span class="n">epsilon</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                     <span class="n">observed</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="n">trace</span><span class="p">,</span> <span class="n">sim_data</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_smc</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;ABC&quot;</span><span class="p">,</span>
+                                            <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                            <span class="n">save_sim_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">idata</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">from_pymc3</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">posterior_predictive</span><span class="o">=</span><span class="n">sim_data</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -328,22 +371,27 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Sample initial stage: ...
-/home/osvaldo/proyectos/00_PyMC3/pymc3/pymc3/smc/smc.py:178: UserWarning: Warning: SMC-ABC methods are experimental step methods and not yet recommended for use in PyMC3!
+Initializing SMC sampler...
+Multiprocess sampling (2 chains in 2 jobs)
+/home/osvaldo/proyectos/00_BM/pymc3/pymc3/smc/sample_smc.py:167: UserWarning: Warning: SMC-ABC is an experimental step method and not yet recommended for use in PyMC3!
   warnings.warn(EXPERIMENTAL_WARNING)
-Stage: 0 Beta: 0.003 Steps: 25
-Stage: 1 Beta: 0.023 Steps: 7
-Stage: 2 Beta: 0.105 Steps: 2
-Stage: 3 Beta: 0.358 Steps: 4
-Stage: 4 Beta: 1.000 Steps: 3
+Stage:   0 Beta: 0.000
+Stage:   1 Beta: 0.002
+Stage:   2 Beta: 0.008
+Stage:   3 Beta: 0.027
+Stage:   4 Beta: 0.087
+Stage:   5 Beta: 0.290
+Stage:   6 Beta: 0.842
+Stage:   7 Beta: 1.000
 </pre></div></div>
 </div>
+<p>Judging by <code class="docutils literal notranslate"><span class="pre">plot_trace</span></code> the sampler did its job very well, which is not surprising given this is a very simple model. Anyway, it is always reassuring to look at a flat rank plot :-)</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">trace_example</span><span class="p">);</span>
+<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;rank_vlines&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -351,29 +399,20 @@ Stage: 4 Beta: 1.000 Steps: 3
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_8_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_8_0.png" />
+<img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_12_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_12_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace_example</span><span class="p">)</span>
+<span></span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">idata</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;stats&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-arviz.stats.stats_utils - WARNING - Shape validation failed: input_shape: (1, 1000), minimum_shape: (chains=2, draws=4)
-arviz.stats.stats_utils - WARNING - Shape validation failed: input_shape: (1, 1000), minimum_shape: (chains=2, draws=4)
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -397,61 +436,36 @@ arviz.stats.stats_utils - WARNING - Shape validation failed: input_shape: (1, 10
       <th></th>
       <th>mean</th>
       <th>sd</th>
-      <th>hpd_3%</th>
-      <th>hpd_97%</th>
-      <th>mcse_mean</th>
-      <th>mcse_sd</th>
-      <th>ess_mean</th>
-      <th>ess_sd</th>
-      <th>ess_bulk</th>
-      <th>ess_tail</th>
-      <th>r_hat</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>a</th>
-      <td>-0.039</td>
-      <td>0.105</td>
-      <td>-0.233</td>
-      <td>0.154</td>
-      <td>0.004</td>
-      <td>0.003</td>
-      <td>859.0</td>
-      <td>859.0</td>
-      <td>854.0</td>
-      <td>906.0</td>
-      <td>NaN</td>
+      <td>-0.042</td>
+      <td>0.046</td>
+      <td>-0.130</td>
+      <td>0.043</td>
     </tr>
     <tr>
       <th>b</th>
-      <td>0.965</td>
-      <td>0.135</td>
-      <td>0.719</td>
-      <td>1.212</td>
-      <td>0.004</td>
-      <td>0.003</td>
-      <td>1023.0</td>
-      <td>1021.0</td>
-      <td>1019.0</td>
-      <td>935.0</td>
-      <td>NaN</td>
+      <td>1.008</td>
+      <td>0.039</td>
+      <td>0.934</td>
+      <td>1.079</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
+<p>The posterior predictive check shows that we have an overall good fit, but the synthetic data has heavier tails than the observed one. You may want to decrease the value of epsilon, and see if you can get a tighter fit.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;True data&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">plot_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;C2&#39;</span><span class="p">})</span>
-<span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">normal_sim</span><span class="p">(</span><span class="n">trace_example</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">trace_example</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">25</span><span class="p">):</span>
-    <span class="n">az</span><span class="o">.</span><span class="n">plot_kde</span><span class="p">(</span><span class="n">normal_sim</span><span class="p">(</span><span class="n">trace_example</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">trace_example</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">]),</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">plot_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;zorder&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.2</span><span class="p">})</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_ppc</span><span class="p">(</span><span class="n">idata</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -459,44 +473,34 @@ arviz.stats.stats_utils - WARNING - Shape validation failed: input_shape: (1, 10
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_10_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_10_0.png" />
-</div>
+<img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_15_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_15_0.png" />
 </div>
 </div>
 <div class="section" id="Lotka–Volterra">
-<h1>Lotka–Volterra<a class="headerlink" href="#Lotka–Volterra" title="Permalink to this headline">¶</a></h1>
-<p>In this example we will try to find parameters for the Lotka-Volterra equations. A common biological competition model for describing how the number of individuals of each species changes when there is a predator/prey interaction (A Biologist’s Guide to Mathematical Modeling in Ecology and Evolution,Otto and Day, 2007). For example, rabbits and foxes. Given an initial population number for each species, the integration of this ordinary differential equations (ODE) describes curves for the
-progression of both populations. This ODE’s takes four parameters:</p>
+<h2>Lotka–Volterra<a class="headerlink" href="#Lotka–Volterra" title="Permalink to this headline">¶</a></h2>
+<p>The Lotka-Volterra is well-know biological model describing how the number of individuals of two species change when there is a predator/prey interaction (A Biologist’s Guide to Mathematical Modeling in Ecology and Evolution,Otto and Day, 2007). For example, rabbits and foxes. Given an initial population number for each species, the integration of this ordinary differential equations (ODE) describes curves for the progression of both populations. This ODE’s takes four parameters:</p>
 <ul class="simple">
 <li><p>a is the natural growing rate of rabbits, when there’s no fox.</p></li>
 <li><p>b is the natural dying rate of rabbits, due to predation.</p></li>
-<li><p>c is the natural dying rate of fox, when there’s no rabbit.</p></li>
+<li><p>c is the natural dying rate of fox, when there is no rabbit.</p></li>
 <li><p>d is the factor describing how many caught rabbits let create a new fox.</p></li>
 </ul>
-<p>This example is based on the Scipy Lokta-Volterra Tutorial.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">odeint</span>
-</pre></div>
-</div>
-</div>
-<p>First we will generate data using known parameters.</p>
+<p>Notice that there is nothing intrinsically especial about SMC-ABC and ODEs. In principle a simulator can be any piece of code able to generate fake data given a set of parameters.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Definition of parameters</span>
-<span class="n">a</span> <span class="o">=</span> <span class="mf">1.</span>
+<span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">odeint</span>
+
+<span class="c1"># Definition of parameters</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">b</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">c</span> <span class="o">=</span> <span class="mf">1.5</span>
 <span class="n">d</span> <span class="o">=</span> <span class="mf">0.75</span>
 
 <span class="c1"># initial population of rabbits and foxes</span>
-<span class="n">X0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">]</span>
+<span class="n">X0</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">]</span>
 <span class="c1"># size of data</span>
 <span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="c1"># time lapse</span>
@@ -505,55 +509,43 @@ progression of both populations. This ODE’s takes four parameters:</p>
 
 <span class="c1"># Lotka - Volterra equation</span>
 <span class="k">def</span> <span class="nf">dX_dt</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-
     <span class="sd">&quot;&quot;&quot; Return the growth rate of fox and rabbit populations. &quot;&quot;&quot;</span>
 
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
-                  <span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
-</pre></div>
-</div>
-</div>
-<p>This model is based on a simulator, a function that returns data in the same dimensions as the observed data. In this case, the function solves the ODE.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># simulator function</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">c</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">d</span> <span class="o">*</span> <span class="n">b</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+
+<span class="c1"># simulator function</span>
 <span class="k">def</span> <span class="nf">competition_model</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">odeint</span><span class="p">(</span><span class="n">dX_dt</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">X0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">odeint</span><span class="p">(</span><span class="n">dX_dt</span><span class="p">,</span> <span class="n">y0</span><span class="o">=</span><span class="n">X0</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <p>Using the simulator function we will obtain a dataset with some noise added, for using it as observed data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># function for generating noisy data to be used as observed data.</span>
 <span class="k">def</span> <span class="nf">add_noise</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
     <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
-    <span class="n">simulated</span> <span class="o">=</span> <span class="n">competition_model</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
-    <span class="n">simulated</span> <span class="o">+=</span> <span class="n">noise</span>
-    <span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">))</span>
-    <span class="k">return</span> <span class="n">simulated</span><span class="p">[</span><span class="n">indexes</span><span class="p">]</span>
+    <span class="n">simulated</span> <span class="o">=</span> <span class="n">competition_model</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
+    <span class="k">return</span> <span class="n">simulated</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># plotting observed data.</span>
-<span class="n">observed</span> <span class="o">=</span> <span class="n">add_noise</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="p">)</span>
-<span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">observed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;prey&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">observed</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;predator&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Observed data&#39;</span><span class="p">)</span>
+<span class="n">observed</span> <span class="o">=</span> <span class="n">add_noise</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">observed</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prey&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">observed</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;predator&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;population&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Observed data&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -562,23 +554,25 @@ progression of both populations. This ODE’s takes four parameters:</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_19_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_19_0.png" />
+<img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_20_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_20_0.png" />
 </div>
 </div>
-<p>On this model, instead of specifyng a likelihood function, we use <code class="docutils literal notranslate"><span class="pre">pm.Simulator()</span></code>, a “container” that stores the simulator function and the observed data. During sampling, samples from a and b priors will be passed to the simulator function.</p>
+<p>As with the first example, instead of specifying a likelihood function, we use <code class="docutils literal notranslate"><span class="pre">pm.Simulator()</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
+<span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_lv</span><span class="p">:</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
 
-    <span class="n">a</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Simulator</span><span class="p">(</span><span class="s2">&quot;sim&quot;</span><span class="p">,</span> <span class="n">competition_model</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">),</span>
+                       <span class="n">epsilon</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+                       <span class="n">observed</span><span class="o">=</span><span class="n">observed</span><span class="p">)</span>
 
-    <span class="n">simulator</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Simulator</span><span class="p">(</span><span class="s1">&#39;simulator&#39;</span><span class="p">,</span> <span class="n">competition_model</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">observed</span><span class="p">)</span>
-
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_smc</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;ABC&quot;</span><span class="p">)</span>
+    <span class="n">trace_lv</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_smc</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;ABC&quot;</span><span class="p">,</span> <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">idata_lv</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">from_pymc3</span><span class="p">(</span><span class="n">trace_lv</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -587,44 +581,31 @@ progression of both populations. This ODE’s takes four parameters:</p>
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Sample initial stage: ...
-/home/osvaldo/proyectos/00_PyMC3/pymc3/pymc3/smc/smc.py:178: UserWarning: Warning: SMC-ABC methods are experimental step methods and not yet recommended for use in PyMC3!
+Initializing SMC sampler...
+Multiprocess sampling (2 chains in 2 jobs)
+/home/osvaldo/proyectos/00_BM/pymc3/pymc3/smc/sample_smc.py:167: UserWarning: Warning: SMC-ABC is an experimental step method and not yet recommended for use in PyMC3!
   warnings.warn(EXPERIMENTAL_WARNING)
-/home/osvaldo/anaconda3/lib/python3.7/site-packages/scipy/integrate/odepack.py:247: ODEintWarning: Repeated error test failures (internal error). Run with full_output = 1 to get quantitative information.
+Stage:   0 Beta: 0.009
+/home/osvaldo/anaconda3/lib/python3.7/site-packages/scipy/integrate/odepack.py:248: ODEintWarning: Repeated error test failures (internal error). Run with full_output = 1 to get quantitative information.
   warnings.warn(warning_msg, ODEintWarning)
-/home/osvaldo/anaconda3/lib/python3.7/site-packages/scipy/integrate/odepack.py:247: ODEintWarning: Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative information.
+/home/osvaldo/anaconda3/lib/python3.7/site-packages/scipy/integrate/odepack.py:248: ODEintWarning: Repeated convergence failures (perhaps bad Jacobian or tolerances). Run with full_output = 1 to get quantitative information.
   warnings.warn(warning_msg, ODEintWarning)
-Stage: 0 Beta: 0.025 Steps: 25
-Stage: 1 Beta: 0.054 Steps: 8
-Stage: 2 Beta: 0.086 Steps: 6
-Stage: 3 Beta: 0.133 Steps: 18
-Stage: 4 Beta: 0.196 Steps: 15
-Stage: 5 Beta: 0.454 Steps: 18
-Stage: 6 Beta: 1.000 Steps: 2
+/home/osvaldo/anaconda3/lib/python3.7/site-packages/scipy/integrate/odepack.py:248: ODEintWarning: Repeated error test failures (internal error). Run with full_output = 1 to get quantitative information.
+  warnings.warn(warning_msg, ODEintWarning)
+Stage:   1 Beta: 0.019
+Stage:   2 Beta: 0.031
+Stage:   3 Beta: 0.065
+Stage:   4 Beta: 0.217
+Stage:   5 Beta: 0.694
+Stage:   6 Beta: 1.000
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">trace</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_22_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_22_0.png" />
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">trace</span><span class="p">);</span>
+<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">idata_lv</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;rank_vlines&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -636,21 +617,11 @@ Stage: 6 Beta: 1.000 Steps: 2
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># plot results</span>
-<span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">observed</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;prey&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;C0&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">observed</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;predator&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">competition_model</span><span class="p">(</span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="mi">75</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">competition_model</span><span class="p">(</span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">competition_model</span><span class="p">(</span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;C3&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_posterior</span><span class="p">(</span><span class="n">idata_lv</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -659,6 +630,60 @@ Stage: 6 Beta: 1.000 Steps: 2
 </div>
 <div class="output_area docutils container">
 <img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_24_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_24_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># plot results</span>
+<span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">observed</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;prey&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">observed</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;predator&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">competition_model</span><span class="p">(</span><span class="n">trace_lv</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">trace_lv</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="mi">75</span><span class="p">):</span>
+    <span class="n">sim</span> <span class="o">=</span> <span class="n">competition_model</span><span class="p">(</span><span class="n">trace_lv</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">trace_lv</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C0&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim</span><span class="p">[:,</span><span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;population&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_25_0.png" src="../_images/notebooks_SMC-ABC_Lotka-Volterra_example_25_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+autopep8 1.5
+numpy    1.18.1
+pymc3    3.9.2
+json     2.0.9
+arviz    0.9.0
+last updated: Fri Jul 03 2020
+
+CPython 3.7.6
+IPython 7.12.0
+watermark 2.0.2
+</pre></div></div>
 </div>
 </div>
 </div>
@@ -677,7 +702,7 @@ Stage: 6 Beta: 1.000 Steps: 2
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

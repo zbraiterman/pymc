@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Backends &#8212; PyMC3 3.8 documentation</title>
+    <title>Backends &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -78,7 +79,7 @@ and SQLite backends store the values while sampling.</p>
 backend, pass a backend instance to <cite>sample</cite>.</p>
 <p>For example, the following would save the sampling values to CSV files
 in the directory ‘test’.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">():</span>
 <span class="gp">&gt;&gt;&gt; </span>     <span class="n">db</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span>     <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">trace</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
@@ -92,7 +93,7 @@ or pass a <cite>model</cite> parameter in order to create a backend.</p>
 <p>After a backend is finished sampling, it returns a MultiTrace object.
 Values can be accessed in a few ways. The easiest way is to index the
 backend object with a variable or variable name.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>  <span class="c1"># or trace.x or trace[x]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>  <span class="c1"># or trace.x or trace[x]</span>
 </pre></div>
 </div>
 <p>The call will return the sampling values of <cite>x</cite>, with the values for
@@ -100,24 +101,24 @@ all chains concatenated. (For a single call to <cite>sample</cite>, the number o
 chains will correspond to the <cite>cores</cite> argument.)</p>
 <p>To discard the first N values of each chain, slicing syntax can be
 used.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">:]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">:]</span>
 </pre></div>
 </div>
 <p>The <cite>get_values</cite> method offers more control over which values are
 returned. The call below will discard the first 1000 iterations
 from each chain and keep the values for each chain as separate arrays.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">combine</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <cite>chains</cite> parameter of <cite>get_values</cite> can be used to limit the chains
 that are retrieved.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chains</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">burn</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">chains</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>MultiTrace objects also support slicing. For example, the following
 call would return a new trace object without the first 1000 sampling
 iterations for all traces and variables.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sliced_trace</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sliced_trace</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="mi">1000</span><span class="p">:]</span>
 </pre></div>
 </div>
 <p>The backend for the new trace is always NDArray, regardless of the
@@ -128,7 +129,7 @@ value in the slice.</p>
 <h2>Loading a saved backend<a class="headerlink" href="#loading-a-saved-backend" title="Permalink to this headline">¶</a></h2>
 <p>Saved backends can be loaded using <cite>load</cite> function in the module for the
 specific backend.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -178,11 +179,11 @@ defined that returns a MultiTrace object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of backend. This has no meaning for the NDArray backend.</p>
+<dt><strong>name: str</strong></dt><dd><p>Name of backend. This has no meaning for the NDArray backend.</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
+<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
 </dd>
-<dt><strong>vars</strong><span class="classifier">list of variables</span></dt><dd><p>Sampling values will be stored for these variables. If None,
+<dt><strong>vars: list of variables</strong></dt><dd><p>Sampling values will be stored for these variables. If None,
 <cite>model.unobserved_RVs</cite> is used.</p>
 </dd>
 </dl>
@@ -202,9 +203,9 @@ defined that returns a MultiTrace object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>varname</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>burn</strong><span class="classifier">int</span></dt><dd></dd>
-<dt><strong>thin</strong><span class="classifier">int</span></dt><dd></dd>
+<dt><strong>varname: str</strong></dt><dd></dd>
+<dt><strong>burn: int</strong></dt><dd></dd>
+<dt><strong>thin: int</strong></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -229,7 +230,7 @@ with variable names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict</span></dt><dd><p>Values mapped to variable names</p>
+<dt><strong>point: dict</strong></dt><dd><p>Values mapped to variable names</p>
 </dd>
 </dl>
 </dd>
@@ -243,11 +244,11 @@ with variable names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>draws</strong><span class="classifier">int</span></dt><dd><p>Expected number of draws</p>
+<dt><strong>draws: int</strong></dt><dd><p>Expected number of draws</p>
 </dd>
-<dt><strong>chain</strong><span class="classifier">int</span></dt><dd><p>Chain number</p>
+<dt><strong>chain: int</strong></dt><dd><p>Chain number</p>
 </dd>
-<dt><strong>sampler_vars</strong><span class="classifier">list of dicts</span></dt><dd><p>Names and dtypes of the variables that are
+<dt><strong>sampler_vars: list of dicts</strong></dt><dd><p>Names and dtypes of the variables that are
 exported by the samplers.</p>
 </dd>
 </dl>
@@ -266,9 +267,9 @@ must be run in a model context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>directory</strong><span class="classifier">str</span></dt><dd><p>Path to a pymc3 serialized trace</p>
+<dt><strong>directory: str</strong></dt><dd><p>Path to a pymc3 serialized trace</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">pm.Model (optional)</span></dt><dd><p>Model used to create the trace.  Can also be inferred from context</p>
+<dt><strong>model: pm.Model (optional)</strong></dt><dd><p>Model used to create the trace.  Can also be inferred from context</p>
 </dd>
 </dl>
 </dd>
@@ -278,6 +279,12 @@ must be run in a model context.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pymc3.backends.ndarray.point_list_to_multitrace">
+<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">point_list_to_multitrace</code><span class="sig-paren">(</span><em class="sig-param">point_list: List[Dict[str, numpy.ndarray]], model: Union[pymc3.model.Model, NoneType] = None</em><span class="sig-paren">)</span> &#x2192; pymc3.backends.base.MultiTrace<a class="headerlink" href="#pymc3.backends.ndarray.point_list_to_multitrace" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform point list into MultiTrace</p>
 </dd></dl>
 
 <dl class="function">
@@ -292,11 +299,11 @@ for more information about this format.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>trace</strong><span class="classifier">pm.MultiTrace</span></dt><dd><p>trace to save to disk</p>
+<dt><strong>trace: pm.MultiTrace</strong></dt><dd><p>trace to save to disk</p>
 </dd>
-<dt><strong>directory</strong><span class="classifier">str (optional)</span></dt><dd><p>path to a directory to save the trace</p>
+<dt><strong>directory: str (optional)</strong></dt><dd><p>path to a directory to save the trace</p>
 </dd>
-<dt><strong>overwrite</strong><span class="classifier">bool (default False)</span></dt><dd><p>whether to overwrite an existing directory.</p>
+<dt><strong>overwrite: bool (default False)</strong></dt><dd><p>whether to overwrite an existing directory.</p>
 </dd>
 </dl>
 </dd>
@@ -333,14 +340,14 @@ The chain column denotes the chain index and starts at 0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of database file</p>
+<dt><strong>name: str</strong></dt><dd><p>Name of database file</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
+<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
 </dd>
-<dt><strong>vars</strong><span class="classifier">list of variables</span></dt><dd><p>Sampling values will be stored for these variables. If None,
+<dt><strong>vars: list of variables</strong></dt><dd><p>Sampling values will be stored for these variables. If None,
 <cite>model.unobserved_RVs</cite> is used.</p>
 </dd>
-<dt><strong>test_point</strong><span class="classifier">dict</span></dt><dd><p>use different test point that might be with changed variables shapes</p>
+<dt><strong>test_point: dict</strong></dt><dd><p>use different test point that might be with changed variables shapes</p>
 </dd>
 </dl>
 </dd>
@@ -359,9 +366,9 @@ The chain column denotes the chain index and starts at 0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>varname</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>burn</strong><span class="classifier">int</span></dt><dd></dd>
-<dt><strong>thin</strong><span class="classifier">int</span></dt><dd></dd>
+<dt><strong>varname: str</strong></dt><dd></dd>
+<dt><strong>burn: int</strong></dt><dd></dd>
+<dt><strong>thin: int</strong></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -386,7 +393,7 @@ with variables names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict</span></dt><dd><p>Values mapped to variable names</p>
+<dt><strong>point: dict</strong></dt><dd><p>Values mapped to variable names</p>
 </dd>
 </dl>
 </dd>
@@ -400,9 +407,9 @@ with variables names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>draws</strong><span class="classifier">int</span></dt><dd><p>Expected number of draws</p>
+<dt><strong>draws: int</strong></dt><dd><p>Expected number of draws</p>
 </dd>
-<dt><strong>chain</strong><span class="classifier">int</span></dt><dd><p>Chain number</p>
+<dt><strong>chain: int</strong></dt><dd><p>Chain number</p>
 </dd>
 </dl>
 </dd>
@@ -418,9 +425,9 @@ with variables names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Path to SQLite database file</p>
+<dt><strong>name: str</strong></dt><dd><p>Path to SQLite database file</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
+<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
 </dd>
 </dl>
 </dd>
@@ -456,14 +463,14 @@ shape of (3, 2).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of directory to store text files</p>
+<dt><strong>name: str</strong></dt><dd><p>Name of directory to store text files</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
+<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
 </dd>
-<dt><strong>vars</strong><span class="classifier">list of variables</span></dt><dd><p>Sampling values will be stored for these variables. If None,
+<dt><strong>vars: list of variables</strong></dt><dd><p>Sampling values will be stored for these variables. If None,
 <cite>model.unobserved_RVs</cite> is used.</p>
 </dd>
-<dt><strong>test_point</strong><span class="classifier">dict</span></dt><dd><p>use different test point that might be with changed variables shapes</p>
+<dt><strong>test_point: dict</strong></dt><dd><p>use different test point that might be with changed variables shapes</p>
 </dd>
 </dl>
 </dd>
@@ -482,9 +489,9 @@ shape of (3, 2).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>varname</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>burn</strong><span class="classifier">int</span></dt><dd></dd>
-<dt><strong>thin</strong><span class="classifier">int</span></dt><dd></dd>
+<dt><strong>varname: str</strong></dt><dd></dd>
+<dt><strong>burn: int</strong></dt><dd></dd>
+<dt><strong>thin: int</strong></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -509,7 +516,7 @@ with variables names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict</span></dt><dd><p>Values mapped to variable names</p>
+<dt><strong>point: dict</strong></dt><dd><p>Values mapped to variable names</p>
 </dd>
 </dl>
 </dd>
@@ -523,9 +530,9 @@ with variables names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>draws</strong><span class="classifier">int</span></dt><dd><p>Expected number of draws</p>
+<dt><strong>draws: int</strong></dt><dd><p>Expected number of draws</p>
 </dd>
-<dt><strong>chain</strong><span class="classifier">int</span></dt><dd><p>Chain number</p>
+<dt><strong>chain: int</strong></dt><dd><p>Chain number</p>
 </dd>
 </dl>
 </dd>
@@ -541,11 +548,11 @@ with variables names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of directory to store CSV files in</p>
+<dt><strong>name: str</strong></dt><dd><p>Name of directory to store CSV files in</p>
 </dd>
-<dt><strong>trace</strong><span class="classifier">MultiTrace of NDArray traces</span></dt><dd><p>Result of MCMC run with default NDArray backend</p>
+<dt><strong>trace: MultiTrace of NDArray traces</strong></dt><dd><p>Result of MCMC run with default NDArray backend</p>
 </dd>
-<dt><strong>chains</strong><span class="classifier">list</span></dt><dd><p>Chains to dump. If None, all chains are dumped.</p>
+<dt><strong>chains: list</strong></dt><dd><p>Chains to dump. If None, all chains are dumped.</p>
 </dd>
 </dl>
 </dd>
@@ -559,9 +566,9 @@ with variables names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of directory with files (one per chain)</p>
+<dt><strong>name: str</strong></dt><dd><p>Name of directory with files (one per chain)</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
+<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
 </dd>
 </dl>
 </dd>
@@ -585,11 +592,11 @@ with variables names as keys.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>trace</strong><span class="classifier">NDarray trace</span></dt><dd></dd>
-<dt><strong>chains</strong><span class="classifier">int or list of ints</span></dt><dd><p>Chains to include. If None, all chains are used. A single
+<dt><strong>trace: NDarray trace</strong></dt><dd></dd>
+<dt><strong>chains: int or list of ints</strong></dt><dd><p>Chains to include. If None, all chains are used. A single
 chain value can also be given.</p>
 </dd>
-<dt><strong>varnames</strong><span class="classifier">list of variable names</span></dt><dd><p>Variables to be included in the DataFrame, if None all variable are
+<dt><strong>varnames: list of variable names</strong></dt><dd><p>Variables to be included in the DataFrame, if None all variable are
 included.</p>
 </dd>
 <dt><strong>include_transformed: boolean</strong></dt><dd><p>If true transformed variables will be included in the resulting
@@ -617,7 +624,7 @@ DataFrame.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Continuous &#8212; PyMC3 3.8 documentation</title>
+    <title>Continuous &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../../_static/semantic.min.js"></script>
+    <script src="../../_static/highlight.min.js"></script>
+    <script src="../../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../history.html" class="item">About PyMC3</a>
+             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -1058,12 +1059,12 @@ Student’s T.</p>
 </div>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 24%" />
-<col style="width: 76%" />
+<col style="width: 25%" />
+<col style="width: 75%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Support</p></td>
-<td><p>:math:<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">\in</span> <span class="pre">\mathbb{R}</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -3141,6 +3142,10 @@ specified).</p>
 \[f(x\mid \nu ,\sigma )=
 {\frac  {x}{\sigma ^{2}}}\exp
 \left({\frac  {-(x^{2}+\nu ^{2})}{2\sigma ^{2}}}\right)I_{0}\left({\frac  {x\nu }{\sigma ^{2}}}\right),\]</div>
+<p>(<a class="reference external" href="../../api/distributions/continuous-27.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-27.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-27.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-27.pdf">pdf</a>)</p>
+<div class="figure align-default">
+<img alt="../../_images/continuous-27.png" src="../../_images/continuous-27.png" />
+</div>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 6%" />
@@ -3224,6 +3229,113 @@ specified).</p>
 
 </dd></dl>
 
+<dl class="class">
+<dt id="pymc3.distributions.continuous.Moyal">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Moyal</code><span class="sig-paren">(</span><em class="sig-param">mu=0</em>, <em class="sig-param">sigma=1.0</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moyal log-likelihood.</p>
+<p>The pdf of this distribution is</p>
+<div class="math notranslate nohighlight">
+\[f(x \mid \mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2}\left(z + e^{-z}\right)},\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[z = \frac{x-\mu}{\sigma}.\]</div>
+<p>(<a class="reference external" href="../../api/distributions/continuous-28.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-28.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-28.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-28.pdf">pdf</a>)</p>
+<div class="figure align-default">
+<img alt="../../_images/continuous-28.png" src="../../_images/continuous-28.png" />
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 93%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Support</p></td>
+<td><p><span class="math notranslate nohighlight">\(x \in (-\infty, \infty)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Mean</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu + \sigma\left(\gamma + \log 2\right)\)</span>, where <span class="math notranslate nohighlight">\(\gamma\)</span> is the Euler-Mascheroni constant</p></td>
+</tr>
+<tr class="row-odd"><td><p>Variance</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{\pi^{2}}{2}\sigma^{2}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>mu: float</strong></dt><dd><p>Location parameter.</p>
+</dd>
+<dt><strong>sigma: float</strong></dt><dd><p>Scale parameter (sigma &gt; 0).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pymc3.distributions.continuous.Moyal.logcdf">
+<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for Moyal distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+values are desired the values must be provided in a numpy array or theano tensor.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.distributions.continuous.Moyal.logp">
+<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">value</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.logp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate log-probability of Moyal distribution at specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+values are desired the values must be provided in a numpy array or theano tensor</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.distributions.continuous.Moyal.random">
+<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">point=None</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw random values from Moyal distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
+conditioned (uses default point if not specified).</p>
+</dd>
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
+specified).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>array</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 
@@ -3240,7 +3352,7 @@ specified).</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

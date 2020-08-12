@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Variational API quickstart &#8212; PyMC3 3.8 documentation</title>
+    <title>Variational API quickstart &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -224,6 +224,27 @@ div.nboutput.container div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
 
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
@@ -328,18 +349,44 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (4 chains in 4 jobs)
 NUTS: [x]
-Sampling 2 chains: 100%|██████████| 101000/101000 [00:41&lt;00:00, 2455.71draws/s]
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/mkl_fft/_numpy_fft.py:1044: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  output = mkl_fft.rfftn_numpy(a, s, axes)
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='204000' class='' max='204000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [204000/204000 03:06<00:00 Sampling 4 chains, 0 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 4 chains for 1_000 tune and 50_000 draw iterations (4_000 + 200_000 draws total) took 186 seconds.
 The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div></div>
 </div>
@@ -352,11 +399,20 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/dependencies/arviz/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_7_0.png" src="../_images/notebooks_variational_api_quickstart_7_0.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_7_1.png" src="../_images/notebooks_variational_api_quickstart_7_1.png" />
 </div>
 </div>
 <p>Above are traces for <span class="math notranslate nohighlight">\(x^2\)</span> and <span class="math notranslate nohighlight">\(sin(x)\)</span>. We can see there is clear multi-modality in this model. One drawback, is that you need to know in advance what exactly you want to see in trace and wrap it with <code class="docutils literal notranslate"><span class="pre">Deterministic</span></code>.</p>
@@ -386,12 +442,32 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='10000' class='' max='10000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [10000/10000 00:01<00:00 Average Loss = 2.2413]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = 2.2413: 100%|██████████| 10000/10000 [00:06&lt;00:00, 1454.10it/s]
 Finished [100%]: Average Loss = 2.2687
 </pre></div></div>
 </div>
@@ -404,11 +480,20 @@ Finished [100%]: Average Loss = 2.2687
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/dependencies/arviz/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_12_0.png" src="../_images/notebooks_variational_api_quickstart_12_0.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_12_1.png" src="../_images/notebooks_variational_api_quickstart_12_1.png" />
 </div>
 </div>
 <p>Notice that ADVI has failed to approximate the multimodal distribution, since it uses a Gaussian distribution that has a single mode.</p>
@@ -432,17 +517,19 @@ Finished [100%]: Average Loss = 2.2687
 Help on class CheckParametersConvergence in module pymc3.variational.callbacks:
 
 class CheckParametersConvergence(Callback)
+ |  CheckParametersConvergence(every=100, tolerance=0.001, diff=&#39;relative&#39;, ord=inf)
+ |
  |  Convergence stopping check
  |
  |  Parameters
  |  ----------
- |  every : int
+ |  every: int
  |      check frequency
- |  tolerance : float
- |      if diff norm &lt; tolerance : break
- |  diff : str
+ |  tolerance: float
+ |      if diff norm &lt; tolerance: break
+ |  diff: str
  |      difference type one of {&#39;absolute&#39;, &#39;relative&#39;}
- |  ord : {non-zero int, inf, -inf, &#39;fro&#39;, &#39;nuc&#39;}, optional
+ |  ord: {non-zero int, inf, -inf, &#39;fro&#39;, &#39;nuc&#39;}, optional
  |      see more info in :func:`numpy.linalg.norm`
  |
  |  Examples
@@ -498,12 +585,32 @@ class CheckParametersConvergence(Callback)
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='10000' class='' max='10000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [10000/10000 00:01<00:00 Average Loss = 2.2559]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = 2.2559: 100%|██████████| 10000/10000 [00:06&lt;00:00, 1464.59it/s]
 Finished [100%]: Average Loss = 2.2763
 </pre></div></div>
 </div>
@@ -535,12 +642,32 @@ Finished [100%]: Average Loss = 2.2763
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='4263' class='' max='10000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  42.63% [4263/10000 00:00<00:00 Average Loss = 3.2279]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = 3.145:  45%|████▌     | 4531/10000 [00:03&lt;00:04, 1360.34it/s]
 Convergence achieved at 4700
 Interrupted at 4,699 [46%]: Average Loss = 4.7996
 </pre></div></div>
@@ -591,7 +718,7 @@ Interrupted at 4,699 [46%]: Average Loss = 4.7996
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.MeanField at 0x1c28a5ebe0&gt;
+&lt;pymc3.variational.approximations.MeanField at 0x7f7dcca2b090&gt;
 </pre></div></div>
 </div>
 <p>Different approximations have different hyperparameters. In mean-field ADVI, we have <span class="math notranslate nohighlight">\(\rho\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> (inspired by <a class="reference external" href="https://arxiv.org/abs/1505.05424">Bayes by BackProp</a>).</p>
@@ -655,12 +782,32 @@ Interrupted at 4,699 [46%]: Average Loss = 4.7996
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='20000' class='' max='20000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [20000/20000 00:05<00:00 Average Loss = 1.9568]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = 1.9568: 100%|██████████| 20000/20000 [00:14&lt;00:00, 1397.94it/s]
 Finished [100%]: Average Loss = 1.9589
 </pre></div></div>
 </div>
@@ -700,12 +847,32 @@ Finished [100%]: Average Loss = 1.9589
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='100000' class='' max='100000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [100000/100000 00:24<00:00 Average Loss = 1.8638]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = 1.8638: 100%|██████████| 100000/100000 [01:14&lt;00:00, 1342.20it/s]
 Finished [100%]: Average Loss = 1.8422
 </pre></div></div>
 </div>
@@ -748,20 +915,11 @@ Finished [100%]: Average Loss = 1.8422
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_42_1.png" src="../_images/notebooks_variational_api_quickstart_42_1.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_42_0.png" src="../_images/notebooks_variational_api_quickstart_42_0.png" />
 </div>
 </div>
 <p>Again, we see that ADVI is not able to cope with multimodality; we can instead use SVGD, which generates an approximation based on a large number of particles.</p>
@@ -779,12 +937,23 @@ Finished [100%]: Average Loss = 1.8422
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/theano/scan_module/scan_perform_ext.py:76: UserWarning: The file scan_perform.c is not available. This donot happen normally. You are probably in a strangesetup. This mean Theano can not use the cython code for scan. If youwant to remove this warning, use the Theano flag&#39;cxx=&#39; (set to an empty string) to disable all ccode generation.
-  &#34;The file scan_perform.c is not available. This do&#34;
-100%|██████████| 300/300 [00:51&lt;00:00,  5.81it/s]
-</pre></div></div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='300' class='' max='300' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [300/300 02:05<00:00]
+</div></div>
 </div>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
@@ -797,22 +966,11 @@ Finished [100%]: Average Loss = 1.8422
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_45_1.png" src="../_images/notebooks_variational_api_quickstart_45_1.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_45_0.png" src="../_images/notebooks_variational_api_quickstart_45_0.png" />
 </div>
 </div>
 <p>That did the trick, as we now have a multimodal approximation using SVGD.</p>
@@ -850,12 +1008,12 @@ sample_node(node, size=None, deterministic=False, more_replacements=None) method
 
     Parameters
     ----------
-    node : Theano Variables (or Theano expressions)
-    size : None or scalar
+    node: Theano Variables (or Theano expressions)
+    size: None or scalar
         number of samples
-    more_replacements : `dict`
+    more_replacements: `dict`
         add custom replacements to graph, e.g. change input source
-    deterministic : bool
+    deterministic: bool
         whether to use zeros as initial distribution
         if True - zero initial point will produce constant latent variables
 
@@ -932,20 +1090,11 @@ array(0.01689826)
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_54_1.png" src="../_images/notebooks_variational_api_quickstart_54_1.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_54_0.png" src="../_images/notebooks_variational_api_quickstart_54_0.png" />
 </div>
 </div>
 <p>There is a more convinient way to get lots of samples at once: <code class="docutils literal notranslate"><span class="pre">sample_node</span></code></p>
@@ -968,22 +1117,11 @@ array(0.01689826)
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/theano/scan_module/scan_perform_ext.py:76: UserWarning: The file scan_perform.c is not available. This donot happen normally. You are probably in a strangesetup. This mean Theano can not use the cython code for scan. If youwant to remove this warning, use the Theano flag&#39;cxx=&#39; (set to an empty string) to disable all ccode generation.
-  &#34;The file scan_perform.c is not available. This do&#34;
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_57_1.png" src="../_images/notebooks_variational_api_quickstart_57_1.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_57_0.png" src="../_images/notebooks_variational_api_quickstart_57_0.png" />
 </div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">sample_node</span></code> function includes an additional dimension, so taking expectations or calculating variance is specified by <code class="docutils literal notranslate"><span class="pre">axis=0</span></code>.</p>
@@ -995,15 +1133,6 @@ array(0.01689826)
 <span></span><span class="n">a_samples</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  <span class="c1"># variance</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/theano/scan_module/scan_perform_ext.py:76: UserWarning: The file scan_perform.c is not available. This donot happen normally. You are probably in a strangesetup. This mean Theano can not use the cython code for scan. If youwant to remove this warning, use the Theano flag&#39;cxx=&#39; (set to an empty string) to disable all ccode generation.
-  &#34;The file scan_perform.c is not available. This do&#34;
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
@@ -1022,15 +1151,6 @@ array(0.0963961)
 <span></span><span class="n">a_samples</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  <span class="c1"># mean</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/theano/scan_module/scan_perform_ext.py:76: UserWarning: The file scan_perform.c is not available. This donot happen normally. You are probably in a strangesetup. This mean Theano can not use the cython code for scan. If youwant to remove this warning, use the Theano flag&#39;cxx=&#39; (set to an empty string) to disable all ccode generation.
-  &#34;The file scan_perform.c is not available. This do&#34;
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
@@ -1061,15 +1181,6 @@ array(0.24696937)
 <span></span><span class="n">a_samples_i</span><span class="o">.</span><span class="n">eval</span><span class="p">({</span><span class="n">i</span><span class="p">:</span> <span class="mi">100</span><span class="p">})</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/theano/scan_module/scan_perform_ext.py:76: UserWarning: The file scan_perform.c is not available. This donot happen normally. You are probably in a strangesetup. This mean Theano can not use the cython code for scan. If youwant to remove this warning, use the Theano flag&#39;cxx=&#39; (set to an empty string) to disable all ccode generation.
-  &#34;The file scan_perform.c is not available. This do&#34;
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
@@ -1118,7 +1229,7 @@ array(0.24696937)
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.Empirical at 0x1c2e0d1f60&gt;
+&lt;pymc3.variational.approximations.Empirical at 0x7f7e3a00af10&gt;
 </pre></div></div>
 </div>
 <p>We can then draw samples from the <code class="docutils literal notranslate"><span class="pre">Emipirical</span></code> object:</p>
@@ -1131,11 +1242,20 @@ array(0.24696937)
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/dependencies/arviz/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_69_0.png" src="../_images/notebooks_variational_api_quickstart_69_0.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_69_1.png" src="../_images/notebooks_variational_api_quickstart_69_1.png" />
 </div>
 </div>
 </div>
@@ -1143,7 +1263,7 @@ array(0.24696937)
 <div class="section" id="Multilabel-logistic-regression">
 <h2>Multilabel logistic regression<a class="headerlink" href="#Multilabel-logistic-regression" title="Permalink to this headline">¶</a></h2>
 <p>Let’s illustrate the use of <code class="docutils literal notranslate"><span class="pre">Tracker</span></code> with the famous Iris dataset. We’ll attempy multi-label classification and compute the expected accuracy score as a diagnostic.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[41]:
 </pre></div>
 </div>
@@ -1158,9 +1278,18 @@ array(0.24696937)
 </pre></div>
 </div>
 </div>
-<p><img alt="image0" src="http://5047-presscdn.pagely.netdna-cdn.com/wp-content/uploads/2015/04/iris_petal_sepal.png" /></p>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/env/miniconda3/lib/python3.7/site-packages/sklearn/utils/validation.py:71: FutureWarning: Pass return_X_y=True as keyword args. From version 0.25 passing these as positional arguments will result in an error
+  FutureWarning)
+</pre></div></div>
+</div>
+<p><img alt="image1" src="http://5047-presscdn.pagely.netdna-cdn.com/wp-content/uploads/2015/04/iris_petal_sepal.png" /></p>
 <p>A relatively simple model will be sufficient here because the classes are roughly linearly separable; we are going to fit multinomial logistic regression.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[42]:
 </pre></div>
 </div>
@@ -1179,6 +1308,17 @@ array(0.24696937)
     <span class="n">observed</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">yt</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  rval = inputs[0].__getitem__(inputs[1:])
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  rval = inputs[0].__getitem__(inputs[1:])
+</pre></div></div>
 </div>
 <div class="section" id="Applying-replacements-in-practice">
 <h3>Applying replacements in practice<a class="headerlink" href="#Applying-replacements-in-practice" title="Permalink to this headline">¶</a></h3>
@@ -1245,16 +1385,36 @@ array(0.24696937)
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='100' class='' max='100' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [100/100 00:38<00:00]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/theano/scan_module/scan_perform_ext.py:76: UserWarning: The file scan_perform.c is not available. This donot happen normally. You are probably in a strangesetup. This mean Theano can not use the cython code for scan. If youwant to remove this warning, use the Theano flag&#39;cxx=&#39; (set to an empty string) to disable all ccode generation.
-  &#34;The file scan_perform.c is not available. This do&#34;
-  0%|          | 0/100 [00:00&lt;?, ?it/s]/Users/twiecki/anaconda3/lib/python3.6/site-packages/theano/scan_module/scan_perform_ext.py:76: UserWarning: The file scan_perform.c is not available. This donot happen normally. You are probably in a strangesetup. This mean Theano can not use the cython code for scan. If youwant to remove this warning, use the Theano flag&#39;cxx=&#39; (set to an empty string) to disable all ccode generation.
-  &#34;The file scan_perform.c is not available. This do&#34;
-100%|██████████| 100/100 [00:23&lt;00:00,  4.27it/s]
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  rval = inputs[0].__getitem__(inputs[1:])
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  rval = inputs[0].__getitem__(inputs[1:])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1262,42 +1422,21 @@ array(0.24696937)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-
-<span class="n">sns</span><span class="o">.</span><span class="n">tsplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eval_tracker</span><span class="p">[</span><span class="s1">&#39;test_accuracy&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">tsplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eval_tracker</span><span class="p">[</span><span class="s1">&#39;train_accuracy&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span></span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">eval_tracker</span><span class="p">[</span><span class="s1">&#39;test_accuracy&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">melt</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_tracker</span><span class="p">[</span><span class="s1">&#39;train_accuracy&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;test_accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;train_accuracy&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training Progress&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training Progress&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/seaborn/timeseries.py:183: UserWarning: The `tsplot` function is deprecated and will be removed in a future release. Please update your code to use the new `lineplot` function.
-  warnings.warn(msg, UserWarning)
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/seaborn/timeseries.py:183: UserWarning: The `tsplot` function is deprecated and will be removed in a future release. Please update your code to use the new `lineplot` function.
-  warnings.warn(msg, UserWarning)
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
-</pre></div>
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Text(0.5, 1.0, &#39;Training Progress&#39;)
-</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_83_2.png" src="../_images/notebooks_variational_api_quickstart_83_2.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_83_0.png" src="../_images/notebooks_variational_api_quickstart_83_0.png" />
 </div>
 </div>
 <p>Training does not seem to be working here. Let’s use a different optimizer and boost the learning rate.</p>
@@ -1310,14 +1449,34 @@ Text(0.5, 1.0, &#39;Training Progress&#39;)
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='400' class='' max='400' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [400/400 02:33<00:00]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/theano/scan_module/scan_perform_ext.py:76: UserWarning: The file scan_perform.c is not available. This donot happen normally. You are probably in a strangesetup. This mean Theano can not use the cython code for scan. If youwant to remove this warning, use the Theano flag&#39;cxx=&#39; (set to an empty string) to disable all ccode generation.
-  &#34;The file scan_perform.c is not available. This do&#34;
-100%|██████████| 400/400 [00:56&lt;00:00,  7.05it/s]
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  rval = inputs[0].__getitem__(inputs[1:])
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1325,31 +1484,21 @@ Text(0.5, 1.0, &#39;Training Progress&#39;)
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sns</span><span class="o">.</span><span class="n">tsplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eval_tracker</span><span class="p">[</span><span class="s1">&#39;test_accuracy&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">tsplot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eval_tracker</span><span class="p">[</span><span class="s1">&#39;train_accuracy&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=.</span><span class="mi">5</span><span class="p">)</span>
+<span></span><span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">eval_tracker</span><span class="p">[</span><span class="s1">&#39;test_accuracy&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">melt</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;variable&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">eval_tracker</span><span class="p">[</span><span class="s1">&#39;train_accuracy&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;epoch&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;test_accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;train_accuracy&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training Progress&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/seaborn/timeseries.py:183: UserWarning: The `tsplot` function is deprecated and will be removed in a future release. Please update your code to use the new `lineplot` function.
-  warnings.warn(msg, UserWarning)
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/scipy/stats/stats.py:1713: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
-  return np.add.reduce(sorted[indexer] * weights, axis=axis) / sumval
-/Users/twiecki/anaconda3/lib/python3.6/site-packages/seaborn/timeseries.py:183: UserWarning: The `tsplot` function is deprecated and will be removed in a future release. Please update your code to use the new `lineplot` function.
-  warnings.warn(msg, UserWarning)
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_variational_api_quickstart_86_1.png" src="../_images/notebooks_variational_api_quickstart_86_1.png" />
+<img alt="../_images/notebooks_variational_api_quickstart_86_0.png" src="../_images/notebooks_variational_api_quickstart_86_0.png" />
 </div>
 </div>
 <p>This is much better!</p>
@@ -1428,14 +1577,34 @@ True
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='9' class='' max='10000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  0.09% [9/10000 00:01<25:51 Average Loss = 7.7692e+08]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = 5.0926e+08:   0%|          | 9/10000 [00:01&lt;26:26,  6.30it/s]
 I was slow, sorry
-Interrupted at 9 [0%]: Average Loss = 5.4299e+08
+Interrupted at 9 [0%]: Average Loss = 5.6736e+08
 </pre></div></div>
 </div>
 <p>Inference is too slow, taking several seconds per iteration; fitting the approximation would have taken hours!</p>
@@ -1464,7 +1633,7 @@ Interrupted at 9 [0%]: Average Loss = 5.4299e+08
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/Users/twiecki/working/projects/pymc/pymc3/data.py:244: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+/dependencies/pymc3/pymc3/data.py:307: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   self.shared = theano.shared(data[in_memory_slc])
 </pre></div></div>
 </div>
@@ -1478,13 +1647,33 @@ Interrupted at 9 [0%]: Average Loss = 5.4299e+08
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='10000' class='' max='10000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [10000/10000 00:16<00:00 Average Loss = 1.546e+05]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = 1.5474e+05: 100%|██████████| 10000/10000 [00:17&lt;00:00, 584.87it/s]
-Finished [100%]: Average Loss = 1.5467e+05
+Finished [100%]: Average Loss = 1.5452e+05
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1523,140 +1712,202 @@ Multidimensional minibatch that is pure TensorVariable
 
     Parameters
     ----------
-    data : :class:`ndarray`
+    data: np.ndarray
         initial data
-    batch_size : `int` or `List[int|tuple(size, random_seed)]`
+    batch_size: ``int`` or ``List[int|tuple(size, random_seed)]``
         batch size for inference, random seed is needed
         for child random generators
-    dtype : `str`
+    dtype: ``str``
         cast data to specific type
-    broadcastable : tuple[bool]
-        change broadcastable pattern that defaults to `(False, ) * ndim`
-    name : `str`
+    broadcastable: tuple[bool]
+        change broadcastable pattern that defaults to ``(False, ) * ndim``
+    name: ``str``
         name for tensor, defaults to &#34;Minibatch&#34;
-    random_seed : `int`
+    random_seed: ``int``
         random seed that is used by default
-    update_shared_f : `callable`
+    update_shared_f: ``callable``
         returns :class:`ndarray` that will be carefully
         stored to underlying shared variable
         you can use it to change source of
         minibatches programmatically
-    in_memory_size : `int` or `List[int|slice|Ellipsis]`
-        data size for storing in theano.shared
+    in_memory_size: ``int`` or ``List[int|slice|Ellipsis]``
+        data size for storing in ``theano.shared``
 
     Attributes
     ----------
-    shared : shared tensor
+    shared: shared tensor
         Used for storing data
-    minibatch : minibatch tensor
+    minibatch: minibatch tensor
         Used for training
 
     Notes
     -----
-    Below is a common use case of Minibatch within the variational inference.
-    Importantly, we need to make PyMC3 &#34;aware&#34; of minibatch being used in inference.
+    Below is a common use case of Minibatch with variational inference.
+    Importantly, we need to make PyMC3 &#34;aware&#34; that a minibatch is being used in inference.
     Otherwise, we will get the wrong :math:`logp` for the model.
-    To do so, we need to pass the `total_size` parameter to the observed node, which correctly scales
-    the density of the model logp that is affected by Minibatch. See more in examples below.
+    the density of the model ``logp`` that is affected by Minibatch. See more in the examples below.
+    To do so, we need to pass the ``total_size`` parameter to the observed node, which correctly scales
+    the density of the model ``logp`` that is affected by Minibatch. See more in the examples below.
 
     Examples
     --------
-    Consider we have data
+    Consider we have `data` as follows:
+
     &gt;&gt;&gt; data = np.random.rand(100, 100)
 
-    if we want 1d slice of size 10 we do
+    if we want a 1d slice of size 10 we do
+
     &gt;&gt;&gt; x = Minibatch(data, batch_size=10)
 
-    Note, that your data is cast to `floatX` if it is not integer type
-    But you still can add `dtype` kwarg for :class:`Minibatch`
+    Note that your data is cast to ``floatX`` if it is not integer type
+    But you still can add the ``dtype`` kwarg for :class:`Minibatch`
+    if you need more control.
 
-    in case we want 10 sampled rows and columns
-    `[(size, seed), (size, seed)]` it is
+    If we want 10 sampled rows and columns
+    ``[(size, seed), (size, seed)]`` we can use
+
     &gt;&gt;&gt; x = Minibatch(data, batch_size=[(10, 42), (10, 42)], dtype=&#39;int32&#39;)
     &gt;&gt;&gt; assert str(x.dtype) == &#39;int32&#39;
 
-    or simpler with default random seed = 42
-    `[size, size]`
+
+    Or, more simply, we can use the default random seed = 42
+    ``[size, size]``
+
     &gt;&gt;&gt; x = Minibatch(data, batch_size=[10, 10])
 
-    x is a regular :class:`TensorVariable` that supports any math
+
+    In the above, `x` is a regular :class:`TensorVariable` that supports any math operations:
+
+
     &gt;&gt;&gt; assert x.eval().shape == (10, 10)
 
-    You can pass it to your desired model
+
+    You can pass the Minibatch `x` to your desired model:
+
     &gt;&gt;&gt; with pm.Model() as model:
     ...     mu = pm.Flat(&#39;mu&#39;)
     ...     sd = pm.HalfNormal(&#39;sd&#39;)
     ...     lik = pm.Normal(&#39;lik&#39;, mu, sd, observed=x, total_size=(100, 100))
 
+
     Then you can perform regular Variational Inference out of the box
+
+
     &gt;&gt;&gt; with model:
     ...     approx = pm.fit()
 
-    Notable thing is that :class:`Minibatch` has `shared`, `minibatch`, attributes
-    you can call later
+
+    Important note: :class:``Minibatch`` has ``shared``, and ``minibatch`` attributes
+    you can call later:
+
     &gt;&gt;&gt; x.set_value(np.random.laplace(size=(100, 100)))
 
     and minibatches will be then from new storage
-    it directly affects `x.shared`.
-    the same thing would be but less convenient
+    it directly affects ``x.shared``.
+    A less convenient convenient, but more explicit, way to achieve the same
+    thing:
+
     &gt;&gt;&gt; x.shared.set_value(pm.floatX(np.random.laplace(size=(100, 100))))
 
-    programmatic way to change storage is as follows
-    I import `partial` for simplicity
+    The programmatic way to change storage is as follows
+    I import ``partial`` for simplicity
     &gt;&gt;&gt; from functools import partial
     &gt;&gt;&gt; datagen = partial(np.random.laplace, size=(100, 100))
     &gt;&gt;&gt; x = Minibatch(datagen(), batch_size=10, update_shared_f=datagen)
     &gt;&gt;&gt; x.update_shared()
 
-    To be more concrete about how we get minibatch, here is a demo
-    1) create shared variable
-    &gt;&gt;&gt; shared = theano.shared(data)
+    To be more concrete about how we create a minibatch, here is a demo:
+    1. create a shared variable
 
-    2) create random slice of size 10
-    &gt;&gt;&gt; ridx = pm.tt_rng().uniform(size=(10,), low=0, high=data.shape[0]-1e-10).astype(&#39;int64&#39;)
+        &gt;&gt;&gt; shared = theano.shared(data)
 
-    3) take that slice
-    &gt;&gt;&gt; minibatch = shared[ridx]
+    2. take a random slice of size 10:
 
-    That&#39;s done. Next you can use this minibatch somewhere else.
-    You can see that implementation does not require fixed shape
-    for shared variable. Feel free to use that if needed.
+        &gt;&gt;&gt; ridx = pm.tt_rng().uniform(size=(10,), low=0, high=data.shape[0]-1e-10).astype(&#39;int64&#39;)
 
-    Suppose you need some replacements in the graph, e.g. change minibatch to testdata
+    3) take the resulting slice:
+
+        &gt;&gt;&gt; minibatch = shared[ridx]
+
+    That&#39;s done. Now you can use this minibatch somewhere else.
+    You can see that the implementation does not require a fixed shape
+    for the shared variable. Feel free to use that if needed.
+    *FIXME: What is &#34;that&#34; which we can use here?  A fixed shape?  Should this say
+    &#34;but feel free to put a fixed shape on the shared variable, if appropriate?&#34;*
+
+    Suppose you need to make some replacements in the graph, e.g. change the minibatch to testdata
+
     &gt;&gt;&gt; node = x ** 2  # arbitrary expressions on minibatch `x`
     &gt;&gt;&gt; testdata = pm.floatX(np.random.laplace(size=(1000, 10)))
 
-    Then you should create a dict with replacements
+    Then you should create a `dict` with replacements:
+
     &gt;&gt;&gt; replacements = {x: testdata}
     &gt;&gt;&gt; rnode = theano.clone(node, replacements)
     &gt;&gt;&gt; assert (testdata ** 2 == rnode.eval()).all()
 
-    To replace minibatch with it&#39;s shared variable you should do
-    the same things. Minibatch variable is accessible as an attribute
-    as well as shared, associated with minibatch
+    *FIXME: In the following, what is the **reason** to replace the Minibatch variable with
+    its shared variable?  And in the following, the `rnode` is a **new** node, not a modification
+    of a previously existing node, correct?*
+    To replace a minibatch with its shared variable you should do
+    the same things. The Minibatch variable is accessible through the `minibatch` attribute.
+    For example
+
     &gt;&gt;&gt; replacements = {x.minibatch: x.shared}
     &gt;&gt;&gt; rnode = theano.clone(node, replacements)
 
     For more complex slices some more code is needed that can seem not so clear
+
     &gt;&gt;&gt; moredata = np.random.rand(10, 20, 30, 40, 50)
 
-    default `total_size` that can be passed to `PyMC3` random node
-    is then `(10, 20, 30, 40, 50)` but can be less verbose in some cases
+    The default ``total_size`` that can be passed to ``PyMC3`` random node
+    is then ``(10, 20, 30, 40, 50)`` but can be less verbose in some cases
 
-    1) Advanced indexing, `total_size = (10, Ellipsis, 50)`
-    &gt;&gt;&gt; x = Minibatch(moredata, [2, Ellipsis, 10])
+    1. Advanced indexing, ``total_size = (10, Ellipsis, 50)``
 
-    We take slice only for the first and last dimension
-    &gt;&gt;&gt; assert x.eval().shape == (2, 20, 30, 40, 10)
+        &gt;&gt;&gt; x = Minibatch(moredata, [2, Ellipsis, 10])
 
-    2) Skipping particular dimension, `total_size = (10, None, 30)`
-    &gt;&gt;&gt; x = Minibatch(moredata, [2, None, 20])
-    &gt;&gt;&gt; assert x.eval().shape == (2, 20, 20, 40, 50)
+        We take the slice only for the first and last dimension
 
-    3) Mixing that all, `total_size = (10, None, 30, Ellipsis, 50)`
-    &gt;&gt;&gt; x = Minibatch(moredata, [2, None, 20, Ellipsis, 10])
-    &gt;&gt;&gt; assert x.eval().shape == (2, 20, 20, 40, 10)
+        &gt;&gt;&gt; assert x.eval().shape == (2, 20, 30, 40, 10)
 
+    2. Skipping a particular dimension, ``total_size = (10, None, 30)``:
+
+        &gt;&gt;&gt; x = Minibatch(moredata, [2, None, 20])
+        &gt;&gt;&gt; assert x.eval().shape == (2, 20, 20, 40, 50)
+
+    3. Mixing both of these together, ``total_size = (10, None, 30, Ellipsis, 50)``:
+
+        &gt;&gt;&gt; x = Minibatch(moredata, [2, None, 20, Ellipsis, 10])
+        &gt;&gt;&gt; assert x.eval().shape == (2, 20, 20, 40, 10)
+
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[59]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+pandas  1.0.4
+pymc3   3.9.0
+theano  1.0.4
+numpy   1.18.5
+seaborn 0.10.1
+last updated: Mon Jun 15 2020
+
+CPython 3.7.7
+IPython 7.15.0
+watermark 2.0.2
 </pre></div></div>
 </div>
 </div>
@@ -1676,7 +1927,7 @@ Multidimensional minibatch that is pure TensorVariable
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

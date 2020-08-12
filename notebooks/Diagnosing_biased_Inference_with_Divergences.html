@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Diagnosing Biased Inference with Divergences &#8212; PyMC3 3.8 documentation</title>
+    <title>Diagnosing Biased Inference with Divergences &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -225,6 +225,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -266,15 +287,13 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+<span></span><span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-darkgrid&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-<span class="n">SEED</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20100420</span><span class="p">,</span> <span class="mi">20134234</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Runing on PyMC3 v</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
 </pre></div>
@@ -285,8 +304,19 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Runing on PyMC3 v3.6
+Runing on PyMC3 v3.9.0
 </pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;arviz-darkgrid&#39;</span><span class="p">)</span>
+<span class="n">SEED</span> <span class="o">=</span> <span class="p">[</span><span class="mi">20100420</span><span class="p">,</span> <span class="mi">20134234</span><span class="p">]</span>
+</pre></div>
+</div>
 </div>
 <p>This notebook is a PyMC3 port of <a class="reference external" href="http://mc-stan.org/documentation/case-studies/divergences_and_bias.html">Michael Betancourt’s post on ms-stan</a>. For detailed explanation of the underlying mechanism please check <a class="reference external" href="http://mc-stan.org/documentation/case-studies/divergences_and_bias.html">the original post</a> and Betancourt’s <a class="reference external" href="https://arxiv.org/abs/1701.02434">excellent paper</a>.</p>
 <p>Bayesian statistics is all about building a model and estimating the parameters in that model. However, a naive or direct parameterization of our probability model can sometimes be ineffective, you can check out <a class="reference external" href="http://twiecki.github.io/blog/2017/02/08/bayesian-hierchical-non-centered/">Thomas Wiecki’s blog post</a> on the same issue in PyMC3. Suboptimal parameterization often leads to slow sampling, and more problematic, biased MCMC estimators.</p>
@@ -320,7 +350,7 @@ given transition or target distribution.</p>
 <p>where <span class="math notranslate nohighlight">\(n \in \{1, \ldots, 8 \}\)</span> and the <span class="math notranslate nohighlight">\(\{ y_{n}, \sigma_{n} \}\)</span> are given as data.</p>
 <p>Inferring the hierarchical hyperparameters, <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>, together with the group-level parameters, <span class="math notranslate nohighlight">\(\theta_{1}, \ldots, \theta_{8}\)</span>, allows the model to pool data across the groups and reduce their posterior variance. Unfortunately, the direct <em>centered</em> parameterization also squeezes the posterior distribution into a particularly challenging geometry that obstructs geometric ergodicity and hence biases MCMC estimation.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -358,7 +388,7 @@ given transition or target distribution.</p>
 </div>
 <p>Similarly, we can easily implement it in <code class="docutils literal notranslate"><span class="pre">PyMC3</span></code></p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -374,7 +404,7 @@ given transition or target distribution.</p>
 <div class="section" id="A-Dangerously-Short-Markov-Chain">
 <h3>A Dangerously-Short Markov Chain<a class="headerlink" href="#A-Dangerously-Short-Markov-Chain" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -383,26 +413,54 @@ given transition or target distribution.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (2 chains in 4 jobs)
 NUTS: [theta, tau, mu]
-Sampling 2 chains: 100%|██████████| 2200/2200 [00:03&lt;00:00, 694.22draws/s]
-There were 6 divergences after tuning. Increase `target_accept` or reparameterize.
-There were 29 divergences after tuning. Increase `target_accept` or reparameterize.
-The acceptance probability does not match the target. It is 0.5129760193193522, but should be close to 0.8. Try to increase the number of tuning steps.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='3200' class='' max='3200' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [3200/3200 00:06<00:00 Sampling 2 chains, 16 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 1_000 tune and 600 draw iterations (2_000 + 1_200 draws total) took 7 seconds.
+There were 12 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 4 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.6888589552919814, but should be close to 0.8. Try to increase the number of tuning steps.
 The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div></div>
 </div>
 <p>In the <a class="reference external" href="http://mc-stan.org/documentation/case-studies/divergences_and_bias.html">original post</a> a single chain of 1200 sample is applied. However, since split <span class="math notranslate nohighlight">\(\hat{R}\)</span> is not implemented in <code class="docutils literal notranslate"><span class="pre">PyMC3</span></code> we fit 2 chains with 600 sample each instead.</p>
 <p>The Gelman-Rubin diagnostic <span class="math notranslate nohighlight">\(\hat{R}\)</span> doesn’t indicate any problem (values are all close to 1). You could try re-running the model with a different seed and see if this still holds.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -410,8 +468,17 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/dependencies/arviz/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -435,112 +502,156 @@ The estimated number of effective samples is smaller than 200 for some parameter
       <th></th>
       <th>mean</th>
       <th>sd</th>
-      <th>mc_error</th>
-      <th>hpd_2.5</th>
-      <th>hpd_97.5</th>
-      <th>n_eff</th>
-      <th>Rhat</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_mean</th>
+      <th>ess_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>mu</th>
-      <td>4.93</td>
-      <td>3.63</td>
-      <td>0.25</td>
-      <td>-1.69</td>
-      <td>11.93</td>
-      <td>55.53</td>
-      <td>1.04</td>
-    </tr>
-    <tr>
-      <th>theta__0</th>
-      <td>6.91</td>
-      <td>5.76</td>
-      <td>0.30</td>
-      <td>-4.11</td>
-      <td>18.10</td>
-      <td>182.04</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>theta__1</th>
-      <td>5.63</td>
-      <td>5.01</td>
-      <td>0.27</td>
-      <td>-4.76</td>
-      <td>14.59</td>
-      <td>98.64</td>
+      <td>4.56</td>
+      <td>3.31</td>
+      <td>-0.88</td>
+      <td>11.13</td>
+      <td>0.26</td>
+      <td>0.18</td>
+      <td>166.0</td>
+      <td>166.0</td>
+      <td>168.0</td>
+      <td>455.0</td>
       <td>1.02</td>
     </tr>
     <tr>
-      <th>theta__2</th>
-      <td>4.31</td>
-      <td>5.95</td>
-      <td>0.31</td>
-      <td>-7.75</td>
-      <td>14.69</td>
-      <td>116.73</td>
-      <td>1.03</td>
+      <th>theta[0]</th>
+      <td>6.61</td>
+      <td>5.54</td>
+      <td>-2.74</td>
+      <td>17.36</td>
+      <td>0.34</td>
+      <td>0.24</td>
+      <td>271.0</td>
+      <td>271.0</td>
+      <td>274.0</td>
+      <td>439.0</td>
+      <td>1.02</td>
     </tr>
     <tr>
-      <th>theta__3</th>
-      <td>5.42</td>
-      <td>5.28</td>
+      <th>theta[1]</th>
+      <td>5.27</td>
+      <td>4.93</td>
+      <td>-3.58</td>
+      <td>14.77</td>
+      <td>0.31</td>
+      <td>0.22</td>
+      <td>251.0</td>
+      <td>251.0</td>
+      <td>229.0</td>
+      <td>614.0</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
+      <th>theta[2]</th>
+      <td>4.18</td>
+      <td>5.33</td>
+      <td>-6.91</td>
+      <td>13.16</td>
       <td>0.28</td>
-      <td>-5.19</td>
-      <td>14.82</td>
-      <td>133.94</td>
+      <td>0.20</td>
+      <td>357.0</td>
+      <td>357.0</td>
+      <td>318.0</td>
+      <td>550.0</td>
       <td>1.01</td>
     </tr>
     <tr>
-      <th>theta__4</th>
-      <td>3.91</td>
-      <td>5.37</td>
-      <td>0.31</td>
-      <td>-6.49</td>
-      <td>13.44</td>
-      <td>81.62</td>
-      <td>1.03</td>
+      <th>theta[3]</th>
+      <td>4.85</td>
+      <td>4.97</td>
+      <td>-5.22</td>
+      <td>13.66</td>
+      <td>0.28</td>
+      <td>0.20</td>
+      <td>325.0</td>
+      <td>325.0</td>
+      <td>299.0</td>
+      <td>605.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
-      <th>theta__5</th>
-      <td>4.43</td>
-      <td>5.22</td>
+      <th>theta[4]</th>
+      <td>3.79</td>
+      <td>4.48</td>
+      <td>-3.74</td>
+      <td>12.19</td>
+      <td>0.25</td>
+      <td>0.22</td>
+      <td>326.0</td>
+      <td>208.0</td>
+      <td>293.0</td>
+      <td>540.0</td>
+      <td>1.01</td>
+    </tr>
+    <tr>
+      <th>theta[5]</th>
+      <td>4.23</td>
+      <td>4.62</td>
+      <td>-4.44</td>
+      <td>12.62</td>
       <td>0.29</td>
-      <td>-6.61</td>
-      <td>13.71</td>
-      <td>92.99</td>
-      <td>1.03</td>
+      <td>0.20</td>
+      <td>256.0</td>
+      <td>256.0</td>
+      <td>250.0</td>
+      <td>342.0</td>
+      <td>1.01</td>
     </tr>
     <tr>
-      <th>theta__6</th>
-      <td>7.32</td>
-      <td>5.56</td>
-      <td>0.30</td>
-      <td>-3.71</td>
-      <td>18.35</td>
-      <td>174.89</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>theta__7</th>
-      <td>5.53</td>
-      <td>5.89</td>
+      <th>theta[6]</th>
+      <td>6.56</td>
+      <td>5.11</td>
+      <td>-3.29</td>
+      <td>15.98</td>
       <td>0.31</td>
-      <td>-5.95</td>
-      <td>15.79</td>
-      <td>147.64</td>
+      <td>0.22</td>
+      <td>269.0</td>
+      <td>269.0</td>
+      <td>254.0</td>
+      <td>435.0</td>
+      <td>1.02</td>
+    </tr>
+    <tr>
+      <th>theta[7]</th>
+      <td>5.00</td>
+      <td>5.41</td>
+      <td>-4.20</td>
+      <td>16.26</td>
+      <td>0.31</td>
+      <td>0.22</td>
+      <td>303.0</td>
+      <td>303.0</td>
+      <td>276.0</td>
+      <td>517.0</td>
       <td>1.01</td>
     </tr>
     <tr>
       <th>tau</th>
-      <td>4.30</td>
-      <td>3.19</td>
-      <td>0.22</td>
-      <td>1.04</td>
-      <td>10.20</td>
-      <td>92.12</td>
+      <td>4.20</td>
+      <td>2.92</td>
+      <td>1.00</td>
+      <td>9.28</td>
+      <td>0.25</td>
+      <td>0.18</td>
+      <td>137.0</td>
+      <td>137.0</td>
+      <td>86.0</td>
+      <td>86.0</td>
       <td>1.03</td>
     </tr>
   </tbody>
@@ -549,7 +660,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 <p>Moreover, the trace plots all look fine. Let’s consider, for example, the hierarchical standard deviation <span class="math notranslate nohighlight">\(\tau\)</span>, or more specifically, its logarithm, <span class="math notranslate nohighlight">\(log(\tau)\)</span>. Because <span class="math notranslate nohighlight">\(\tau\)</span> is constrained to be positive, its logarithm will allow us to better resolve behavior for small values. Indeed the chains seems to be exploring both small and large values reasonably well,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -562,12 +673,12 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_14_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_14_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_14_0.png" style="width: 872px; height: 152px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_15_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_15_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_15_0.png" style="width: 1211px; height: 211px;" /></a>
 </div>
 </div>
 <p>Unfortunately, the resulting estimate for the mean of <span class="math notranslate nohighlight">\(log(\tau)\)</span> is strongly biased away from the true value, here shown in grey.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -588,12 +699,12 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_16_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_16_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_16_0.png" style="width: 887px; height: 273px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_17_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_17_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_17_0.png" style="width: 1244px; height: 397px;" /></a>
 </div>
 </div>
 <p>Hamiltonian Monte Carlo, however, is not so oblivious to these issues as <span class="math notranslate nohighlight">\(\approx\)</span> 3% of the iterations in our lone Markov chain ended with a divergence.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -610,14 +721,14 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Number of Divergent 35
-Percentage of Divergent 5.8
+Number of Divergent 16
+Percentage of Divergent 2.7
 </pre></div></div>
 </div>
 <p>Even with a single short chain these divergences are able to identity the bias and advise skepticism of any resulting MCMC estimators.</p>
 <p>Additionally, because the divergent transitions, here shown in green, tend to be located near the pathologies we can use them to identify the location of the problematic neighborhoods in parameter space.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -643,7 +754,7 @@ Percentage of Divergent 5.8
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_20_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_20_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_20_0.png" style="width: 603px; height: 327px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_21_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_21_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_21_0.png" style="width: 857px; height: 473px;" /></a>
 </div>
 </div>
 <p>It is important to point out that the pathological samples from the trace are not necessarily concentrated at the funnel: when a divergence is encountered, the subtree being constructed is rejected and the transition samples uniformly from the existing discrete trajectory. Consequently, divergent samples will not be located exactly in the region of high curvature.</p>
@@ -651,7 +762,7 @@ Percentage of Divergent 5.8
 is.</p>
 <p>Notices that only the first 100 divergences are stored, so that we don’t eat all memory.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -677,7 +788,7 @@ is.</p>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -709,12 +820,12 @@ is.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_23_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_23_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_23_0.png" style="width: 888px; height: 382px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_24_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_24_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_24_0.png" style="width: 1244px; height: 548px;" /></a>
 </div>
 </div>
 <p>There are many other ways to explore and visualize the pathological region in the parameter space. For example, we can reproduce Figure 5b in <a class="reference external" href="https://arxiv.org/pdf/1709.01449.pdf">Visualization in Bayesian workflow</a></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -743,11 +854,11 @@ is.</p>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_25_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_25_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_25_0.png" style="width: 1070px; height: 281px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_26_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_26_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_26_0.png" style="width: 1482px; height: 389px;" /></a>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -785,7 +896,7 @@ is.</p>
 <h3>A Safer, Longer Markov Chain<a class="headerlink" href="#A-Safer,-Longer-Markov-Chain" title="Permalink to this headline">¶</a></h3>
 <p>Given the potential insensitivity of split <span class="math notranslate nohighlight">\(\hat{R}\)</span> on single short chains, <code class="docutils literal notranslate"><span class="pre">Stan</span></code> recommend always running multiple chains as long as possible to have the best chance to observe any obstructions to geometric ergodicity. Because it is not always possible to run long chains for complex models, however, divergences are an incredibly powerful diagnostic for biased MCMC estimation.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -794,24 +905,52 @@ is.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (2 chains in 4 jobs)
 NUTS: [theta, tau, mu]
-Sampling 2 chains: 100%|██████████| 10000/10000 [00:20&lt;00:00, 498.51draws/s]
-There were 62 divergences after tuning. Increase `target_accept` or reparameterize.
-There were 110 divergences after tuning. Increase `target_accept` or reparameterize.
-The acceptance probability does not match the target. It is 0.6806550040570345, but should be close to 0.8. Try to increase the number of tuning steps.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='10000' class='' max='10000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [10000/10000 00:19<00:00 Sampling 2 chains, 92 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 1_000 tune and 4_000 draw iterations (2_000 + 8_000 draws total) took 20 seconds.
+There were 60 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 32 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.6820146554333005, but should be close to 0.8. Try to increase the number of tuning steps.
 The number of effective samples is smaller than 10% for some parameters.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -823,14 +962,14 @@ The number of effective samples is smaller than 10% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_0.png" style="width: 872px; height: 152px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_0.png" style="width: 1211px; height: 211px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_1.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_1.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_1.png" style="width: 887px; height: 273px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_1.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_1.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_1.png" style="width: 1244px; height: 397px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -838,19 +977,19 @@ The number of effective samples is smaller than 10% for some parameters.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Number of Divergent 172
-Percentage of Divergent 4.3
+Number of Divergent 92
+Percentage of Divergent 2.3
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_3.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_3.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_29_3.png" style="width: 603px; height: 327px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_3.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_3.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_30_3.png" style="width: 857px; height: 473px;" /></a>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -858,8 +997,17 @@ Percentage of Divergent 4.3
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/dependencies/arviz/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -883,113 +1031,157 @@ Percentage of Divergent 4.3
       <th></th>
       <th>mean</th>
       <th>sd</th>
-      <th>mc_error</th>
-      <th>hpd_2.5</th>
-      <th>hpd_97.5</th>
-      <th>n_eff</th>
-      <th>Rhat</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_mean</th>
+      <th>ess_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>mu</th>
-      <td>4.25</td>
-      <td>3.31</td>
+      <td>4.33</td>
+      <td>3.34</td>
+      <td>-1.84</td>
+      <td>10.76</td>
       <td>0.10</td>
-      <td>-2.40</td>
-      <td>10.57</td>
-      <td>996.36</td>
-      <td>1.0</td>
+      <td>0.07</td>
+      <td>1014.0</td>
+      <td>1014.0</td>
+      <td>1020.0</td>
+      <td>1974.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
-      <th>theta__0</th>
-      <td>6.22</td>
-      <td>5.88</td>
-      <td>0.14</td>
-      <td>-4.60</td>
-      <td>18.42</td>
-      <td>1512.55</td>
-      <td>1.0</td>
+      <th>theta[0]</th>
+      <td>6.62</td>
+      <td>5.98</td>
+      <td>-3.85</td>
+      <td>18.47</td>
+      <td>0.16</td>
+      <td>0.11</td>
+      <td>1471.0</td>
+      <td>1471.0</td>
+      <td>1313.0</td>
+      <td>2971.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
-      <th>theta__1</th>
-      <td>4.83</td>
-      <td>4.85</td>
-      <td>0.10</td>
-      <td>-4.73</td>
+      <th>theta[1]</th>
+      <td>4.96</td>
+      <td>5.00</td>
+      <td>-4.21</td>
       <td>14.50</td>
-      <td>2074.64</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta__2</th>
-      <td>3.75</td>
-      <td>5.34</td>
       <td>0.12</td>
-      <td>-7.53</td>
-      <td>14.08</td>
-      <td>1898.87</td>
-      <td>1.0</td>
+      <td>0.08</td>
+      <td>1828.0</td>
+      <td>1828.0</td>
+      <td>1739.0</td>
+      <td>3746.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
-      <th>theta__3</th>
-      <td>4.61</td>
-      <td>4.82</td>
-      <td>0.11</td>
-      <td>-4.89</td>
-      <td>14.18</td>
-      <td>1773.93</td>
-      <td>1.0</td>
+      <th>theta[2]</th>
+      <td>3.76</td>
+      <td>5.62</td>
+      <td>-7.10</td>
+      <td>14.28</td>
+      <td>0.12</td>
+      <td>0.09</td>
+      <td>2289.0</td>
+      <td>2122.0</td>
+      <td>1992.0</td>
+      <td>2992.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
-      <th>theta__4</th>
-      <td>3.38</td>
-      <td>4.71</td>
-      <td>0.11</td>
-      <td>-6.38</td>
-      <td>12.41</td>
-      <td>1791.01</td>
-      <td>1.0</td>
+      <th>theta[3]</th>
+      <td>4.84</td>
+      <td>5.20</td>
+      <td>-5.23</td>
+      <td>14.43</td>
+      <td>0.12</td>
+      <td>0.09</td>
+      <td>1779.0</td>
+      <td>1779.0</td>
+      <td>1635.0</td>
+      <td>3605.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
-      <th>theta__5</th>
-      <td>3.87</td>
-      <td>4.97</td>
-      <td>0.11</td>
-      <td>-6.70</td>
-      <td>13.12</td>
-      <td>1853.46</td>
-      <td>1.0</td>
+      <th>theta[4]</th>
+      <td>3.34</td>
+      <td>4.80</td>
+      <td>-6.09</td>
+      <td>11.88</td>
+      <td>0.12</td>
+      <td>0.08</td>
+      <td>1751.0</td>
+      <td>1751.0</td>
+      <td>1659.0</td>
+      <td>3864.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
-      <th>theta__6</th>
-      <td>6.30</td>
-      <td>5.34</td>
+      <th>theta[5]</th>
+      <td>3.90</td>
+      <td>5.05</td>
+      <td>-5.94</td>
+      <td>13.43</td>
+      <td>0.12</td>
+      <td>0.08</td>
+      <td>1747.0</td>
+      <td>1747.0</td>
+      <td>1657.0</td>
+      <td>2996.0</td>
+      <td>1.00</td>
+    </tr>
+    <tr>
+      <th>theta[6]</th>
+      <td>6.69</td>
+      <td>5.30</td>
+      <td>-3.30</td>
+      <td>16.76</td>
       <td>0.14</td>
-      <td>-2.94</td>
-      <td>18.33</td>
-      <td>1369.57</td>
-      <td>1.0</td>
+      <td>0.10</td>
+      <td>1375.0</td>
+      <td>1375.0</td>
+      <td>1304.0</td>
+      <td>2940.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
-      <th>theta__7</th>
-      <td>4.76</td>
-      <td>5.37</td>
+      <th>theta[7]</th>
+      <td>5.00</td>
+      <td>5.64</td>
+      <td>-5.92</td>
+      <td>15.29</td>
       <td>0.12</td>
-      <td>-6.80</td>
-      <td>15.05</td>
-      <td>1857.65</td>
-      <td>1.0</td>
+      <td>0.08</td>
+      <td>2295.0</td>
+      <td>2283.0</td>
+      <td>2020.0</td>
+      <td>3454.0</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>tau</th>
-      <td>3.92</td>
-      <td>3.05</td>
+      <td>4.44</td>
+      <td>3.09</td>
+      <td>0.78</td>
+      <td>9.85</td>
       <td>0.12</td>
-      <td>0.35</td>
-      <td>9.82</td>
-      <td>489.34</td>
-      <td>1.0</td>
+      <td>0.09</td>
+      <td>634.0</td>
+      <td>634.0</td>
+      <td>359.0</td>
+      <td>219.0</td>
+      <td>1.02</td>
     </tr>
   </tbody>
 </table>
@@ -1011,7 +1203,7 @@ decreasing the step size will not completely remove the divergences.</p>
 <div class="section" id="Adjusting-Adaptation-Routine">
 <h3>Adjusting Adaptation Routine<a class="headerlink" href="#Adjusting-Adaptation-Routine" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1021,25 +1213,54 @@ decreasing the step size will not completely remove the divergences.</p>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (2 chains in 4 jobs)
 NUTS: [theta, tau, mu]
-Sampling 2 chains: 100%|██████████| 14000/14000 [00:18&lt;00:00, 755.60draws/s]
-There were 168 divergences after tuning. Increase `target_accept` or reparameterize.
-The acceptance probability does not match the target. It is 0.7466887371841424, but should be close to 0.85. Try to increase the number of tuning steps.
-There were 81 divergences after tuning. Increase `target_accept` or reparameterize.
-The acceptance probability does not match the target. It is 0.7222041218401868, but should be close to 0.85. Try to increase the number of tuning steps.
-The number of effective samples is smaller than 10% for some parameters.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='14000' class='' max='14000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [14000/14000 00:27<00:00 Sampling 2 chains, 999 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 2_000 tune and 5_000 draw iterations (4_000 + 10_000 draws total) took 28 seconds.
+There were 262 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.5895121610208105, but should be close to 0.85. Try to increase the number of tuning steps.
+There were 737 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.600219643701489, but should be close to 0.85. Try to increase the number of tuning steps.
+The rhat statistic is larger than 1.05 for some parameters. This indicates slight problems during sampling.
+The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1049,24 +1270,53 @@ The number of effective samples is smaller than 10% for some parameters.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (2 chains in 4 jobs)
 NUTS: [theta, tau, mu]
-Sampling 2 chains: 100%|██████████| 14000/14000 [00:26&lt;00:00, 534.78draws/s]
-There were 131 divergences after tuning. Increase `target_accept` or reparameterize.
-The acceptance probability does not match the target. It is 0.8030779477542982, but should be close to 0.9. Try to increase the number of tuning steps.
-There were 139 divergences after tuning. Increase `target_accept` or reparameterize.
-The number of effective samples is smaller than 10% for some parameters.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='14000' class='' max='14000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [14000/14000 00:36<00:00 Sampling 2 chains, 536 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 2_000 tune and 5_000 draw iterations (4_000 + 10_000 draws total) took 37 seconds.
+There were 77 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 459 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.6195936824761532, but should be close to 0.9. Try to increase the number of tuning steps.
+The rhat statistic is larger than 1.05 for some parameters. This indicates slight problems during sampling.
+The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1076,23 +1326,53 @@ The number of effective samples is smaller than 10% for some parameters.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (2 chains in 4 jobs)
 NUTS: [theta, tau, mu]
-Sampling 2 chains: 100%|██████████| 14000/14000 [00:39&lt;00:00, 353.82draws/s]
-There were 38 divergences after tuning. Increase `target_accept` or reparameterize.
-There were 71 divergences after tuning. Increase `target_accept` or reparameterize.
-The number of effective samples is smaller than 10% for some parameters.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='14000' class='' max='14000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [14000/14000 00:53<00:00 Sampling 2 chains, 795 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 2_000 tune and 5_000 draw iterations (4_000 + 10_000 draws total) took 54 seconds.
+There were 34 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 761 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.7044998264610822, but should be close to 0.95. Try to increase the number of tuning steps.
+The rhat statistic is larger than 1.05 for some parameters. This indicates slight problems during sampling.
+The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1102,24 +1382,52 @@ The number of effective samples is smaller than 10% for some parameters.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (2 chains in 4 jobs)
 NUTS: [theta, tau, mu]
-Sampling 2 chains: 100%|██████████| 14000/14000 [01:02&lt;00:00, 224.37draws/s]
-There were 6 divergences after tuning. Increase `target_accept` or reparameterize.
-There were 43 divergences after tuning. Increase `target_accept` or reparameterize.
-The acceptance probability does not match the target. It is 0.9586359237257454, but should be close to 0.99. Try to increase the number of tuning steps.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='14000' class='' max='14000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [14000/14000 03:17<00:00 Sampling 2 chains, 98 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 2_000 tune and 5_000 draw iterations (4_000 + 10_000 draws total) took 197 seconds.
+There were 14 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 84 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.9447335832730234, but should be close to 0.99. Try to increase the number of tuning steps.
 The number of effective samples is smaller than 10% for some parameters.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1139,7 +1447,7 @@ The number of effective samples is smaller than 10% for some parameters.
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1169,32 +1477,32 @@ The number of effective samples is smaller than 10% for some parameters.
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.252095</td>
-      <td>172</td>
+      <td>0.302629</td>
+      <td>92</td>
       <td>.80</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0.282976</td>
-      <td>249</td>
+      <td>0.247224</td>
+      <td>999</td>
       <td>.85</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0.138620</td>
-      <td>270</td>
+      <td>0.225910</td>
+      <td>536</td>
       <td>.90</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0.105034</td>
-      <td>109</td>
+      <td>0.157191</td>
+      <td>795</td>
       <td>.95</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0.046469</td>
-      <td>49</td>
+      <td>0.056156</td>
+      <td>98</td>
       <td>.99</td>
     </tr>
   </tbody>
@@ -1206,7 +1514,7 @@ The number of effective samples is smaller than 10% for some parameters.
 <p>Since in <code class="docutils literal notranslate"><span class="pre">PyMC3</span></code> after tuning we have a smaller step size than <code class="docutils literal notranslate"><span class="pre">Stan</span></code>, the geometery is better explored.</p>
 <p>However, the Hamiltonian transition is still not geometrically ergodic with respect to the centered implementation of the Eight Schools model. Indeed, this is expected given the observed bias.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1224,11 +1532,11 @@ The number of effective samples is smaller than 10% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_40_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_40_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_40_0.png" style="width: 602px; height: 382px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_41_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_41_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_41_0.png" style="width: 855px; height: 548px;" /></a>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1256,7 +1564,7 @@ The number of effective samples is smaller than 10% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_41_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_41_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_41_0.png" style="width: 887px; height: 273px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_42_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_42_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_42_0.png" style="width: 1244px; height: 397px;" /></a>
 </div>
 </div>
 </div>
@@ -1301,7 +1609,7 @@ The number of effective samples is smaller than 10% for some parameters.
 </pre></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1315,7 +1623,7 @@ The number of effective samples is smaller than 10% for some parameters.
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1325,22 +1633,50 @@ The number of effective samples is smaller than 10% for some parameters.
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (2 chains in 4 jobs)
 NUTS: [theta_t, tau, mu]
-Sampling 2 chains: 100%|██████████| 12000/12000 [00:07&lt;00:00, 1543.09draws/s]
-There were 6 divergences after tuning. Increase `target_accept` or reparameterize.
-There were 2 divergences after tuning. Increase `target_accept` or reparameterize.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='12000' class='' max='12000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [12000/12000 00:21<00:00 Sampling 2 chains, 56 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 1_000 tune and 5_000 draw iterations (2_000 + 10_000 draws total) took 22 seconds.
+There were 25 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 31 divergences after tuning. Increase `target_accept` or reparameterize.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1348,8 +1684,17 @@ There were 2 divergences after tuning. Increase `target_accept` or reparameteriz
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/dependencies/arviz/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1373,192 +1718,268 @@ There were 2 divergences after tuning. Increase `target_accept` or reparameteriz
       <th></th>
       <th>mean</th>
       <th>sd</th>
-      <th>mc_error</th>
-      <th>hpd_2.5</th>
-      <th>hpd_97.5</th>
-      <th>n_eff</th>
-      <th>Rhat</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
+      <th>mcse_mean</th>
+      <th>mcse_sd</th>
+      <th>ess_mean</th>
+      <th>ess_sd</th>
+      <th>ess_bulk</th>
+      <th>ess_tail</th>
+      <th>r_hat</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>mu</th>
-      <td>4.46</td>
+      <td>4.38</td>
       <td>3.31</td>
+      <td>-1.78</td>
+      <td>10.43</td>
+      <td>0.04</td>
       <td>0.03</td>
-      <td>-2.26</td>
-      <td>10.77</td>
-      <td>10669.27</td>
+      <td>8525.0</td>
+      <td>7794.0</td>
+      <td>8517.0</td>
+      <td>5785.0</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>theta_t__0</th>
-      <td>0.31</td>
-      <td>0.98</td>
+      <th>theta_t[0]</th>
+      <td>0.30</td>
+      <td>1.00</td>
+      <td>-1.65</td>
+      <td>2.07</td>
       <td>0.01</td>
-      <td>-1.63</td>
-      <td>2.20</td>
-      <td>12051.42</td>
+      <td>0.01</td>
+      <td>8053.0</td>
+      <td>4467.0</td>
+      <td>8042.0</td>
+      <td>5835.0</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>theta_t__1</th>
+      <th>theta_t[1]</th>
       <td>0.09</td>
-      <td>0.95</td>
-      <td>0.01</td>
-      <td>-1.80</td>
-      <td>1.91</td>
-      <td>13292.33</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta_t__2</th>
-      <td>-0.10</td>
-      <td>0.97</td>
-      <td>0.01</td>
-      <td>-1.96</td>
-      <td>1.87</td>
-      <td>14464.50</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta_t__3</th>
-      <td>0.06</td>
       <td>0.94</td>
+      <td>-1.65</td>
+      <td>1.91</td>
       <td>0.01</td>
-      <td>-1.81</td>
-      <td>1.88</td>
-      <td>13076.87</td>
+      <td>0.01</td>
+      <td>9640.0</td>
+      <td>3889.0</td>
+      <td>9675.0</td>
+      <td>6130.0</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>theta_t__4</th>
-      <td>-0.17</td>
-      <td>0.92</td>
-      <td>0.01</td>
-      <td>-1.94</td>
-      <td>1.65</td>
-      <td>13808.56</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta_t__5</th>
-      <td>-0.08</td>
-      <td>0.95</td>
-      <td>0.01</td>
-      <td>-1.93</td>
+      <th>theta_t[2]</th>
+      <td>-0.07</td>
+      <td>0.97</td>
+      <td>-1.90</td>
       <td>1.77</td>
-      <td>10179.42</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>8720.0</td>
+      <td>3934.0</td>
+      <td>8734.0</td>
+      <td>6197.0</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>theta_t__6</th>
+      <th>theta_t[3]</th>
+      <td>0.04</td>
+      <td>0.94</td>
+      <td>-1.75</td>
+      <td>1.77</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>9677.0</td>
+      <td>4322.0</td>
+      <td>9678.0</td>
+      <td>6704.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta_t[4]</th>
+      <td>-0.17</td>
+      <td>0.93</td>
+      <td>-1.93</td>
+      <td>1.56</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>11378.0</td>
+      <td>4095.0</td>
+      <td>11383.0</td>
+      <td>6588.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta_t[5]</th>
+      <td>-0.06</td>
+      <td>0.95</td>
+      <td>-1.72</td>
+      <td>1.84</td>
+      <td>0.01</td>
+      <td>0.01</td>
+      <td>10628.0</td>
+      <td>4231.0</td>
+      <td>10620.0</td>
+      <td>6818.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta_t[6]</th>
       <td>0.36</td>
-      <td>0.96</td>
+      <td>0.98</td>
+      <td>-1.40</td>
+      <td>2.26</td>
       <td>0.01</td>
-      <td>-1.55</td>
-      <td>2.19</td>
-      <td>13188.52</td>
+      <td>0.01</td>
+      <td>8929.0</td>
+      <td>4489.0</td>
+      <td>8886.0</td>
+      <td>5995.0</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>theta_t__7</th>
-      <td>0.08</td>
+      <th>theta_t[7]</th>
+      <td>0.09</td>
       <td>0.98</td>
+      <td>-1.77</td>
+      <td>1.87</td>
       <td>0.01</td>
-      <td>-1.85</td>
-      <td>2.04</td>
-      <td>15495.03</td>
+      <td>0.01</td>
+      <td>9791.0</td>
+      <td>3945.0</td>
+      <td>9782.0</td>
+      <td>5589.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>tau</th>
-      <td>3.59</td>
-      <td>3.23</td>
-      <td>0.04</td>
+      <td>3.61</td>
+      <td>3.24</td>
       <td>0.00</td>
-      <td>9.67</td>
-      <td>6726.07</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta__0</th>
-      <td>6.24</td>
-      <td>5.52</td>
+      <td>9.41</td>
       <td>0.05</td>
-      <td>-3.78</td>
-      <td>18.20</td>
-      <td>10069.75</td>
+      <td>0.03</td>
+      <td>5084.0</td>
+      <td>4791.0</td>
+      <td>5036.0</td>
+      <td>4473.0</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>theta__1</th>
-      <td>4.96</td>
-      <td>4.66</td>
-      <td>0.04</td>
-      <td>-4.71</td>
-      <td>13.83</td>
-      <td>12168.24</td>
+      <th>theta[0]</th>
+      <td>6.15</td>
+      <td>5.54</td>
+      <td>-3.45</td>
+      <td>17.10</td>
+      <td>0.07</td>
+      <td>0.06</td>
+      <td>7142.0</td>
+      <td>5074.0</td>
+      <td>8077.0</td>
+      <td>5274.0</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>theta__2</th>
-      <td>3.91</td>
-      <td>5.29</td>
-      <td>0.05</td>
-      <td>-6.48</td>
-      <td>14.59</td>
-      <td>9511.66</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta__3</th>
-      <td>4.77</td>
-      <td>4.71</td>
-      <td>0.04</td>
-      <td>-5.12</td>
-      <td>13.84</td>
-      <td>11468.20</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta__4</th>
-      <td>3.58</td>
+      <th>theta[1]</th>
+      <td>4.89</td>
       <td>4.68</td>
-      <td>0.04</td>
-      <td>-6.01</td>
-      <td>12.53</td>
-      <td>11588.99</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta__5</th>
-      <td>4.08</td>
-      <td>4.78</td>
-      <td>0.04</td>
-      <td>-5.43</td>
-      <td>13.65</td>
-      <td>9758.55</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta__6</th>
-      <td>6.38</td>
-      <td>5.07</td>
-      <td>0.04</td>
-      <td>-3.30</td>
-      <td>16.61</td>
-      <td>10330.01</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>theta__7</th>
-      <td>4.97</td>
-      <td>5.34</td>
+      <td>-3.33</td>
+      <td>14.27</td>
       <td>0.05</td>
-      <td>-5.74</td>
-      <td>15.61</td>
-      <td>10148.92</td>
+      <td>0.04</td>
+      <td>8882.0</td>
+      <td>6454.0</td>
+      <td>9199.0</td>
+      <td>6973.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta[2]</th>
+      <td>3.96</td>
+      <td>5.33</td>
+      <td>-6.62</td>
+      <td>13.78</td>
+      <td>0.06</td>
+      <td>0.05</td>
+      <td>7749.0</td>
+      <td>6200.0</td>
+      <td>8362.0</td>
+      <td>5759.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta[3]</th>
+      <td>4.70</td>
+      <td>4.80</td>
+      <td>-4.31</td>
+      <td>13.84</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>9283.0</td>
+      <td>7856.0</td>
+      <td>9580.0</td>
+      <td>6361.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta[4]</th>
+      <td>3.57</td>
+      <td>4.58</td>
+      <td>-5.14</td>
+      <td>12.20</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>8748.0</td>
+      <td>7175.0</td>
+      <td>8995.0</td>
+      <td>6980.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta[5]</th>
+      <td>4.01</td>
+      <td>4.79</td>
+      <td>-4.94</td>
+      <td>13.31</td>
+      <td>0.05</td>
+      <td>0.04</td>
+      <td>8648.0</td>
+      <td>7355.0</td>
+      <td>9140.0</td>
+      <td>6281.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta[6]</th>
+      <td>6.31</td>
+      <td>5.19</td>
+      <td>-2.81</td>
+      <td>16.38</td>
+      <td>0.06</td>
+      <td>0.05</td>
+      <td>8090.0</td>
+      <td>6274.0</td>
+      <td>8775.0</td>
+      <td>6288.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>theta[7]</th>
+      <td>4.87</td>
+      <td>5.32</td>
+      <td>-4.81</td>
+      <td>15.46</td>
+      <td>0.06</td>
+      <td>0.05</td>
+      <td>7954.0</td>
+      <td>6343.0</td>
+      <td>8264.0</td>
+      <td>6232.0</td>
       <td>1.0</td>
     </tr>
   </tbody>
@@ -1567,7 +1988,7 @@ There were 2 divergences after tuning. Increase `target_accept` or reparameteriz
 </div>
 <p>As shown above, the effective sample size per iteration has drastically improved, and the trace plots no longer show any “stickyness”. However, we do still see the rare divergence. These infrequent divergences do not seem concentrate anywhere in parameter space, which is indicative of the divergences being false positives.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1579,14 +2000,14 @@ There were 2 divergences after tuning. Increase `target_accept` or reparameteriz
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_0.png" style="width: 872px; height: 152px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_0.png" style="width: 1211px; height: 211px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_1.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_1.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_1.png" style="width: 887px; height: 273px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_1.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_1.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_1.png" style="width: 1244px; height: 397px;" /></a>
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -1594,20 +2015,20 @@ There were 2 divergences after tuning. Increase `target_accept` or reparameteriz
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Number of Divergent 8
-Percentage of Divergent 0.2
+Number of Divergent 56
+Percentage of Divergent 1.1
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_3.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_3.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_47_3.png" style="width: 605px; height: 327px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_3.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_3.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_48_3.png" style="width: 855px; height: 473px;" /></a>
 </div>
 </div>
 <p>As expected of false positives, we can remove the divergences entirely by decreasing the step size,</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1628,9 +2049,38 @@ Percentage of Divergent 0.2
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
-Multiprocess sampling (2 chains in 2 jobs)
+Multiprocess sampling (2 chains in 4 jobs)
 NUTS: [theta_t, tau, mu]
-Sampling 2 chains: 100%|██████████| 12000/12000 [00:09&lt;00:00, 1293.53draws/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='12000' class='' max='12000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [12000/12000 00:22<00:00 Sampling 2 chains, 1 divergences]
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 1_000 tune and 5_000 draw iterations (2_000 + 10_000 draws total) took 23 seconds.
+There was 1 divergence after tuning. Increase `target_accept` or reparameterize.
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -1638,12 +2088,12 @@ Sampling 2 chains: 100%|██████████| 12000/12000 [00:09&lt;00
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Number of Divergent 0
+Number of Divergent 1
 </pre></div></div>
 </div>
 <p>The more agreeable geometry of the non-centered implementation allows the Markov chain to explore deep into the neck of the funnel, capturing even the smallest values of <span class="math notranslate nohighlight">\(\tau\)</span> that are consistent with the measurements. Consequently, MCMC estimators from the non-centered chain rapidly converge towards their true expectation values.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1661,11 +2111,11 @@ Number of Divergent 0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_51_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_51_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_51_0.png" style="width: 600px; height: 382px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_52_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_52_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_52_0.png" style="width: 855px; height: 548px;" /></a>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1693,8 +2143,34 @@ Number of Divergent 0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_52_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_52_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_52_0.png" style="width: 887px; height: 273px;" /></a>
+<a class="reference internal image-reference" href="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_53_0.png"><img alt="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_53_0.png" src="../_images/notebooks_Diagnosing_biased_Inference_with_Divergences_53_0.png" style="width: 1244px; height: 397px;" /></a>
 </div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+pandas 1.0.4
+pymc3  3.9.0
+arviz  0.8.3
+numpy  1.18.5
+last updated: Mon Jun 15 2020
+
+CPython 3.7.7
+IPython 7.15.0
+watermark 2.0.2
+</pre></div></div>
 </div>
 </div>
 </div>
@@ -1713,7 +2189,7 @@ Number of Divergent 0
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

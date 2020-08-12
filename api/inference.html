@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Inference &#8212; PyMC3 3.8 documentation</title>
+    <title>Inference &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -63,36 +64,37 @@
 <h1>Inference<a class="headerlink" href="#inference" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="module-pymc3.sampling">
 <span id="sampling"></span><h2>Sampling<a class="headerlink" href="#module-pymc3.sampling" title="Permalink to this headline">¶</a></h2>
+<p>Functions for MCMC sampling.</p>
 <dl class="function">
 <dt id="pymc3.sampling.sample">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">draws=500</em>, <em class="sig-param">step=None</em>, <em class="sig-param">init='auto'</em>, <em class="sig-param">n_init=200000</em>, <em class="sig-param">start=None</em>, <em class="sig-param">trace=None</em>, <em class="sig-param">chain_idx=0</em>, <em class="sig-param">chains=None</em>, <em class="sig-param">cores=None</em>, <em class="sig-param">tune=500</em>, <em class="sig-param">progressbar=True</em>, <em class="sig-param">model=None</em>, <em class="sig-param">random_seed=None</em>, <em class="sig-param">discard_tuned_samples=True</em>, <em class="sig-param">compute_convergence_checks=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">draws=1000</em>, <em class="sig-param">step=None</em>, <em class="sig-param">init='auto'</em>, <em class="sig-param">n_init=200000</em>, <em class="sig-param">start=None</em>, <em class="sig-param">trace=None</em>, <em class="sig-param">chain_idx=0</em>, <em class="sig-param">chains=None</em>, <em class="sig-param">cores=None</em>, <em class="sig-param">tune=1000</em>, <em class="sig-param">progressbar=True</em>, <em class="sig-param">model=None</em>, <em class="sig-param">random_seed=None</em>, <em class="sig-param">discard_tuned_samples=True</em>, <em class="sig-param">compute_convergence_checks=True</em>, <em class="sig-param">callback=None</em>, <em class="sig-param">*</em>, <em class="sig-param">return_inferencedata=None</em>, <em class="sig-param">idata_kwargs: dict = None</em>, <em class="sig-param">mp_ctx=None</em>, <em class="sig-param">pickle_backend: str = 'pickle'</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw samples from the posterior using the given step methods.</p>
 <p>Multiple step methods are supported via compound step methods.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>draws</strong><span class="classifier">int</span></dt><dd><p>The number of samples to draw. Defaults to 500. The number of tuned samples are discarded
+<dt><strong>draws</strong><span class="classifier">int</span></dt><dd><p>The number of samples to draw. Defaults to 1000. The number of tuned samples are discarded
 by default. See <code class="docutils literal notranslate"><span class="pre">discard_tuned_samples</span></code>.</p>
 </dd>
 <dt><strong>init</strong><span class="classifier">str</span></dt><dd><p>Initialization method to use for auto-assigned NUTS samplers.</p>
 <ul class="simple">
-<li><p>auto : Choose a default initialization method automatically.
-Currently, this is <code class="docutils literal notranslate"><span class="pre">'jitter+adapt_diag'</span></code>, but this can change in the future.
+<li><p>auto: Choose a default initialization method automatically.
+Currently, this is <code class="docutils literal notranslate"><span class="pre">jitter+adapt_diag</span></code>, but this can change in the future.
 If you depend on the exact behaviour, choose an initialization method explicitly.</p></li>
-<li><p>adapt_diag : Start with a identity mass matrix and then adapt a diagonal based on the
+<li><p>adapt_diag: Start with a identity mass matrix and then adapt a diagonal based on the
 variance of the tuning samples. All chains use the test value (usually the prior mean)
 as starting point.</p></li>
-<li><p>jitter+adapt_diag : Same as <code class="docutils literal notranslate"><span class="pre">adapt_diag</span></code>, but add uniform jitter in [-1, 1] to the
+<li><p>jitter+adapt_diag: Same as <code class="docutils literal notranslate"><span class="pre">adapt_diag</span></code>, but add uniform jitter in [-1, 1] to the
 starting point in each chain.</p></li>
-<li><p>advi+adapt_diag : Run ADVI and then adapt the resulting diagonal mass matrix based on the
+<li><p>advi+adapt_diag: Run ADVI and then adapt the resulting diagonal mass matrix based on the
 sample variance of the tuning samples.</p></li>
-<li><p>advi+adapt_diag_grad : Run ADVI and then adapt the resulting diagonal mass matrix based
+<li><p>advi+adapt_diag_grad: Run ADVI and then adapt the resulting diagonal mass matrix based
 on the variance of the gradients during tuning. This is <strong>experimental</strong> and might be
 removed in a future release.</p></li>
-<li><p>advi : Run ADVI to estimate posterior mean and diagonal mass matrix.</p></li>
+<li><p>advi: Run ADVI to estimate posterior mean and diagonal mass matrix.</p></li>
 <li><p>advi_map: Initialize ADVI with MAP and use MAP as starting point.</p></li>
-<li><p>map : Use the MAP as starting point. This is discouraged.</p></li>
-<li><p>nuts : Run NUTS and estimate posterior mean and mass matrix from the trace.</p></li>
+<li><p>map: Use the MAP as starting point. This is discouraged.</p></li>
+<li><p>adapt_full: Adapt a dense mass matrix using the sample covariances</p></li>
 </ul>
 </dd>
 <dt><strong>step</strong><span class="classifier">function or iterable of functions</span></dt><dd><p>A step function or collection of functions. If there are variables without step methods,
@@ -100,8 +102,7 @@ step methods for those variables will be assigned automatically.  By default the
 method will be used, if appropriate to the model; this is a good default for beginning
 users.</p>
 </dd>
-<dt><strong>n_init</strong><span class="classifier">int</span></dt><dd><p>Number of iterations of initializer. Only works for ‘nuts’ and ‘ADVI’.
-If ‘ADVI’, number of iterations, if ‘nuts’, number of draws.</p>
+<dt><strong>n_init</strong><span class="classifier">int</span></dt><dd><p>Number of iterations of initializer. Only works for ‘ADVI’ init methods.</p>
 </dd>
 <dt><strong>start</strong><span class="classifier">dict, or array of dict</span></dt><dd><p>Starting point in parameter space (or partial point)
 Defaults to <code class="docutils literal notranslate"><span class="pre">trace.point(-1))</span></code> if there is a trace provided and model.test_point if not
@@ -124,12 +125,12 @@ then set to either <code class="docutils literal notranslate"><span class="pre">
 <dt><strong>cores</strong><span class="classifier">int</span></dt><dd><p>The number of chains to run in parallel. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, set to the number of CPUs in the
 system, but at most 4.</p>
 </dd>
-<dt><strong>tune</strong><span class="classifier">int</span></dt><dd><p>Number of iterations to tune, defaults to 500. Samplers adjust the step sizes, scalings or
+<dt><strong>tune</strong><span class="classifier">int</span></dt><dd><p>Number of iterations to tune, defaults to 1000. Samplers adjust the step sizes, scalings or
 similar during tuning. Tuning samples will be drawn in addition to the number specified in
 the <code class="docutils literal notranslate"><span class="pre">draws</span></code> argument, and will be discarded unless <code class="docutils literal notranslate"><span class="pre">discard_tuned_samples</span></code> is set to
 False.</p>
 </dd>
-<dt><strong>progressbar</strong><span class="classifier">bool</span></dt><dd><p>Whether or not to display a progress bar in the command line. The bar shows the percentage
+<dt><strong>progressbar</strong><span class="classifier">bool, optional default=True</span></dt><dd><p>Whether or not to display a progress bar in the command line. The bar shows the percentage
 of completion, the sampling speed in samples per second (SPS), and the estimated remaining
 time until completion (“expected time of arrival”; ETA).</p>
 </dd>
@@ -140,28 +141,81 @@ time until completion (“expected time of arrival”; ETA).</p>
 </dd>
 <dt><strong>compute_convergence_checks</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether to compute sampler statistics like Gelman-Rubin and <code class="docutils literal notranslate"><span class="pre">effective_n</span></code>.</p>
 </dd>
+<dt><strong>callback</strong><span class="classifier">function, default=None</span></dt><dd><p>A function which gets called for every sample from the trace of a chain. The function is
+called with the trace and the current draw and will contain all samples for a single trace.
+the <code class="docutils literal notranslate"><span class="pre">draw.chain</span></code> argument can be used to determine which of the active chains the sample
+is drawn from.</p>
+<p>Sampling can be interrupted by throwing a <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> in the callback.</p>
+</dd>
+<dt><strong>return_inferencedata</strong><span class="classifier">bool, optional, default=False</span></dt><dd><p>Whether to return the trace as an <cite>arviz.InferenceData</cite> (True) object or a <cite>MultiTrace</cite> (False)
+Defaults to <cite>False</cite>, but we’ll switch to <cite>True</cite> in an upcoming release.</p>
+</dd>
+<dt><strong>idata_kwargs</strong><span class="classifier">dict, optional</span></dt><dd><p>Keyword arguments for <cite>arviz.from_pymc3</cite></p>
+</dd>
+<dt><strong>mp_ctx</strong><span class="classifier">multiprocessing.context.BaseContent</span></dt><dd><p>A multiprocessing context for parallel sampling. See multiprocessing
+documentation for details.</p>
+</dd>
+<dt><strong>pickle_backend</strong><span class="classifier">str</span></dt><dd><p>One of <cite>‘pickle’</cite> or <cite>‘dill’</cite>. The library used to pickle models
+in parallel sampling if the multiprocessing context is not of type
+<cite>fork</cite>.</p>
+</dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>trace</strong><span class="classifier">pymc3.backends.base.MultiTrace</span></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">MultiTrace</span></code> object that contains the samples.</p>
+<dt><strong>trace</strong><span class="classifier">pymc3.backends.base.MultiTrace or arviz.InferenceData</span></dt><dd><p>A <code class="docutils literal notranslate"><span class="pre">MultiTrace</span></code> or ArviZ <code class="docutils literal notranslate"><span class="pre">InferenceData</span></code> object that contains the samples.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>Optional keyword arguments can be passed to <code class="docutils literal notranslate"><span class="pre">sample</span></code> to be delivered to the
-<a href="#id1"><span class="problematic" id="id2">``</span></a>step_method``s used during sampling. In particular, the NUTS step method accepts
-a number of arguments. Common options are:</p>
+<a href="#id1"><span class="problematic" id="id2">``</span></a>step_method``s used during sampling.</p>
+<p>If your model uses only one step method, you can address step method kwargs
+directly. In particular, the NUTS step method has several options including:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>target_accept: float in [0, 1]. The step size is tuned such that we approximate this
-acceptance rate. Higher values like 0.9 or 0.95 often work better for problematic
-posteriors.</p></li>
-<li><p>max_treedepth: The maximum depth of the trajectory tree.</p></li>
-<li><p>step_scale: float, default 0.25
+<li><p>target_accept : float in [0, 1]. The step size is tuned such that we
+approximate this acceptance rate. Higher values like 0.9 or 0.95 often
+work better for problematic posteriors</p></li>
+<li><p>max_treedepth : The maximum depth of the trajectory tree</p></li>
+<li><p>step_scale : float, default 0.25
 The initial guess for the step size scaled down by <span class="math notranslate nohighlight">\(1/n**(1/4)\)</span></p></li>
 </ul>
+</div></blockquote>
+<p>If your model uses multiple step methods, aka a Compound Step, then you have
+two ways to address arguments to each step method:</p>
+<blockquote>
+<div><dl>
+<dt>A: If you let <code class="docutils literal notranslate"><span class="pre">sample()</span></code> automatically assign the <a href="#id3"><span class="problematic" id="id4">``</span></a>step_method``s,</dt><dd><p>and you can correctly anticipate what they will be, then you can wrap
+step method kwargs in a dict and pass that to sample() with a kwarg set
+to the name of the step method.
+e.g. for a CompoundStep comprising NUTS and BinaryGibbsMetropolis,
+you could send:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target_accept</span></code> to NUTS: nuts={‘target_accept’:0.9}</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transit_p</span></code> to BinaryGibbsMetropolis: binary_gibbs_metropolis={‘transit_p’:.7}</p></li>
+</ol>
+</div></blockquote>
+<dl class="simple">
+<dt>Note that available names are:</dt><dd><p><code class="docutils literal notranslate"><span class="pre">nuts</span></code>, <code class="docutils literal notranslate"><span class="pre">hmc</span></code>, <code class="docutils literal notranslate"><span class="pre">metropolis</span></code>, <code class="docutils literal notranslate"><span class="pre">binary_metropolis</span></code>,
+<code class="docutils literal notranslate"><span class="pre">binary_gibbs_metropolis</span></code>, <code class="docutils literal notranslate"><span class="pre">categorical_gibbs_metropolis</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DEMetropolis</span></code>, <code class="docutils literal notranslate"><span class="pre">DEMetropolisZ</span></code>, <code class="docutils literal notranslate"><span class="pre">slice</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>B: If you manually declare the <code class="docutils literal notranslate"><span class="pre">step_method``s,</span> <span class="pre">within</span> <span class="pre">the</span> <span class="pre">``step</span></code></dt><dd><p>kwarg, then you can address the <code class="docutils literal notranslate"><span class="pre">step_method</span></code> kwargs directly.
+e.g. for a CompoundStep comprising NUTS and BinaryGibbsMetropolis,
+you could send:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>step=[pm.NUTS([freeRV1, freeRV2], target_accept=0.9),</dt><dd><p>pm.BinaryGibbsMetropolis([freeRV3], transit_p=.7)]</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
 </div></blockquote>
 <p>You can find a full list of arguments in the docstring of the step methods.</p>
 <p class="rubric">Examples</p>
@@ -175,7 +229,7 @@ The initial guess for the step size scaled down by <span class="math notranslate
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span> <span class="c1"># context management</span>
 <span class="o">...</span>     <span class="n">p</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="n">beta</span><span class="p">)</span>
 <span class="o">...</span>     <span class="n">y</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
-<span class="o">...</span>     <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">pm</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
        <span class="n">mean</span>        <span class="n">sd</span>  <span class="n">mc_error</span>   <span class="n">hpd_2</span><span class="o">.</span><span class="mi">5</span>  <span class="n">hpd_97</span><span class="o">.</span><span class="mi">5</span>
 <span class="n">p</span>  <span class="mf">0.604625</span>  <span class="mf">0.047086</span>   <span class="mf">0.00078</span>  <span class="mf">0.510498</span>  <span class="mf">0.694774</span>
@@ -185,10 +239,10 @@ The initial guess for the step size scaled down by <span class="math notranslate
 
 <dl class="function">
 <dt id="pymc3.sampling.iter_sample">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">iter_sample</code><span class="sig-paren">(</span><em class="sig-param">draws</em>, <em class="sig-param">step</em>, <em class="sig-param">start=None</em>, <em class="sig-param">trace=None</em>, <em class="sig-param">chain=0</em>, <em class="sig-param">tune=None</em>, <em class="sig-param">model=None</em>, <em class="sig-param">random_seed=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.iter_sample" title="Permalink to this definition">¶</a></dt>
-<dd><p>Generator that returns a trace on each iteration using the given
-step method.  Multiple step methods supported via compound step
-method returns the amount of time taken.</p>
+<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">iter_sample</code><span class="sig-paren">(</span><em class="sig-param">draws: int, step, start: Union[Dict[Any, Any], NoneType] = None, trace=None, chain=0, tune: Union[int, NoneType] = None, model: Union[pymc3.model.Model, NoneType] = None, random_seed: Union[int, List[int], NoneType] = None, callback=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.iter_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a trace on each iteration using the given step method.</p>
+<p>Multiple step methods ared supported via compound step methods.  Returns the
+amount of time taken.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
@@ -203,13 +257,25 @@ there is a trace provided and model.test_point if not (defaults to empty dict)</
 with past values. If a MultiTrace object is given, it must contain samples for the chain
 number <code class="docutils literal notranslate"><span class="pre">chain</span></code>. If None or a list of variables, the NDArray backend is used.</p>
 </dd>
-<dt><strong>chain</strong><span class="classifier">int</span></dt><dd><p>Chain number used to store sample in backend. If <code class="docutils literal notranslate"><span class="pre">cores</span></code> is greater than one, chain numbers
+<dt><strong>chain</strong><span class="classifier">int, optional</span></dt><dd><p>Chain number used to store sample in backend. If <code class="docutils literal notranslate"><span class="pre">cores</span></code> is greater than one, chain numbers
 will start here.</p>
 </dd>
-<dt><strong>tune</strong><span class="classifier">int</span></dt><dd><p>Number of iterations to tune, if applicable (defaults to None)</p>
+<dt><strong>tune</strong><span class="classifier">int, optional</span></dt><dd><p>Number of iterations to tune, if applicable (defaults to None)</p>
 </dd>
 <dt><strong>model</strong><span class="classifier">Model (optional if in <code class="docutils literal notranslate"><span class="pre">with</span></code> context)</span></dt><dd></dd>
-<dt><strong>random_seed</strong><span class="classifier">int or list of ints</span></dt><dd><p>A list is accepted if more if <code class="docutils literal notranslate"><span class="pre">cores</span></code> is greater than one.</p>
+<dt><strong>random_seed</strong><span class="classifier">int or list of ints, optional</span></dt><dd><p>A list is accepted if more if <code class="docutils literal notranslate"><span class="pre">cores</span></code> is greater than one.</p>
+</dd>
+<dt><strong>callback :</strong></dt><dd><p>A function which gets called for every sample from the trace of a chain. The function is
+called with the trace and the current draw and will contain all samples for a single trace.
+the <code class="docutils literal notranslate"><span class="pre">draw.chain</span></code> argument can be used to determine which of the active chains the sample
+is drawn from.
+Sampling can be interrupted by throwing a <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> in the callback.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>trace</strong><span class="classifier">MultiTrace</span></dt><dd><p>Contains all samples up to the current iteration</p>
 </dd>
 </dl>
 </dd>
@@ -228,8 +294,8 @@ will start here.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>trace</strong><span class="classifier">backend, list, or MultiTrace</span></dt><dd><p>Trace generated from MCMC sampling. Or a list containing dicts from
-find_MAP() or points</p>
+<dt><strong>trace</strong><span class="classifier">backend, list, xarray.Dataset, arviz.InferenceData, or MultiTrace</span></dt><dd><p>Trace generated from MCMC sampling, or a list of dicts (eg. points or from find_MAP()),
+or xarray.Dataset (eg. InferenceData.posterior or InferenceData.prior)</p>
 </dd>
 <dt><strong>samples</strong><span class="classifier">int</span></dt><dd><p>Number of posterior predictive samples to generate. Defaults to one posterior predictive
 sample per posterior sample, that is, the number of draws times the number of chains. It
@@ -241,8 +307,7 @@ in the posterior predictive sample.</p>
 <dt><strong>vars</strong><span class="classifier">iterable</span></dt><dd><p>Variables for which to compute the posterior predictive samples.
 Deprecated: please use <code class="docutils literal notranslate"><span class="pre">var_names</span></code> instead.</p>
 </dd>
-<dt><strong>var_names</strong><span class="classifier">Iterable[str]</span></dt><dd><p>Alternative way to specify vars to sample, to make this function orthogonal with
-others.</p>
+<dt><strong>var_names</strong><span class="classifier">Iterable[str]</span></dt><dd><p>Names of variables for which to compute the posterior predictive samples.</p>
 </dd>
 <dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>The number of random draws from the distribution specified by the parameters in each
 sample of the trace. Not recommended unless more than ndraws times nchains posterior
@@ -271,7 +336,7 @@ posterior predictive samples.</p>
 
 <dl class="function">
 <dt id="pymc3.sampling.sample_posterior_predictive_w">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample_posterior_predictive_w</code><span class="sig-paren">(</span><em class="sig-param">traces</em>, <em class="sig-param">samples=None</em>, <em class="sig-param">models=None</em>, <em class="sig-param">weights=None</em>, <em class="sig-param">random_seed=None</em>, <em class="sig-param">progressbar=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample_posterior_predictive_w" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample_posterior_predictive_w</code><span class="sig-paren">(</span><em class="sig-param">traces, samples: Union[int, NoneType] = None, models: Union[List[pymc3.model.Model], NoneType] = None, weights: Union[numpy.ndarray, List[float], NoneType] = None, random_seed: Union[int, NoneType] = None, progressbar: bool = True</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample_posterior_predictive_w" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate weighted posterior predictive samples from a list of models and
 a list of traces according to a set of weights.</p>
 <dl class="field-list simple">
@@ -281,19 +346,19 @@ a list of traces according to a set of weights.</p>
 containing dicts from find_MAP() or points. The number of traces should
 be equal to the number of weights.</p>
 </dd>
-<dt><strong>samples</strong><span class="classifier">int</span></dt><dd><p>Number of posterior predictive samples to generate. Defaults to the
+<dt><strong>samples</strong><span class="classifier">int, optional</span></dt><dd><p>Number of posterior predictive samples to generate. Defaults to the
 length of the shorter trace in traces.</p>
 </dd>
-<dt><strong>models</strong><span class="classifier">list</span></dt><dd><p>List of models used to generate the list of traces. The number of models should be equal to
+<dt><strong>models</strong><span class="classifier">list of Model</span></dt><dd><p>List of models used to generate the list of traces. The number of models should be equal to
 the number of weights and the number of observed RVs should be the same for all models.
 By default a single model will be inferred from <code class="docutils literal notranslate"><span class="pre">with</span></code> context, in this case results will
 only be meaningful if all models share the same distributions for the observed RVs.</p>
 </dd>
-<dt><strong>weights: array-like</strong></dt><dd><p>Individual weights for each trace. Default, same weight for each model.</p>
+<dt><strong>weights</strong><span class="classifier">array-like, optional</span></dt><dd><p>Individual weights for each trace. Default, same weight for each model.</p>
 </dd>
-<dt><strong>random_seed</strong><span class="classifier">int</span></dt><dd><p>Seed for the random number generator.</p>
+<dt><strong>random_seed</strong><span class="classifier">int, optional</span></dt><dd><p>Seed for the random number generator.</p>
 </dd>
-<dt><strong>progressbar</strong><span class="classifier">bool</span></dt><dd><p>Whether or not to display a progress bar in the command line. The bar shows the percentage
+<dt><strong>progressbar</strong><span class="classifier">bool, optional default True</span></dt><dd><p>Whether or not to display a progress bar in the command line. The bar shows the percentage
 of completion, the sampling speed in samples per second (SPS), and the estimated remaining
 time until completion (“expected time of arrival”; ETA).</p>
 </dd>
@@ -321,30 +386,31 @@ methods for choosing or adapting the mass matrix.</p>
 <dd class="field-odd"><dl>
 <dt><strong>init</strong><span class="classifier">str</span></dt><dd><p>Initialization method to use.</p>
 <ul class="simple">
-<li><p>auto : Choose a default initialization method automatically.
+<li><p>auto: Choose a default initialization method automatically.
 Currently, this is <cite>‘jitter+adapt_diag’</cite>, but this can change in the future. If you
 depend on the exact behaviour, choose an initialization method explicitly.</p></li>
-<li><p>adapt_diag : Start with a identity mass matrix and then adapt a diagonal based on the
+<li><p>adapt_diag: Start with a identity mass matrix and then adapt a diagonal based on the
 variance of the tuning samples. All chains use the test value (usually the prior mean)
 as starting point.</p></li>
-<li><p>jitter+adapt_diag : Same as <code class="docutils literal notranslate"><span class="pre">adapt_diag</span></code>, but use uniform jitter in [-1, 1] as starting
-point in each chain.</p></li>
-<li><p>advi+adapt_diag : Run ADVI and then adapt the resulting diagonal mass matrix based on the
+<li><p>jitter+adapt_diag: Same as <code class="docutils literal notranslate"><span class="pre">adapt_diag</span></code>, but use test value plus a uniform jitter in
+[-1, 1] as starting point in each chain.</p></li>
+<li><p>advi+adapt_diag: Run ADVI and then adapt the resulting diagonal mass matrix based on the
 sample variance of the tuning samples.</p></li>
-<li><p>advi+adapt_diag_grad : Run ADVI and then adapt the resulting diagonal mass matrix based
+<li><p>advi+adapt_diag_grad: Run ADVI and then adapt the resulting diagonal mass matrix based
 on the variance of the gradients during tuning. This is <strong>experimental</strong> and might be
 removed in a future release.</p></li>
-<li><p>advi : Run ADVI to estimate posterior mean and diagonal mass matrix.</p></li>
+<li><p>advi: Run ADVI to estimate posterior mean and diagonal mass matrix.</p></li>
 <li><p>advi_map: Initialize ADVI with MAP and use MAP as starting point.</p></li>
-<li><p>map : Use the MAP as starting point. This is discouraged.</p></li>
-<li><p>nuts : Run NUTS and estimate posterior mean and mass matrix from
-the trace.</p></li>
+<li><p>map: Use the MAP as starting point. This is discouraged.</p></li>
+<li><p>adapt_full: Adapt a dense mass matrix using the sample covariances. All chains use the
+test value (usually the prior mean) as starting point.</p></li>
+<li><p>jitter+adapt_full: Same as <a href="#id5"><span class="problematic" id="id6">``</span></a>adapt_full`, but use test value plus a uniform jitter in
+[-1, 1] as starting point in each chain.</p></li>
 </ul>
 </dd>
 <dt><strong>chains</strong><span class="classifier">int</span></dt><dd><p>Number of jobs to start.</p>
 </dd>
-<dt><strong>n_init</strong><span class="classifier">int</span></dt><dd><p>Number of iterations of initializer
-If ‘ADVI’, number of iterations, if ‘nuts’, number of draws.</p>
+<dt><strong>n_init</strong><span class="classifier">int</span></dt><dd><p>Number of iterations of initializer. Only works for ‘ADVI’ init methods.</p>
 </dd>
 <dt><strong>model</strong><span class="classifier">Model (optional if in <code class="docutils literal notranslate"><span class="pre">with</span></code> context)</span></dt><dd></dd>
 <dt><strong>progressbar</strong><span class="classifier">bool</span></dt><dd><p>Whether or not to display a progressbar for advi sampling.</p>
@@ -354,10 +420,10 @@ If ‘ADVI’, number of iterations, if ‘nuts’, number of draws.</p>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>start</strong><span class="classifier">pymc3.model.Point</span></dt><dd><p>Starting point for sampler</p>
+<dd class="field-even"><dl>
+<dt><strong>start</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">pymc3.model.Point</span></code></span></dt><dd><p>Starting point for sampler</p>
 </dd>
-<dt><strong>nuts_sampler</strong><span class="classifier">pymc3.step_methods.NUTS</span></dt><dd><p>Instantiated and initialized NUTS sampler object</p>
+<dt><strong>nuts_sampler</strong><span class="classifier"><code class="docutils literal notranslate"><span class="pre">pymc3.step_methods.NUTS</span></code></span></dt><dd><p>Instantiated and initialized NUTS sampler object</p>
 </dd>
 </dl>
 </dd>
@@ -395,15 +461,43 @@ samples.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="pymc3.sampling.sample_ppc">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample_ppc</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample_ppc" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is deprecated.  Please use <code class="xref py py-func docutils literal notranslate"><span class="pre">sample_posterior_predictive()</span></code></p>
-</dd></dl>
-
-<dl class="function">
-<dt id="pymc3.sampling.sample_ppc_w">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample_ppc_w</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample_ppc_w" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method is deprecated.  Please use <code class="xref py py-func docutils literal notranslate"><span class="pre">sample_posterior_predictive_w()</span></code></p>
+<dt id="pymc3.sampling.fast_sample_posterior_predictive">
+<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">fast_sample_posterior_predictive</code><span class="sig-paren">(</span><em class="sig-param">trace: Union[pymc3.backends.base.MultiTrace, xarray.core.dataset.Dataset, arviz.data.inference_data.InferenceData, List[Dict[str, numpy.ndarray]]], samples: Union[int, NoneType] = None, model: Union[pymc3.model.Model, NoneType] = None, var_names: Union[List[str], NoneType] = None, keep_size: bool = False, random_seed=None</em><span class="sig-paren">)</span> &#x2192; Dict[str, numpy.ndarray]<a class="headerlink" href="#pymc3.sampling.fast_sample_posterior_predictive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate posterior predictive samples from a model given a trace.</p>
+<p>This is a vectorized alternative to the standard <code class="docutils literal notranslate"><span class="pre">sample_posterior_predictive</span></code> function.
+It aims to be as compatible as possible with the original API, and is significantly
+faster.  Both posterior predictive sampling functions have some remaining issues, and
+we encourage users to verify agreement across the results of both functions for the time
+being.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>trace: MultiTrace, xarray.Dataset, InferenceData, or List of points (dictionary)</strong></dt><dd><p>Trace generated from MCMC sampling.</p>
+</dd>
+<dt><strong>samples: int, optional</strong></dt><dd><p>Number of posterior predictive samples to generate. Defaults to one posterior predictive
+sample per posterior sample, that is, the number of draws times the number of chains. It
+is not recommended to modify this value; when modified, some chains may not be represented
+in the posterior predictive sample.</p>
+</dd>
+<dt><strong>model: Model (optional if in `with` context)</strong></dt><dd><p>Model used to generate <cite>trace</cite></p>
+</dd>
+<dt><strong>var_names: Iterable[str]</strong></dt><dd><p>List of vars to sample.</p>
+</dd>
+<dt><strong>keep_size: bool, optional</strong></dt><dd><p>Force posterior predictive sample to have the same shape as posterior and sample stats
+data: <code class="docutils literal notranslate"><span class="pre">(nchains,</span> <span class="pre">ndraws,</span> <span class="pre">...)</span></code>.</p>
+</dd>
+<dt><strong>random_seed: int</strong></dt><dd><p>Seed for the random number generator.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>samples: dict</dt><dd><p>Dictionary with the variable names as keys, and values numpy arrays containing
+posterior predictive samples.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <div class="section" id="step-methods">
@@ -490,6 +584,13 @@ this sample was generated.</p></li>
 samples, the step size is set to this value. This should converge
 during tuning.</p></li>
 <li><p><cite>model_logp</cite>: The model log-likelihood for this sample.</p></li>
+<li><p><cite>process_time_diff</cite>: The time it took to draw the sample, as defined
+by the python standard library <cite>time.process_time</cite>. This counts all
+the CPU time, including worker processes in BLAS and OpenMP.</p></li>
+<li><p><cite>perf_counter_diff</cite>: The time it took to draw the sample, as defined
+by the python standard library <cite>time.perf_counter</cite> (wall time).</p></li>
+<li><p><cite>perf_counter_start</cite>: The value of <cite>time.perf_counter</cite> at the beginning
+of the computation of the draw.</p></li>
 </ul>
 <p class="rubric">References</p>
 <dl class="citation">
@@ -502,48 +603,48 @@ Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte Carlo.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vars</strong><span class="classifier">list of Theano variables, default all continuous vars</span></dt><dd></dd>
-<dt><strong>Emax</strong><span class="classifier">float, default 1000</span></dt><dd><p>Maximum energy change allowed during leapfrog steps. Larger
+<dt><strong>vars: list of Theano variables, default all continuous vars</strong></dt><dd></dd>
+<dt><strong>Emax: float, default 1000</strong></dt><dd><p>Maximum energy change allowed during leapfrog steps. Larger
 deviations will abort the integration.</p>
 </dd>
-<dt><strong>target_accept</strong><span class="classifier">float, default .8</span></dt><dd><p>Adapt the step size such that the average acceptance
+<dt><strong>target_accept: float, default .8</strong></dt><dd><p>Adapt the step size such that the average acceptance
 probability across the trajectories are close to target_accept.
 Higher values for target_accept lead to smaller step sizes.
 Setting this to higher values like 0.9 or 0.99 can help
 with sampling from difficult posteriors. Valid values are
 between 0 and 1 (exclusive).</p>
 </dd>
-<dt><strong>step_scale</strong><span class="classifier">float, default 0.25</span></dt><dd><p>Size of steps to take, automatically scaled down by <cite>1/n**(1/4)</cite>.
+<dt><strong>step_scale: float, default 0.25</strong></dt><dd><p>Size of steps to take, automatically scaled down by <cite>1/n**(1/4)</cite>.
 If step size adaptation is switched off, the resulting step size
 is used. If adaptation is enabled, it is used as initial guess.</p>
 </dd>
-<dt><strong>gamma</strong><span class="classifier">float, default .05</span></dt><dd></dd>
-<dt><strong>k</strong><span class="classifier">float, default .75</span></dt><dd><p>Parameter for dual averaging for step size adaptation. Values
+<dt><strong>gamma: float, default .05</strong></dt><dd></dd>
+<dt><strong>k: float, default .75</strong></dt><dd><p>Parameter for dual averaging for step size adaptation. Values
 between 0.5 and 1 (exclusive) are admissible. Higher values
 correspond to slower adaptation.</p>
 </dd>
-<dt><strong>t0</strong><span class="classifier">int, default 10</span></dt><dd><p>Parameter for dual averaging. Higher values slow initial
+<dt><strong>t0: int, default 10</strong></dt><dd><p>Parameter for dual averaging. Higher values slow initial
 adaptation.</p>
 </dd>
-<dt><strong>adapt_step_size</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether step size adaptation should be enabled. If this is
+<dt><strong>adapt_step_size: bool, default=True</strong></dt><dd><p>Whether step size adaptation should be enabled. If this is
 disabled, <cite>k</cite>, <cite>t0</cite>, <cite>gamma</cite> and <cite>target_accept</cite> are ignored.</p>
 </dd>
-<dt><strong>max_treedepth</strong><span class="classifier">int, default=10</span></dt><dd><p>The maximum tree depth. Trajectories are stopped when this
+<dt><strong>max_treedepth: int, default=10</strong></dt><dd><p>The maximum tree depth. Trajectories are stopped when this
 depth is reached.</p>
 </dd>
-<dt><strong>early_max_treedepth</strong><span class="classifier">int, default=8</span></dt><dd><p>The maximum tree depth during the first 200 tuning samples.</p>
+<dt><strong>early_max_treedepth: int, default=8</strong></dt><dd><p>The maximum tree depth during the first 200 tuning samples.</p>
 </dd>
-<dt><strong>scaling</strong><span class="classifier">array_like, ndim = {1,2}</span></dt><dd><p>The inverse mass, or precision matrix. One dimensional arrays are
+<dt><strong>scaling: array_like, ndim = {1,2}</strong></dt><dd><p>The inverse mass, or precision matrix. One dimensional arrays are
 interpreted as diagonal matrices. If <cite>is_cov</cite> is set to True,
 this will be interpreded as the mass or covariance matrix.</p>
 </dd>
-<dt><strong>is_cov</strong><span class="classifier">bool, default=False</span></dt><dd><p>Treat the scaling as mass or covariance matrix.</p>
+<dt><strong>is_cov: bool, default=False</strong></dt><dd><p>Treat the scaling as mass or covariance matrix.</p>
 </dd>
-<dt><strong>potential</strong><span class="classifier">Potential, optional</span></dt><dd><p>An object that represents the Hamiltonian with methods <cite>velocity</cite>,
+<dt><strong>potential: Potential, optional</strong></dt><dd><p>An object that represents the Hamiltonian with methods <cite>velocity</cite>,
 <cite>energy</cite>, and <cite>random</cite> methods. It can be specified instead
 of the scaling matrix.</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">pymc3.Model</span></dt><dd><p>The model</p>
+<dt><strong>model: pymc3.Model</strong></dt><dd><p>The model</p>
 </dd>
 <dt><strong>kwargs: passed to BaseHMC</strong></dt><dd></dd>
 </dl>
@@ -568,25 +669,25 @@ This is usually achieved by setting the <cite>tune</cite> parameter if
 <dt id="pymc3.step_methods.metropolis.Metropolis">
 <em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">Metropolis</code><span class="sig-paren">(</span><em class="sig-param">vars=None</em>, <em class="sig-param">S=None</em>, <em class="sig-param">proposal_dist=None</em>, <em class="sig-param">scaling=1.0</em>, <em class="sig-param">tune=True</em>, <em class="sig-param">tune_interval=100</em>, <em class="sig-param">model=None</em>, <em class="sig-param">mode=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.Metropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metropolis-Hastings sampling step</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>vars</strong><span class="classifier">list</span></dt><dd><p>List of variables for sampler</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vars: list</strong></dt><dd><p>List of variables for sampler</p>
 </dd>
-<dt><strong>S</strong><span class="classifier">standard deviation or covariance matrix</span></dt><dd><p>Some measure of variance to parameterize proposal distribution</p>
+<dt><strong>S: standard deviation or covariance matrix</strong></dt><dd><p>Some measure of variance to parameterize proposal distribution</p>
 </dd>
-<dt><strong>proposal_dist</strong><span class="classifier">function</span></dt><dd><p>Function that returns zero-mean deviates when parameterized with
+<dt><strong>proposal_dist: function</strong></dt><dd><p>Function that returns zero-mean deviates when parameterized with
 S (and n). Defaults to normal.</p>
 </dd>
-<dt><strong>scaling</strong><span class="classifier">scalar or array</span></dt><dd><p>Initial scale factor for proposal. Defaults to 1.</p>
+<dt><strong>scaling: scalar or array</strong></dt><dd><p>Initial scale factor for proposal. Defaults to 1.</p>
 </dd>
-<dt><strong>tune</strong><span class="classifier">bool</span></dt><dd><p>Flag for tuning. Defaults to True.</p>
+<dt><strong>tune: bool</strong></dt><dd><p>Flag for tuning. Defaults to True.</p>
 </dd>
-<dt><strong>tune_interval</strong><span class="classifier">int</span></dt><dd><p>The frequency of tuning. Defaults to 100 iterations.</p>
+<dt><strong>tune_interval: int</strong></dt><dd><p>The frequency of tuning. Defaults to 100 iterations.</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">PyMC Model</span></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
+<dt><strong>model: PyMC Model</strong></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
 </dd>
-<dt><strong>mode</strong><span class="classifier">string or <cite>Mode</cite> instance.</span></dt><dd><p>compilation mode passed to Theano functions</p>
+<dt><strong>mode:  string or `Mode` instance.</strong></dt><dd><p>compilation mode passed to Theano functions</p>
 </dd>
 </dl>
 </dd>
@@ -594,39 +695,45 @@ S (and n). Defaults to normal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vars</strong><span class="classifier">list of sampling variables</span></dt><dd></dd>
-<dt><strong>shared</strong><span class="classifier">dict of theano variable -&gt; shared variable</span></dt><dd></dd>
-<dt><strong>blocked</strong><span class="classifier">Boolean (default True)</span></dt><dd></dd>
+<dt><strong>vars: list of sampling variables</strong></dt><dd></dd>
+<dt><strong>shared: dict of theano variable -&gt; shared variable</strong></dt><dd></dd>
+<dt><strong>blocked: Boolean (default True)</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
+<dl class="method">
+<dt id="pymc3.step_methods.metropolis.Metropolis.reset_tuning">
+<code class="sig-name descname">reset_tuning</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.Metropolis.reset_tuning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the tuned sampler parameters to their initial values.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
 <dt id="pymc3.step_methods.metropolis.DEMetropolis">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">DEMetropolis</code><span class="sig-paren">(</span><em class="sig-param">vars=None</em>, <em class="sig-param">S=None</em>, <em class="sig-param">proposal_dist=None</em>, <em class="sig-param">lamb=None</em>, <em class="sig-param">scaling=0.001</em>, <em class="sig-param">tune=True</em>, <em class="sig-param">tune_interval=100</em>, <em class="sig-param">model=None</em>, <em class="sig-param">mode=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolis" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">DEMetropolis</code><span class="sig-paren">(</span><em class="sig-param">vars=None</em>, <em class="sig-param">S=None</em>, <em class="sig-param">proposal_dist=None</em>, <em class="sig-param">lamb=None</em>, <em class="sig-param">scaling=0.001</em>, <em class="sig-param">tune=None</em>, <em class="sig-param">tune_interval=100</em>, <em class="sig-param">model=None</em>, <em class="sig-param">mode=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Differential Evolution Metropolis sampling step.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>lamb</strong><span class="classifier">float</span></dt><dd><p>Lambda parameter of the DE proposal mechanism. Defaults to 2.38 / sqrt(2 * ndim)</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lamb: float</strong></dt><dd><p>Lambda parameter of the DE proposal mechanism. Defaults to 2.38 / sqrt(2 * ndim)</p>
 </dd>
-<dt><strong>vars</strong><span class="classifier">list</span></dt><dd><p>List of variables for sampler</p>
+<dt><strong>vars: list</strong></dt><dd><p>List of variables for sampler</p>
 </dd>
-<dt><strong>S</strong><span class="classifier">standard deviation or covariance matrix</span></dt><dd><p>Some measure of variance to parameterize proposal distribution</p>
+<dt><strong>S: standard deviation or covariance matrix</strong></dt><dd><p>Some measure of variance to parameterize proposal distribution</p>
 </dd>
-<dt><strong>proposal_dist</strong><span class="classifier">function</span></dt><dd><p>Function that returns zero-mean deviates when parameterized with
+<dt><strong>proposal_dist: function</strong></dt><dd><p>Function that returns zero-mean deviates when parameterized with
 S (and n). Defaults to Uniform(-S,+S).</p>
 </dd>
-<dt><strong>scaling</strong><span class="classifier">scalar or array</span></dt><dd><p>Initial scale factor for epsilon. Defaults to 0.001</p>
+<dt><strong>scaling: scalar or array</strong></dt><dd><p>Initial scale factor for epsilon. Defaults to 0.001</p>
 </dd>
-<dt><strong>tune</strong><span class="classifier">bool</span></dt><dd><p>Flag for tuning the scaling. Defaults to True.</p>
+<dt><strong>tune: str</strong></dt><dd><p>Which hyperparameter to tune. Defaults to None, but can also be ‘scaling’ or ‘lambda’.</p>
 </dd>
-<dt><strong>tune_interval</strong><span class="classifier">int</span></dt><dd><p>The frequency of tuning. Defaults to 100 iterations.</p>
+<dt><strong>tune_interval: int</strong></dt><dd><p>The frequency of tuning. Defaults to 100 iterations.</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">PyMC Model</span></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
+<dt><strong>model: PyMC Model</strong></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
 </dd>
-<dt><strong>mode</strong><span class="classifier">string or <cite>Mode</cite> instance.</span></dt><dd><p>compilation mode passed to Theano functions</p>
+<dt><strong>mode:  string or `Mode` instance.</strong></dt><dd><p>compilation mode passed to Theano functions</p>
 </dd>
 </dl>
 </dd>
@@ -644,12 +751,78 @@ Statistics and Computing
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vars</strong><span class="classifier">list of sampling variables</span></dt><dd></dd>
-<dt><strong>shared</strong><span class="classifier">dict of theano variable -&gt; shared variable</span></dt><dd></dd>
-<dt><strong>blocked</strong><span class="classifier">Boolean (default True)</span></dt><dd></dd>
+<dt><strong>vars: list of sampling variables</strong></dt><dd></dd>
+<dt><strong>shared: dict of theano variable -&gt; shared variable</strong></dt><dd></dd>
+<dt><strong>blocked: Boolean (default True)</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="pymc3.step_methods.metropolis.DEMetropolisZ">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">DEMetropolisZ</code><span class="sig-paren">(</span><em class="sig-param">vars=None</em>, <em class="sig-param">S=None</em>, <em class="sig-param">proposal_dist=None</em>, <em class="sig-param">lamb=None</em>, <em class="sig-param">scaling=0.001</em>, <em class="sig-param">tune='lambda'</em>, <em class="sig-param">tune_interval=100</em>, <em class="sig-param">tune_drop_fraction: float = 0.9</em>, <em class="sig-param">model=None</em>, <em class="sig-param">mode=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adaptive Differential Evolution Metropolis sampling step that uses the past to inform jumps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>lamb: float</strong></dt><dd><p>Lambda parameter of the DE proposal mechanism. Defaults to 2.38 / sqrt(2 * ndim)</p>
+</dd>
+<dt><strong>vars: list</strong></dt><dd><p>List of variables for sampler</p>
+</dd>
+<dt><strong>S: standard deviation or covariance matrix</strong></dt><dd><p>Some measure of variance to parameterize proposal distribution</p>
+</dd>
+<dt><strong>proposal_dist: function</strong></dt><dd><p>Function that returns zero-mean deviates when parameterized with
+S (and n). Defaults to Uniform(-S,+S).</p>
+</dd>
+<dt><strong>scaling: scalar or array</strong></dt><dd><p>Initial scale factor for epsilon. Defaults to 0.001</p>
+</dd>
+<dt><strong>tune: str</strong></dt><dd><p>Which hyperparameter to tune. Defaults to ‘lambda’, but can also be ‘scaling’ or None.</p>
+</dd>
+<dt><strong>tune_interval: int</strong></dt><dd><p>The frequency of tuning. Defaults to 100 iterations.</p>
+</dd>
+<dt><strong>tune_drop_fraction: float</strong></dt><dd><p>Fraction of tuning steps that will be removed from the samplers history when the tuning ends.
+Defaults to 0.9 - keeping the last 10% of tuning steps for good mixing while removing 90% of
+potentially unconverged tuning positions.</p>
+</dd>
+<dt><strong>model: PyMC Model</strong></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
+</dd>
+<dt><strong>mode:  string or `Mode` instance.</strong></dt><dd><p>compilation mode passed to Theano functions</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="r5747893c210c-braak2006"><span class="brackets">R5747893c210c-Braak2006</span></dt>
+<dd><p>Cajo C.F. ter Braak (2006).
+Differential Evolution Markov Chain with snooker updater and fewer chains.
+Statistics and Computing
+<a class="reference external" href="https://doi.org/10.1007/s11222-008-9104-9">link</a></p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>vars: list of sampling variables</strong></dt><dd></dd>
+<dt><strong>shared: dict of theano variable -&gt; shared variable</strong></dt><dd></dd>
+<dt><strong>blocked: Boolean (default True)</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="method">
+<dt id="pymc3.step_methods.metropolis.DEMetropolisZ.reset_tuning">
+<code class="sig-name descname">reset_tuning</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ.reset_tuning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the tuned sampler parameters and history to their initial values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.step_methods.metropolis.DEMetropolisZ.stop_tuning">
+<code class="sig-name descname">stop_tuning</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ.stop_tuning" title="Permalink to this definition">¶</a></dt>
+<dd><p>At the end of the tuning phase, this method removes the first x% of the history
+so future proposals are not informed by unconverged tuning iterations.</p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -659,15 +832,15 @@ Statistics and Computing
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vars</strong><span class="classifier">list</span></dt><dd><p>List of variables for sampler</p>
+<dt><strong>vars: list</strong></dt><dd><p>List of variables for sampler</p>
 </dd>
-<dt><strong>scaling</strong><span class="classifier">scalar or array</span></dt><dd><p>Initial scale factor for proposal. Defaults to 1.</p>
+<dt><strong>scaling: scalar or array</strong></dt><dd><p>Initial scale factor for proposal. Defaults to 1.</p>
 </dd>
-<dt><strong>tune</strong><span class="classifier">bool</span></dt><dd><p>Flag for tuning. Defaults to True.</p>
+<dt><strong>tune: bool</strong></dt><dd><p>Flag for tuning. Defaults to True.</p>
 </dd>
-<dt><strong>tune_interval</strong><span class="classifier">int</span></dt><dd><p>The frequency of tuning. Defaults to 100 iterations.</p>
+<dt><strong>tune_interval: int</strong></dt><dd><p>The frequency of tuning. Defaults to 100 iterations.</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">PyMC Model</span></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
+<dt><strong>model: PyMC Model</strong></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
 </dd>
 </dl>
 </dd>
@@ -688,15 +861,15 @@ and Categorical variables with k=1.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vars</strong><span class="classifier">list</span></dt><dd><p>List of variables for sampler</p>
+<dt><strong>vars: list</strong></dt><dd><p>List of variables for sampler</p>
 </dd>
-<dt><strong>order</strong><span class="classifier">list or ‘random’</span></dt><dd><p>List of integers indicating the Gibbs update order
+<dt><strong>order: list or ‘random’</strong></dt><dd><p>List of integers indicating the Gibbs update order
 e.g., [0, 2, 1, …]. Default is random</p>
 </dd>
-<dt><strong>transit_p</strong><span class="classifier">float</span></dt><dd><p>The diagonal of the transition kernel. A value &gt; .5 gives anticorrelated proposals,
+<dt><strong>transit_p: float</strong></dt><dd><p>The diagonal of the transition kernel. A value &gt; .5 gives anticorrelated proposals,
 which resulting in more efficient antithetical sampling.</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">PyMC Model</span></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
+<dt><strong>model: PyMC Model</strong></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
 </dd>
 </dl>
 </dd>
@@ -738,13 +911,13 @@ Categorical variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vars</strong><span class="classifier">list</span></dt><dd><p>List of variables for sampler.</p>
+<dt><strong>vars: list</strong></dt><dd><p>List of variables for sampler.</p>
 </dd>
-<dt><strong>w</strong><span class="classifier">float</span></dt><dd><p>Initial width of slice (Defaults to 1).</p>
+<dt><strong>w: float</strong></dt><dd><p>Initial width of slice (Defaults to 1).</p>
 </dd>
-<dt><strong>tune</strong><span class="classifier">bool</span></dt><dd><p>Flag for tuning (Defaults to True).</p>
+<dt><strong>tune: bool</strong></dt><dd><p>Flag for tuning (Defaults to True).</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">PyMC Model</span></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
+<dt><strong>model: PyMC Model</strong></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
 </dd>
 </dl>
 </dd>
@@ -756,33 +929,33 @@ Categorical variables.</p>
 <h4>Hamiltonian Monte Carlo<a class="headerlink" href="#hamiltonian-monte-carlo" title="Permalink to this headline">¶</a></h4>
 <dl class="class">
 <dt id="pymc3.step_methods.hmc.hmc.HamiltonianMC">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.hmc.hmc.</code><code class="sig-name descname">HamiltonianMC</code><span class="sig-paren">(</span><em class="sig-param">vars=None</em>, <em class="sig-param">path_length=2.0</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.hmc.HamiltonianMC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.hmc.hmc.</code><code class="sig-name descname">HamiltonianMC</code><span class="sig-paren">(</span><em class="sig-param">vars=None</em>, <em class="sig-param">path_length=2.0</em>, <em class="sig-param">max_steps=1024</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.hmc.HamiltonianMC" title="Permalink to this definition">¶</a></dt>
 <dd><p>A sampler for continuous variables based on Hamiltonian mechanics.</p>
 <p>See NUTS sampler for automatically tuned stopping time and step size scaling.</p>
 <p>Set up the Hamiltonian Monte Carlo sampler.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vars</strong><span class="classifier">list of theano variables</span></dt><dd></dd>
-<dt><strong>path_length</strong><span class="classifier">float, default=2</span></dt><dd><p>total length to travel</p>
+<dt><strong>vars: list of theano variables</strong></dt><dd></dd>
+<dt><strong>path_length: float, default=2</strong></dt><dd><p>total length to travel</p>
 </dd>
-<dt><strong>step_rand</strong><span class="classifier">function float -&gt; float, default=unif</span></dt><dd><p>A function which takes the step size and returns an new one used to
+<dt><strong>step_rand: function float -&gt; float, default=unif</strong></dt><dd><p>A function which takes the step size and returns an new one used to
 randomize the step size at each iteration.</p>
 </dd>
-<dt><strong>step_scale</strong><span class="classifier">float, default=0.25</span></dt><dd><p>Initial size of steps to take, automatically scaled down
+<dt><strong>step_scale: float, default=0.25</strong></dt><dd><p>Initial size of steps to take, automatically scaled down
 by 1/n**(1/4).</p>
 </dd>
-<dt><strong>scaling</strong><span class="classifier">array_like, ndim = {1,2}</span></dt><dd><p>The inverse mass, or precision matrix. One dimensional arrays are
+<dt><strong>scaling: array_like, ndim = {1,2}</strong></dt><dd><p>The inverse mass, or precision matrix. One dimensional arrays are
 interpreted as diagonal matrices. If <cite>is_cov</cite> is set to True,
 this will be interpreded as the mass or covariance matrix.</p>
 </dd>
-<dt><strong>is_cov</strong><span class="classifier">bool, default=False</span></dt><dd><p>Treat the scaling as mass or covariance matrix.</p>
+<dt><strong>is_cov: bool, default=False</strong></dt><dd><p>Treat the scaling as mass or covariance matrix.</p>
 </dd>
-<dt><strong>potential</strong><span class="classifier">Potential, optional</span></dt><dd><p>An object that represents the Hamiltonian with methods <cite>velocity</cite>,
+<dt><strong>potential: Potential, optional</strong></dt><dd><p>An object that represents the Hamiltonian with methods <cite>velocity</cite>,
 <cite>energy</cite>, and <cite>random</cite> methods. It can be specified instead
 of the scaling matrix.</p>
 </dd>
-<dt><strong>target_accept</strong><span class="classifier">float, default 0.65</span></dt><dd><p>Adapt the step size such that the average acceptance
+<dt><strong>target_accept: float, default 0.65</strong></dt><dd><p>Adapt the step size such that the average acceptance
 probability across the trajectories are close to target_accept.
 Higher values for target_accept lead to smaller step sizes.
 Setting this to higher values like 0.9 or 0.99 can help
@@ -792,20 +965,22 @@ al. 2010, Neal 2011). See Hoffman and Gelman’s “The No-U-Turn
 Sampler: Adaptively Setting Path Lengths in Hamiltonian Monte
 Carlo” section 3.2 for details.</p>
 </dd>
-<dt><strong>gamma</strong><span class="classifier">float, default .05</span></dt><dd></dd>
-<dt><strong>k</strong><span class="classifier">float, default .75</span></dt><dd><p>Parameter for dual averaging for step size adaptation. Values
+<dt><strong>gamma: float, default .05</strong></dt><dd></dd>
+<dt><strong>k: float, default .75</strong></dt><dd><p>Parameter for dual averaging for step size adaptation. Values
 between 0.5 and 1 (exclusive) are admissible. Higher values
 correspond to slower adaptation.</p>
 </dd>
-<dt><strong>t0</strong><span class="classifier">float &gt; 0, default 10</span></dt><dd><p>Parameter for dual averaging. Higher values slow initial
+<dt><strong>t0: float &gt; 0, default 10</strong></dt><dd><p>Parameter for dual averaging. Higher values slow initial
 adaptation.</p>
 </dd>
-<dt><strong>adapt_step_size</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether step size adaptation should be enabled. If this is
+<dt><strong>adapt_step_size: bool, default=True</strong></dt><dd><p>Whether step size adaptation should be enabled. If this is
 disabled, <cite>k</cite>, <cite>t0</cite>, <cite>gamma</cite> and <cite>target_accept</cite> are ignored.</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">pymc3.Model</span></dt><dd><p>The model</p>
+<dt><strong>max_steps: int</strong></dt><dd><p>The maximum number of leapfrog steps.</p>
 </dd>
-<dt><strong>**kwargs</strong><span class="classifier">passed to BaseHMC</span></dt><dd></dd>
+<dt><strong>model: pymc3.Model</strong></dt><dd><p>The model</p>
+</dd>
+<dt><strong>**kwargs: passed to BaseHMC</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -822,7 +997,7 @@ disabled, <cite>k</cite>, <cite>t0</cite>, <cite>gamma</cite> and <cite>target_a
 <h4>Sequential Monte Carlo<a class="headerlink" href="#sequential-monte-carlo" title="Permalink to this headline">¶</a></h4>
 <dl class="class">
 <dt id="pymc3.smc.smc.SMC">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.smc.smc.</code><code class="sig-name descname">SMC</code><span class="sig-paren">(</span><em class="sig-param">draws=1000</em>, <em class="sig-param">kernel='metropolis'</em>, <em class="sig-param">n_steps=25</em>, <em class="sig-param">parallel=False</em>, <em class="sig-param">start=None</em>, <em class="sig-param">cores=None</em>, <em class="sig-param">tune_steps=True</em>, <em class="sig-param">p_acc_rate=0.99</em>, <em class="sig-param">threshold=0.5</em>, <em class="sig-param">epsilon=1.0</em>, <em class="sig-param">dist_func='absolute_error'</em>, <em class="sig-param">sum_stat=False</em>, <em class="sig-param">progressbar=False</em>, <em class="sig-param">model=None</em>, <em class="sig-param">random_seed=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.smc.smc.</code><code class="sig-name descname">SMC</code><span class="sig-paren">(</span><em class="sig-param">draws=2000</em>, <em class="sig-param">kernel='metropolis'</em>, <em class="sig-param">n_steps=25</em>, <em class="sig-param">start=None</em>, <em class="sig-param">tune_steps=True</em>, <em class="sig-param">p_acc_rate=0.99</em>, <em class="sig-param">threshold=0.5</em>, <em class="sig-param">save_sim_data=False</em>, <em class="sig-param">model=None</em>, <em class="sig-param">random_seed=-1</em>, <em class="sig-param">chain=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="pymc3.smc.smc.SMC.initialize_logp">
 <code class="sig-name descname">initialize_logp</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.initialize_logp" title="Permalink to this definition">¶</a></dt>
@@ -833,12 +1008,6 @@ disabled, <cite>k</cite>, <cite>t0</cite>, <cite>gamma</cite> and <cite>target_a
 <dt id="pymc3.smc.smc.SMC.initialize_population">
 <code class="sig-name descname">initialize_population</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.initialize_population" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an initial population from the prior distribution</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.smc.smc.SMC.mutate">
-<code class="sig-name descname">mutate</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.mutate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Perform mutation step, i.e. apply selected kernel</p>
 </dd></dl>
 
 <dl class="method">
@@ -895,17 +1064,17 @@ Indexing can behave in four ways:</p>
 <ol class="arabic">
 <li><p>Indexing with a variable or variable name (str) returns all
 values for that variable, combining values for all chains.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="p">[</span><span class="n">varname</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Slicing after the variable name can be used to burn and thin
 the samples.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="p">[</span><span class="n">varname</span><span class="p">,</span> <span class="mi">1000</span><span class="p">:]</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="p">[</span><span class="n">varname</span><span class="p">,</span> <span class="mi">1000</span><span class="p">:]</span>
 </pre></div>
 </div>
 <p>For convenience during interactive use, values can also be
 accessed using the variable as an attribute.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="o">.</span><span class="n">varname</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span><span class="o">.</span><span class="n">varname</span>
 </pre></div>
 </div>
 </li>
@@ -925,15 +1094,15 @@ trace with the highest chain number is always used.</p>
 <dl class="field-list">
 <dt class="field-odd">Attributes</dt>
 <dd class="field-odd"><dl>
-<dt><strong>nchains</strong><span class="classifier">int</span></dt><dd><blockquote>
+<dt><strong>nchains: int</strong></dt><dd><blockquote>
 <div><p>Number of chains in the <cite>MultiTrace</cite>.</p>
 </div></blockquote>
-<dl>
-<dt>chains<span class="classifier"><cite>List[int]</cite></span></dt><dd><p>List of chain indices</p>
+<dl class="simple">
+<dt>chains: <cite>List[int]</cite></dt><dd><p>List of chain indices</p>
 </dd>
-<dt>report<span class="classifier">str</span></dt><dd><p>Report on the sampling process.</p>
+<dt>report: str</dt><dd><p>Report on the sampling process.</p>
 </dd>
-<dt>varnames<span class="classifier"><cite>List[str]</cite></span></dt><dd><p>List of variable names in the trace(s)</p>
+<dt>varnames: <cite>List[str]</cite></dt><dd><p>List of variable names in the trace(s)</p>
 </dd>
 </dl>
 </dd>
@@ -947,12 +1116,12 @@ trace with the highest chain number is always used.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>vals</strong><span class="classifier">dict (str: array-like)</span></dt><dd><p>The keys should be the names of the new variables. The values are expected to be
+<dt><strong>vals: dict (str: array-like)</strong></dt><dd><p>The keys should be the names of the new variables. The values are expected to be
 array-like objects. For traces with more than one chain the length of each value
 should match the number of total samples already in the trace <cite>(chains * iterations)</cite>,
 otherwise a warning is raised.</p>
 </dd>
-<dt><strong>overwrite</strong><span class="classifier">bool</span></dt><dd><p>If <cite>False</cite> (default) a ValueError is raised if the variable already exists.
+<dt><strong>overwrite: bool</strong></dt><dd><p>If <cite>False</cite> (default) a ValueError is raised if the variable already exists.
 Change to <cite>True</cite> to overwrite the values of variables</p>
 </dd>
 </dl>
@@ -972,10 +1141,10 @@ Change to <cite>True</cite> to overwrite the values of variables</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>stat_name</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>sampler_idx</strong><span class="classifier">int or None</span></dt><dd></dd>
-<dt><strong>burn</strong><span class="classifier">int</span></dt><dd></dd>
-<dt><strong>thin</strong><span class="classifier">int</span></dt><dd></dd>
+<dt><strong>stat_name: str</strong></dt><dd></dd>
+<dt><strong>sampler_idx: int or None</strong></dt><dd></dd>
+<dt><strong>burn: int</strong></dt><dd></dd>
+<dt><strong>thin: int</strong></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -997,15 +1166,15 @@ Change to <cite>True</cite> to overwrite the values of variables</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>varname</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>burn</strong><span class="classifier">int</span></dt><dd></dd>
-<dt><strong>thin</strong><span class="classifier">int</span></dt><dd></dd>
-<dt><strong>combine</strong><span class="classifier">bool</span></dt><dd><p>If True, results from <cite>chains</cite> will be concatenated.</p>
+<dt><strong>varname: str</strong></dt><dd></dd>
+<dt><strong>burn: int</strong></dt><dd></dd>
+<dt><strong>thin: int</strong></dt><dd></dd>
+<dt><strong>combine: bool</strong></dt><dd><p>If True, results from <cite>chains</cite> will be concatenated.</p>
 </dd>
-<dt><strong>chains</strong><span class="classifier">int or list of ints</span></dt><dd><p>Chains to retrieve. If None, all chains are used. A single
+<dt><strong>chains: int or list of ints</strong></dt><dd><p>Chains to retrieve. If None, all chains are used. A single
 chain value can also be given.</p>
 </dd>
-<dt><strong>squeeze</strong><span class="classifier">bool</span></dt><dd><p>Return a single array element if the resulting list of
+<dt><strong>squeeze: bool</strong></dt><dd><p>Return a single array element if the resulting list of
 values only has one element. If False, the result will
 always be a list of arrays, even if <cite>combine</cite> is True.</p>
 </dd>
@@ -1027,8 +1196,8 @@ always be a list of arrays, even if <cite>combine</cite> is True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>idx</strong><span class="classifier">int</span></dt><dd></dd>
-<dt><strong>chain</strong><span class="classifier">int</span></dt><dd><p>If a chain is not given, the highest chain number is used.</p>
+<dt><strong>idx: int</strong></dt><dd></dd>
+<dt><strong>chain: int</strong></dt><dd><p>If a chain is not given, the highest chain number is used.</p>
 </dd>
 </dl>
 </dd>
@@ -1042,7 +1211,7 @@ always be a list of arrays, even if <cite>combine</cite> is True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>chains</strong><span class="classifier">list of int or N</span></dt><dd><p>The chains whose points should be inlcuded in the iterator.  If
+<dt><strong>chains: list of int or N</strong></dt><dd><p>The chains whose points should be inlcuded in the iterator.  If
 chains is not given, include points from all chains.</p>
 </dd>
 </dl>
@@ -1057,7 +1226,7 @@ chains is not given, include points from all chains.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of the variable to remove. Raises KeyError if the variable is not present</p>
+<dt><strong>name: str</strong></dt><dd><p>Name of the variable to remove. Raises KeyError if the variable is not present</p>
 </dd>
 </dl>
 </dd>
@@ -1073,14 +1242,14 @@ chains is not given, include points from all chains.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd><p>Name of backend</p>
+<dt><strong>name: str</strong></dt><dd><p>Name of backend</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
+<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
 </dd>
-<dt><strong>vars</strong><span class="classifier">list of variables</span></dt><dd><p>Sampling values will be stored for these variables. If None,
+<dt><strong>vars: list of variables</strong></dt><dd><p>Sampling values will be stored for these variables. If None,
 <cite>model.unobserved_RVs</cite> is used.</p>
 </dd>
-<dt><strong>test_point</strong><span class="classifier">dict</span></dt><dd><p>use different test point that might be with changed variables shapes</p>
+<dt><strong>test_point: dict</strong></dt><dd><p>use different test point that might be with changed variables shapes</p>
 </dd>
 </dl>
 </dd>
@@ -1138,10 +1307,10 @@ Operator Variational Inference
 <dt id="pymc3.variational.opvi.ObjectiveFunction.score_function">
 <code class="sig-name descname">score_function</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">sc_n_mc=None</em>, <em class="sig-param">more_replacements=None</em>, <em class="sig-param">fn_kwargs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.score_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compile scoring function that operates which takes no inputs and returns Loss</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>sc_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>number of scoring MC samples</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sc_n_mc: `int`</strong></dt><dd><p>number of scoring MC samples</p>
 </dd>
 <dt><strong>more_replacements:</strong></dt><dd><p>Apply custom replacements before compiling a function</p>
 </dd>
@@ -1159,35 +1328,35 @@ Operator Variational Inference
 
 <dl class="method">
 <dt id="pymc3.variational.opvi.ObjectiveFunction.step_function">
-<code class="sig-name descname">step_function</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">obj_n_mc=None</em>, <em class="sig-param">tf_n_mc=None</em>, <em class="sig-param">obj_optimizer=&lt;function adagrad_window at 0x7f89daa07488&gt;</em>, <em class="sig-param">test_optimizer=&lt;function adagrad_window at 0x7f89daa07488&gt;</em>, <em class="sig-param">more_obj_params=None</em>, <em class="sig-param">more_tf_params=None</em>, <em class="sig-param">more_updates=None</em>, <em class="sig-param">more_replacements=None</em>, <em class="sig-param">total_grad_norm_constraint=None</em>, <em class="sig-param">score=False</em>, <em class="sig-param">fn_kwargs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.step_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">step_function</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">obj_n_mc=None</em>, <em class="sig-param">tf_n_mc=None</em>, <em class="sig-param">obj_optimizer=&lt;function adagrad_window at 0x7fe171990200&gt;</em>, <em class="sig-param">test_optimizer=&lt;function adagrad_window at 0x7fe171990200&gt;</em>, <em class="sig-param">more_obj_params=None</em>, <em class="sig-param">more_tf_params=None</em>, <em class="sig-param">more_updates=None</em>, <em class="sig-param">more_replacements=None</em>, <em class="sig-param">total_grad_norm_constraint=None</em>, <em class="sig-param">score=False</em>, <em class="sig-param">fn_kwargs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.step_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Step function that should be called on each optimization step.</p>
 <p>Generally it solves the following problem:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{\lambda^{\*}} = \inf_{\lambda} \sup_{\theta} t(\mathbb{E}_{\lambda}[(O^{p,q}f_{\theta})(z)])\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>obj_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj_n_mc: `int`</strong></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
 </dd>
-<dt><strong>tf_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
+<dt><strong>tf_n_mc: `int`</strong></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
 </dd>
-<dt><strong>obj_optimizer</strong><span class="classifier">function (grads, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for objective params</p>
+<dt><strong>obj_optimizer: function (grads, params) -&gt; updates</strong></dt><dd><p>Optimizer that is used for objective params</p>
 </dd>
-<dt><strong>test_optimizer</strong><span class="classifier">function (grads, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for test function params</p>
+<dt><strong>test_optimizer: function (grads, params) -&gt; updates</strong></dt><dd><p>Optimizer that is used for test function params</p>
 </dd>
-<dt><strong>more_obj_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for objective optimizer</p>
+<dt><strong>more_obj_params: `list`</strong></dt><dd><p>Add custom params for objective optimizer</p>
 </dd>
-<dt><strong>more_tf_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for test function optimizer</p>
+<dt><strong>more_tf_params: `list`</strong></dt><dd><p>Add custom params for test function optimizer</p>
 </dd>
-<dt><strong>more_updates</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add custom updates to resulting updates</p>
+<dt><strong>more_updates: `dict`</strong></dt><dd><p>Add custom updates to resulting updates</p>
 </dd>
-<dt><strong>total_grad_norm_constraint</strong><span class="classifier"><cite>float</cite></span></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
+<dt><strong>total_grad_norm_constraint: `float`</strong></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
 </dd>
-<dt><strong>score</strong><span class="classifier"><cite>bool</cite></span></dt><dd><p>calculate loss on each step? Defaults to False for speed</p>
+<dt><strong>score: `bool`</strong></dt><dd><p>calculate loss on each step? Defaults to False for speed</p>
 </dd>
-<dt><strong>fn_kwargs</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add kwargs to theano.function (e.g. <cite>{‘profile’: True}</cite>)</p>
+<dt><strong>fn_kwargs: `dict`</strong></dt><dd><p>Add kwargs to theano.function (e.g. <cite>{‘profile’: True}</cite>)</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Apply custom replacements before calculating gradients</p>
+<dt><strong>more_replacements: `dict`</strong></dt><dd><p>Apply custom replacements before calculating gradients</p>
 </dd>
 </dl>
 </dd>
@@ -1201,29 +1370,29 @@ Operator Variational Inference
 
 <dl class="method">
 <dt id="pymc3.variational.opvi.ObjectiveFunction.updates">
-<code class="sig-name descname">updates</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">obj_n_mc=None</em>, <em class="sig-param">tf_n_mc=None</em>, <em class="sig-param">obj_optimizer=&lt;function adagrad_window at 0x7f89daa07488&gt;</em>, <em class="sig-param">test_optimizer=&lt;function adagrad_window at 0x7f89daa07488&gt;</em>, <em class="sig-param">more_obj_params=None</em>, <em class="sig-param">more_tf_params=None</em>, <em class="sig-param">more_updates=None</em>, <em class="sig-param">more_replacements=None</em>, <em class="sig-param">total_grad_norm_constraint=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.updates" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">updates</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">obj_n_mc=None</em>, <em class="sig-param">tf_n_mc=None</em>, <em class="sig-param">obj_optimizer=&lt;function adagrad_window at 0x7fe171990200&gt;</em>, <em class="sig-param">test_optimizer=&lt;function adagrad_window at 0x7fe171990200&gt;</em>, <em class="sig-param">more_obj_params=None</em>, <em class="sig-param">more_tf_params=None</em>, <em class="sig-param">more_updates=None</em>, <em class="sig-param">more_replacements=None</em>, <em class="sig-param">total_grad_norm_constraint=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.updates" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate gradients for objective function, test function and then
 constructs updates for optimization step</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>obj_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj_n_mc</strong><span class="classifier">int</span></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
 </dd>
-<dt><strong>tf_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
+<dt><strong>tf_n_mc</strong><span class="classifier">int</span></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
 </dd>
 <dt><strong>obj_optimizer</strong><span class="classifier">function (loss, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for objective params</p>
 </dd>
 <dt><strong>test_optimizer</strong><span class="classifier">function (loss, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for test function params</p>
 </dd>
-<dt><strong>more_obj_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for objective optimizer</p>
+<dt><strong>more_obj_params</strong><span class="classifier">list</span></dt><dd><p>Add custom params for objective optimizer</p>
 </dd>
-<dt><strong>more_tf_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for test function optimizer</p>
+<dt><strong>more_tf_params</strong><span class="classifier">list</span></dt><dd><p>Add custom params for test function optimizer</p>
 </dd>
-<dt><strong>more_updates</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add custom updates to resulting updates</p>
+<dt><strong>more_updates</strong><span class="classifier">dict</span></dt><dd><p>Add custom updates to resulting updates</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Apply custom replacements before calculating gradients</p>
+<dt><strong>more_replacements</strong><span class="classifier">dict</span></dt><dd><p>Apply custom replacements before calculating gradients</p>
 </dd>
-<dt><strong>total_grad_norm_constraint</strong><span class="classifier"><cite>float</cite></span></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
+<dt><strong>total_grad_norm_constraint</strong><span class="classifier">float</span></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
 </dd>
 </dl>
 </dd>
@@ -1241,10 +1410,10 @@ constructs updates for optimization step</p>
 <dt id="pymc3.variational.opvi.Operator">
 <em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.opvi.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param">approx</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Operator" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Base class for Operator</strong></p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>approx</strong><span class="classifier"><a class="reference internal" href="#pymc3.variational.opvi.Approximation" title="pymc3.variational.opvi.Approximation"><code class="xref py py-class docutils literal notranslate"><span class="pre">Approximation</span></code></a></span></dt><dd><p>an approximation instance</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>approx: :class:`Approximation`</strong></dt><dd><p>an approximation instance</p>
 </dd>
 </dl>
 </dd>
@@ -1257,10 +1426,10 @@ constructs updates for optimization step</p>
 <dd><p>Operator itself</p>
 <div class="math notranslate nohighlight">
 \[(O^{p,q}f_{\theta})(z)\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>f</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestFunction</span></code> or None</span></dt><dd><p>function that takes <cite>z = self.input</cite> and returns
+<dd class="field-odd"><dl class="simple">
+<dt><strong>f: :class:`TestFunction` or None</strong></dt><dd><p>function that takes <cite>z = self.input</cite> and returns
 same dimensional output</p>
 </dd>
 </dl>
@@ -1291,27 +1460,27 @@ for a specified group of variables. Base for local and global group.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>group</strong><span class="classifier">list</span></dt><dd><p>List of PyMC3 variables or None indicating that group takes all the rest variables</p>
+<dt><strong>group: list</strong></dt><dd><p>List of PyMC3 variables or None indicating that group takes all the rest variables</p>
 </dd>
-<dt><strong>vfam</strong><span class="classifier">str</span></dt><dd><p>String that marks the corresponding variational family for the group.
+<dt><strong>vfam: str</strong></dt><dd><p>String that marks the corresponding variational family for the group.
 Cannot be passed both with <cite>params</cite></p>
 </dd>
-<dt><strong>params</strong><span class="classifier">dict</span></dt><dd><p>Dict with variational family parameters, full description can be found below.
+<dt><strong>params: dict</strong></dt><dd><p>Dict with variational family parameters, full description can be found below.
 Cannot be passed both with <cite>vfam</cite></p>
 </dd>
-<dt><strong>random_seed</strong><span class="classifier">int</span></dt><dd><p>Random seed for underlying random generator</p>
+<dt><strong>random_seed: int</strong></dt><dd><p>Random seed for underlying random generator</p>
 </dd>
 <dt><strong>model :</strong></dt><dd><p>PyMC3 Model</p>
 </dd>
-<dt><strong>local</strong><span class="classifier">bool</span></dt><dd><p>Indicates whether this group is local. Cannot be passed without <cite>params</cite>.
+<dt><strong>local: bool</strong></dt><dd><p>Indicates whether this group is local. Cannot be passed without <cite>params</cite>.
 Such group should have only one variable</p>
 </dd>
-<dt><strong>rowwise</strong><span class="classifier">bool</span></dt><dd><p>Indicates whether this group is independently parametrized over first dim.
+<dt><strong>rowwise: bool</strong></dt><dd><p>Indicates whether this group is independently parametrized over first dim.
 Such group should have only one variable</p>
 </dd>
-<dt><strong>options</strong><span class="classifier">dict</span></dt><dd><p>Special options for the group</p>
+<dt><strong>options: dict</strong></dt><dd><p>Special options for the group</p>
 </dd>
-<dt><strong>kwargs</strong><span class="classifier">Other kwargs for the group</span></dt><dd></dd>
+<dt><strong>kwargs: Other kwargs for the group</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -1389,7 +1558,7 @@ variable to have first dimension as <em>batch</em> dimension and other dimension
 With this assumptions it is possible to generalize all variational approximation families as
 batched approximations that have flexible parameters and leading axis.</p>
 <p>Only single variable local group is supported. Params are required.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># for mean field</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># for mean field</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="n">latent3</span><span class="p">],</span> <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">my_mu</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="n">my_rho</span><span class="p">),</span> <span class="n">local</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># or for full rank</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="n">latent3</span><span class="p">],</span> <span class="n">params</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">my_mu</span><span class="p">,</span> <span class="n">L_tril</span><span class="o">=</span><span class="n">my_L_tril</span><span class="p">),</span> <span class="n">local</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1405,7 +1574,7 @@ mean field will give no effect. It is more interesting if you want each row of a
 to be parametrized independently with normalizing flow or full rank gaussian.</p>
 <p>To tell <a class="reference internal" href="#pymc3.variational.opvi.Group" title="pymc3.variational.opvi.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a> that group is batched you need set <cite>batched</cite> kwarg as <cite>True</cite>.
 Only single variable group is allowed due to implementation details.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="n">latent3</span><span class="p">],</span> <span class="n">vfam</span><span class="o">=</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span> <span class="n">rowwise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># &#39;fr&#39; is alias for &#39;full_rank&#39;</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">([</span><span class="n">latent3</span><span class="p">],</span> <span class="n">vfam</span><span class="o">=</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span> <span class="n">rowwise</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># &#39;fr&#39; is alias for &#39;full_rank&#39;</span>
 </pre></div>
 </div>
 <p>The resulting approximation for this variable will have the following structure</p>
@@ -1478,11 +1647,11 @@ sample size and deterministic flag</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>s</strong><span class="classifier">scalar</span></dt><dd><p>sample size</p>
+<dt><strong>s: scalar</strong></dt><dd><p>sample size</p>
 </dd>
-<dt><strong>d</strong><span class="classifier">bool or scalar</span></dt><dd><p>whether sampling is done deterministically</p>
+<dt><strong>d: bool or scalar</strong></dt><dd><p>whether sampling is done deterministically</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier">dict</span></dt><dd><p>replacements for shape and initial</p>
+<dt><strong>more_replacements: dict</strong></dt><dd><p>replacements for shape and initial</p>
 </dd>
 </dl>
 </dd>
@@ -1499,16 +1668,16 @@ sample size and deterministic flag</p>
 <code class="sig-name descname">set_size_and_deterministic</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">s</em>, <em class="sig-param">d</em>, <em class="sig-param">more_replacements=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.set_size_and_deterministic" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - after node is sampled via <a class="reference internal" href="#pymc3.variational.opvi.Group.symbolic_sample_over_posterior" title="pymc3.variational.opvi.Group.symbolic_sample_over_posterior"><code class="xref py py-func docutils literal notranslate"><span class="pre">symbolic_sample_over_posterior()</span></code></a> or
 <a class="reference internal" href="#pymc3.variational.opvi.Group.symbolic_single_sample" title="pymc3.variational.opvi.Group.symbolic_single_sample"><code class="xref py py-func docutils literal notranslate"><span class="pre">symbolic_single_sample()</span></code></a> new random generator can be allocated and applied to node</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>node</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></span></dt><dd><p>Theano node with symbolically applied VI replacements</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node: :class:`Variable`</strong></dt><dd><p>Theano node with symbolically applied VI replacements</p>
 </dd>
-<dt><strong>s</strong><span class="classifier">scalar</span></dt><dd><p>desired number of samples</p>
+<dt><strong>s: scalar</strong></dt><dd><p>desired number of samples</p>
 </dd>
-<dt><strong>d</strong><span class="classifier">bool or int</span></dt><dd><p>whether sampling is done deterministically</p>
+<dt><strong>d: bool or int</strong></dt><dd><p>whether sampling is done deterministically</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier">dict</span></dt><dd><p>more replacements to apply</p>
+<dt><strong>more_replacements: dict</strong></dt><dd><p>more replacements to apply</p>
 </dd>
 </dl>
 </dd>
@@ -1595,9 +1764,9 @@ explicit Variational Inference.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>groups</strong><span class="classifier">list[Group]</span></dt><dd><p>List of <a class="reference internal" href="#pymc3.variational.opvi.Group" title="pymc3.variational.opvi.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a> instances. They should have all model variables</p>
+<dt><strong>groups: list[Group]</strong></dt><dd><p>List of <a class="reference internal" href="#pymc3.variational.opvi.Group" title="pymc3.variational.opvi.Group"><code class="xref py py-class docutils literal notranslate"><span class="pre">Group</span></code></a> instances. They should have all model variables</p>
 </dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
+<dt><strong>model: Model</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -1670,11 +1839,11 @@ sample size and deterministic flag</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>s</strong><span class="classifier">scalar</span></dt><dd><p>sample size</p>
+<dt><strong>s: scalar</strong></dt><dd><p>sample size</p>
 </dd>
-<dt><strong>d</strong><span class="classifier">bool</span></dt><dd><p>whether sampling is done deterministically</p>
+<dt><strong>d: bool</strong></dt><dd><p>whether sampling is done deterministically</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier">dict</span></dt><dd><p>replacements for shape and initial</p>
+<dt><strong>more_replacements: dict</strong></dt><dd><p>replacements for shape and initial</p>
 </dd>
 </dl>
 </dd>
@@ -1703,23 +1872,23 @@ This node still needs <a class="reference internal" href="#pymc3.variational.opv
 <dt id="pymc3.variational.opvi.Approximation.sample">
 <code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">draws=500</em>, <em class="sig-param">include_transformed=True</em>, <em class="sig-param">backend='ndarray'</em>, <em class="sig-param">name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw samples from variational posterior.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>draws</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of random samples.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>draws: `int`</strong></dt><dd><p>Number of random samples.</p>
 </dd>
-<dt><strong>include_transformed</strong><span class="classifier"><cite>bool</cite></span></dt><dd><p>If True, transformed variables are also sampled. Default is False.</p>
+<dt><strong>include_transformed: `bool`</strong></dt><dd><p>If True, transformed variables are also sampled. Default is False.</p>
 </dd>
-<dt><strong>backend</strong><span class="classifier"><cite>str</cite></span></dt><dd><p>Trace backend type to use. Valid entries include: ‘ndarray’ (default),
+<dt><strong>backend: `str`</strong></dt><dd><p>Trace backend type to use. Valid entries include: ‘ndarray’ (default),
 ‘text’, ‘sqlite’, ‘hdf5’.</p>
 </dd>
-<dt><strong>name</strong><span class="classifier"><cite>str</cite></span></dt><dd><p>Name for backend (required for non-NDArray backends). Default is None.</p>
+<dt><strong>name: `str`</strong></dt><dd><p>Name for backend (required for non-NDArray backends). Default is None.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>trace</strong><span class="classifier"><a class="reference internal" href="#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.backends.base.MultiTrace</span></code></a></span></dt><dd><p>Samples drawn from variational posterior.</p>
+<dd class="field-even"><dl class="simple">
+<dt>trace: <a class="reference internal" href="#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.backends.base.MultiTrace</span></code></a></dt><dd><p>Samples drawn from variational posterior.</p>
 </dd>
 </dl>
 </dd>
@@ -1730,15 +1899,15 @@ This node still needs <a class="reference internal" href="#pymc3.variational.opv
 <dt id="pymc3.variational.opvi.Approximation.sample_node">
 <code class="sig-name descname">sample_node</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">size=None</em>, <em class="sig-param">deterministic=False</em>, <em class="sig-param">more_replacements=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sample_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>Samples given node or nodes over shared posterior</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>node</strong><span class="classifier">Theano Variables (or Theano expressions)</span></dt><dd></dd>
-<dt><strong>size</strong><span class="classifier">None or scalar</span></dt><dd><p>number of samples</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node: Theano Variables (or Theano expressions)</strong></dt><dd></dd>
+<dt><strong>size: None or scalar</strong></dt><dd><p>number of samples</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>add custom replacements to graph, e.g. change input source</p>
+<dt><strong>more_replacements: `dict`</strong></dt><dd><p>add custom replacements to graph, e.g. change input source</p>
 </dd>
-<dt><strong>deterministic</strong><span class="classifier">bool</span></dt><dd><p>whether to use zeros as initial distribution
+<dt><strong>deterministic: bool</strong></dt><dd><p>whether to use zeros as initial distribution
 if True - zero initial point will produce constant latent variables</p>
 </dd>
 </dl>
@@ -1762,16 +1931,16 @@ if True - zero initial point will produce constant latent variables</p>
 <code class="sig-name descname">set_size_and_deterministic</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">s</em>, <em class="sig-param">d</em>, <em class="sig-param">more_replacements=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.set_size_and_deterministic" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - after node is sampled via <a class="reference internal" href="#pymc3.variational.opvi.Approximation.symbolic_sample_over_posterior" title="pymc3.variational.opvi.Approximation.symbolic_sample_over_posterior"><code class="xref py py-func docutils literal notranslate"><span class="pre">symbolic_sample_over_posterior()</span></code></a> or
 <a class="reference internal" href="#pymc3.variational.opvi.Approximation.symbolic_single_sample" title="pymc3.variational.opvi.Approximation.symbolic_single_sample"><code class="xref py py-func docutils literal notranslate"><span class="pre">symbolic_single_sample()</span></code></a> new random generator can be allocated and applied to node</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>node</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Variable</span></code></span></dt><dd><p>Theano node with symbolically applied VI replacements</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node: :class:`Variable`</strong></dt><dd><p>Theano node with symbolically applied VI replacements</p>
 </dd>
-<dt><strong>s</strong><span class="classifier">scalar</span></dt><dd><p>desired number of samples</p>
+<dt><strong>s: scalar</strong></dt><dd><p>desired number of samples</p>
 </dd>
-<dt><strong>d</strong><span class="classifier">bool or int</span></dt><dd><p>whether sampling is done deterministically</p>
+<dt><strong>d: bool or int</strong></dt><dd><p>whether sampling is done deterministically</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier">dict</span></dt><dd><p>more replacements to apply</p>
+<dt><strong>more_replacements: dict</strong></dt><dd><p>more replacements to apply</p>
 </dd>
 </dl>
 </dd>
@@ -1969,19 +2138,19 @@ as <cite>more_obj_params</cite> argument.</p>
 </ul>
 <p>For more information concerning training stage please reference
 <a class="reference internal" href="#pymc3.variational.opvi.ObjectiveFunction.step_function" title="pymc3.variational.opvi.ObjectiveFunction.step_function"><code class="xref py py-func docutils literal notranslate"><span class="pre">pymc3.variational.opvi.ObjectiveFunction.step_function()</span></code></a></p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>local_rv</strong><span class="classifier">dict[var-&gt;tuple]</span></dt><dd><p>mapping {model_variable -&gt; approx params}
+<dd class="field-odd"><dl class="simple">
+<dt><strong>local_rv: dict[var-&gt;tuple]</strong></dt><dd><p>mapping {model_variable -&gt; approx params}
 Local Vars are used for Autoencoding Variational Bayes
 See (AEVB; Kingma and Welling, 2014) for details</p>
 </dd>
-<dt><strong>model</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.Model</span></code></span></dt><dd><p>PyMC3 model for inference</p>
+<dt><strong>model: :class:`pymc3.Model`</strong></dt><dd><p>PyMC3 model for inference</p>
 </dd>
-<dt><strong>random_seed</strong><span class="classifier">None or int</span></dt><dd><p>leave None to use package global RandomStream or other
+<dt><strong>random_seed: None or int</strong></dt><dd><p>leave None to use package global RandomStream or other
 valid value to create instance specific one</p>
 </dd>
-<dt><strong>start</strong><span class="classifier"><cite>Point</cite></span></dt><dd><p>starting point for inference</p>
+<dt><strong>start: `Point`</strong></dt><dd><p>starting point for inference</p>
 </dd>
 </dl>
 </dd>
@@ -2003,19 +2172,19 @@ Auto-Encoding Variational Bayes. stat, 1050, 1.</p></li>
 <dt id="pymc3.variational.inference.FullRankADVI">
 <em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">FullRankADVI</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.FullRankADVI" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Full Rank Automatic Differentiation Variational Inference (ADVI)</strong></p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>local_rv</strong><span class="classifier">dict[var-&gt;tuple]</span></dt><dd><p>mapping {model_variable -&gt; approx params}
+<dd class="field-odd"><dl class="simple">
+<dt><strong>local_rv: dict[var-&gt;tuple]</strong></dt><dd><p>mapping {model_variable -&gt; approx params}
 Local Vars are used for Autoencoding Variational Bayes
 See (AEVB; Kingma and Welling, 2014) for details</p>
 </dd>
-<dt><strong>model</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.Model</span></code></span></dt><dd><p>PyMC3 model for inference</p>
+<dt><strong>model: :class:`pymc3.Model`</strong></dt><dd><p>PyMC3 model for inference</p>
 </dd>
-<dt><strong>random_seed</strong><span class="classifier">None or int</span></dt><dd><p>leave None to use package global RandomStream or other
+<dt><strong>random_seed: None or int</strong></dt><dd><p>leave None to use package global RandomStream or other
 valid value to create instance specific one</p>
 </dd>
-<dt><strong>start</strong><span class="classifier"><cite>Point</cite></span></dt><dd><p>starting point for inference</p>
+<dt><strong>start: `Point`</strong></dt><dd><p>starting point for inference</p>
 </dd>
 </dl>
 </dd>
@@ -2049,27 +2218,27 @@ they fit target distribution best.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}x_i^{l+1} &amp;\leftarrow x_i^{l} + \epsilon_l \hat{\phi}^{*}(x_i^l) \\
 \hat{\phi}^{*}(x) &amp;= \frac{1}{n}\sum^{n}_{j=1}[k(x^l_j,x) \nabla_{x^l_j} logp(x^l_j)+ \nabla_{x^l_j} k(x^l_j,x)]\end{split}\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>n_particles</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>number of particles to use for approximation</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n_particles: `int`</strong></dt><dd><p>number of particles to use for approximation</p>
 </dd>
-<dt><strong>jitter</strong><span class="classifier"><cite>float</cite></span></dt><dd><p>noise sd for initial point</p>
+<dt><strong>jitter: `float`</strong></dt><dd><p>noise sd for initial point</p>
 </dd>
-<dt><strong>model</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.Model</span></code></span></dt><dd><p>PyMC3 model for inference</p>
+<dt><strong>model: :class:`pymc3.Model`</strong></dt><dd><p>PyMC3 model for inference</p>
 </dd>
-<dt><strong>kernel</strong><span class="classifier"><cite>callable</cite></span></dt><dd><p>kernel function for KSD <span class="math notranslate nohighlight">\(f(histogram) -&gt; (k(x,.), \nabla_x k(x,.))\)</span></p>
+<dt><strong>kernel: `callable`</strong></dt><dd><p>kernel function for KSD <span class="math notranslate nohighlight">\(f(histogram) -&gt; (k(x,.), \nabla_x k(x,.))\)</span></p>
 </dd>
-<dt><strong>temperature</strong><span class="classifier">float</span></dt><dd><p>parameter responsible for exploration, higher temperature gives more broad posterior estimate</p>
+<dt><strong>temperature: float</strong></dt><dd><p>parameter responsible for exploration, higher temperature gives more broad posterior estimate</p>
 </dd>
-<dt><strong>start</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>initial point for inference</p>
+<dt><strong>start: `dict`</strong></dt><dd><p>initial point for inference</p>
 </dd>
-<dt><strong>random_seed</strong><span class="classifier">None or int</span></dt><dd><p>leave None to use package global RandomStream or other
+<dt><strong>random_seed: None or int</strong></dt><dd><p>leave None to use package global RandomStream or other
 valid value to create instance specific one</p>
 </dd>
-<dt><strong>start</strong><span class="classifier"><cite>Point</cite></span></dt><dd><p>starting point for inference</p>
+<dt><strong>start: `Point`</strong></dt><dd><p>starting point for inference</p>
 </dd>
-<dt><strong>kwargs</strong><span class="classifier">other keyword arguments passed to estimator</span></dt><dd></dd>
+<dt><strong>kwargs: other keyword arguments passed to estimator</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -2099,15 +2268,15 @@ they fit target distribution best.</p>
 \[\begin{split}\Delta x_i &amp;= \hat{\phi}^{*}(x_i) \\
 \hat{\phi}^{*}(x) &amp;= \frac{1}{n}\sum^{n}_{j=1}[k(x_j,x) \nabla_{x_j} logp(x_j)+ \nabla_{x_j} k(x_j,x)] \\
 \Delta_{\theta} &amp;= \frac{1}{n}\sum^{n}_{i=1}\Delta x_i\frac{\partial x_i}{\partial \theta}\end{split}\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>approx</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Approximation</span></code></span></dt><dd><p>default is <code class="xref py py-class docutils literal notranslate"><span class="pre">FullRank</span></code> but can be any</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>approx: :class:`Approximation`</strong></dt><dd><p>default is <code class="xref py py-class docutils literal notranslate"><span class="pre">FullRank</span></code> but can be any</p>
 </dd>
-<dt><strong>kernel</strong><span class="classifier"><cite>callable</cite></span></dt><dd><p>kernel function for KSD <span class="math notranslate nohighlight">\(f(histogram) -&gt; (k(x,.), \nabla_x k(x,.))\)</span></p>
+<dt><strong>kernel: `callable`</strong></dt><dd><p>kernel function for KSD <span class="math notranslate nohighlight">\(f(histogram) -&gt; (k(x,.), \nabla_x k(x,.))\)</span></p>
 </dd>
-<dt><strong>model</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></span></dt><dd></dd>
-<dt><strong>kwargs</strong><span class="classifier">kwargs for gradient estimator</span></dt><dd></dd>
+<dt><strong>model: :class:`Model`</strong></dt><dd></dd>
+<dt><strong>kwargs: kwargs for gradient estimator</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -2127,16 +2296,16 @@ arXiv:1704.02399</p></li>
 <dt id="pymc3.variational.inference.ASVGD.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n=10000</em>, <em class="sig-param">score=None</em>, <em class="sig-param">callbacks=None</em>, <em class="sig-param">progressbar=True</em>, <em class="sig-param">obj_n_mc=500</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ASVGD.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform Operator Variational Inference</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>number of iterations</p>
+<dt><strong>n: int</strong></dt><dd><p>number of iterations</p>
 </dd>
-<dt><strong>score</strong><span class="classifier">bool</span></dt><dd><p>evaluate loss on each iteration or not</p>
+<dt><strong>score: bool</strong></dt><dd><p>evaluate loss on each iteration or not</p>
 </dd>
-<dt><strong>callbacks</strong><span class="classifier">list[function</span></dt><dd><p>calls provided functions after each iteration step</p>
+<dt><strong>callbacks: list[function: (Approximation, losses, i) -&gt; None]</strong></dt><dd><p>calls provided functions after each iteration step</p>
 </dd>
-<dt><strong>progressbar</strong><span class="classifier">bool</span></dt><dd><p>whether to show progressbar or not</p>
+<dt><strong>progressbar: bool</strong></dt><dd><p>whether to show progressbar or not</p>
 </dd>
 </dl>
 </dd>
@@ -2146,26 +2315,26 @@ arXiv:1704.02399</p></li>
 </dl>
 </dd>
 <dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>obj_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj_n_mc: `int`</strong></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
 </dd>
-<dt><strong>tf_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
+<dt><strong>tf_n_mc: `int`</strong></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
 </dd>
-<dt><strong>obj_optimizer</strong><span class="classifier">function (grads, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for objective params</p>
+<dt><strong>obj_optimizer: function (grads, params) -&gt; updates</strong></dt><dd><p>Optimizer that is used for objective params</p>
 </dd>
-<dt><strong>test_optimizer</strong><span class="classifier">function (grads, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for test function params</p>
+<dt><strong>test_optimizer: function (grads, params) -&gt; updates</strong></dt><dd><p>Optimizer that is used for test function params</p>
 </dd>
-<dt><strong>more_obj_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for objective optimizer</p>
+<dt><strong>more_obj_params: `list`</strong></dt><dd><p>Add custom params for objective optimizer</p>
 </dd>
-<dt><strong>more_tf_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for test function optimizer</p>
+<dt><strong>more_tf_params: `list`</strong></dt><dd><p>Add custom params for test function optimizer</p>
 </dd>
-<dt><strong>more_updates</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add custom updates to resulting updates</p>
+<dt><strong>more_updates: `dict`</strong></dt><dd><p>Add custom updates to resulting updates</p>
 </dd>
-<dt><strong>total_grad_norm_constraint</strong><span class="classifier"><cite>float</cite></span></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
+<dt><strong>total_grad_norm_constraint: `float`</strong></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
 </dd>
-<dt><strong>fn_kwargs</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add kwargs to theano.function (e.g. <cite>{‘profile’: True}</cite>)</p>
+<dt><strong>fn_kwargs: `dict`</strong></dt><dd><p>Add kwargs to theano.function (e.g. <cite>{‘profile’: True}</cite>)</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Apply custom replacements before calculating gradients</p>
+<dt><strong>more_replacements: `dict`</strong></dt><dd><p>Apply custom replacements before calculating gradients</p>
 </dd>
 </dl>
 </dd>
@@ -2201,15 +2370,15 @@ is an affine transform:</p>
 </ul>
 <p>Formula can be written as a string, e.g. <cite>‘scale-loc’</cite>, <cite>‘scale-hh*4-loc’</cite>, <cite>‘panar*10’</cite>.
 Every step is separated with <cite>‘-‘</cite>, repeated flow is marked with <cite>‘*’</cite> producing <cite>‘flow*repeats’</cite>.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>flow</strong><span class="classifier">str|AbstractFlow</span></dt><dd><p>formula or initialized Flow, default is <cite>‘scale-loc’</cite> that
+<dd class="field-odd"><dl class="simple">
+<dt><strong>flow: str|AbstractFlow</strong></dt><dd><p>formula or initialized Flow, default is <cite>‘scale-loc’</cite> that
 is identical to MeanField</p>
 </dd>
-<dt><strong>model</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.Model</span></code></span></dt><dd><p>PyMC3 model for inference</p>
+<dt><strong>model: :class:`pymc3.Model`</strong></dt><dd><p>PyMC3 model for inference</p>
 </dd>
-<dt><strong>random_seed</strong><span class="classifier">None or int</span></dt><dd><p>leave None to use package global RandomStream or other
+<dt><strong>random_seed: None or int</strong></dt><dd><p>leave None to use package global RandomStream or other
 valid value to create instance specific one</p>
 </dd>
 </dl>
@@ -2222,15 +2391,15 @@ valid value to create instance specific one</p>
 <em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">Inference</code><span class="sig-paren">(</span><em class="sig-param">op</em>, <em class="sig-param">approx</em>, <em class="sig-param">tf</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.Inference" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Base class for Variational Inference</strong></p>
 <p>Communicates Operator, Approximation and Test Function to build Objective Function</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>op</strong><span class="classifier">Operator class</span></dt><dd></dd>
-<dt><strong>approx</strong><span class="classifier">Approximation class or instance</span></dt><dd></dd>
-<dt><strong>tf</strong><span class="classifier">TestFunction instance</span></dt><dd></dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd><p>PyMC3 Model</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>op: Operator class</strong></dt><dd></dd>
+<dt><strong>approx: Approximation class or instance</strong></dt><dd></dd>
+<dt><strong>tf: TestFunction instance</strong></dt><dd></dd>
+<dt><strong>model: Model</strong></dt><dd><p>PyMC3 Model</p>
 </dd>
-<dt><strong>kwargs</strong><span class="classifier">kwargs passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">Operator</span></code></span></dt><dd></dd>
+<dt><strong>kwargs: kwargs passed to :class:`Operator`</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -2238,16 +2407,16 @@ valid value to create instance specific one</p>
 <dt id="pymc3.variational.inference.Inference.fit">
 <code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">n=10000</em>, <em class="sig-param">score=None</em>, <em class="sig-param">callbacks=None</em>, <em class="sig-param">progressbar=True</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.Inference.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform Operator Variational Inference</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>number of iterations</p>
+<dt><strong>n: int</strong></dt><dd><p>number of iterations</p>
 </dd>
-<dt><strong>score</strong><span class="classifier">bool</span></dt><dd><p>evaluate loss on each iteration or not</p>
+<dt><strong>score: bool</strong></dt><dd><p>evaluate loss on each iteration or not</p>
 </dd>
-<dt><strong>callbacks</strong><span class="classifier">list[function</span></dt><dd><p>calls provided functions after each iteration step</p>
+<dt><strong>callbacks: list[function: (Approximation, losses, i) -&gt; None]</strong></dt><dd><p>calls provided functions after each iteration step</p>
 </dd>
-<dt><strong>progressbar</strong><span class="classifier">bool</span></dt><dd><p>whether to show progressbar or not</p>
+<dt><strong>progressbar: bool</strong></dt><dd><p>whether to show progressbar or not</p>
 </dd>
 </dl>
 </dd>
@@ -2257,26 +2426,26 @@ valid value to create instance specific one</p>
 </dl>
 </dd>
 <dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>obj_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>obj_n_mc: `int`</strong></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
 </dd>
-<dt><strong>tf_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
+<dt><strong>tf_n_mc: `int`</strong></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
 </dd>
-<dt><strong>obj_optimizer</strong><span class="classifier">function (grads, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for objective params</p>
+<dt><strong>obj_optimizer: function (grads, params) -&gt; updates</strong></dt><dd><p>Optimizer that is used for objective params</p>
 </dd>
-<dt><strong>test_optimizer</strong><span class="classifier">function (grads, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for test function params</p>
+<dt><strong>test_optimizer: function (grads, params) -&gt; updates</strong></dt><dd><p>Optimizer that is used for test function params</p>
 </dd>
-<dt><strong>more_obj_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for objective optimizer</p>
+<dt><strong>more_obj_params: `list`</strong></dt><dd><p>Add custom params for objective optimizer</p>
 </dd>
-<dt><strong>more_tf_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for test function optimizer</p>
+<dt><strong>more_tf_params: `list`</strong></dt><dd><p>Add custom params for test function optimizer</p>
 </dd>
-<dt><strong>more_updates</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add custom updates to resulting updates</p>
+<dt><strong>more_updates: `dict`</strong></dt><dd><p>Add custom updates to resulting updates</p>
 </dd>
-<dt><strong>total_grad_norm_constraint</strong><span class="classifier"><cite>float</cite></span></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
+<dt><strong>total_grad_norm_constraint: `float`</strong></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
 </dd>
-<dt><strong>fn_kwargs</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add kwargs to theano.function (e.g. <cite>{‘profile’: True}</cite>)</p>
+<dt><strong>fn_kwargs: `dict`</strong></dt><dd><p>Add kwargs to theano.function (e.g. <cite>{‘profile’: True}</cite>)</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Apply custom replacements before calculating gradients</p>
+<dt><strong>more_replacements: `dict`</strong></dt><dd><p>Apply custom replacements before calculating gradients</p>
 </dd>
 </dl>
 </dd>
@@ -2311,13 +2480,13 @@ samples but there is no theoretical approach to choose the best one in such case
 by maximizing ELBO (Evidence Lower Bound). In some cases
 rescaling the regularization term KL may be beneficial</p>
 <div class="math notranslate nohighlight">
-\[ELBO_eta = \log p(D|   heta) - eta KL(q||p)\]</div>
-<dl class="field-list">
+\[ELBO_\beta = \log p(D|\theta) - \beta KL(q||p)\]</div>
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>approx</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Approximation</span></code></span></dt><dd><p>Approximation to fit, it is required to have <cite>logQ</cite></p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>approx: :class:`Approximation`</strong></dt><dd><p>Approximation to fit, it is required to have <cite>logQ</cite></p>
 </dd>
-<dt><strong>beta</strong><span class="classifier">float</span></dt><dd><p>Scales the regularization term in ELBO (see Christopher P. Burgess et al., 2017)</p>
+<dt><strong>beta: float</strong></dt><dd><p>Scales the regularization term in ELBO (see Christopher P. Burgess et al., 2017)</p>
 </dd>
 </dl>
 </dd>
@@ -2325,7 +2494,7 @@ rescaling the regularization term KL may be beneficial</p>
 <p class="rubric">References</p>
 <ul class="simple">
 <li><p>Christopher P. Burgess et al. (NIPS, 2017)
-Understanding disentangling in <span class="math notranslate nohighlight">\(eta\)</span>-VAE
+Understanding disentangling in <span class="math notranslate nohighlight">\(\beta\)</span>-VAE
 arXiv preprint 1804.03599</p></li>
 </ul>
 </dd></dl>
@@ -2334,16 +2503,16 @@ arXiv preprint 1804.03599</p></li>
 <dt id="pymc3.variational.inference.fit">
 <code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">n=10000</em>, <em class="sig-param">local_rv=None</em>, <em class="sig-param">method='advi'</em>, <em class="sig-param">model=None</em>, <em class="sig-param">random_seed=None</em>, <em class="sig-param">start=None</em>, <em class="sig-param">inf_kwargs=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handy shortcut for using inference methods in functional way</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>n</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>number of iterations</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n: `int`</strong></dt><dd><p>number of iterations</p>
 </dd>
-<dt><strong>local_rv</strong><span class="classifier">dict[var-&gt;tuple]</span></dt><dd><p>mapping {model_variable -&gt; approx params}
+<dt><strong>local_rv: dict[var-&gt;tuple]</strong></dt><dd><p>mapping {model_variable -&gt; approx params}
 Local Vars are used for Autoencoding Variational Bayes
 See (AEVB; Kingma and Welling, 2014) for details</p>
 </dd>
-<dt><strong>method</strong><span class="classifier">str or <a class="reference internal" href="#pymc3.variational.inference.Inference" title="pymc3.variational.inference.Inference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inference</span></code></a></span></dt><dd><p>string name is case insensitive in:</p>
+<dt><strong>method: str or :class:`Inference`</strong></dt><dd><p>string name is case insensitive in:</p>
 <ul class="simple">
 <li><p>‘advi’  for ADVI</p></li>
 <li><p>‘fullrank_advi’  for FullRankADVI</p></li>
@@ -2353,14 +2522,14 @@ See (AEVB; Kingma and Welling, 2014) for details</p>
 <li><p>‘nfvi=&lt;formula&gt;’  for Normalizing Flow using formula</p></li>
 </ul>
 </dd>
-<dt><strong>model</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></span></dt><dd><p>PyMC3 model for inference</p>
+<dt><strong>model: :class:`Model`</strong></dt><dd><p>PyMC3 model for inference</p>
 </dd>
-<dt><strong>random_seed</strong><span class="classifier">None or int</span></dt><dd><p>leave None to use package global RandomStream or other
+<dt><strong>random_seed: None or int</strong></dt><dd><p>leave None to use package global RandomStream or other
 valid value to create instance specific one</p>
 </dd>
-<dt><strong>inf_kwargs</strong><span class="classifier">dict</span></dt><dd><p>additional kwargs passed to <a class="reference internal" href="#pymc3.variational.inference.Inference" title="pymc3.variational.inference.Inference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inference</span></code></a></p>
+<dt><strong>inf_kwargs: dict</strong></dt><dd><p>additional kwargs passed to <a class="reference internal" href="#pymc3.variational.inference.Inference" title="pymc3.variational.inference.Inference"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inference</span></code></a></p>
 </dd>
-<dt><strong>start</strong><span class="classifier"><cite>Point</cite></span></dt><dd><p>starting point for inference</p>
+<dt><strong>start: `Point`</strong></dt><dd><p>starting point for inference</p>
 </dd>
 </dl>
 </dd>
@@ -2370,32 +2539,32 @@ valid value to create instance specific one</p>
 </dl>
 </dd>
 <dt class="field-odd">Other Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>score</strong><span class="classifier">bool</span></dt><dd><p>evaluate loss on each iteration or not</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>score: bool</strong></dt><dd><p>evaluate loss on each iteration or not</p>
 </dd>
-<dt><strong>callbacks</strong><span class="classifier">list[function</span></dt><dd><p>calls provided functions after each iteration step</p>
+<dt><strong>callbacks: list[function: (Approximation, losses, i) -&gt; None]</strong></dt><dd><p>calls provided functions after each iteration step</p>
 </dd>
-<dt><strong>progressbar</strong><span class="classifier">bool</span></dt><dd><p>whether to show progressbar or not</p>
+<dt><strong>progressbar: bool</strong></dt><dd><p>whether to show progressbar or not</p>
 </dd>
-<dt><strong>obj_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
+<dt><strong>obj_n_mc: `int`</strong></dt><dd><p>Number of monte carlo samples used for approximation of objective gradients</p>
 </dd>
-<dt><strong>tf_n_mc</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
+<dt><strong>tf_n_mc: `int`</strong></dt><dd><p>Number of monte carlo samples used for approximation of test function gradients</p>
 </dd>
-<dt><strong>obj_optimizer</strong><span class="classifier">function (grads, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for objective params</p>
+<dt><strong>obj_optimizer: function (grads, params) -&gt; updates</strong></dt><dd><p>Optimizer that is used for objective params</p>
 </dd>
-<dt><strong>test_optimizer</strong><span class="classifier">function (grads, params) -&gt; updates</span></dt><dd><p>Optimizer that is used for test function params</p>
+<dt><strong>test_optimizer: function (grads, params) -&gt; updates</strong></dt><dd><p>Optimizer that is used for test function params</p>
 </dd>
-<dt><strong>more_obj_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for objective optimizer</p>
+<dt><strong>more_obj_params: `list`</strong></dt><dd><p>Add custom params for objective optimizer</p>
 </dd>
-<dt><strong>more_tf_params</strong><span class="classifier"><cite>list</cite></span></dt><dd><p>Add custom params for test function optimizer</p>
+<dt><strong>more_tf_params: `list`</strong></dt><dd><p>Add custom params for test function optimizer</p>
 </dd>
-<dt><strong>more_updates</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add custom updates to resulting updates</p>
+<dt><strong>more_updates: `dict`</strong></dt><dd><p>Add custom updates to resulting updates</p>
 </dd>
-<dt><strong>total_grad_norm_constraint</strong><span class="classifier"><cite>float</cite></span></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
+<dt><strong>total_grad_norm_constraint: `float`</strong></dt><dd><p>Bounds gradient norm, prevents exploding gradient problem</p>
 </dd>
-<dt><strong>fn_kwargs</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Add kwargs to theano.function (e.g. <cite>{‘profile’: True}</cite>)</p>
+<dt><strong>fn_kwargs: `dict`</strong></dt><dd><p>Add kwargs to theano.function (e.g. <cite>{‘profile’: True}</cite>)</p>
 </dd>
-<dt><strong>more_replacements</strong><span class="classifier"><cite>dict</cite></span></dt><dd><p>Apply custom replacements before calculating gradients</p>
+<dt><strong>more_replacements: `dict`</strong></dt><dd><p>Apply custom replacements before calculating gradients</p>
 </dd>
 </dl>
 </dd>
@@ -2438,7 +2607,7 @@ it has the same interface as variational approximation</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>node</strong><span class="classifier">Theano Variables (or Theano expressions)</span></dt><dd></dd>
+<dt><strong>node: Theano Variables (or Theano expressions)</strong></dt><dd></dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -2494,20 +2663,20 @@ arXiv:1611.09630</p></li>
 <dt id="pymc3.variational.approximations.sample_approx">
 <code class="sig-prename descclassname">pymc3.variational.approximations.</code><code class="sig-name descname">sample_approx</code><span class="sig-paren">(</span><em class="sig-param">approx</em>, <em class="sig-param">draws=100</em>, <em class="sig-param">include_transformed=True</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.sample_approx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw samples from variational posterior.</p>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>approx</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Approximation</span></code></span></dt><dd><p>Approximation to sample from</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>approx: :class:`Approximation`</strong></dt><dd><p>Approximation to sample from</p>
 </dd>
-<dt><strong>draws</strong><span class="classifier"><cite>int</cite></span></dt><dd><p>Number of random samples.</p>
+<dt><strong>draws: `int`</strong></dt><dd><p>Number of random samples.</p>
 </dd>
-<dt><strong>include_transformed</strong><span class="classifier"><cite>bool</cite></span></dt><dd><p>If True, transformed variables are also sampled. Default is True.</p>
+<dt><strong>include_transformed: `bool`</strong></dt><dd><p>If True, transformed variables are also sampled. Default is True.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><dl>
-<dt><strong>trace</strong><span class="classifier">class:<cite>pymc3.backends.base.MultiTrace</cite></span></dt><dd><p>Samples drawn from variational posterior.</p>
+<dd class="field-even"><dl class="simple">
+<dt>trace: class:<cite>pymc3.backends.base.MultiTrace</cite></dt><dd><p>Samples drawn from variational posterior.</p>
 </dd>
 </dl>
 </dd>
@@ -2527,12 +2696,12 @@ arXiv:1611.09630</p></li>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[KL[q(v)||p(v)] = \int q(v)\log\frac{q(v)}{p(v)}dv\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>approx</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Approximation</span></code></span></dt><dd><p>Approximation used for inference</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>approx: :class:`Approximation`</strong></dt><dd><p>Approximation used for inference</p>
 </dd>
-<dt><strong>beta</strong><span class="classifier">float</span></dt><dd><p>Beta parameter for KL divergence, scales the regularization term.</p>
+<dt><strong>beta: float</strong></dt><dd><p>Beta parameter for KL divergence, scales the regularization term.</p>
 </dd>
 </dl>
 </dd>
@@ -2543,10 +2712,10 @@ arXiv:1611.09630</p></li>
 <dd><p>Operator itself</p>
 <div class="math notranslate nohighlight">
 \[(O^{p,q}f_{\theta})(z)\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>f</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestFunction</span></code> or None</span></dt><dd><p>function that takes <cite>z = self.input</cite> and returns
+<dd class="field-odd"><dl class="simple">
+<dt><strong>f: :class:`TestFunction` or None</strong></dt><dd><p>function that takes <cite>z = self.input</cite> and returns
 same dimensional output</p>
 </dd>
 </dl>
@@ -2575,10 +2744,10 @@ same dimensional output</p>
 \[\begin{split}x_i^{l+1} \leftarrow \epsilon_l \hat{\phi}^{*}(x_i^l) \\
 \hat{\phi}^{*}(x) = \frac{1}{n}\sum^{n}_{j=1}[k(x^l_j,x) \nabla_{x^l_j} logp(x^l_j)/temp +
 \nabla_{x^l_j} k(x^l_j,x)]\end{split}\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>approx</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">Approximation</span></code></span></dt><dd><p>Approximation used for inference</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>approx: :class:`Approximation`</strong></dt><dd><p>Approximation used for inference</p>
 </dd>
 <dt><strong>temperature: float</strong></dt><dd><p>Temperature for Stein gradient</p>
 </dd>
@@ -2597,10 +2766,10 @@ arXiv:1608.04471</p></li>
 <dd><p>Operator itself</p>
 <div class="math notranslate nohighlight">
 \[(O^{p,q}f_{\theta})(z)\]</div>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>f</strong><span class="classifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">TestFunction</span></code> or None</span></dt><dd><p>function that takes <cite>z = self.input</cite> and returns
+<dd class="field-odd"><dl class="simple">
+<dt><strong>f: :class:`TestFunction` or None</strong></dt><dd><p>function that takes <cite>z = self.input</cite> and returns
 same dimensional output</p>
 </dd>
 </dl>
@@ -2640,7 +2809,7 @@ same dimensional output</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

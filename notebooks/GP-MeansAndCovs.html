@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Mean and Covariance Functions &#8212; PyMC3 3.8 documentation</title>
+    <title>Mean and Covariance Functions &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -225,6 +225,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -259,7 +280,7 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<div class="nbinput docutils container">
+<div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
@@ -276,15 +297,6 @@ div.rendered_html tbody tr:hover {
 <span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
 </pre></div>
 </div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
-</pre></div></div>
 </div>
 <div class="section" id="Mean-and-Covariance-Functions">
 <h1>Mean and Covariance Functions<a class="headerlink" href="#Mean-and-Covariance-Functions" title="Permalink to this headline">¶</a></h1>
@@ -548,16 +560,25 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/basic.py:6611: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  result[diagonal_slice] = x
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_20_0.png" src="../_images/notebooks_GP-MeansAndCovs_20_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_20_1.png" src="../_images/notebooks_GP-MeansAndCovs_20_1.png" />
 </div>
 </div>
 </div>
-<div class="section" id="Constant">
-<h3>Constant<a class="headerlink" href="#Constant" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Constant<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[k(x, x') = c\]</div>
 <div class="nbinput docutils container">
@@ -718,12 +739,44 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
+<div class="section" id="Matern-1/2">
+<h3>Matern 1/2<a class="headerlink" href="#Matern-1/2" title="Permalink to this headline">¶</a></h3>
+<div class="math notranslate nohighlight">
+\[k(x, x') = \mathrm{exp}\left[ -\frac{(x - x')^2}{\ell} \right]\]</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ls</span> <span class="o">=</span> <span class="mf">0.2</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">Matern12</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">MvNormal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">cov</span><span class="o">=</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Samples from the GP prior&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GP-MeansAndCovs_32_0.png" src="../_images/notebooks_GP-MeansAndCovs_32_0.png" />
+</div>
+</div>
+</div>
 <div class="section" id="Cosine">
 <h3>Cosine<a class="headerlink" href="#Cosine" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[k(x, x') = \mathrm{cos}\left( 2 \pi \frac{||x - x'||}{ \ell^2} \right)\]</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -745,16 +798,16 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_32_0.png" src="../_images/notebooks_GP-MeansAndCovs_32_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_34_0.png" src="../_images/notebooks_GP-MeansAndCovs_34_0.png" />
 </div>
 </div>
 </div>
-<div class="section" id="Linear">
-<h3>Linear<a class="headerlink" href="#Linear" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h3>Linear<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="math notranslate nohighlight">
 \[k(x, x') = (x - c)(x' - c)\]</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -777,7 +830,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_34_0.png" src="../_images/notebooks_GP-MeansAndCovs_34_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_36_0.png" src="../_images/notebooks_GP-MeansAndCovs_36_0.png" />
 </div>
 </div>
 </div>
@@ -786,7 +839,7 @@ div.rendered_html tbody tr:hover {
 <div class="math notranslate nohighlight">
 \[k(x, x') = [(x - c)(x' - c) + \mathrm{offset}]^{d}\]</div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -811,7 +864,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_36_0.png" src="../_images/notebooks_GP-MeansAndCovs_36_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_38_0.png" src="../_images/notebooks_GP-MeansAndCovs_38_0.png" />
 </div>
 </div>
 </div>
@@ -819,7 +872,7 @@ div.rendered_html tbody tr:hover {
 <h3>Multiplication with a precomputed covariance matrix<a class="headerlink" href="#Multiplication-with-a-precomputed-covariance-matrix" title="Permalink to this headline">¶</a></h3>
 <p>A covariance function <code class="docutils literal notranslate"><span class="pre">cov</span></code> can be multiplied with numpy matrix, <code class="docutils literal notranslate"><span class="pre">K_cos</span></code>, as long as the shapes are appropriate.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -846,7 +899,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_38_0.png" src="../_images/notebooks_GP-MeansAndCovs_38_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_40_0.png" src="../_images/notebooks_GP-MeansAndCovs_40_0.png" />
 </div>
 </div>
 </div>
@@ -855,7 +908,7 @@ div.rendered_html tbody tr:hover {
 <p>If <span class="math notranslate nohighlight">\(k(x, x')\)</span> is a valid covariance function, then so is <span class="math notranslate nohighlight">\(k(w(x), w(x'))\)</span>.</p>
 <p>The first argument of the warping function must be the input <code class="docutils literal notranslate"><span class="pre">X</span></code>. The remaining arguments can be anything else, including random variables.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -889,14 +942,14 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_40_0.png" src="../_images/notebooks_GP-MeansAndCovs_40_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_42_0.png" src="../_images/notebooks_GP-MeansAndCovs_42_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_40_1.png" src="../_images/notebooks_GP-MeansAndCovs_40_1.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_42_1.png" src="../_images/notebooks_GP-MeansAndCovs_42_1.png" />
 </div>
 </div>
 </div>
@@ -909,7 +962,7 @@ div.rendered_html tbody tr:hover {
 <p>Where T is the period, and <span class="math notranslate nohighlight">\(\ell\)</span> is the lengthscale. It can be derived by warping the input of an <code class="docutils literal notranslate"><span class="pre">ExpQuad</span></code> kernel with the function <span class="math notranslate nohighlight">\(\mathbf{u}(x) = (\sin(2\pi x \frac{1}{T})\,, \cos(2 \pi x \frac{1}{T}))\)</span>. Here we use the <code class="docutils literal notranslate"><span class="pre">WarpedInput</span></code> kernel to construct it.</p>
 <p>The input <code class="docutils literal notranslate"><span class="pre">X</span></code>, which is defined at the top of this page, is 2 “seconds” long. We use a period of <span class="math notranslate nohighlight">\(0.5\)</span>, which means that functions drawn from this GP prior will repeat 4 times over 2 seconds.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -939,7 +992,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_42_0.png" src="../_images/notebooks_GP-MeansAndCovs_42_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_44_0.png" src="../_images/notebooks_GP-MeansAndCovs_44_0.png" />
 </div>
 </div>
 </div>
@@ -947,7 +1000,7 @@ div.rendered_html tbody tr:hover {
 <h3>Periodic<a class="headerlink" href="#Periodic" title="Permalink to this headline">¶</a></h3>
 <p>There is no need to construct the periodic covariance this way every time. A more efficient implementation of this covariance function is built in.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -968,7 +1021,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_44_0.png" src="../_images/notebooks_GP-MeansAndCovs_44_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_46_0.png" src="../_images/notebooks_GP-MeansAndCovs_46_0.png" />
 </div>
 </div>
 </div>
@@ -976,7 +1029,7 @@ div.rendered_html tbody tr:hover {
 <h3>Gibbs<a class="headerlink" href="#Gibbs" title="Permalink to this headline">¶</a></h3>
 <p>The Gibbs covariance function applies a positive definite warping function to the lengthscale. Similarly to <code class="docutils literal notranslate"><span class="pre">WarpedInput</span></code>, the lengthscale warping function can be specified with parameters that are either fixed or random variables.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1012,14 +1065,14 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_46_0.png" src="../_images/notebooks_GP-MeansAndCovs_46_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_48_0.png" src="../_images/notebooks_GP-MeansAndCovs_48_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_46_1.png" src="../_images/notebooks_GP-MeansAndCovs_46_1.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_48_1.png" src="../_images/notebooks_GP-MeansAndCovs_48_1.png" />
 </div>
 </div>
 </div>
@@ -1030,7 +1083,7 @@ div.rendered_html tbody tr:hover {
 \[k_{\mathrm{scaled}}(x, x') = \phi(x) k_{\mathrm{base}}(x, x') \phi(x') \,.\]</div>
 <p>This is useful for specifying covariance functions whose amplitude changes across the domain.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1067,14 +1120,14 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_48_0.png" src="../_images/notebooks_GP-MeansAndCovs_48_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_50_0.png" src="../_images/notebooks_GP-MeansAndCovs_50_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_48_1.png" src="../_images/notebooks_GP-MeansAndCovs_48_1.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_50_1.png" src="../_images/notebooks_GP-MeansAndCovs_50_1.png" />
 </div>
 </div>
 </div>
@@ -1086,7 +1139,7 @@ div.rendered_html tbody tr:hover {
 \[k(x, x') = \phi(x)k_{1}(x, x')\phi(x)  + (1 - \phi(x))k_{2}(x, x')(1 - \phi(x'))\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi(x)\)</span> is the logistic function.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1127,14 +1180,127 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_50_0.png" src="../_images/notebooks_GP-MeansAndCovs_50_0.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_52_0.png" src="../_images/notebooks_GP-MeansAndCovs_52_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GP-MeansAndCovs_50_1.png" src="../_images/notebooks_GP-MeansAndCovs_50_1.png" />
+<img alt="../_images/notebooks_GP-MeansAndCovs_52_1.png" src="../_images/notebooks_GP-MeansAndCovs_52_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Combination-of-two-or-more-Covariance-functions">
+<h3>Combination of two or more Covariance functions<a class="headerlink" href="#Combination-of-two-or-more-Covariance-functions" title="Permalink to this headline">¶</a></h3>
+<p>You can combine different covariance functions to model complex data.</p>
+<p>In particular, you can perform the following operations on any covaraince functions:</p>
+<ul class="simple">
+<li><p>Add other covariance function with equal or broadcastable dimensions with first covariance function</p></li>
+<li><p>Multiply with a scalar or a covariance function with equal or broadcastable dimensions with first covariance function</p></li>
+<li><p>Exponentiate with a scalar.</p></li>
+</ul>
+<div class="section" id="Addition">
+<h4>Addition<a class="headerlink" href="#Addition" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ls_1</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">tau_1</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">ls_2</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">tau_2</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">cov_1</span> <span class="o">=</span> <span class="n">tau_1</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls_1</span><span class="p">)</span>
+<span class="n">cov_2</span> <span class="o">=</span> <span class="n">tau_2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls_2</span><span class="p">)</span>
+
+<span class="n">cov</span> <span class="o">=</span> <span class="n">cov_1</span> <span class="o">+</span> <span class="n">cov_2</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">MvNormal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">cov</span><span class="o">=</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Samples from the GP prior&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GP-MeansAndCovs_55_0.png" src="../_images/notebooks_GP-MeansAndCovs_55_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Multiplication">
+<h4>Multiplication<a class="headerlink" href="#Multiplication" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ls_1</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">tau_1</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">ls_2</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">tau_2</span> <span class="o">=</span> <span class="mf">1.</span>
+<span class="n">cov_1</span> <span class="o">=</span> <span class="n">tau_1</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls_1</span><span class="p">)</span>
+<span class="n">cov_2</span> <span class="o">=</span> <span class="n">tau_2</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls_2</span><span class="p">)</span>
+
+<span class="n">cov</span> <span class="o">=</span> <span class="n">cov_1</span> <span class="o">*</span> <span class="n">cov_2</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">MvNormal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">cov</span><span class="o">=</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Samples from the GP prior&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GP-MeansAndCovs_57_0.png" src="../_images/notebooks_GP-MeansAndCovs_57_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Exponentiation">
+<h4>Exponentiation<a class="headerlink" href="#Exponentiation" title="Permalink to this headline">¶</a></h4>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">ls_1</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span class="n">tau_1</span> <span class="o">=</span> <span class="mf">2.</span>
+<span class="n">power</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">cov_1</span> <span class="o">=</span> <span class="n">tau_1</span> <span class="o">*</span> <span class="n">pm</span><span class="o">.</span><span class="n">gp</span><span class="o">.</span><span class="n">cov</span><span class="o">.</span><span class="n">ExpQuad</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="n">ls_1</span><span class="p">)</span>
+
+<span class="n">cov</span> <span class="o">=</span> <span class="n">cov_1</span> <span class="o">**</span> <span class="n">power</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">200</span><span class="p">)[:,</span><span class="kc">None</span><span class="p">]</span>
+<span class="n">K</span> <span class="o">=</span> <span class="n">cov</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">MvNormal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">cov</span><span class="o">=</span><span class="n">K</span><span class="p">)</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Samples from the GP prior&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/notebooks_GP-MeansAndCovs_59_0.png" src="../_images/notebooks_GP-MeansAndCovs_59_0.png" />
+</div>
 </div>
 </div>
 </div>
@@ -1158,14 +1324,30 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <p>If we have forgotten an important covariance or mean function, please feel free to submit a pull request!</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+theano 1.0.4
+pymc3  3.9.0
+numpy  1.18.5
+last updated: Fri Jun 12 2020
+
+CPython 3.7.7
+IPython 7.15.0
+watermark 2.0.2
+</pre></div></div>
 </div>
 </div>
 </div>
@@ -1185,7 +1367,7 @@ div.rendered_html tbody tr:hover {
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

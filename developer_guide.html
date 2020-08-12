@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>PyMC3 Developer Guide &#8212; PyMC3 3.8 documentation</title>
+    <title>PyMC3 Developer Guide &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="_static/highlight.min.js"></script>
-    <script type="text/javascript" src="_static/semantic.min.js"></script>
+    <script src="_static/highlight.min.js"></script>
+    <script src="_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="nb_tutorials/index.html" class="item">Tutorials</a> <a href="nb_examples/index.html" class="item">Examples</a> <a href="learn.html" class="item">Books + Videos</a> <a href="api.html" class="item">API</a> <a href="#" class="item">Developer Guide</a> <a href="history.html" class="item">About PyMC3</a>
+             <a href="nb_tutorials/index.html" class="item">Tutorials</a> <a href="nb_examples/index.html" class="item">Examples</a> <a href="learn.html" class="item">Books + Videos</a> <a href="api.html" class="item">API</a> <a href="#" class="item">Developer Guide</a> <a href="about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -838,9 +839,10 @@ kernels in TFP do not flatten the tensors, see eg docstring of
 rules. This part is actually all done outside of Theano, for NUTS, it
 includes: the leapfrog, dual averaging, tunning of mass matrix and step
 size, the tree building, sampler related statistics like divergence and
-energy checking. We actually have a Theano version of HMC:
-<a class="reference external" href="https://github.com/pymc-devs/pymc3/blob/master/pymc3/step_methods/hmc/trajectory.py">https://github.com/pymc-devs/pymc3/blob/master/pymc3/step_methods/hmc/trajectory.py</a>
-but it is never been used.</p>
+energy checking. We actually have a Theano version of HMC, but it has never
+been used, and has been removed from the main repository. It can still be
+found in the <a class="reference external" href="https://github.com/pymc-devs/pymc3/pull/3734/commits/0fdae8207fd14f66635f3673ef267b2b8817aa68">git history</a>,
+though.</p>
 </div>
 </div>
 <div class="section" id="variational-inference-vi">
@@ -1049,7 +1051,7 @@ for every logp evaluation.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

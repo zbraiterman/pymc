@@ -1,1 +1,1 @@
-az.plot_kde(mu_posterior, rotated=True)
+az.plot_kde(mu_posterior, rug=True)

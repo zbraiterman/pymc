@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Multivariate &#8212; PyMC3 3.8 documentation</title>
+    <title>Multivariate &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../../_static/semantic.min.js"></script>
+    <script src="../../_static/highlight.min.js"></script>
+    <script src="../../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../history.html" class="item">About PyMC3</a>
+             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -82,8 +83,8 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.multivariate.Wishart" title="pymc3.distributions.multivariate.Wishart"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wishart</span></code></a>(nu, V, *args, **kwargs)</p></td>
 <td><p>Wishart log-likelihood.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.multivariate.LKJCholeskyCov" title="pymc3.distributions.multivariate.LKJCholeskyCov"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LKJCholeskyCov</span></code></a>(eta, n, sd_dist, *args, **kwargs)</p></td>
-<td><p>Covariance matrix with LKJ distributed correlations.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.multivariate.LKJCholeskyCov" title="pymc3.distributions.multivariate.LKJCholeskyCov"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LKJCholeskyCov</span></code></a>(name, eta, n, sd_dist[, …])</p></td>
+<td><p>Wrapper function for covariance matrix with LKJ distributed correlations.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.multivariate.LKJCorr" title="pymc3.distributions.multivariate.LKJCorr"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LKJCorr</span></code></a>([eta, n, p, transform])</p></td>
 <td><p>The LKJ (Lewandowski, Kurowicka and Joe) log-likelihood.</p></td>
@@ -124,16 +125,16 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mu</strong><span class="classifier">array</span></dt><dd><p>Vector of means.</p>
+<dt><strong>mu: array</strong></dt><dd><p>Vector of means.</p>
 </dd>
-<dt><strong>cov</strong><span class="classifier">array</span></dt><dd><p>Covariance matrix. Exactly one of cov, tau, or chol is needed.</p>
+<dt><strong>cov: array</strong></dt><dd><p>Covariance matrix. Exactly one of cov, tau, or chol is needed.</p>
 </dd>
-<dt><strong>tau</strong><span class="classifier">array</span></dt><dd><p>Precision matrix. Exactly one of cov, tau, or chol is needed.</p>
+<dt><strong>tau: array</strong></dt><dd><p>Precision matrix. Exactly one of cov, tau, or chol is needed.</p>
 </dd>
-<dt><strong>chol</strong><span class="classifier">array</span></dt><dd><p>Cholesky decomposition of covariance matrix. Exactly one of cov,
+<dt><strong>chol: array</strong></dt><dd><p>Cholesky decomposition of covariance matrix. Exactly one of cov,
 tau, or chol is needed.</p>
 </dd>
-<dt><strong>lower</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether chol is the lower tridiagonal cholesky factor.</p>
+<dt><strong>lower: bool, default=True</strong></dt><dd><p>Whether chol is the lower tridiagonal cholesky factor.</p>
 </dd>
 </dl>
 </dd>
@@ -156,19 +157,17 @@ of <cite>LKJCholeskyCov</cite> for more information about this):</p>
                      <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">true_cov</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-<span class="n">sd_dist</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">chol_packed</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">LKJCholeskyCov</span><span class="p">(</span><span class="s1">&#39;chol_packed&#39;</span><span class="p">,</span>
-    <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sd_dist</span><span class="o">=</span><span class="n">sd_dist</span><span class="p">)</span>
-<span class="n">chol</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">expand_packed_triangular</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">chol_packed</span><span class="p">)</span>
+<span class="n">sd_dist</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Exponential</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">chol</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">stds</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">LKJCholeskyCov</span><span class="p">(</span><span class="s1">&#39;chol_cov&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">sd_dist</span><span class="o">=</span><span class="n">sd_dist</span><span class="p">,</span> <span class="n">compute_corr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">vals</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">MvNormal</span><span class="p">(</span><span class="s1">&#39;vals&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">chol</span><span class="o">=</span><span class="n">chol</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>For unobserved values it can be better to use a non-centered
 parametrization:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sd_dist</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">chol_packed</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">LKJCholeskyCov</span><span class="p">(</span><span class="s1">&#39;chol_packed&#39;</span><span class="p">,</span>
-    <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sd_dist</span><span class="o">=</span><span class="n">sd_dist</span><span class="p">)</span>
-<span class="n">chol</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">expand_packed_triangular</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">chol_packed</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sd_dist</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Exponential</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">chol</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">LKJCholeskyCov</span><span class="p">(</span><span class="s1">&#39;chol_cov&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">sd_dist</span><span class="o">=</span><span class="n">sd_dist</span><span class="p">,</span> <span class="n">compute_corr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">vals_raw</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;vals_raw&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 <span class="n">vals</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;vals&#39;</span><span class="p">,</span> <span class="n">tt</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">chol</span><span class="p">,</span> <span class="n">vals_raw</span><span class="o">.</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
@@ -181,7 +180,7 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log-probability is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -200,10 +199,10 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -257,19 +256,19 @@ specified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>nu</strong><span class="classifier">int</span></dt><dd><p>Degrees of freedom.</p>
+<dt><strong>nu: int</strong></dt><dd><p>Degrees of freedom.</p>
 </dd>
-<dt><strong>Sigma</strong><span class="classifier">matrix</span></dt><dd><p>Covariance matrix. Use <cite>cov</cite> in new code.</p>
+<dt><strong>Sigma: matrix</strong></dt><dd><p>Covariance matrix. Use <cite>cov</cite> in new code.</p>
 </dd>
-<dt><strong>mu</strong><span class="classifier">array</span></dt><dd><p>Vector of means.</p>
+<dt><strong>mu: array</strong></dt><dd><p>Vector of means.</p>
 </dd>
-<dt><strong>cov</strong><span class="classifier">matrix</span></dt><dd><p>The covariance matrix.</p>
+<dt><strong>cov: matrix</strong></dt><dd><p>The covariance matrix.</p>
 </dd>
-<dt><strong>tau</strong><span class="classifier">matrix</span></dt><dd><p>The precision matrix.</p>
+<dt><strong>tau: matrix</strong></dt><dd><p>The precision matrix.</p>
 </dd>
-<dt><strong>chol</strong><span class="classifier">matrix</span></dt><dd><p>The cholesky factor of the covariance matrix.</p>
+<dt><strong>chol: matrix</strong></dt><dd><p>The cholesky factor of the covariance matrix.</p>
 </dd>
-<dt><strong>lower</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether the cholesky fatcor is given as a lower triangular matrix.</p>
+<dt><strong>lower: bool, default=True</strong></dt><dd><p>Whether the cholesky fatcor is given as a lower triangular matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -282,7 +281,7 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log-probability is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -301,10 +300,10 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -349,7 +348,7 @@ where <span class="math notranslate nohighlight">\(a_0 = \sum a_i\)</span></p></
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>a</strong><span class="classifier">array</span></dt><dd><p>Concentration parameters (a &gt; 0).</p>
+<dt><strong>a: array</strong></dt><dd><p>Concentration parameters (a &gt; 0).</p>
 </dd>
 </dl>
 </dd>
@@ -362,7 +361,7 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log-probability is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -381,10 +380,10 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -434,10 +433,10 @@ over the n trials.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int or array</span></dt><dd><p>Number of trials (n &gt; 0). If n is an array its shape must be (N,) with
+<dt><strong>n: int or array</strong></dt><dd><p>Number of trials (n &gt; 0). If n is an array its shape must be (N,) with
 N = p.shape[0]</p>
 </dd>
-<dt><strong>p</strong><span class="classifier">one- or two-dimensional array</span></dt><dd><p>Probability of each one of the different outcomes. Elements must
+<dt><strong>p: one- or two-dimensional array</strong></dt><dd><p>Probability of each one of the different outcomes. Elements must
 be non-negative and sum to 1 along the last axis. They will be
 automatically rescaled otherwise.</p>
 </dd>
@@ -452,7 +451,7 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>x</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
+<dt><strong>x: numeric</strong></dt><dd><p>Value for which log-probability is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -471,10 +470,10 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -523,9 +522,9 @@ freedom.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>nu</strong><span class="classifier">int</span></dt><dd><p>Degrees of freedom, &gt; 0.</p>
+<dt><strong>nu: int</strong></dt><dd><p>Degrees of freedom, &gt; 0.</p>
 </dd>
-<dt><strong>V</strong><span class="classifier">array</span></dt><dd><p>p x p positive definite matrix.</p>
+<dt><strong>V: array</strong></dt><dd><p>p x p positive definite matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -541,7 +540,7 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>X</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
+<dt><strong>X: numeric</strong></dt><dd><p>Value for which log-probability is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -560,10 +559,10 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -598,18 +597,18 @@ for more information.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>S</strong><span class="classifier">ndarray</span></dt><dd><p>p x p positive definite matrix
+<dt><strong>S: ndarray</strong></dt><dd><p>p x p positive definite matrix
 Or:
 p x p lower-triangular matrix that is the Cholesky factor
 of the covariance matrix.</p>
 </dd>
-<dt><strong>nu</strong><span class="classifier">int</span></dt><dd><p>Degrees of freedom, &gt; dim(S).</p>
+<dt><strong>nu: int</strong></dt><dd><p>Degrees of freedom, &gt; dim(S).</p>
 </dd>
-<dt><strong>is_cholesky</strong><span class="classifier">bool (default=False)</span></dt><dd><p>Input matrix S is already Cholesky decomposed as S.T * S</p>
+<dt><strong>is_cholesky: bool (default=False)</strong></dt><dd><p>Input matrix S is already Cholesky decomposed as S.T * S</p>
 </dd>
-<dt><strong>return_cholesky</strong><span class="classifier">bool (default=False)</span></dt><dd><p>Only return the Cholesky decomposed matrix.</p>
+<dt><strong>return_cholesky: bool (default=False)</strong></dt><dd><p>Only return the Cholesky decomposed matrix.</p>
 </dd>
-<dt><strong>testval</strong><span class="classifier">ndarray</span></dt><dd><p>p x p positive definite matrix used to initialize</p>
+<dt><strong>testval: ndarray</strong></dt><dd><p>p x p positive definite matrix used to initialize</p>
 </dd>
 </dl>
 </dd>
@@ -643,9 +642,9 @@ matrices. For eta -&gt; oo the LKJ prior approaches the identity matrix.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Dimension of the covariance matrix (n &gt; 1).</p>
+<dt><strong>n: int</strong></dt><dd><p>Dimension of the covariance matrix (n &gt; 1).</p>
 </dd>
-<dt><strong>eta</strong><span class="classifier">float</span></dt><dd><p>The shape parameter (eta &gt; 0) of the LKJ distribution. eta = 1
+<dt><strong>eta: float</strong></dt><dd><p>The shape parameter (eta &gt; 0) of the LKJ distribution. eta = 1
 implies a uniform distribution of the correlation matrices;
 larger values put more weight on matrices with few correlations.</p>
 </dd>
@@ -680,7 +679,7 @@ value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>x</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
+<dt><strong>x: numeric</strong></dt><dd><p>Value for which log-probability is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -699,10 +698,10 @@ value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -717,50 +716,75 @@ specified).</p>
 
 </dd></dl>
 
-<dl class="class">
+<dl class="function">
 <dt id="pymc3.distributions.multivariate.LKJCholeskyCov">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">LKJCholeskyCov</code><span class="sig-paren">(</span><em class="sig-param">eta</em>, <em class="sig-param">n</em>, <em class="sig-param">sd_dist</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCholeskyCov" title="Permalink to this definition">¶</a></dt>
-<dd><p>Covariance matrix with LKJ distributed correlations.</p>
-<p>This defines a distribution over cholesky decomposed covariance
+<code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">LKJCholeskyCov</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">eta</em>, <em class="sig-param">n</em>, <em class="sig-param">sd_dist</em>, <em class="sig-param">compute_corr=False</em>, <em class="sig-param">store_in_trace=True</em>, <em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCholeskyCov" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper function for covariance matrix with LKJ distributed correlations.</p>
+<p>This defines a distribution over Cholesky decomposed covariance
 matrices, such that the underlying correlation matrices follow an
 LKJ distribution [1] and the standard deviations follow an arbitray
 distribution specified by the user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Dimension of the covariance matrix (n &gt; 1).</p>
+<dt><strong>name: str</strong></dt><dd><p>The name given to the variable in the model.</p>
 </dd>
-<dt><strong>eta</strong><span class="classifier">float</span></dt><dd><p>The shape parameter (eta &gt; 0) of the LKJ distribution. eta = 1
+<dt><strong>eta: float</strong></dt><dd><p>The shape parameter (eta &gt; 0) of the LKJ distribution. eta = 1
 implies a uniform distribution of the correlation matrices;
 larger values put more weight on matrices with few correlations.</p>
 </dd>
-<dt><strong>sd_dist</strong><span class="classifier">pm.Distribution</span></dt><dd><p>A distribution for the standard deviations.</p>
+<dt><strong>n: int</strong></dt><dd><p>Dimension of the covariance matrix (n &gt; 1).</p>
+</dd>
+<dt><strong>sd_dist: pm.Distribution</strong></dt><dd><p>A distribution for the standard deviations.</p>
+</dd>
+<dt><strong>compute_corr: bool, default=False</strong></dt><dd><p>If <cite>True</cite>, returns three values: the Cholesky decomposition, the correlations
+and the standard deviations of the covariance matrix. Otherwise, only returns
+the packed Cholesky decomposition. Defaults to <cite>False</cite> to ensure backwards
+compatibility.</p>
+</dd>
+<dt><strong>store_in_trace: bool, default=True</strong></dt><dd><p>Whether to store the correlations and standard deviations of the covariance
+matrix in the posterior trace. If <cite>True</cite>, they will automatically be named as
+<cite>{name}_corr</cite> and <cite>{name}_stds</cite> respectively. Effective only when
+<cite>compute_corr=True</cite>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>packed_chol: TensorVariable</dt><dd><p>If <cite>compute_corr=False</cite> (default). The packed Cholesky covariance decomposition.</p>
+</dd>
+<dt>chol:  TensorVariable</dt><dd><p>If <cite>compute_corr=True</cite>. The unpacked Cholesky covariance decomposition.</p>
+</dd>
+<dt>corr: TensorVariable</dt><dd><p>If <cite>compute_corr=True</cite>. The correlations of the covariance matrix.</p>
+</dd>
+<dt>stds: TensorVariable</dt><dd><p>If <cite>compute_corr=True</cite>. The standard deviations of the covariance matrix.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>Since the cholesky factor is a lower triangular matrix, we use
-packed storge for the matrix: We store and return the values of
-the lower triangular matrix in a one-dimensional array, numbered
-by row:</p>
+<p>Since the Cholesky factor is a lower triangular matrix, we use packed storage for
+the matrix: We store the values of the lower triangular matrix in a one-dimensional
+array, numbered by row:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[[</span><span class="mi">0</span> <span class="o">-</span> <span class="o">-</span> <span class="o">-</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="o">-</span> <span class="o">-</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="o">-</span><span class="p">]</span>
  <span class="p">[</span><span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span><span class="p">]]</span>
 </pre></div>
 </div>
-<p>You can use <cite>pm.expand_packed_triangular(packed_cov, lower=True)</cite>
-to convert this to a regular two-dimensional array.</p>
+<p>The unpacked Cholesky covariance matrix is automatically computed and returned when
+you specify <cite>compute_corr=True</cite> in <cite>pm.LKJCholeskyCov</cite> (see example below).
+Otherwise, you can use <cite>pm.expand_packed_triangular(packed_cov, lower=True)</cite>
+to convert the packed Cholesky matrix to a regular two-dimensional array.</p>
 <p class="rubric">References</p>
 <dl class="citation">
-<dt class="label" id="r5f6d313c62fc-1"><span class="brackets">R5f6d313c62fc-1</span></dt>
+<dt class="label" id="r5f6d313c62fc-1"><span class="brackets">1</span></dt>
 <dd><p>Lewandowski, D., Kurowicka, D. and Joe, H. (2009).
 “Generating random correlation matrices based on vines and
 extended onion method.” Journal of multivariate analysis,
 100(9), pp.1989-2001.</p>
 </dd>
-<dt class="label" id="r5f6d313c62fc-2"><span class="brackets">R5f6d313c62fc-2</span></dt>
+<dt class="label" id="r5f6d313c62fc-2"><span class="brackets">2</span></dt>
 <dd><p>J. M. isn’t a mathematician (<a class="reference external" href="http://math.stackexchange.com/users/498/">http://math.stackexchange.com/users/498/</a>
 j-m-isnt-a-mathematician), Different approaches to evaluate this
 determinant, URL (version: 2012-04-14):
@@ -771,9 +795,13 @@ determinant, URL (version: 2012-04-14):
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
     <span class="c1"># Note that we access the distribution for the standard</span>
     <span class="c1"># deviations, and do not create a new random variable.</span>
-    <span class="n">sd_dist</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfCauchy</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
-    <span class="n">packed_chol</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">LKJCholeskyCov</span><span class="p">(</span><span class="s1">&#39;chol_cov&#39;</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sd_dist</span><span class="o">=</span><span class="n">sd_dist</span><span class="p">)</span>
-    <span class="n">chol</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">expand_packed_triangular</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">packed_chol</span><span class="p">,</span> <span class="n">lower</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">sd_dist</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Exponential</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">chol</span><span class="p">,</span> <span class="n">corr</span><span class="p">,</span> <span class="n">sigmas</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">LKJCholeskyCov</span><span class="p">(</span><span class="s1">&#39;chol_cov&#39;</span><span class="p">,</span> <span class="n">eta</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">sd_dist</span><span class="o">=</span><span class="n">sd_dist</span><span class="p">,</span> <span class="n">compute_corr</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># if you only want the packed Cholesky (default behavior):</span>
+    <span class="c1"># packed_chol = pm.LKJCholeskyCov(&#39;chol_cov&#39;, eta=4, n=10, sd_dist=sd_dist)</span>
+    <span class="c1"># chol = pm.expand_packed_triangular(10, packed_chol, lower=True)</span>
 
     <span class="c1"># Define a new MvNormal with the given covariance</span>
     <span class="n">vals</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">MvNormal</span><span class="p">(</span><span class="s1">&#39;vals&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">chol</span><span class="o">=</span><span class="n">chol</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -784,9 +812,6 @@ determinant, URL (version: 2012-04-14):
 
     <span class="c1"># Or compute the covariance matrix</span>
     <span class="n">cov</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">chol</span><span class="p">,</span> <span class="n">chol</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
-
-    <span class="c1"># Extract the standard deviations</span>
-    <span class="n">stds</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">cov</span><span class="p">))</span>
 </pre></div>
 </div>
 <p><strong>Implementation</strong> In the unconstrained space all values of the cholesky factor
@@ -804,7 +829,7 @@ store the diagonal. We define a transformation <span class="math notranslate noh
 such that <span class="math notranslate nohighlight">\(\phi(L)\)</span> is the lower triangular matrix containing
 the standard deviations <span class="math notranslate nohighlight">\(\sigma\)</span> on the diagonal and the
 correlation matrix <span class="math notranslate nohighlight">\(U\)</span> below. In this form we can easily
-compute the different likelihoods seperatly, as the likelihood
+compute the different likelihoods separately, as the likelihood
 of the correlation matrix only depends on the values below the
 diagonal, and the likelihood of the standard deviation depends
 only on the diagonal values.</p>
@@ -822,50 +847,6 @@ of the determinants of the blocks, we get</p>
 \left[
   \prod_{i=2}^N u_{ii}^{i - 1} L_{ii}
 \right]^{-1}\]</div>
-<dl class="method">
-<dt id="pymc3.distributions.multivariate.LKJCholeskyCov.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCholeskyCov.logp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate log-probability of Covariance matrix with LKJ
-distributed correlations at specified value.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>x</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>TensorVariable</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.distributions.multivariate.LKJCholeskyCov.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">point=None</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCholeskyCov.random" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw random values from Covariance matrix with LKJ
-distributed correlations.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
-conditioned (uses default point if not specified).</p>
-</dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
-specified).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>array</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="class">
@@ -901,20 +882,20 @@ specified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mu</strong><span class="classifier">array</span></dt><dd><p>Array of means. Must be broadcastable with the random variable X such
+<dt><strong>mu: array</strong></dt><dd><p>Array of means. Must be broadcastable with the random variable X such
 that the shape of mu + X is (m,n).</p>
 </dd>
-<dt><strong>rowcov</strong><span class="classifier">mxm array</span></dt><dd><p>Among-row covariance matrix. Defines variance within
+<dt><strong>rowcov: mxm array</strong></dt><dd><p>Among-row covariance matrix. Defines variance within
 columns. Exactly one of rowcov or rowchol is needed.</p>
 </dd>
-<dt><strong>rowchol</strong><span class="classifier">mxm array</span></dt><dd><p>Cholesky decomposition of among-row covariance matrix. Exactly one of
+<dt><strong>rowchol: mxm array</strong></dt><dd><p>Cholesky decomposition of among-row covariance matrix. Exactly one of
 rowcov or rowchol is needed.</p>
 </dd>
-<dt><strong>colcov</strong><span class="classifier">nxn array</span></dt><dd><p>Among-column covariance matrix. If rowcov is the identity matrix,
+<dt><strong>colcov: nxn array</strong></dt><dd><p>Among-column covariance matrix. If rowcov is the identity matrix,
 this functions as <cite>cov</cite> in MvNormal.
 Exactly one of colcov or colchol is needed.</p>
 </dd>
-<dt><strong>colchol</strong><span class="classifier">nxn array</span></dt><dd><p>Cholesky decomposition of among-column covariance matrix. Exactly one
+<dt><strong>colchol: nxn array</strong></dt><dd><p>Cholesky decomposition of among-column covariance matrix. Exactly one
 of colcov or colchol is needed.</p>
 </dd>
 </dl>
@@ -976,7 +957,7 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log-probability is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -995,10 +976,10 @@ at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -1041,22 +1022,22 @@ specified).</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><strong>mu</strong><span class="classifier">array</span></dt><dd><p>Vector of means, just as in <cite>MvNormal</cite>.</p>
+<dt><strong>mu: array</strong></dt><dd><p>Vector of means, just as in <cite>MvNormal</cite>.</p>
 </dd>
-<dt><strong>covs</strong><span class="classifier">list of arrays</span></dt><dd><p>The set of covariance matrices <span class="math notranslate nohighlight">\([K_1, K_2, ...]\)</span> to be
+<dt><strong>covs: list of arrays</strong></dt><dd><p>The set of covariance matrices <span class="math notranslate nohighlight">\([K_1, K_2, ...]\)</span> to be
 Kroneckered in the order provided <span class="math notranslate nohighlight">\(\bigotimes K_i\)</span>.</p>
 </dd>
-<dt><strong>chols</strong><span class="classifier">list of arrays</span></dt><dd><p>The set of lower cholesky matrices <span class="math notranslate nohighlight">\([L_1, L_2, ...]\)</span> such that
+<dt><strong>chols: list of arrays</strong></dt><dd><p>The set of lower cholesky matrices <span class="math notranslate nohighlight">\([L_1, L_2, ...]\)</span> such that
 <span class="math notranslate nohighlight">\(K_i = L_i L_i'\)</span>.</p>
 </dd>
-<dt><strong>evds</strong><span class="classifier">list of tuples</span></dt><dd><p>The set of eigenvalue-vector, eigenvector-matrix pairs
+<dt><strong>evds: list of tuples</strong></dt><dd><p>The set of eigenvalue-vector, eigenvector-matrix pairs
 <span class="math notranslate nohighlight">\([(v_1, Q_1), (v_2, Q_2), ...]\)</span> such that
 <span class="math notranslate nohighlight">\(K_i = Q_i \text{diag}(v_i) Q_i'\)</span>. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">v_i</span><span class="p">,</span> <span class="n">Q_i</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">nlinalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">K_i</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd>
-<dt><strong>sigma</strong><span class="classifier">scalar, variable</span></dt><dd><p>Standard deviation of the Gaussian white noise.</p>
+<dt><strong>sigma: scalar, variable</strong></dt><dd><p>Standard deviation of the Gaussian white noise.</p>
 </dd>
 </dl>
 </dd>
@@ -1115,7 +1096,7 @@ with Kronecker-structured covariance at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value for which log-probability is calculated.</p>
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log-probability is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -1135,10 +1116,10 @@ with Kronecker-structured covariance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -1169,7 +1150,7 @@ specified).</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

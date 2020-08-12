@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Dirichlet process mixtures for density estimation &#8212; PyMC3 3.8 documentation</title>
+    <title>Dirichlet process mixtures for density estimation &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -225,6 +225,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -259,7 +280,11 @@ div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
 </style>
-<div class="section" id="Dirichlet-process-mixtures-for-density-estimation">
+<h1><p>Agenda</p>
+</h1><div class="toc"><ul class="toc-item"><li><p>1  Dirichlet process mixtures for density estimation</p>
+<ul class="toc-item"><li><p>1.1  Dirichlet processes</p>
+</li><li><p>1.2  Dirichlet process mixtures</p>
+</li></ul></li></ul></div><div class="section" id="Dirichlet-process-mixtures-for-density-estimation">
 <h1>Dirichlet process mixtures for density estimation<a class="headerlink" href="#Dirichlet-process-mixtures-for-density-estimation" title="Permalink to this headline">¶</a></h1>
 <p>Author: <a class="reference external" href="https://github.com/AustinRochford/">Austin Rochford</a></p>
 <div class="section" id="Dirichlet-processes">
@@ -310,70 +335,48 @@ div.rendered_html tbody tr:hover {
 </ol>
 <p>[Suggested Further Reading]: (<a class="reference external" href="http://mlg.eng.cam.ac.uk/tutorials/07/ywt.pdf">http://mlg.eng.cam.ac.uk/tutorials/07/ywt.pdf</a>) and (<a class="reference external" href="https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf">https://www.stats.ox.ac.uk/~teh/research/npbayes/Teh2010a.pdf</a>) for a brief introduction to other flavours of Dirichlet Processes, and their applications.</p>
 <p>We can use the stick-breaking process above to easily sample from a Dirichlet process in Python. For this example, <span class="math notranslate nohighlight">\(\alpha = 2\)</span> and the base distribution is <span class="math notranslate nohighlight">\(N(0, 1)\)</span>.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span></span><span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">theano</span> <span class="kn">import</span> <span class="n">tensor</span> <span class="k">as</span> <span class="n">tt</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">theano</span> <span class="kn">import</span> <span class="n">tensor</span> <span class="k">as</span> <span class="n">tt</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running on PyMC3 v</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
-<div class="output_area stderr docutils container">
+<div class="output_area docutils container">
 <div class="highlight"><pre>
-/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
+Running on PyMC3 v3.9.0
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">blue</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">SEED</span> <span class="o">=</span> <span class="mi">5132290</span> <span class="c1"># from random.org</span>
-
+<span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">blue</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">()</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;arviz-darkgrid&#39;</span><span class="p">)</span>
+<span class="n">SEED</span> <span class="o">=</span> <span class="mi">5132290</span> <span class="c1"># from random.org</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEED</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -387,7 +390,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <p>We draw and plot samples from the stick-breaking process.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -405,7 +408,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -425,12 +428,12 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_9_0.png" src="../_images/notebooks_dp_mix_9_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_7_0.png"><img alt="../_images/notebooks_dp_mix_7_0.png" src="../_images/notebooks_dp_mix_7_0.png" style="width: 675px; height: 522px;" /></a>
 </div>
 </div>
 <p>As stated above, as <span class="math notranslate nohighlight">\(\alpha \to \infty\)</span>, samples from the Dirichlet process converge to the base distribution.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -482,7 +485,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_11_0.png" src="../_images/notebooks_dp_mix_11_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_9_0.png"><img alt="../_images/notebooks_dp_mix_9_0.png" src="../_images/notebooks_dp_mix_9_0.png" style="width: 1295px; height: 522px;" /></a>
 </div>
 </div>
 </div>
@@ -501,7 +504,7 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 \end{align*}\end{split}\]</div>
 <p>To illustrate this model, we simulate draws from a Dirichlet process mixture with <span class="math notranslate nohighlight">\(\alpha = 2\)</span>, <span class="math notranslate nohighlight">\(\theta \sim N(0, 1)\)</span>, <span class="math notranslate nohighlight">\(x\ |\ \theta \sim N(\theta, (0.3)^2)\)</span>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -515,7 +518,7 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -532,7 +535,7 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -548,12 +551,12 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_15_0.png" src="../_images/notebooks_dp_mix_15_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_13_0.png"><img alt="../_images/notebooks_dp_mix_13_0.png" src="../_images/notebooks_dp_mix_13_0.png" style="width: 640px; height: 496px;" /></a>
 </div>
 </div>
 <p>We now focus on a single mixture and decompose it into its individual (weighted) mixture components.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -576,13 +579,13 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_17_0.png" src="../_images/notebooks_dp_mix_17_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_15_0.png"><img alt="../_images/notebooks_dp_mix_15_0.png" src="../_images/notebooks_dp_mix_15_0.png" style="width: 640px; height: 496px;" /></a>
 </div>
 </div>
 <p>Sampling from these stochastic processes is fun, but these ideas become truly useful when we fit them to data. The discreteness of samples and the stick-breaking representation of the Dirichlet process lend themselves nicely to Markov chain Monte Carlo simulation of posterior distributions. We will perform this sampling using <code class="docutils literal notranslate"><span class="pre">PyMC3</span></code>.</p>
 <p>Our first example uses a Dirichlet process mixture to estimate the density of waiting times between eruptions of the <a class="reference external" href="https://en.wikipedia.org/wiki/Old_Faithful">Old Faithful</a> geyser in <a class="reference external" href="https://en.wikipedia.org/wiki/Yellowstone_National_Park">Yellowstone National Park</a>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -592,7 +595,7 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 </div>
 <p>For convenience in specifying the prior, we standardize the waiting time between eruptions.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -601,7 +604,7 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -610,7 +613,7 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -673,7 +676,7 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 </div></div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -691,7 +694,7 @@ parameter space <span class="math notranslate nohighlight">\(\Theta\)</span>, a 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_23_0.png" src="../_images/notebooks_dp_mix_23_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_21_0.png"><img alt="../_images/notebooks_dp_mix_21_0.png" src="../_images/notebooks_dp_mix_21_0.png" style="width: 705px; height: 523px;" /></a>
 </div>
 </div>
 <p>Observant readers will have noted that we have not been continuing the stick-breaking process indefinitely as indicated by its definition, but rather have been truncating this process after a finite number of breaks. Obviously, when computing with Dirichlet processes, it is necessary to only store a finite number of its point masses and weights in memory. This restriction is not terribly onerous, since with a finite number of observations, it seems quite likely that the number of mixture
@@ -710,9 +713,9 @@ contribute non-negligible mass to the mixture. If, in our simulations, all compo
         &amp; = \beta_i \prod_{j = i - 1}^i (1 - \beta_j) \\
     \\
     \lambda_1, \ldots, \lambda_K
-        &amp; \sim U(0, 5) \\
+        &amp; \sim \textrm{Gamma}(10, 1) \\
     \tau_1, \ldots, \tau_K
-        &amp; \sim \textrm{Gamma}(1, 1) \\
+        &amp; \sim \textrm{Gamma}(10, 1) \\
     \mu_i\ |\ \lambda_i, \tau_i
         &amp; \sim N\left(0, (\lambda_i \tau_i)^{-1}\right) \\
     \\
@@ -722,7 +725,7 @@ contribute non-negligible mass to the mixture. If, in our simulations, all compo
 <p>Note that instead of fixing a value of <span class="math notranslate nohighlight">\(\alpha\)</span>, as in our previous simulations, we specify a prior on <span class="math notranslate nohighlight">\(\alpha\)</span>, so that we may learn its posterior distribution from the observations.</p>
 <p>We now construct this model using <code class="docutils literal notranslate"><span class="pre">pymc3</span></code>.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -733,7 +736,7 @@ contribute non-negligible mass to the mixture. If, in our simulations, all compo
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -745,7 +748,7 @@ contribute non-negligible mass to the mixture. If, in our simulations, all compo
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -755,7 +758,7 @@ contribute non-negligible mass to the mixture. If, in our simulations, all compo
     <span class="n">w</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">stick_breaking</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span>
 
     <span class="n">tau</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s1">&#39;tau&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
-    <span class="n">lambda_</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
+    <span class="n">lambda_</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s1">&#39;lambda_&#39;</span><span class="p">,</span> <span class="mf">10.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
     <span class="n">mu</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">lambda_</span> <span class="o">*</span> <span class="n">tau</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
     <span class="n">obs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">NormalMixture</span><span class="p">(</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">tau</span><span class="o">=</span><span class="n">lambda_</span> <span class="o">*</span> <span class="n">tau</span><span class="p">,</span>
                            <span class="n">observed</span><span class="o">=</span><span class="n">old_faithful_df</span><span class="o">.</span><span class="n">std_waiting</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -764,40 +767,99 @@ contribute non-negligible mass to the mixture. If, in our simulations, all compo
 </div>
 <p>We sample from the model 1,000 times using NUTS initialized with ADVI.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;advi&#39;</span><span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+        <span class="mi">1000</span><span class="p">,</span>
+        <span class="n">tune</span><span class="o">=</span><span class="mi">2500</span><span class="p">,</span>
+        <span class="n">chains</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">init</span><span class="o">=</span><span class="s1">&#39;advi&#39;</span><span class="p">,</span>
+        <span class="n">target_accept</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">random_seed</span><span class="o">=</span><span class="n">SEED</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
 Initializing NUTS using advi...
-Average Loss = inf:   5%|▌         | 10459/200000 [00:16&lt;05:59, 527.04it/s]
-Convergence achieved at 10500
-Interrupted at 10,499 [5%]: Average Loss = 439.11
-INFO (theano.gof.compilelock): Waiting for existing lock by process &#39;20006&#39; (I am process &#39;19884&#39;)
-INFO (theano.gof.compilelock): To manually release the lock, delete /.theano/compiledir_Linux-4.15--generic-x86_64-with-debian-buster-sid-x86_64-3.6.8-64/lock_dir
-Multiprocess sampling (2 chains in 2 jobs)
-NUTS: [mu, lambda, tau, beta, alpha]
-Sampling 2 chains: 100%|██████████| 3000/3000 [03:38&lt;00:00, 13.71draws/s]
-There were 88 divergences after tuning. Increase `target_accept` or reparameterize.
-The acceptance probability does not match the target. It is 0.8984803402045644, but should be close to 0.8. Try to increase the number of tuning steps.
-There were 113 divergences after tuning. Increase `target_accept` or reparameterize.
-The gelman-rubin statistic is larger than 1.05 for some parameters. This indicates slight problems during sampling.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='9848' class='' max='200000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  4.92% [9848/200000 00:06<02:13 Average Loss = inf]
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Convergence achieved at 10000
+Interrupted at 9,999 [4%]: Average Loss = 493.99
+Multiprocess sampling (2 chains in 4 jobs)
+NUTS: [mu, lambda_, tau, beta, alpha]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='7000' class='' max='7000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [7000/7000 03:52<00:00 Sampling 2 chains, 99 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 2_500 tune and 1_000 draw iterations (5_000 + 2_000 draws total) took 233 seconds.
+There were 69 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 30 divergences after tuning. Increase `target_accept` or reparameterize.
+The rhat statistic is larger than 1.2 for some parameters.
 The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div></div>
 </div>
 <p>The posterior distribution of <span class="math notranslate nohighlight">\(\alpha\)</span> is highly concentrated between 0.25 and 1.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -805,16 +867,25 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/dependencies/arviz/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_31_0.png" src="../_images/notebooks_dp_mix_31_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_29_1.png"><img alt="../_images/notebooks_dp_mix_29_1.png" src="../_images/notebooks_dp_mix_29_1.png" style="width: 1211px; height: 211px;" /></a>
 </div>
 </div>
 <p>To verify that truncation is not biasing our results, we plot the posterior expected mixture weight of each component.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -835,19 +906,19 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_33_0.png" src="../_images/notebooks_dp_mix_33_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_31_0.png"><img alt="../_images/notebooks_dp_mix_31_0.png" src="../_images/notebooks_dp_mix_31_0.png" style="width: 714px; height: 523px;" /></a>
 </div>
 </div>
 <p>We see that only three mixture components have appreciable posterior expected weights, so we conclude that truncating the Dirichlet process to forty components has not appreciably affected our estimates.</p>
 <p>We now compute and plot our posterior density estimate.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">post_pdf_contribs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_3d</span><span class="p">(</span><span class="n">x_plot</span><span class="p">),</span>
                                       <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:],</span>
-                                      <span class="mf">1.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;lambda&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">])[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span>
+                                      <span class="mf">1.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;lambda_&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;tau&#39;</span><span class="p">])[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span>
 <span class="n">post_pdfs</span> <span class="o">=</span> <span class="p">(</span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">post_pdf_contribs</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">post_pdf_low</span><span class="p">,</span> <span class="n">post_pdf_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">post_pdfs</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -855,7 +926,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -886,12 +957,12 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_36_0.png" src="../_images/notebooks_dp_mix_36_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_34_0.png"><img alt="../_images/notebooks_dp_mix_34_0.png" src="../_images/notebooks_dp_mix_34_0.png" style="width: 671px; height: 523px;" /></a>
 </div>
 </div>
 <p>As above, we can decompose this density estimate into its (weighted) mixture components.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -921,12 +992,12 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_38_0.png" src="../_images/notebooks_dp_mix_38_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_36_0.png"><img alt="../_images/notebooks_dp_mix_36_0.png" src="../_images/notebooks_dp_mix_36_0.png" style="width: 671px; height: 523px;" /></a>
 </div>
 </div>
 <p>The Dirichlet process mixture model is incredibly flexible in terms of the family of parametric component distributions <span class="math notranslate nohighlight">\(\{f_{\theta}\ |\ f_{\theta} \in \Theta\}\)</span>. We illustrate this flexibility below by using Poisson component distributions to estimate the density of sunspots per year. This dataset can be downloaded from <a class="reference external" href="http://www.sidc.be/silso/datafiles">http://www.sidc.be/silso/datafiles</a>. Source: WDC-SILSO, Royal Observatory of Belgium, Brussels.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -935,7 +1006,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -944,7 +1015,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1011,13 +1082,13 @@ The estimated number of effective samples is smaller than 200 for some parameter
         &amp; = \beta_i \prod_{j = i - 1}^i (1 - \beta_j) \\
     \\
     \lambda_i, \ldots, \lambda_K
-        &amp; \sim U(0, 300)
+        &amp; \sim \textrm{Gamma}(300, 2)
     \\
     x\ |\ w_i, \lambda_i
         &amp; \sim \sum_{i = 1}^K w_i\ \textrm{Poisson}(\lambda_i).
 \end{align*}\end{split}\]</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1027,7 +1098,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1035,41 +1106,94 @@ The estimated number of effective samples is smaller than 200 for some parameter
     <span class="n">alpha</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">)</span>
     <span class="n">beta</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Beta</span><span class="p">(</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
     <span class="n">w</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">stick_breaking</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span>
-
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">300.</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
-    <span class="n">obs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Mixture</span><span class="p">(</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">Poisson</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="n">sunspot_df</span><span class="p">[</span><span class="s1">&#39;sunspot.year&#39;</span><span class="p">])</span>
+    <span class="c1"># Gamma is conjugate prior to Poisson</span>
+    <span class="n">lambda_</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Gamma</span><span class="p">(</span><span class="s1">&#39;lambda_&#39;</span><span class="p">,</span> <span class="mf">300.</span><span class="p">,</span><span class="mf">2.</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">K</span><span class="p">)</span>
+    <span class="n">obs</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Mixture</span><span class="p">(</span><span class="s1">&#39;obs&#39;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">Poisson</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">lambda_</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="n">sunspot_df</span><span class="p">[</span><span class="s1">&#39;sunspot.year&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">step</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Metropolis</span><span class="p">()</span>
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="n">SEED</span><span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
+        <span class="mi">2000</span><span class="p">,</span>
+        <span class="n">tune</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span>
+        <span class="n">chains</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+        <span class="n">init</span><span class="o">=</span><span class="s1">&#39;advi&#39;</span><span class="p">,</span>
+        <span class="n">target_accept</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">random_seed</span><span class="o">=</span><span class="n">SEED</span>
+    <span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Multiprocess sampling (2 chains in 2 jobs)
-CompoundStep
-&gt;Metropolis: [mu]
-&gt;Metropolis: [beta]
-&gt;Metropolis: [alpha]
-Sampling 2 chains: 100%|██████████| 3000/3000 [00:08&lt;00:00, 339.74draws/s]
-The gelman-rubin statistic is larger than 1.4 for some parameters. The sampler did not converge.
-The estimated number of effective samples is smaller than 200 for some parameters.
+Auto-assigning NUTS sampler...
+Initializing NUTS using advi...
 </pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='16252' class='' max='200000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  8.13% [16252/200000 00:31<05:57 Average Loss = 3,131.9]
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Convergence achieved at 16300
+Interrupted at 16,299 [8%]: Average Loss = 4,104
+Multiprocess sampling (4 chains in 4 jobs)
+NUTS: [lambda_, beta, alpha]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='21107' class='' max='28000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  75.38% [21107/28000 22:04<07:12 Sampling 4 chains, 21 divergences]
+</div></div>
 </div>
 <p>For the sunspot model, the posterior distribution of <span class="math notranslate nohighlight">\(\alpha\)</span> is concentrated between 0.6 and 1.2, indicating that we should expect more components to contribute non-negligible amounts to the mixture than for the Old Faithful waiting time model.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1077,16 +1201,25 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/dependencies/arviz/arviz/data/io_pymc3.py:89: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  FutureWarning,
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_47_0.png" src="../_images/notebooks_dp_mix_47_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_45_1.png"><img alt="../_images/notebooks_dp_mix_45_1.png" src="../_images/notebooks_dp_mix_45_1.png" style="width: 1211px; height: 211px;" /></a>
 </div>
 </div>
 <p>Indeed, we see that between ten and fifteen mixture components have appreciable posterior expected weight.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[30]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1107,12 +1240,12 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_49_0.png" src="../_images/notebooks_dp_mix_49_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_47_0.png"><img alt="../_images/notebooks_dp_mix_47_0.png" src="../_images/notebooks_dp_mix_47_0.png" style="width: 727px; height: 523px;" /></a>
 </div>
 </div>
 <p>We now calculate and plot the fitted density estimate.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[31]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1121,12 +1254,12 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[32]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">post_pmf_contribs</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">poisson</span><span class="o">.</span><span class="n">pmf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_3d</span><span class="p">(</span><span class="n">x_plot</span><span class="p">),</span>
-                                         <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span>
+                                         <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;lambda_&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:])</span>
 <span class="n">post_pmfs</span> <span class="o">=</span> <span class="p">(</span><span class="n">trace</span><span class="p">[</span><span class="s1">&#39;w&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="n">post_pmf_contribs</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">post_pmf_low</span><span class="p">,</span> <span class="n">post_pmf_high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">post_pmfs</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">97.5</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -1134,7 +1267,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[36]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1160,12 +1293,12 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_53_0.png" src="../_images/notebooks_dp_mix_53_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_51_0.png"><img alt="../_images/notebooks_dp_mix_51_0.png" src="../_images/notebooks_dp_mix_51_0.png" style="width: 640px; height: 523px;" /></a>
 </div>
 </div>
 <p>Again, we can decompose the posterior expected density into weighted mixture densities.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[37]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1189,18 +1322,37 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_dp_mix_55_0.png" src="../_images/notebooks_dp_mix_55_0.png" />
+<a class="reference internal image-reference" href="../_images/notebooks_dp_mix_53_0.png"><img alt="../_images/notebooks_dp_mix_53_0.png" src="../_images/notebooks_dp_mix_53_0.png" style="width: 640px; height: 523px;" /></a>
 </div>
 </div>
 <p>An earlier version of this example first appeared <a class="reference external" href="http://austinrochford.com/posts/2016-02-25-density-estimation-dpm.html">here</a>.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[35]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+arviz   0.8.3
+seaborn 0.10.1
+scipy   1.4.1
+pymc3   3.9.0
+pandas  1.0.4
+numpy   1.18.5
+last updated: Mon Jun 15 2020
+
+CPython 3.7.7
+IPython 7.15.0
+watermark 2.0.2
+</pre></div></div>
 </div>
 </div>
 </div>
@@ -1219,7 +1371,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

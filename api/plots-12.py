@@ -1,1 +1,1 @@
-az.plot_posterior(data, var_names=['mu'], credible_interval=.75)
+az.plot_posterior(data, ref_val=[1] + [5] * 8 + [1])

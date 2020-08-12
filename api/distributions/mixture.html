@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Mixture &#8212; PyMC3 3.8 documentation</title>
+    <title>Mixture &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../../_static/semantic.min.js"></script>
+    <script src="../../_static/highlight.min.js"></script>
+    <script src="../../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../history.html" class="item">About PyMC3</a>
+             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -89,20 +90,20 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Support</p></td>
-<td><p><span class="math notranslate nohighlight">\(\cap_{i = 1}^n \textrm{support}(f_i)\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\cup_{i = 1}^n \textrm{support}(f_i)\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p>Mean</p></td>
 <td><p><span class="math notranslate nohighlight">\(\sum_{i = 1}^n w_i \mu_i\)</span></p></td>
 </tr>
 </tbody>
 </table>
-<dl class="field-list">
+<dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><strong>w</strong><span class="classifier">array of floats</span></dt><dd><p>w &gt;= 0 and w &lt;= 1
+<dd class="field-odd"><dl class="simple">
+<dt><strong>w: array of floats</strong></dt><dd><p>w &gt;= 0 and w &lt;= 1
 the mixture weights</p>
 </dd>
-<dt><strong>comp_dists</strong><span class="classifier">multidimensional PyMC3 distribution (e.g. <cite>pm.Poisson.dist(…)</cite>)</span></dt><dd><p>or iterable of PyMC3 distributions the component distributions
+<dt><strong>comp_dists: multidimensional PyMC3 distribution (e.g. `pm.Poisson.dist(…)`)</strong></dt><dd><p>or iterable of PyMC3 distributions the component distributions
 <span class="math notranslate nohighlight">\(f_1, \ldots, f_n\)</span></p>
 </dd>
 </dl>
@@ -200,7 +201,7 @@ together.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -220,10 +221,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -264,16 +265,16 @@ specified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>w</strong><span class="classifier">array of floats</span></dt><dd><p>w &gt;= 0 and w &lt;= 1
+<dt><strong>w: array of floats</strong></dt><dd><p>w &gt;= 0 and w &lt;= 1
 the mixture weights</p>
 </dd>
-<dt><strong>mu</strong><span class="classifier">array of floats</span></dt><dd><p>the component means</p>
+<dt><strong>mu: array of floats</strong></dt><dd><p>the component means</p>
 </dd>
-<dt><strong>sigma</strong><span class="classifier">array of floats</span></dt><dd><p>the component standard deviations</p>
+<dt><strong>sigma: array of floats</strong></dt><dd><p>the component standard deviations</p>
 </dd>
-<dt><strong>tau</strong><span class="classifier">array of floats</span></dt><dd><p>the component precisions</p>
+<dt><strong>tau: array of floats</strong></dt><dd><p>the component precisions</p>
 </dd>
-<dt><strong>comp_shape</strong><span class="classifier">shape of the Normal component</span></dt><dd><p>notice that it should be different than the shape
+<dt><strong>comp_shape: shape of the Normal component</strong></dt><dd><p>notice that it should be different than the shape
 of the mixture distribution, with one axis being
 the number of components.</p>
 </dd>
@@ -305,7 +306,7 @@ the number of components.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

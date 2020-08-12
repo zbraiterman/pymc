@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Normalizing Flows Overview &#8212; PyMC3 3.8 documentation</title>
+    <title>Normalizing Flows Overview &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -224,6 +224,27 @@ div.nboutput.container div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
 
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
@@ -378,7 +399,7 @@ pymc3.variational.inference.NFVI
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f06b0d9feb8&gt;
+&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f15893ecf10&gt;
 </pre></div></div>
 </div>
 </div>
@@ -401,7 +422,7 @@ pymc3.variational.inference.NFVI
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f06672d0518&gt;
+&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f1589303450&gt;
 </pre></div></div>
 </div>
 <p>A more interesting case is when we do not expect a lot of interactions within the posterior. In this case, where our covariance is expected to be sparse, we can constrain it by defining a <em>low rank</em> approximation family.</p>
@@ -421,7 +442,7 @@ pymc3.variational.inference.NFVI
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f06672d7cf8&gt;
+&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f1586b51210&gt;
 </pre></div></div>
 </div>
 <p>Parameters can be initialized randomly, using the <code class="docutils literal notranslate"><span class="pre">jitter</span></code> argument to specify the scale of the randomness.</p>
@@ -440,7 +461,7 @@ pymc3.variational.inference.NFVI
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f0665fda208&gt;
+&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f15869b8890&gt;
 </pre></div></div>
 </div>
 </div>
@@ -575,7 +596,7 @@ pymc3.variational.inference.NFVI
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
@@ -584,8 +605,38 @@ Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
 Multiprocess sampling (2 chains in 2 jobs)
 NUTS: [pot1]
-Sampling 2 chains: 100%|██████████| 3000/3000 [00:04&lt;00:00, 650.07draws/s]
-The gelman-rubin statistic is larger than 1.4 for some parameters. The sampler did not converge.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='4000' class='' max='4000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [4000/4000 00:04<00:00 Sampling 2 chains, 102 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 1_000 tune and 1_000 draw iterations (2_000 + 2_000 draws total) took 6 seconds.
+There were 102 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.30246096720680476, but should be close to 0.8. Try to increase the number of tuning steps.
+The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
 The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div></div>
 </div>
@@ -605,7 +656,7 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.axisgrid.JointGrid at 0x7f065dc99588&gt;
+&lt;seaborn.axisgrid.JointGrid at 0x7f1585cfb3d0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -771,9 +822,29 @@ Elemwise{mul,no_inplace}.0
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='30000' class='' max='30000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [30000/30000 02:01<00:00 Average Loss = -0.87404]
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = -0.87404: 100%|██████████| 30000/30000 [01:22&lt;00:00, 362.40it/s]
 Finished [100%]: Average Loss = -0.89074
 </pre></div></div>
 </div>
@@ -783,7 +854,7 @@ Finished [100%]: Average Loss = -0.89074
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f065a8ac2e8&gt;
+&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f157f5ee5d0&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -802,7 +873,7 @@ Finished [100%]: Average Loss = -0.89074
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.axisgrid.JointGrid at 0x7f0640b69ba8&gt;
+&lt;seaborn.axisgrid.JointGrid at 0x7f156ba27a50&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -929,10 +1000,30 @@ Finished [100%]: Average Loss = -0.89074
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='25000' class='' max='25000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [25000/25000 02:39<00:00 Average Loss = -1.7774]
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = -1.7894: 100%|██████████| 25000/25000 [02:27&lt;00:00, 169.00it/s]
-Finished [100%]: Average Loss = -1.787
+Finished [100%]: Average Loss = -1.7772
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -941,7 +1032,7 @@ Finished [100%]: Average Loss = -1.787
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f063e3f4a20&gt;
+&lt;pymc3.variational.approximations.NormalizingFlow at 0x7f156b117290&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -960,7 +1051,7 @@ Finished [100%]: Average Loss = -1.787
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;seaborn.axisgrid.JointGrid at 0x7f06342c22b0&gt;
+&lt;seaborn.axisgrid.JointGrid at 0x7f15666e2b10&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -998,7 +1089,7 @@ Finished [100%]: Average Loss = -1.787
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
@@ -1007,9 +1098,40 @@ Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
 Multiprocess sampling (2 chains in 2 jobs)
 NUTS: [pot_func]
-Sampling 2 chains: 100%|██████████| 8000/8000 [00:18&lt;00:00, 441.93draws/s]
-The acceptance probability does not match the target. It is 0.9649872097951899, but should be close to 0.9. Try to increase the number of tuning steps.
-The gelman-rubin statistic is larger than 1.05 for some parameters. This indicates slight problems during sampling.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [8000/8000 00:16<00:00 Sampling 2 chains, 34 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 1_000 tune and 3_000 draw iterations (2_000 + 6_000 draws total) took 16 seconds.
+There were 32 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.5722625904068807, but should be close to 0.9. Try to increase the number of tuning steps.
+There were 2 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.8154901665548793, but should be close to 0.9. Try to increase the number of tuning steps.
+The rhat statistic is larger than 1.4 for some parameters. The sampler did not converge.
 The estimated number of effective samples is smaller than 200 for some parameters.
 </pre></div></div>
 </div>
@@ -1028,13 +1150,33 @@ The estimated number of effective samples is smaller than 200 for some parameter
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='25000' class='' max='25000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [25000/25000 01:28<00:00 Average Loss = -2.5039]
+</div></div>
+</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = -2.5441: 100%|██████████| 25000/25000 [01:13&lt;00:00, 341.63it/s]
-Finished [100%]: Average Loss = -2.5442
+Finished [100%]: Average Loss = -2.5043
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -1064,6 +1206,32 @@ Finished [100%]: Average Loss = -2.5442
 <img alt="../_images/notebooks_normalizing_flows_overview_57_0.png" src="../_images/notebooks_normalizing_flows_overview_57_0.png" />
 </div>
 </div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[33]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+pymc3   3.9.0
+theano  1.0.4
+numpy   1.18.5
+seaborn 0.10.1
+last updated: Mon Jun 15 2020
+
+CPython 3.7.7
+IPython 7.15.0
+watermark 2.0.2
+</pre></div></div>
+</div>
 </div>
 </div>
 </div>
@@ -1082,7 +1250,7 @@ Finished [100%]: Average Loss = -2.5442
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

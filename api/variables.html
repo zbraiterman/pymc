@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Random Variables &#8212; PyMC3 3.8 documentation</title>
+    <title>Random Variables &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -75,17 +76,17 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>cost</strong><span class="classifier">theano variable</span></dt><dd><p>The value that we compute with its gradient.</p>
+<dt><strong>cost: theano variable</strong></dt><dd><p>The value that we compute with its gradient.</p>
 </dd>
-<dt><strong>grad_vars</strong><span class="classifier">list of named theano variables or None</span></dt><dd><p>The arguments with respect to which the gradient is computed.</p>
+<dt><strong>grad_vars: list of named theano variables or None</strong></dt><dd><p>The arguments with respect to which the gradient is computed.</p>
 </dd>
-<dt><strong>extra_vars</strong><span class="classifier">list of named theano variables or None</span></dt><dd><p>Other arguments of the function that are assumed constant. They
+<dt><strong>extra_vars: list of named theano variables or None</strong></dt><dd><p>Other arguments of the function that are assumed constant. They
 are stored in shared variables and can be set using
 <cite>set_extra_values</cite>.</p>
 </dd>
-<dt><strong>dtype</strong><span class="classifier">str, default=theano.config.floatX</span></dt><dd><p>The dtype of the arrays.</p>
+<dt><strong>dtype: str, default=theano.config.floatX</strong></dt><dd><p>The dtype of the arrays.</p>
 </dd>
-<dt><strong>casting</strong><span class="classifier">{‘no’, ‘equiv’, ‘save’, ‘same_kind’, ‘unsafe’}, default=’no’</span></dt><dd><p>Casting rule for casting <cite>grad_args</cite> to the array dtype.
+<dt><strong>casting: {‘no’, ‘equiv’, ‘save’, ‘same_kind’, ‘unsafe’}, default=’no’</strong></dt><dd><p>Casting rule for casting <cite>grad_args</cite> to the array dtype.
 See <cite>numpy.can_cast</cite> for a description of the options.
 Keep in mind that we cast the variables to the array <em>and</em>
 back from the array dtype to the variable dtype.</p>
@@ -96,9 +97,11 @@ back from the array dtype to the variable dtype.</p>
 </dd>
 <dt class="field-even">Attributes</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>size</strong><span class="classifier">int</span></dt><dd><p>The number of elements in the parameter array.</p>
+<dt><strong>size: int</strong></dt><dd><p>The number of elements in the parameter array.</p>
 </dd>
-<dt><a class="reference internal" href="#pymc3.model.ValueGradFunction.profile" title="pymc3.model.ValueGradFunction.profile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">profile</span></code></a><span class="classifier">theano profiling object or None</span></dt><dd><p>Profiling information of the underlying theano function.</p>
+<dt><strong>profile: theano profiling object or None</strong></dt><dd><p>The profiling object of the theano function that computes value and
+gradient. This is None unless <cite>profile=True</cite> was set in the
+kwargs.</p>
 </dd>
 </dl>
 </dd>
@@ -136,12 +139,12 @@ back from the array dtype to the variable dtype.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>type</strong><span class="classifier">theano type (optional)</span></dt><dd></dd>
-<dt><strong>owner</strong><span class="classifier">theano owner (optional)</span></dt><dd></dd>
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>distribution</strong><span class="classifier">Distribution</span></dt><dd></dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
-<dt><strong>total_size</strong><span class="classifier">scalar Tensor (optional)</span></dt><dd><p>needed for upscaling logp</p>
+<dt><strong>type: theano type (optional)</strong></dt><dd></dd>
+<dt><strong>owner: theano owner (optional)</strong></dt><dd></dd>
+<dt><strong>name: str</strong></dt><dd></dd>
+<dt><strong>distribution: Distribution</strong></dt><dd></dd>
+<dt><strong>model: Model</strong></dt><dd></dd>
+<dt><strong>total_size: scalar Tensor (optional)</strong></dt><dd><p>needed for upscaling logp</p>
 </dd>
 </dl>
 </dd>
@@ -162,12 +165,12 @@ Potentially partially observed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>type</strong><span class="classifier">theano type (optional)</span></dt><dd></dd>
-<dt><strong>owner</strong><span class="classifier">theano owner (optional)</span></dt><dd></dd>
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>distribution</strong><span class="classifier">Distribution</span></dt><dd></dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
-<dt><strong>total_size</strong><span class="classifier">scalar Tensor (optional)</span></dt><dd><p>needed for upscaling logp</p>
+<dt><strong>type: theano type (optional)</strong></dt><dd></dd>
+<dt><strong>owner: theano owner (optional)</strong></dt><dd></dd>
+<dt><strong>name: str</strong></dt><dd></dd>
+<dt><strong>distribution: Distribution</strong></dt><dd></dd>
+<dt><strong>model: Model</strong></dt><dd></dd>
+<dt><strong>total_size: scalar Tensor (optional)</strong></dt><dd><p>needed for upscaling logp</p>
 </dd>
 </dl>
 </dd>
@@ -188,12 +191,12 @@ Potentially partially observed.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>type</strong><span class="classifier">theano type (optional)</span></dt><dd></dd>
-<dt><strong>owner</strong><span class="classifier">theano owner (optional)</span></dt><dd></dd>
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>distribution</strong><span class="classifier">Distribution</span></dt><dd></dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
-<dt><strong>total_size</strong><span class="classifier">scalar Tensor (optional)</span></dt><dd><p>needed for upscaling logp</p>
+<dt><strong>type: theano type (optional)</strong></dt><dd></dd>
+<dt><strong>owner: theano owner (optional)</strong></dt><dd></dd>
+<dt><strong>name: str</strong></dt><dd></dd>
+<dt><strong>distribution: Distribution</strong></dt><dd></dd>
+<dt><strong>model: Model</strong></dt><dd></dd>
+<dt><strong>total_size: scalar Tensor (optional)</strong></dt><dd><p>needed for upscaling logp</p>
 </dd>
 </dl>
 </dd>
@@ -206,12 +209,12 @@ Potentially partially observed.</p>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>type</strong><span class="classifier">theano type (optional)</span></dt><dd></dd>
-<dt><strong>owner</strong><span class="classifier">theano owner (optional)</span></dt><dd></dd>
-<dt><strong>name</strong><span class="classifier">str</span></dt><dd></dd>
-<dt><strong>distribution</strong><span class="classifier">Distribution</span></dt><dd></dd>
-<dt><strong>model</strong><span class="classifier">Model</span></dt><dd></dd>
-<dt><strong>total_size</strong><span class="classifier">scalar Tensor (optional)</span></dt><dd><p>needed for upscaling logp</p>
+<dt><strong>type: theano type (optional)</strong></dt><dd></dd>
+<dt><strong>owner: theano owner (optional)</strong></dt><dd></dd>
+<dt><strong>name: str</strong></dt><dd></dd>
+<dt><strong>distribution: Distribution</strong></dt><dd></dd>
+<dt><strong>model: Model</strong></dt><dd></dd>
+<dt><strong>total_size: scalar Tensor (optional)</strong></dt><dd><p>needed for upscaling logp</p>
 </dd>
 </dl>
 </dd>
@@ -240,7 +243,7 @@ Potentially partially observed.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

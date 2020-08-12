@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Discrete &#8212; PyMC3 3.8 documentation</title>
+    <title>Discrete &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../../_static/semantic.min.js"></script>
+    <script src="../../_static/highlight.min.js"></script>
+    <script src="../../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../history.html" class="item">About PyMC3</a>
+             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -145,9 +146,9 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of Bernoulli trials (n &gt;= 0).</p>
+<dt><strong>n: int</strong></dt><dd><p>Number of Bernoulli trials (n &gt;= 0).</p>
 </dd>
-<dt><strong>p</strong><span class="classifier">float</span></dt><dd><p>Probability of success in each trial (0 &lt; p &lt; 1).</p>
+<dt><strong>p: float</strong></dt><dd><p>Probability of success in each trial (0 &lt; p &lt; 1).</p>
 </dd>
 </dl>
 </dd>
@@ -159,7 +160,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -179,10 +180,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -232,11 +233,11 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of Bernoulli trials (n &gt;= 0).</p>
+<dt><strong>n: int</strong></dt><dd><p>Number of Bernoulli trials (n &gt;= 0).</p>
 </dd>
-<dt><strong>alpha</strong><span class="classifier">float</span></dt><dd><p>alpha &gt; 0.</p>
+<dt><strong>alpha: float</strong></dt><dd><p>alpha &gt; 0.</p>
 </dd>
-<dt><strong>beta</strong><span class="classifier">float</span></dt><dd><p>beta &gt; 0.</p>
+<dt><strong>beta: float</strong></dt><dd><p>beta &gt; 0.</p>
 </dd>
 </dl>
 </dd>
@@ -248,7 +249,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -268,10 +269,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -319,9 +320,9 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>p</strong><span class="classifier">float</span></dt><dd><p>Probability of success (0 &lt; p &lt; 1).</p>
+<dt><strong>p: float</strong></dt><dd><p>Probability of success (0 &lt; p &lt; 1).</p>
 </dd>
-<dt><strong>logit_p</strong><span class="classifier">float</span></dt><dd><p>Logit of success probability. Only one of <cite>p</cite> and <cite>logit_p</cite>
+<dt><strong>logit_p: float</strong></dt><dd><p>Logit of success probability. Only one of <cite>p</cite> and <cite>logit_p</cite>
 can be specified.</p>
 </dd>
 </dl>
@@ -334,7 +335,7 @@ can be specified.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -354,10 +355,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -409,7 +410,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -429,10 +430,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -480,7 +481,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Expected number of occurrences during the given interval
+<dt><strong>mu: float</strong></dt><dd><p>Expected number of occurrences during the given interval
 (mu &gt;= 0).</p>
 </dd>
 </dl>
@@ -496,7 +497,7 @@ binomial distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -516,10 +517,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -566,9 +567,9 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Poission distribution parameter (mu &gt; 0).</p>
+<dt><strong>mu: float</strong></dt><dd><p>Poission distribution parameter (mu &gt; 0).</p>
 </dd>
-<dt><strong>alpha</strong><span class="classifier">float</span></dt><dd><p>Gamma distribution parameter (alpha &gt; 0).</p>
+<dt><strong>alpha: float</strong></dt><dd><p>Gamma distribution parameter (alpha &gt; 0).</p>
 </dd>
 </dl>
 </dd>
@@ -580,7 +581,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -600,10 +601,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -631,7 +632,7 @@ specified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">float or int</span></dt><dd><p>Constant parameter.</p>
+<dt><strong>value: float or int</strong></dt><dd><p>Constant parameter.</p>
 </dd>
 </dl>
 </dd>
@@ -643,7 +644,7 @@ specified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -663,10 +664,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -717,9 +718,9 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>psi</strong><span class="classifier">float</span></dt><dd><p>Expected proportion of Poisson variates (0 &lt; psi &lt; 1)</p>
+<dt><strong>psi: float</strong></dt><dd><p>Expected proportion of Poisson variates (0 &lt; psi &lt; 1)</p>
 </dd>
-<dt><strong>theta</strong><span class="classifier">float</span></dt><dd><p>Expected number of occurrences during the given interval
+<dt><strong>theta: float</strong></dt><dd><p>Expected number of occurrences during the given interval
 (theta &gt;= 0).</p>
 </dd>
 </dl>
@@ -732,7 +733,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -752,10 +753,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -804,11 +805,11 @@ specified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>psi</strong><span class="classifier">float</span></dt><dd><p>Expected proportion of Binomial variates (0 &lt; psi &lt; 1)</p>
+<dt><strong>psi: float</strong></dt><dd><p>Expected proportion of Binomial variates (0 &lt; psi &lt; 1)</p>
 </dd>
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>Number of Bernoulli trials (n &gt;= 0).</p>
+<dt><strong>n: int</strong></dt><dd><p>Number of Bernoulli trials (n &gt;= 0).</p>
 </dd>
-<dt><strong>p</strong><span class="classifier">float</span></dt><dd><p>Probability of success in each trial (0 &lt; p &lt; 1).</p>
+<dt><strong>p: float</strong></dt><dd><p>Probability of success in each trial (0 &lt; p &lt; 1).</p>
 </dd>
 </dl>
 </dd>
@@ -820,7 +821,7 @@ specified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -840,10 +841,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -903,11 +904,11 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>psi</strong><span class="classifier">float</span></dt><dd><p>Expected proportion of NegativeBinomial variates (0 &lt; psi &lt; 1)</p>
+<dt><strong>psi: float</strong></dt><dd><p>Expected proportion of NegativeBinomial variates (0 &lt; psi &lt; 1)</p>
 </dd>
-<dt><strong>mu</strong><span class="classifier">float</span></dt><dd><p>Poission distribution parameter (mu &gt; 0).</p>
+<dt><strong>mu: float</strong></dt><dd><p>Poission distribution parameter (mu &gt; 0).</p>
 </dd>
-<dt><strong>alpha</strong><span class="classifier">float</span></dt><dd><p>Gamma distribution parameter (alpha &gt; 0).</p>
+<dt><strong>alpha: float</strong></dt><dd><p>Gamma distribution parameter (alpha &gt; 0).</p>
 </dd>
 </dl>
 </dd>
@@ -919,7 +920,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -939,10 +940,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -988,9 +989,9 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>lower</strong><span class="classifier">int</span></dt><dd><p>Lower limit.</p>
+<dt><strong>lower: int</strong></dt><dd><p>Lower limit.</p>
 </dd>
-<dt><strong>upper</strong><span class="classifier">int</span></dt><dd><p>Upper limit (upper &gt; lower).</p>
+<dt><strong>upper: int</strong></dt><dd><p>Upper limit (upper &gt; lower).</p>
 </dd>
 </dl>
 </dd>
@@ -1002,7 +1003,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -1022,10 +1023,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -1073,7 +1074,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>p</strong><span class="classifier">float</span></dt><dd><p>Probability of success on an individual trial (0 &lt; p &lt;= 1).</p>
+<dt><strong>p: float</strong></dt><dd><p>Probability of success on an individual trial (0 &lt; p &lt;= 1).</p>
 </dd>
 </dl>
 </dd>
@@ -1085,7 +1086,7 @@ The pmf of this distribution is</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -1105,10 +1106,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -1148,7 +1149,7 @@ specified).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>p</strong><span class="classifier">array of floats</span></dt><dd><p>p &gt; 0 and the elements of p must sum to 1. They will be automatically
+<dt><strong>p: array of floats</strong></dt><dd><p>p &gt; 0 and the elements of p must sum to 1. They will be automatically
 rescaled otherwise.</p>
 </dd>
 </dl>
@@ -1161,7 +1162,7 @@ rescaled otherwise.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value</strong><span class="classifier">numeric</span></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
 values are desired the values must be provided in a numpy array or theano tensor</p>
 </dd>
 </dl>
@@ -1181,10 +1182,10 @@ values are desired the values must be provided in a numpy array or theano tensor
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>point</strong><span class="classifier">dict, optional</span></dt><dd><p>Dict of variable values on which random values are to be
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
 conditioned (uses default point if not specified).</p>
 </dd>
-<dt><strong>size</strong><span class="classifier">int, optional</span></dt><dd><p>Desired size of random sample (returns one sample if not
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
 specified).</p>
 </dd>
 </dl>
@@ -1224,9 +1225,9 @@ constrained to be ordered.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>eta</strong><span class="classifier">float</span></dt><dd><p>The predictor.</p>
+<dt><strong>eta: float</strong></dt><dd><p>The predictor.</p>
 </dd>
-<dt><strong>c</strong><span class="classifier">array</span></dt><dd><p>The length K - 1 array of cutpoints which break <span class="math notranslate nohighlight">\(\eta\)</span> into
+<dt><strong>c: array</strong></dt><dd><p>The length K - 1 array of cutpoints which break <span class="math notranslate nohighlight">\(\eta\)</span> into
 ranges.  Do not explicitly set the first and last elements of
 <span class="math notranslate nohighlight">\(c\)</span> to negative and positive infinity.</p>
 </dd>
@@ -1278,7 +1279,7 @@ ranges.  Do not explicitly set the first and last elements of
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

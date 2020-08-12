@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>ODE &#8212; PyMC3 3.9.3 documentation</title>
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/default.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
+    <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<script>hljs.initHighlightingOnLoad();</script>
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+
+
+  </head><body>
+<div class="ui vertical center aligned">
+
+    <div class="ui container">
+        <div class="ui large secondary pointing menu">
+            <a class="item" href="/">
+                <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
+            </a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
+            
+            <div class="right menu">
+                <div class="item">
+                    <form class="ui icon input" action="../search.html" method="get">
+                        <input type="text" placeholder="Search..." name="q" />
+                        <i class="search link icon"></i>
+                    </form>
+                </div>
+                <a class="item" href="https://github.com/pymc-devs/pymc3"><i class="github blue icon large"></i></a>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="ui container" role="main">
+    
+
+    <div class="ui vertical segment">
+        
+  <div class="section" id="ode">
+<h1>ODE<a class="headerlink" href="#ode" title="Permalink to this headline">¶</a></h1>
+<p>This submodule contains tools used to perform inference on ordinary differential equations.</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+</tbody>
+</table>
+<span class="target" id="module-pymc3.ode"></span><dl class="class">
+<dt id="pymc3.ode.DifferentialEquation">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.ode.</code><code class="sig-name descname">DifferentialEquation</code><span class="sig-paren">(</span><em class="sig-param">func</em>, <em class="sig-param">times</em>, <em class="sig-param">*</em>, <em class="sig-param">n_states</em>, <em class="sig-param">n_theta</em>, <em class="sig-param">t0=0</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify an ordinary differential equation</p>
+<div class="math notranslate nohighlight">
+\[\dfrac{dy}{dt} = f(y,t,p) \quad y(t_0) = y_0\]</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>func</strong><span class="classifier">callable</span></dt><dd><p>Function specifying the differential equation. Must take arguments y (n_states,), t (scalar), p (n_theta,)</p>
+</dd>
+<dt><strong>times</strong><span class="classifier">array</span></dt><dd><p>Array of times at which to evaluate the solution of the differential equation.</p>
+</dd>
+<dt><strong>n_states</strong><span class="classifier">int</span></dt><dd><p>Dimension of the differential equation.  For scalar differential equations, n_states=1.
+For vector valued differential equations, n_states = number of differential equations in the system.</p>
+</dd>
+<dt><strong>n_theta</strong><span class="classifier">int</span></dt><dd><p>Number of parameters in the differential equation.</p>
+</dd>
+<dt><strong>t0</strong><span class="classifier">float</span></dt><dd><p>Time corresponding to the initial condition</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">odefunc</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="c1">#Logistic differential equation</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">times</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">ode_model</span> <span class="o">=</span> <span class="n">DifferentialEquation</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">odefunc</span><span class="p">,</span> <span class="n">times</span><span class="o">=</span><span class="n">times</span><span class="p">,</span> <span class="n">n_states</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_theta</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">t0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="pymc3.ode.DifferentialEquation.make_node">
+<code class="sig-name descname">make_node</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">y0</em>, <em class="sig-param">theta</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation.make_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a “apply” nodes for the inputs in that order.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="pymc3.ode.DifferentialEquation.perform">
+<code class="sig-name descname">perform</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">node</em>, <em class="sig-param">inputs_storage</em>, <em class="sig-param">output_storage</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation.perform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required: Calculate the function on the inputs and put the variables in
+the output storage. Return None.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>node</strong><span class="classifier">Apply instance</span></dt><dd><p>Contains the symbolic inputs and outputs.</p>
+</dd>
+<dt><strong>inputs</strong><span class="classifier">list</span></dt><dd><p>Sequence of inputs (immutable).</p>
+</dd>
+<dt><strong>output_storage</strong><span class="classifier">list</span></dt><dd><p>List of mutable 1-element lists (do not change the length of
+these lists)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><dl class="simple">
+<dt>MethodNotDefined</dt><dd><p>The subclass does not override this method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The <cite>output_storage</cite> list might contain data. If an element of
+output_storage is not None, it has to be of the right type,
+for instance, for a TensorVariable, it has to be a Numpy ndarray,
+with the right number of dimensions, and the correct dtype.
+Its shape and stride pattern, can be arbitrary. It not is
+guaranteed that it was produced by a previous call to impl. It
+could be allocated by another Op impl is free to reuse it as it
+sees fit, or to discard it and allocate new memory.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+</div>
+<div class="ui vertical footer segment">
+    <div class="ui center aligned container">
+        <a href="https://github.com/pymc-devs/pymc3"><i class="github icon large"></i></a>
+        <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
+        <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
+    </div>
+    <div class="ui center aligned container">
+        <p>
+            &copy; Copyright 2018, The PyMC Development Team.
+        </p>
+        <p>
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+        </p>
+    </div>
+</div>
+  </body>
+</html>

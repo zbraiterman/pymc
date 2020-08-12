@@ -1,1 +1,1 @@
-az.plot_density([centered, non_centered], var_names=["mu"])
+az.plot_kde(mu_posterior, values2=tau_posterior, contour=False)

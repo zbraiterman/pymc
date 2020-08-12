@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Math &#8212; PyMC3 3.8 documentation</title>
+    <title>Math &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -206,7 +207,7 @@ expressions rather than NumPy or Python code.</p>
 <tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">sigmoid</span></code>(\*inputs, \*\*kwargs)</p></td>
 <td><p>Generalizes a scalar op to tensors.</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logsumexp</span></code>(x[, axis])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">logsumexp</span></code>(x[, axis, keepdims])</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.math.invlogit" title="pymc3.math.invlogit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">invlogit</span></code></a>(x[, eps])</p></td>
@@ -370,10 +371,10 @@ scipy.linalg.block_diag for reference</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>matrices</strong><span class="classifier">tensors</span></dt><dd></dd>
-<dt><strong>format</strong><span class="classifier">str (default ‘csr’)</span></dt><dd><p>must be one of: ‘csr’, ‘csc’</p>
+<dt><strong>matrices: tensors</strong></dt><dd></dd>
+<dt><strong>format: str (default ‘csr’)</strong></dt><dd><p>must be one of: ‘csr’, ‘csc’</p>
 </dd>
-<dt><strong>sparse</strong><span class="classifier">bool (default False)</span></dt><dd><p>if True return sparse format</p>
+<dt><strong>sparse: bool (default False)</strong></dt><dd><p>if True return sparse format</p>
 </dd>
 </dl>
 </dd>
@@ -417,13 +418,13 @@ the elements by row like this (for lower or upper triangular matrices):</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>n</strong><span class="classifier">int</span></dt><dd><p>The number of rows of the triangular matrix.</p>
+<dt><strong>n: int</strong></dt><dd><p>The number of rows of the triangular matrix.</p>
 </dd>
-<dt><strong>packed</strong><span class="classifier">theano.vector</span></dt><dd><p>The matrix in packed format.</p>
+<dt><strong>packed: theano.vector</strong></dt><dd><p>The matrix in packed format.</p>
 </dd>
-<dt><strong>lower</strong><span class="classifier">bool, default=True</span></dt><dd><p>If true, assume that the matrix is lower triangular.</p>
+<dt><strong>lower: bool, default=True</strong></dt><dd><p>If true, assume that the matrix is lower triangular.</p>
 </dd>
-<dt><strong>diagonal_only</strong><span class="classifier">bool</span></dt><dd><p>If true, return only the diagonal of the matrix.</p>
+<dt><strong>diagonal_only: bool</strong></dt><dd><p>If true, return only the diagonal of the matrix.</p>
 </dd>
 </dl>
 </dd>
@@ -452,7 +453,7 @@ the elements by row like this (for lower or upper triangular matrices):</p>
 
 <dl class="function">
 <dt id="pymc3.math.kron_dot">
-<code class="sig-prename descclassname">pymc3.math.</code><code class="sig-name descname">kron_dot</code><span class="sig-paren">(</span><em class="sig-param">krons</em>, <em class="sig-param">m</em>, <em class="sig-param">*</em>, <em class="sig-param">op=&lt;function dot at 0x7f8a1ca03598&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.math.kron_dot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.math.</code><code class="sig-name descname">kron_dot</code><span class="sig-paren">(</span><em class="sig-param">krons</em>, <em class="sig-param">m</em>, <em class="sig-param">*</em>, <em class="sig-param">op=&lt;function dot at 0x7fe1835635f0&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.math.kron_dot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply op to krons and m in a way that reproduces <code class="docutils literal notranslate"><span class="pre">op(kronecker(*krons),</span> <span class="pre">m)</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -463,6 +464,11 @@ Product of column dimensions must be <span class="math notranslate nohighlight">
 </dd>
 <dt><strong>m</strong><span class="classifier">NxM array or 1D array (treated as Nx1)</span></dt><dd><p>Object that krons act upon</p>
 </dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy array</dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -483,6 +489,11 @@ Product of column dimensions must be <span class="math notranslate nohighlight">
 </dd>
 </dl>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy array</dt><dd></dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -499,6 +510,11 @@ Product of column dimensions must be <span class="math notranslate nohighlight">
 </dd>
 <dt><strong>m</strong><span class="classifier">NxM array or 1D array (treated as Nx1)</span></dt><dd><p>Object that krons act upon</p>
 </dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy array</dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -519,6 +535,11 @@ Product of column dimensions must be <span class="math notranslate nohighlight">
 </dd>
 </dl>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>numpy array</dt><dd></dd>
+</dl>
+</dd>
 </dl>
 </dd></dl>
 
@@ -532,7 +553,14 @@ Product of column dimensions must be <span class="math notranslate nohighlight">
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>Ks: 2D array-like</strong></dt><dd></dd>
+<dt><strong>Ks</strong><span class="classifier">Iterable of 2D array-like</span></dt><dd><p>Arrays of which to take the product.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>np.ndarray :</dt><dd><p>Block matrix Kroncker product of the argument matrices.</p>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -548,6 +576,15 @@ Product of column dimensions must be <span class="math notranslate nohighlight">
 </dd></dl>
 
 <dl class="function">
+<dt id="pymc3.math.log1mexp_numpy">
+<code class="sig-prename descclassname">pymc3.math.</code><code class="sig-name descname">log1mexp_numpy</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.math.log1mexp_numpy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return log(1 - exp(-x)).
+This function is numerically more stable than the naive approach.
+For details, see
+<a class="reference external" href="https://cran.r-project.org/web/packages/Rmpfr/vignettes/log1mexp-note.pdf">https://cran.r-project.org/web/packages/Rmpfr/vignettes/log1mexp-note.pdf</a></p>
+</dd></dl>
+
+<dl class="function">
 <dt id="pymc3.math.log1pexp">
 <code class="sig-prename descclassname">pymc3.math.</code><code class="sig-name descname">log1pexp</code><span class="sig-paren">(</span><em class="sig-param">x</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.math.log1pexp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return log(1 + exp(x)), also called softplus.</p>
@@ -557,6 +594,11 @@ Product of column dimensions must be <span class="math notranslate nohighlight">
 <dl class="function">
 <dt id="pymc3.math.logdiffexp">
 <code class="sig-prename descclassname">pymc3.math.</code><code class="sig-name descname">logdiffexp</code><span class="sig-paren">(</span><em class="sig-param">exp(a) - exp(b)</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.math.logdiffexp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pymc3.math.logdiffexp_numpy">
+<code class="sig-prename descclassname">pymc3.math.</code><code class="sig-name descname">logdiffexp_numpy</code><span class="sig-paren">(</span><em class="sig-param">exp(a) - exp(b)</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.math.logdiffexp_numpy" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -582,7 +624,7 @@ when the warning disappears.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

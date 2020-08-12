@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Covariance Functions &#8212; PyMC3 3.8 documentation</title>
+    <title>Covariance Functions &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../../_static/jquery.js"></script>
-    <script type="text/javascript" src="../../_static/underscore.js"></script>
-    <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../../_static/semantic.min.js"></script>
+    <script src="../../_static/highlight.min.js"></script>
+    <script src="../../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../history.html" class="item">About PyMC3</a>
+             <a href="../../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../../nb_examples/index.html" class="item">Examples</a> <a href="../../learn.html" class="item">Books + Videos</a> <a href="../../api.html" class="item">API</a> <a href="../../developer_guide.html" class="item">Developer Guide</a> <a href="../../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -195,7 +196,7 @@ Exponential, or Radial Basis Function kernel.</p>
 <em class="property">class </em><code class="sig-prename descclassname">pymc3.gp.cov.</code><code class="sig-name descname">Cosine</code><span class="sig-paren">(</span><em class="sig-param">input_dim</em>, <em class="sig-param">ls=None</em>, <em class="sig-param">ls_inv=None</em>, <em class="sig-param">active_dims=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.gp.cov.Cosine" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Cosine kernel.</p>
 <div class="math notranslate nohighlight">
-\[k(x, x') = \mathrm{cos}\left( \pi \frac{||x - x'||}{ \ell^2} \right)\]</div>
+\[k(x, x') = \mathrm{cos}\left( 2 \pi \frac{||x - x'||}{ \ell^2} \right)\]</div>
 </dd></dl>
 
 <dl class="class">
@@ -204,6 +205,17 @@ Exponential, or Radial Basis Function kernel.</p>
 <dd><p>The Periodic kernel.</p>
 <div class="math notranslate nohighlight">
 \[k(x, x') = \mathrm{exp}\left( -\frac{\mathrm{sin}^2(\pi |x-x'| \frac{1}{T})}{2\ell^2} \right)\]</div>
+<p class="rubric">Notes</p>
+<p>Note that the scaling factor for this kernel is different compared to the more common
+definition (see <a class="reference internal" href="#r0f00414152af-1" id="id1">[1]</a>). Here, 0.5 is in the exponent instead of the more common value, 2.
+Divide the length-scale by 2 when initializing the kernel to recover the standard definition.</p>
+<p class="rubric">References</p>
+<dl class="citation">
+<dt class="label" id="r0f00414152af-1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>David Duvenaud, “The Kernel Cookbook”
+<a class="reference external" href="https://www.cs.toronto.edu/~duvenaud/cookbook/">https://www.cs.toronto.edu/~duvenaud/cookbook/</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="class">
@@ -216,10 +228,10 @@ defined using Theano.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>cov_func</strong><span class="classifier">Covariance</span></dt><dd></dd>
-<dt><strong>warp_func</strong><span class="classifier">callable</span></dt><dd><p>Theano function of X and additional optional arguments.</p>
+<dt><strong>cov_func: Covariance</strong></dt><dd></dd>
+<dt><strong>warp_func: callable</strong></dt><dd><p>Theano function of X and additional optional arguments.</p>
 </dd>
-<dt><strong>args</strong><span class="classifier">optional, tuple or list of scalars or PyMC3 variables</span></dt><dd><p>Additional inputs (besides X or Xs) to warp_func.</p>
+<dt><strong>args: optional, tuple or list of scalars or PyMC3 variables</strong></dt><dd><p>Additional inputs (besides X or Xs) to warp_func.</p>
 </dd>
 </dl>
 </dd>
@@ -238,9 +250,9 @@ using Theano.  Only tested in one dimension.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>lengthscale_func</strong><span class="classifier">callable</span></dt><dd><p>Theano function of X and additional optional arguments.</p>
+<dt><strong>lengthscale_func: callable</strong></dt><dd><p>Theano function of X and additional optional arguments.</p>
 </dd>
-<dt><strong>args</strong><span class="classifier">optional, tuple or list of scalars or PyMC3 variables</span></dt><dd><p>Additional inputs (besides X or Xs) to lengthscale_func.</p>
+<dt><strong>args: optional, tuple or list of scalars or PyMC3 variables</strong></dt><dd><p>Additional inputs (besides X or Xs) to lengthscale_func.</p>
 </dd>
 </dl>
 </dd>
@@ -262,12 +274,12 @@ This allows the api to remain consistent with other covariance objects:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>W</strong><span class="classifier">2D array of shape (num_outputs, rank)</span></dt><dd><p>a low rank matrix that determines the correlations between
+<dt><strong>W: 2D array of shape (num_outputs, rank)</strong></dt><dd><p>a low rank matrix that determines the correlations between
 the different outputs (rows)</p>
 </dd>
-<dt><strong>kappa</strong><span class="classifier">1D array of shape (num_outputs, )</span></dt><dd><p>a vector which allows the outputs to behave independently</p>
+<dt><strong>kappa: 1D array of shape (num_outputs, )</strong></dt><dd><p>a vector which allows the outputs to behave independently</p>
 </dd>
-<dt><strong>B</strong><span class="classifier">2D array of shape (num_outputs, rank)</span></dt><dd><p>the total matrix, exactly one of (W, kappa) and B must be provided</p>
+<dt><strong>B: 2D array of shape (num_outputs, rank)</strong></dt><dd><p>the total matrix, exactly one of (W, kappa) and B must be provided</p>
 </dd>
 </dl>
 </dd>
@@ -290,9 +302,9 @@ non-negative, and can be parameterized.</p>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>cov_func: Covariance</strong></dt><dd><p>Base kernel or covariance function</p>
 </dd>
-<dt><strong>scaling_func</strong><span class="classifier">callable</span></dt><dd><p>Theano function of X and additional optional arguments.</p>
+<dt><strong>scaling_func: callable</strong></dt><dd><p>Theano function of X and additional optional arguments.</p>
 </dd>
-<dt><strong>args</strong><span class="classifier">optional, tuple or list of scalars or PyMC3 variables</span></dt><dd><p>Additional inputs (besides X or Xs) to lengthscale_func.</p>
+<dt><strong>args: optional, tuple or list of scalars or PyMC3 variables</strong></dt><dd><p>Additional inputs (besides X or Xs) to lengthscale_func.</p>
 </dd>
 </dl>
 </dd>
@@ -330,7 +342,7 @@ implementations.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Lotka-Volterra with manual gradients &#8212; PyMC3 3.8 documentation</title>
+    <title>Lotka-Volterra with manual gradients &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -224,6 +224,27 @@ div.nboutput.container div.output_area.stderr {
 
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
 
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
@@ -307,7 +328,7 @@ some specified time points for the parameters <span class="math notranslate nohi
    \frac{d y}{dt} &amp;=-\gamma y + \delta xy,
 \end{aligned}\end{split}\]</div>
 <p>shows limit cycle behaviour and has often been used for benchmarking Bayesian inference methods. <span class="math notranslate nohighlight">\(\boldsymbol{\theta}=(\alpha,\beta,\gamma,\delta, x(0),y(0))\)</span> is the set of unknown parameters that we wish to infer from experimental observations of the state vector <span class="math notranslate nohighlight">\(X(t)=(x(t),y(t))\)</span> comprising the concentrations of the prey and the predator species respectively. <span class="math notranslate nohighlight">\(x(0), y(0)\)</span> are the initial values of the states needed to solve the ODE, which are also treated as unknown
-quantities. The predator prey model was recently used to demonstrate the applicability of the NUTS sampler, and the STAN ppl in general, for inference in ODE models. I will closely follow <a class="reference external" href="https://mc-stan.org/users/documentation/case-studies/lotka-volterra-predator-prey.html">this</a> STAN tutorial and thus I will setup this model and associated inference problem (including the data) exactly as was done for the STAN tutorial. Let me first write down the code to solve this ODE using the SciPy’s
+quantities. The predator prey model was recently used to demonstrate the applicability of the NUTS sampler, and the Stan ppl in general, for inference in ODE models. I will closely follow <a class="reference external" href="https://mc-stan.org/users/documentation/case-studies/lotka-volterra-predator-prey.html">this</a> Stan tutorial and thus I will setup this model and associated inference problem (including the data) exactly as was done for the Stan tutorial. Let me first write down the code to solve this ODE using the SciPy’s
 <code class="docutils literal notranslate"><span class="pre">odeint</span></code>. Note that the methods in this tutorial is not limited or tied to <code class="docutils literal notranslate"><span class="pre">odeint</span></code>. Here I have chosen <code class="docutils literal notranslate"><span class="pre">odeint</span></code> to simply stay within PyMC3’s dependencies (SciPy in this case).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
@@ -425,7 +446,7 @@ snippet above to include sensitivities when asked for.</p>
 </pre></div>
 </div>
 </div>
-<p>For this model I have set the relative and absolute tolerances to <span class="math notranslate nohighlight">\(10^{-6}\)</span> and <span class="math notranslate nohighlight">\(10^{-5}\)</span> respectively, as was suggested in the STAN tutorial. This will produce sufficiently accurate solutions. Further reducing the tolerances will increase accuracy but at the cost of increasing the computational time. A thorough discussion on the choice and use of a numerical method for solving the ODE is out of the scope of this tutorial. However, I must point out that the inaccuracies of the ODE
+<p>For this model I have set the relative and absolute tolerances to <span class="math notranslate nohighlight">\(10^{-6}\)</span> and <span class="math notranslate nohighlight">\(10^{-5}\)</span> respectively, as was suggested in the Stan tutorial. This will produce sufficiently accurate solutions. Further reducing the tolerances will increase accuracy but at the cost of increasing the computational time. A thorough discussion on the choice and use of a numerical method for solving the ODE is out of the scope of this tutorial. However, I must point out that the inaccuracies of the ODE
 solver do affect the likelihood and as a result the inference. This is more so the case for stiff systems. I would recommend interested readers to this nice blog article where this effect is discussed thoroughly for a <a class="reference external" href="https://mirams.wordpress.com/2018/10/17/ode-errors-and-optimisation/">cardiac ODE model</a>. There is also an emerging area of uncertainty quantification that attacks the problem of noise arisng from impreciseness of numerical algorithms, <a class="reference external" href="http://probabilistic-numerics.org/">probabilistic
 numerics</a>. This is indeed an elegant framework to carry out inference while taking into account the errors coming from the numeric ODE solvers.</p>
 </div>
@@ -537,7 +558,7 @@ rearrange the sensitivities accordingly to obtain the desired vector-matrix prod
 </div>
 <div class="section" id="The-Hudson’s-Bay-Company-data">
 <h2>The Hudson’s Bay Company data<a class="headerlink" href="#The-Hudson’s-Bay-Company-data" title="Permalink to this headline">¶</a></h2>
-<p>The Lotka-Volterra predator prey model has been used previously to successfully explain the dynamics of natural populations of predators and prey, such as the lynx and snowshoe hare data of the Hudson’s Bay Company. This is the same data (that was shared <a class="reference external" href="https://github.com/stan-dev/example-models/tree/master/knitr/lotka-volterra">here</a>) used in the STAN example and thus I will use this data-set as the experimental observations <span class="math notranslate nohighlight">\(\boldsymbol{Y}(t)\)</span> to infer the parameters.</p>
+<p>The Lotka-Volterra predator prey model has been used previously to successfully explain the dynamics of natural populations of predators and prey, such as the lynx and snowshoe hare data of the Hudson’s Bay Company. This is the same data (that was shared <a class="reference external" href="https://github.com/stan-dev/example-models/tree/master/knitr/lotka-volterra">here</a>) used in the Stan example and thus I will use this data-set as the experimental observations <span class="math notranslate nohighlight">\(\boldsymbol{Y}(t)\)</span> to infer the parameters.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
@@ -570,7 +591,7 @@ rearrange the sensitivities accordingly to obtain the desired vector-matrix prod
 </div>
 <div class="section" id="The-probablistic-model">
 <h2>The probablistic model<a class="headerlink" href="#The-probablistic-model" title="Permalink to this headline">¶</a></h2>
-<p>I have now got all the ingredients needed in order to define the probabilistic model in PyMC3. As I have mentioned previously I will set up the probabilistic model with the exact same likelihood and priors used in the STAN example. The observed data is defined as follows:</p>
+<p>I have now got all the ingredients needed in order to define the probabilistic model in PyMC3. As I have mentioned previously I will set up the probabilistic model with the exact same likelihood and priors used in the Stan example. The observed data is defined as follows:</p>
 <div class="math notranslate nohighlight">
 \[\log (\boldsymbol{Y(t)}) = \log (\boldsymbol{X(t)}) + \eta(t),\]</div>
 <p>where <span class="math notranslate nohighlight">\(\eta(t)\)</span> is assumed to be zero mean i.i.d Gaussian noise with an unknown standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>, that needs to be estimated. The above multiplicative (on the natural scale) noise model encodes a lognormal distribution as the likelihood:</p>
@@ -584,7 +605,7 @@ x(0), y(0) &amp;\sim  \mathcal{L}\mathcal{N}(\log(10),1),\\
 \beta, \delta &amp;\sim \mathcal{N}(0.05,0.05),\\
 \sigma &amp;\sim \mathcal{L}\mathcal{N}(-1,1).
 \end{aligned}\end{split}\]</div>
-<p>For an intuitive explanation, which I am omitting for brevity, regarding the choice of priors as well as the likelihood model, I would recommend the STAN example mentioned above. The above probabilistic model is defined in PyMC3 below. Note that the flattened state vector is reshaped to match the data dimensionality.</p>
+<p>For an intuitive explanation, which I am omitting for brevity, regarding the choice of priors as well as the likelihood model, I would recommend the Stan example mentioned above. The above probabilistic model is defined in PyMC3 below. Note that the flattened state vector is reshaped to match the data dimensionality.</p>
 <p>Finally, I use the <code class="docutils literal notranslate"><span class="pre">pm.sample</span></code> method to run NUTS by default and obtain <span class="math notranslate nohighlight">\(1500\)</span> post warm-up samples from the posterior.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
@@ -830,7 +851,7 @@ The acceptance probability does not match the target. It is 0.6992852935132228, 
 </table>
 </div></div>
 </div>
-<p>These estimates are almost identical to those obtained in the STAN tutorial (see the last two columns above), which is what we can expect. Posterior predictives can be drawn as below.</p>
+<p>These estimates are almost identical to those obtained in the Stan tutorial (see the last two columns above), which is what we can expect. Posterior predictives can be drawn as below.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
@@ -1125,6 +1146,33 @@ factors. Follow PyMC3’s other tutorials for further information regarding how 
 <p>Since we generally frame the ODE inference as a regression problem (along with the i.i.d measurement noise assumption in most cases) we can straight away use any of the supported information criterion, such as the widely available information criterion (WAIC), irrespective of what sampler is used for inference. See the PyMC3’s API for further information regarding WAIC.</p>
 <p>Although this is a slight digression nonetheless I would still like to point out my observations on this issue. The approach that I have presented here for embedding an ODE (also extends to DDE/DAE) as a custom Op can be trivially carried forward to other AD packages such as TensorFlow and PyTorch. I had been able to use TensorFlow’s <a class="reference external" href="https://www.tensorflow.org/api_docs/python/tf/py_func">py_func</a> to build a custom TensorFlow ODE Op and then use that in the <a class="reference external" href="http://edwardlib.org/">Edward</a>
 ppl. I would recommend <a class="reference external" href="https://pytorch.org/tutorials/advanced/numpy_extensions_tutorial.html">this</a> tutorial, for writing PyTorch extensions, to those who are interested in using the <a class="reference external" href="http://pyro.ai/">Pyro</a> ppl.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+pymc3   3.8
+arviz   0.7.0
+pandas  0.25.3
+seaborn 0.9.0
+numpy   1.17.5
+last updated: Wed Apr 22 2020
+
+CPython 3.8.0
+IPython 7.11.0
+watermark 2.0.2
+</pre></div></div>
+</div>
 </div>
 
 
@@ -1141,7 +1189,7 @@ ppl. I would recommend <a class="reference external" href="https://pytorch.org/t
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

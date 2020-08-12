@@ -1,1 +1,1 @@
-az.plot_kde(mu_posterior, rug=True)
+az.plot_energy(data, kind='hist')

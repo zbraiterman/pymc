@@ -4,22 +4,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Probabilistic Matrix Factorization for Making Personalized Recommendations &#8212; PyMC3 3.8 documentation</title>
+    <title>Probabilistic Matrix Factorization for Making Personalized Recommendations &#8212; PyMC3 3.9.3 documentation</title>
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/language_data.js"></script>
-    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
-    <script type="text/javascript" src="../_static/highlight.min.js"></script>
-    <script type="text/javascript" src="../_static/semantic.min.js"></script>
+    <script src="../_static/highlight.min.js"></script>
+    <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <script>hljs.initHighlightingOnLoad();</script>
@@ -38,7 +39,7 @@
             <a class="item" href="/">
                 <img class="ui bottom aligned tiny image" src="https://cdn.rawgit.com/pymc-devs/pymc3/master/docs/logos/svg/PyMC3_banner.svg" />
             </a>
-             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../history.html" class="item">About PyMC3</a>
+             <a href="../nb_tutorials/index.html" class="item">Tutorials</a> <a href="../nb_examples/index.html" class="item">Examples</a> <a href="../learn.html" class="item">Books + Videos</a> <a href="../api.html" class="item">API</a> <a href="../developer_guide.html" class="item">Developer Guide</a> <a href="../about.html" class="item">About PyMC3</a>
             
             <div class="right menu">
                 <div class="item">
@@ -126,8 +127,8 @@ div.nboutput.container div.prompt pre {
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
     min-width: 7ex;
-    padding-top: 0.4em;
-    padding-right: 0.4em;
+    padding-top: 0.3rem;
+    padding-right: 0.3rem;
     text-align: right;
     flex: 0;
 }
@@ -151,7 +152,6 @@ div.nboutput.container div.prompt pre {
 /* input/output area */
 div.nbinput.container div.input_area,
 div.nboutput.container div.output_area {
-    padding: 0.4em;
     -webkit-flex: 1;
     flex: 1;
     overflow: auto;
@@ -225,6 +225,27 @@ div.nboutput.container div.output_area.stderr {
 .ansi-bold { font-weight: bold; }
 .ansi-underline { text-decoration: underline; }
 
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 0.3rem;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
 /* Some additional styling taken form the Jupyter notebook CSS */
 div.rendered_html table {
   border: none;
@@ -282,7 +303,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Running on PyMC3 v3.8
+Running on PyMC3 v3.9.0
 </pre></div></div>
 </div>
 <div class="section" id="Motivation">
@@ -708,7 +729,7 @@ Name: rating, dtype: float64
 <span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">user_means</span><span class="p">)),</span> <span class="n">user_means</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>  <span class="c1"># 1000 labels is nonsensical</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Rating&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;{len(user_means)} average ratings per user&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">user_means</span><span class="p">)</span><span class="si">}</span><span class="s1"> average ratings per user&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_means</span><span class="p">));</span>
 </pre></div>
@@ -853,7 +874,7 @@ mean to smooth things out a bit. So if we see a missing value in cell <span clas
 <span></span><span class="n">num_users</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">userid</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">num_items</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">itemid</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">sparsity</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">num_users</span> <span class="o">*</span> <span class="n">num_items</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Users: </span><span class="si">{num_users}</span><span class="se">\n</span><span class="s2">Movies: </span><span class="si">{num_items}</span><span class="se">\n</span><span class="s2">Sparsity: </span><span class="si">{sparsity}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Users: </span><span class="si">{</span><span class="n">num_users</span><span class="si">}</span><span class="se">\n</span><span class="s2">Movies: </span><span class="si">{</span><span class="n">num_items</span><span class="si">}</span><span class="se">\n</span><span class="s2">Sparsity: </span><span class="si">{</span><span class="n">sparsity</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">dense_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;userid&#39;</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span><span class="s1">&#39;itemid&#39;</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="s1">&#39;rating&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
@@ -1018,7 +1039,7 @@ generate an <span class="math notranslate nohighlight">\(R\)</span> matrix for e
     \frac{1}{K} \sum_{k=1}^K \mathcal{N}(U_i V_j^T, \alpha)\]</div>
 <p>We’ll want to inspect the individual <span class="math notranslate nohighlight">\(R\)</span> matrices before averaging them for diagnostic purposes. So we’ll write code for the averaging piece during evaluation. The function below simply draws an <span class="math notranslate nohighlight">\(R\)</span> matrix given a <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> and the fixed <span class="math notranslate nohighlight">\(\alpha\)</span> stored in the PMF object.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1051,7 +1072,7 @@ the interest of time and space, these will not be implemented here.</p>
                    { \sum_{i=1}^N \sum_{j=1}^M I_{ij} } }\]</div>
 <p>In this case, the RMSE can be thought of as the standard deviation of our predictions from the actual user preferences.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1074,7 +1095,7 @@ the interest of time and space, these will not be implemented here.</p>
 <p>The next thing we need to do is split our data into a training set and a test set. Matrix factorization techniques use <a class="reference external" href="http://en.wikipedia.org/wiki/Transduction_%28machine_learning%29">transductive learning</a> rather than inductive learning. So we produce a test set by taking a random sample of the cells in the full <span class="math notranslate nohighlight">\(N \times M\)</span> data matrix. The values selected as test samples are replaced with <code class="docutils literal notranslate"><span class="pre">nan</span></code> values in a copy of the original data matrix to produce the training set. Since we’ll
 be producing random splits, let’s also write out the train/test sets generated. This will allow us to replicate our results. We’d like to be able to idenfity which split is which, so we’ll take a hash of the indices selected for testing and use that to save the data.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1122,7 +1143,7 @@ be producing random splits, let’s also write out the train/test sets generated
 <div class="section" id="Results">
 <h2>Results<a class="headerlink" href="#Results" title="Permalink to this headline">¶</a></h2>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1142,14 +1163,14 @@ be producing random splits, let’s also write out the train/test sets generated
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Uniform Random Baseline RMSE:   1.68522
-Global Mean Baseline RMSE:      1.12244
-Mean Of Means Baseline RMSE:    1.01263
+Uniform Random Baseline RMSE:   1.69769
+Global Mean Baseline RMSE:      1.12359
+Mean Of Means Baseline RMSE:    1.01168
 </pre></div></div>
 </div>
 <p>As expected: the uniform random baseline is the worst by far, the global mean baseline is next best, and the mean of means method is our best baseline. Now let’s see how PMF stacks up.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1179,7 +1200,7 @@ Mean Of Means Baseline RMSE:    1.01263
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 INFO:root:building the PMF model
-/home/zv/upstream/mc4/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   rval = inputs[0].__getitem__(inputs[1:])
 INFO:root:done building the PMF model
 </pre></div></div>
@@ -1187,7 +1208,7 @@ INFO:root:done building the PMF model
 <div class="section" id="Predictions-Using-MAP">
 <h3>Predictions Using MAP<a class="headerlink" href="#Predictions-Using-MAP" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1196,22 +1217,64 @@ INFO:root:done building the PMF model
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 INFO:root:finding PMF MAP using L-BFGS-B optimization...
-  0%|          | 0/5000 [00:00&lt;?, ?it/s]/home/zv/upstream/mc4/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='1264' class='' max='1264' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [1264/1264 01:40<00:00 logp = -1.537e+05, ||grad|| = 0.8563]
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   rval = inputs[0].__getitem__(inputs[1:])
-logp = -1.5355e+05, ||grad|| = 0.7578: 100%|██████████| 481/481 [00:13&lt;00:00, 35.20it/s]
-INFO:root:found PMF MAP in 17 seconds
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+INFO:root:found PMF MAP in 111 seconds
 </pre></div></div>
 </div>
 <p>Excellent. The first thing we want to do is make sure the MAP estimate we obtained is reasonable. We can do this by computing RMSE on the predicted ratings obtained from the MAP values of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>. First we define a function for generating the predicted ratings <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span>. We ensure the actual rating bounds are enforced by setting all values below 1 to 1 and all values above 5 to 5. Finally, we compute RMSE for both the training set and the test set. We
 expect the test RMSE to be higher. The difference between the two gives some idea of how much we have overfit. Some difference is always expected, but a very low RMSE on the training set with a high RMSE on the test set is a definite sign of overfitting.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1239,7 +1302,7 @@ expect the test RMSE to be higher. The difference between the two gives some ide
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1255,10 +1318,10 @@ expect the test RMSE to be higher. The difference between the two gives some ide
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-PMF MAP training RMSE: 1.01383
-PMF MAP testing RMSE:  1.14452
-Train/test difference: 0.13070
-PMF MAP Improvement:   -0.13190
+PMF MAP training RMSE: 1.01333
+PMF MAP testing RMSE:  1.13761
+Train/test difference: 0.12427
+PMF MAP Improvement:   -0.12593
 </pre></div></div>
 </div>
 <p>We actually see a decrease in performance between the MAP estimate and the mean of means performance. We also have a fairly large difference in the RMSE values between the train and the test sets. This indicates that the point estimates for <span class="math notranslate nohighlight">\(\alpha_U\)</span> and <span class="math notranslate nohighlight">\(\alpha_V\)</span> that we calculated from our data are not doing a great job of controlling model complexity.</p>
@@ -1267,7 +1330,7 @@ PMF MAP Improvement:   -0.13190
 <div class="section" id="Predictions-using-MCMC">
 <h3>Predictions using MCMC<a class="headerlink" href="#Predictions-using-MCMC" title="Permalink to this headline">¶</a></h3>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1276,7 +1339,7 @@ PMF MAP Improvement:   -0.13190
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
@@ -1285,13 +1348,44 @@ Auto-assigning NUTS sampler...
 INFO:pymc3:Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
 INFO:pymc3:Initializing NUTS using jitter+adapt_diag...
-/home/zv/upstream/mc4/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
   rval = inputs[0].__getitem__(inputs[1:])
 Sequential sampling (1 chains in 1 job)
 INFO:pymc3:Sequential sampling (1 chains in 1 job)
 NUTS: [V, U]
 INFO:pymc3:NUTS: [V, U]
-Sampling chain 0, 0 divergences: 100%|██████████| 1000/1000 [28:37&lt;00:00,  1.72s/it]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='1000' class='' max='1000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [1000/1000 46:06<00:00 Sampling chain 0, 0 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 1 chain for 500 tune and 500 draw iterations (500 + 500 draws total) took 2766 seconds.
+INFO:pymc3:Sampling 1 chain for 500 tune and 500 draw iterations (500 + 500 draws total) took 2766 seconds.
+/env/miniconda3/lib/python3.7/site-packages/theano/tensor/subtensor.py:2197: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  rval = inputs[0].__getitem__(inputs[1:])
 Only one chain was sampled, this makes it impossible to run some convergence checks
 INFO:pymc3:Only one chain was sampled, this makes it impossible to run some convergence checks
 </pre></div></div>
@@ -1304,7 +1398,7 @@ This essentially gives us some idea when the average magnitude of the latent var
 <div class="math notranslate nohighlight">
 \[\|U\|_{Fro}^2 = \sqrt{\sum_{i=1}^N \sum_{d=1}^D |U_{id}|^2}, \hspace{40pt} \|V\|_{Fro}^2 = \sqrt{\sum_{j=1}^M \sum_{d=1}^D |V_{jd}|^2}\]</div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1341,7 +1435,7 @@ This essentially gives us some idea when the average magnitude of the latent var
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[24]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1361,7 +1455,7 @@ the train/test sets to see how aggregate performance improves or decreases as we
 <p>Notice here that we are sampling from 1 chain only, which makes the convergence statisitcs like <span class="math notranslate nohighlight">\(\hat{r}\)</span> impossible (we can still compute the split-rhat but the purpose is different). The reason of not sampling multiple chain is that PMF might not have unique solution. Thus without constraints, the solutions are at best symmetrical, at worse identical under any rotation, in any case subject to label switching. In fact if we sample from multiple chains we will see large <span class="math notranslate nohighlight">\(\hat{r}\)</span>
 indicating the sampler is exploring different solutions in different part of parameter space.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[25]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1397,7 +1491,7 @@ indicating the sampler is exploring different solutions in different part of par
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1413,7 +1507,7 @@ indicating the sampler is exploring different solutions in different part of par
 </div>
 </div>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[27]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1433,11 +1527,11 @@ indicating the sampler is exploring different solutions in different part of par
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Posterior predictive train RMSE: 0.77956
-Posterior predictive test RMSE:  0.92176
-Train/test difference:           0.14220
-Improvement from MAP:            0.22276
-Improvement from Mean of Means:  0.09086
+Posterior predictive train RMSE: 0.78030
+Posterior predictive test RMSE:  0.91377
+Train/test difference:           0.13347
+Improvement from MAP:            0.22384
+Improvement from Mean of Means:  0.09791
 </pre></div></div>
 </div>
 <p>We have some interesting results here. As expected, our MCMC sampler provides lower error on the training set. However, it seems it does so at the cost of overfitting the data. This results in a decrease in test RMSE as compared to the MAP, even though it is still much better than our best baseline. So why might this be the case? Recall that we used point estimates for our precision paremeters <span class="math notranslate nohighlight">\(\alpha_U\)</span> and <span class="math notranslate nohighlight">\(\alpha_V\)</span> and we chose a fixed precision <span class="math notranslate nohighlight">\(\alpha\)</span>. It is quite likely
@@ -1451,7 +1545,7 @@ that by doing this, we constrained our posterior in a way that biased it towards
 <h3>Summary of Results<a class="headerlink" href="#Summary-of-Results" title="Permalink to this headline">¶</a></h3>
 <p>Let’s summarize our results.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1519,14 +1613,33 @@ systems, the first reference is a good place to start.</p>
 </li>
 </ol>
 <p>The model discussed in this analysis was developed by Ruslan Salakhutdinov and Andriy Mnih. Code and supporting text are the original work of <a class="reference external" href="https://www.linkedin.com/in/macksweeney">Mack Sweeney</a> with changes made to adapt the code and text for the Movielens dataset by Colin Carroll and Rob Zinkov.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[29]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
+<span></span><span class="o">%</span><span class="k">load_ext</span> watermark
+<span class="o">%</span><span class="k">watermark</span> -n -u -v -iv -w
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+theano  1.0.4
+numpy   1.18.5
+pymc3   3.9.0
+logging 0.5.1.2
+scipy   1.4.1
+pandas  1.0.4
+last updated: Mon Jun 15 2020
+
+CPython 3.7.7
+IPython 7.15.0
+watermark 2.0.2
+</pre></div></div>
 </div>
 </div>
 </div>
@@ -1545,7 +1658,7 @@ systems, the first reference is a good place to start.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.2.1.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
         </p>
     </div>
 </div>

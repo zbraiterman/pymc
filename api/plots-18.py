@@ -1,1 +1,1 @@
-az.plot_autocorr(data, var_names=['mu', 'tau'] )
+az.plot_compare(model_compare, insample_dev=False)
