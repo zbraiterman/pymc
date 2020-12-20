@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Analysis of An \(AR(1)\) Model in PyMC3 &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analysis of An \(AR(1)\) Model in PyMC3 &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -65,21 +70,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -126,20 +145,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -167,7 +199,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -232,7 +264,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -291,8 +324,6 @@ div.rendered_html tbody tr:hover {
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running on PyMC3 v</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -301,7 +332,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Running on PyMC3 v3.9.0
+
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -312,7 +343,7 @@ Running on PyMC3 v3.9.0
 <span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
 <span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">8927</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
-<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;arviz-darkgrid&#39;</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -331,13 +362,13 @@ Running on PyMC3 v3.9.0
 
 <span class="c1"># true stationarity:</span>
 <span class="n">true_theta</span> <span class="o">=</span> <span class="mf">0.95</span>
-<span class="c1"># true variance of the innovation:</span>
-<span class="n">true_tau</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="c1"># true standard deviation of the innovation:</span>
+<span class="n">true_sigma</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="c1"># true process mean:</span>
 <span class="n">true_center</span> <span class="o">=</span> <span class="mf">0.0</span>
 
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
-    <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">true_theta</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">true_center</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">true_tau</span><span class="p">)</span>
+    <span class="n">y</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">true_theta</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">true_center</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">true_sigma</span><span class="p">)</span>
 
 <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">5000</span><span class="p">:]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
@@ -350,7 +381,7 @@ Running on PyMC3 v3.9.0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_AR_4_0.png"><img alt="../_images/notebooks_AR_4_0.png" src="../_images/notebooks_AR_4_0.png" style="width: 650px; height: 432px;" /></a>
+<img alt="../_images/notebooks_AR_4_0.png" class="no-scaled-link" src="../_images/notebooks_AR_4_0.png" style="width: 649px; height: 431px;" />
 </div>
 </div>
 <p>This generative process is quite straight forward to implement in PyMC3:</p>
@@ -362,14 +393,14 @@ Running on PyMC3 v3.9.0
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">ar1</span><span class="p">:</span>
     <span class="c1"># assumes 95% of prob mass is between -2 and 2</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-    <span class="c1"># variance of the innovation term</span>
+    <span class="c1"># precision of the innovation term</span>
     <span class="n">tau</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s2">&quot;tau&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
     <span class="c1"># process mean</span>
     <span class="n">center</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
     <span class="n">likelihood</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">AR1</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">theta</span><span class="p">,</span> <span class="n">tau_e</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span> <span class="o">-</span> <span class="n">center</span><span class="p">)</span>
 
-    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;advi+adapt_diag&quot;</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;advi+adapt_diag&quot;</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
     <span class="n">idata</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">from_pymc3</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -400,8 +431,8 @@ Initializing NUTS using advi+adapt_diag...
             background: #F44336;
         }
     </style>
-  <progress value='21612' class='' max='200000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  10.81% [21612/200000 00:05<00:44 Average Loss = 7,045.7]
+  <progress value='0' class='' max='200000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+
 </div></div>
 </div>
 <div class="nboutput docutils container">
@@ -409,9 +440,9 @@ Initializing NUTS using advi+adapt_diag...
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Convergence achieved at 21800
-Interrupted at 21,799 [10%]: Average Loss = 11,626
-Multiprocess sampling (4 chains in 4 jobs)
+Convergence achieved at 13500
+Interrupted at 13,499 [6%]: Average Loss = 42,118
+Multiprocess sampling (2 chains in 2 jobs)
 NUTS: [center, tau, theta]
 </pre></div></div>
 </div>
@@ -432,8 +463,8 @@ NUTS: [center, tau, theta]
             background: #F44336;
         }
     </style>
-  <progress value='16000' class='' max='16000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [16000/16000 00:06<00:00 Sampling 4 chains, 0 divergences]
+  <progress value='0' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+
 </div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -441,10 +472,10 @@ NUTS: [center, tau, theta]
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Sampling 4 chains for 2_000 tune and 2_000 draw iterations (8_000 + 8_000 draws total) took 7 seconds.
+Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 16 seconds.
 </pre></div></div>
 </div>
-<p>We can see that even though the sample data did not start at zero, the true center of zero is captured rightly inferred by the model, as you can see in the trace plot below. Likewise, the model captured the true values of the autocorrelation parameter 𝜃 and the variance term <span class="math notranslate nohighlight">\(\epsilon_t\)</span> (<code class="docutils literal notranslate"><span class="pre">tau</span></code> in the model) – 0.95 and 1 respectively).</p>
+<p>We can see that even though the sample data did not start at zero, the true center of zero is captured rightly inferred by the model, as you can see in the trace plot below. Likewise, the model captured the true values of the autocorrelation parameter 𝜃 and the innovation term <span class="math notranslate nohighlight">\(\epsilon_t\)</span> (<code class="docutils literal notranslate"><span class="pre">tau</span></code> in the model) – 0.95 and 1 respectively).</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
@@ -454,7 +485,7 @@ Sampling 4 chains for 2_000 tune and 2_000 draw iterations (8_000 + 8_000 draws 
     <span class="n">idata</span><span class="p">,</span>
     <span class="n">lines</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_theta</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;tau&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_tau</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;tau&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_sigma</span> <span class="o">**</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_center</span><span class="p">),</span>
     <span class="p">],</span>
 <span class="p">);</span>
@@ -465,15 +496,16 @@ Sampling 4 chains for 2_000 tune and 2_000 draw iterations (8_000 + 8_000 draws 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_AR_8_0.png"><img alt="../_images/notebooks_AR_8_0.png" src="../_images/notebooks_AR_8_0.png" style="width: 1211px; height: 611px;" /></a>
+<img alt="../_images/notebooks_AR_8_0.png" class="no-scaled-link" src="../_images/notebooks_AR_8_0.png" style="width: 1211px; height: 611px;" />
 </div>
 </div>
 <div class="section" id="Extension-to-AR(p)">
 <h2>Extension to AR(p)<a class="headerlink" href="#Extension-to-AR(p)" title="Permalink to this headline">¶</a></h2>
-<p>We can instead estimate an AR(2) model using pyMC3.</p>
+<p>We can instead estimate an AR(2) model using PyMC3.</p>
 <div class="math notranslate nohighlight">
 \[y_t = \theta_1 y_{t-1} + \theta_2 y_{t-2} + \epsilon_t.\]</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">AR</span></code> distribution infers the order of the process thanks to the size the of <code class="docutils literal notranslate"><span class="pre">rho</span></code> argmument passed to <code class="docutils literal notranslate"><span class="pre">AR</span></code>.</p>
+<p>We will also use the standard deviation of the innovations (rather than the precision) to parameterize the distribution.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
@@ -481,14 +513,12 @@ Sampling 4 chains for 2_000 tune and 2_000 draw iterations (8_000 + 8_000 draws 
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">ar2</span><span class="p">:</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">tau</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s2">&quot;tau&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">likelihood</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">AR</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">AR</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 
     <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
-        <span class="mi">2000</span><span class="p">,</span>
-        <span class="n">tune</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span>
-        <span class="n">target_accept</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-        <span class="n">init</span><span class="o">=</span><span class="s2">&quot;advi+adapt_diag&quot;</span><span class="p">,</span>
+        <span class="mi">1000</span><span class="p">,</span>
+        <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
         <span class="n">random_seed</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">idata</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">from_pymc3</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
@@ -501,7 +531,9 @@ Sampling 4 chains for 2_000 tune and 2_000 draw iterations (8_000 + 8_000 draws 
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
-Initializing NUTS using advi+adapt_diag...
+Initializing NUTS using jitter+adapt_diag...
+Multiprocess sampling (2 chains in 2 jobs)
+NUTS: [sigma, theta]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -521,40 +553,8 @@ Initializing NUTS using advi+adapt_diag...
             background: #F44336;
         }
     </style>
-  <progress value='12142' class='' max='200000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  6.07% [12142/200000 00:02<00:40 Average Loss = 8,372.1]
-</div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Convergence achieved at 12500
-Interrupted at 12,499 [6%]: Average Loss = 15,121
-Multiprocess sampling (4 chains in 4 jobs)
-NUTS: [tau, theta]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-    <style>
-        /* Turns off some styling */
-        progress {
-            /* gets rid of default border in Firefox and Opera. */
-            border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
-            background-size: auto;
-        }
-        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-            background: #F44336;
-        }
-    </style>
-  <progress value='20000' class='' max='20000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [20000/20000 00:19<00:00 Sampling 4 chains, 0 divergences]
+  <progress value='0' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+
 </div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -562,7 +562,7 @@ NUTS: [tau, theta]
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Sampling 4 chains for 3_000 tune and 2_000 draw iterations (12_000 + 8_000 draws total) took 19 seconds.
+Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 22 seconds.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -575,7 +575,7 @@ Sampling 4 chains for 3_000 tune and 2_000 draw iterations (12_000 + 8_000 draws
     <span class="n">lines</span><span class="o">=</span><span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;theta_dim_0&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">},</span> <span class="n">true_theta</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;theta&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;theta_dim_0&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="mf">0.0</span><span class="p">),</span>
-        <span class="p">(</span><span class="s2">&quot;tau&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_tau</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_sigma</span><span class="p">),</span>
     <span class="p">],</span>
 <span class="p">);</span>
 </pre></div>
@@ -585,7 +585,7 @@ Sampling 4 chains for 3_000 tune and 2_000 draw iterations (12_000 + 8_000 draws
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_AR_11_0.png"><img alt="../_images/notebooks_AR_11_0.png" src="../_images/notebooks_AR_11_0.png" style="width: 1211px; height: 609px;" /></a>
+<img alt="../_images/notebooks_AR_11_0.png" class="no-scaled-link" src="../_images/notebooks_AR_11_0.png" style="width: 1211px; height: 609px;" />
 </div>
 </div>
 <p>You can also pass the set of AR parameters as a list.</p>
@@ -597,14 +597,12 @@ Sampling 4 chains for 3_000 tune and 2_000 draw iterations (12_000 + 8_000 draws
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">ar2_bis</span><span class="p">:</span>
     <span class="n">beta0</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;theta0&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
     <span class="n">beta1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s2">&quot;theta1&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">tau</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Exponential</span><span class="p">(</span><span class="s2">&quot;tau&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">likelhood</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">AR</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">beta0</span><span class="p">,</span> <span class="n">beta1</span><span class="p">],</span> <span class="n">sigma</span><span class="o">=</span><span class="n">tau</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">likelhood</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">AR</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">beta0</span><span class="p">,</span> <span class="n">beta1</span><span class="p">],</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
 
     <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
-        <span class="mi">2000</span><span class="p">,</span>
-        <span class="n">tune</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span>
-        <span class="n">target_accept</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-        <span class="n">init</span><span class="o">=</span><span class="s2">&quot;advi+adapt_diag&quot;</span><span class="p">,</span>
+        <span class="mi">1000</span><span class="p">,</span>
+        <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
         <span class="n">random_seed</span><span class="o">=</span><span class="n">RANDOM_SEED</span><span class="p">,</span>
     <span class="p">)</span>
     <span class="n">idata</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">from_pymc3</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
@@ -617,7 +615,9 @@ Sampling 4 chains for 3_000 tune and 2_000 draw iterations (12_000 + 8_000 draws
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 Auto-assigning NUTS sampler...
-Initializing NUTS using advi+adapt_diag...
+Initializing NUTS using jitter+adapt_diag...
+Multiprocess sampling (2 chains in 2 jobs)
+NUTS: [sigma, theta1, theta0]
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -637,40 +637,8 @@ Initializing NUTS using advi+adapt_diag...
             background: #F44336;
         }
     </style>
-  <progress value='14231' class='' max='200000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  7.12% [14231/200000 00:03<00:47 Average Loss = 7,543.3]
-</div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Convergence achieved at 14700
-Interrupted at 14,699 [7%]: Average Loss = 12,388
-Multiprocess sampling (4 chains in 4 jobs)
-NUTS: [tau, theta1, theta0]
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-    <style>
-        /* Turns off some styling */
-        progress {
-            /* gets rid of default border in Firefox and Opera. */
-            border: none;
-            /* Needs to be in here for Safari polyfill so background images work as expected. */
-            background-size: auto;
-        }
-        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
-            background: #F44336;
-        }
-    </style>
-  <progress value='20000' class='' max='20000' style='width:300px; height:20px; vertical-align: middle;'></progress>
-  100.00% [20000/20000 00:18<00:00 Sampling 4 chains, 0 divergences]
+  <progress value='0' class='' max='6000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+
 </div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -678,8 +646,8 @@ NUTS: [tau, theta1, theta0]
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Sampling 4 chains for 3_000 tune and 2_000 draw iterations (12_000 + 8_000 draws total) took 20 seconds.
-The acceptance probability does not match the target. It is 0.8386424829805679, but should be close to 0.9. Try to increase the number of tuning steps.
+Sampling 2 chains for 2_000 tune and 1_000 draw iterations (4_000 + 2_000 draws total) took 25 seconds.
+The acceptance probability does not match the target. It is 0.9000428081776881, but should be close to 0.8. Try to increase the number of tuning steps.
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -689,7 +657,7 @@ The acceptance probability does not match the target. It is 0.8386424829805679, 
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span>
     <span class="n">idata</span><span class="p">,</span>
-    <span class="n">lines</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;theta0&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_theta</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;theta1&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;tau&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_tau</span><span class="p">)],</span>
+    <span class="n">lines</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;theta0&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_theta</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;theta1&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="p">{},</span> <span class="n">true_sigma</span><span class="p">)],</span>
 <span class="p">);</span>
 </pre></div>
 </div>
@@ -698,7 +666,7 @@ The acceptance probability does not match the target. It is 0.8386424829805679, 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_AR_14_0.png"><img alt="../_images/notebooks_AR_14_0.png" src="../_images/notebooks_AR_14_0.png" style="width: 1211px; height: 611px;" /></a>
+<img alt="../_images/notebooks_AR_14_0.png" class="no-scaled-link" src="../_images/notebooks_AR_14_0.png" style="width: 1211px; height: 611px;" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -716,13 +684,13 @@ The acceptance probability does not match the target. It is 0.8386424829805679, 
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-pymc3 3.9.0
+numpy 1.18.1
 arviz 0.8.3
-numpy 1.18.5
-last updated: Mon Jun 15 2020
+pymc3 3.9.3
+last updated: Fri Aug 21 2020
 
-CPython 3.7.7
-IPython 7.15.0
+CPython 3.8.2
+IPython 7.13.0
 watermark 2.0.2
 </pre></div></div>
 </div>
@@ -738,12 +706,25 @@ watermark 2.0.2
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

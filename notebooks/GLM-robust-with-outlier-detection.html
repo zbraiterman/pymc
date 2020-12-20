@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>GLM: Robust Regression using Custom Likelihood for Outlier Classification &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLM: Robust Regression using Custom Likelihood for Outlier Classification &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -65,21 +70,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -126,20 +145,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -167,7 +199,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -232,7 +264,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -520,9 +553,9 @@ Git hash   : f6feeba8462898c774b67b06e01be8096769fde5
 </table>
 </div></div>
 </div>
-</div>
-</div>
 <hr class="docutils" />
+</div>
+</div>
 <div class="section" id="1.-Basic-EDA">
 <h2>1. Basic EDA<a class="headerlink" href="#1.-Basic-EDA" title="Permalink to this headline">¶</a></h2>
 <p>Exploratory Data Analysis</p>
@@ -576,7 +609,7 @@ Git hash   : f6feeba8462898c774b67b06e01be8096769fde5
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_16_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_16_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_16_0.png" style="width: 567px; height: 605px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_16_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_16_0.png" style="width: 567px; height: 605px;" />
 </div>
 </div>
 <p><strong>Observe</strong>:</p>
@@ -585,8 +618,8 @@ Git hash   : f6feeba8462898c774b67b06e01be8096769fde5
 <li><p>It looks like a few of the datapoints may be outliers from such a line</p></li>
 <li><p>Measurement error (independently on x and y) varies across the observations</p></li>
 </ul>
-</div>
 <hr class="docutils" />
+</div>
 <div class="section" id="2.-Basic-Feature-Engineering">
 <h2>2. Basic Feature Engineering<a class="headerlink" href="#2.-Basic-Feature-Engineering" title="Permalink to this headline">¶</a></h2>
 <p>Note: ordinarily I might run through more formalised steps to split into Train and Test sets (to later help evaluate model fit), but here I’ll just fit the model to the full dataset and stop at inference</p>
@@ -606,9 +639,7 @@ of requiring <code class="docutils literal notranslate"><span class="pre">sigma_
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfhoggs</span> <span class="o">=</span> <span class="p">(</span><span class="n">dfhogg</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span> <span class="o">-</span> <span class="n">dfhogg</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span>
-    <span class="mi">2</span> <span class="o">*</span> <span class="n">dfhogg</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="p">)</span>
+<span></span><span class="n">dfhoggs</span> <span class="o">=</span> <span class="p">(</span><span class="n">dfhogg</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span> <span class="o">-</span> <span class="n">dfhogg</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dfhogg</span><span class="p">[[</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;sigma_x&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfhogg</span><span class="p">[</span><span class="s2">&quot;sigma_x&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dfhogg</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
 <span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;sigma_y&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfhogg</span><span class="p">[</span><span class="s2">&quot;sigma_y&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">dfhogg</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
 </pre></div>
@@ -628,9 +659,7 @@ of requiring <code class="docutils literal notranslate"><span class="pre">sigma_
     <span class="n">marginal_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;bins&quot;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s2">&quot;kde&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;kde_kws&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;cut&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}},</span>
     <span class="n">joint_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;edgecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="s2">&quot;linewidth&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span> <span class="mi">80</span><span class="p">},</span>
 <span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
-    <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma_y&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma_x&quot;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s2">&quot;#4878d0&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dfhoggs</span>
-<span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma_y&quot;</span><span class="p">,</span> <span class="s2">&quot;sigma_x&quot;</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s2">&quot;#4878d0&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">dfhoggs</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
     <span class="p">(</span>
         <span class="s2">&quot;Quick view to confirm action of</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -646,12 +675,12 @@ of requiring <code class="docutils literal notranslate"><span class="pre">sigma_
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_25_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_25_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_25_0.png" style="width: 447px; height: 467px;" /></a>
-</div>
-</div>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_25_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_25_0.png" style="width: 447px; height: 467px;" />
 </div>
 </div>
 <hr class="docutils" />
+</div>
+</div>
 <div class="section" id="3.-Simple-Linear-Model-with-no-Outlier-Correction">
 <h2>3. Simple Linear Model with no Outlier Correction<a class="headerlink" href="#3.-Simple-Linear-Model-with-no-Outlier-Correction" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="3.1-Specify-Model">
@@ -680,9 +709,7 @@ of requiring <code class="docutils literal notranslate"><span class="pre">sigma_
     <span class="n">y_est</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span>
 
     <span class="c1">## Define Normal likelihood</span>
-    <span class="n">likelihood</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span>
-        <span class="s2">&quot;likelihood&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">y_est</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;sigma_y&quot;</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">]</span>
-    <span class="p">)</span>
+    <span class="n">likelihood</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;likelihood&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">y_est</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;sigma_y&quot;</span><span class="p">],</span> <span class="n">observed</span><span class="o">=</span><span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;y&quot;</span><span class="p">])</span>
 
 <span class="n">pm</span><span class="o">.</span><span class="n">model_to_graphviz</span><span class="p">(</span><span class="n">mdl_ols</span><span class="p">)</span>
 </pre></div>
@@ -816,7 +843,7 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_38_1.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_38_1.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_38_1.png" style="width: 872px; height: 296px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_38_1.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_38_1.png" style="width: 872px; height: 296px;" />
 </div>
 </div>
 <p>Plot posterior joint distribution (since the model has only 2 coeffs, we can easily view this as a 2D joint distribution)</p>
@@ -844,13 +871,13 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_40_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_40_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_40_0.png" style="width: 427px; height: 441px;" /></a>
-</div>
-</div>
-</div>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_40_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_40_0.png" style="width: 427px; height: 441px;" />
 </div>
 </div>
 <hr class="docutils" />
+</div>
+</div>
+</div>
 <div class="section" id="4.-Simple-Linear-Model-with-Robust-Student-T-Likelihood">
 <h2>4. Simple Linear Model with Robust Student-T Likelihood<a class="headerlink" href="#4.-Simple-Linear-Model-with-Robust-Student-T-Likelihood" title="Permalink to this headline">¶</a></h2>
 <p>I’ve added this brief section in order to directly compare the Student-T based method exampled in Thomas Wiecki’s notebook in the <a class="reference external" href="http://pymc-devs.github.io/pymc3/GLM-robust/">PyMC3 documentation</a></p>
@@ -1022,7 +1049,7 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_53_1.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_53_1.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_53_1.png" style="width: 872px; height: 440px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_53_1.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_53_1.png" style="width: 872px; height: 440px;" />
 </div>
 </div>
 <p>PLot posterior joint distribution</p>
@@ -1050,7 +1077,7 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_55_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_55_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_55_0.png" style="width: 420px; height: 441px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_55_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_55_0.png" style="width: 420px; height: 441px;" />
 </div>
 </div>
 </div>
@@ -1071,10 +1098,7 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
 
 <span class="n">gd</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">JointGrid</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df_trc</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
-    <span class="p">(</span>
-        <span class="s2">&quot;Posterior joint distributions&quot;</span>
-        <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(showing general movement from OLS to StudentT)&quot;</span>
-    <span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;Posterior joint distributions&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">(showing general movement from OLS to StudentT)&quot;</span><span class="p">),</span>
     <span class="n">y</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -1094,11 +1118,9 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
             <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">],</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">idx</span>
         <span class="p">)</span>
         <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">],</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="p">,</span> <span class="o">**</span><span class="n">kde_kws</span><span class="p">)</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">x_bin_edges</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_marg_x</span><span class="p">,</span> <span class="o">**</span><span class="n">dist_kws</span><span class="p">)</span>
         <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span>
-            <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="n">x_bin_edges</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_marg_x</span><span class="p">,</span> <span class="o">**</span><span class="n">dist_kws</span>
-        <span class="p">)</span>
-        <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">y_bin_edges</span><span class="p">,</span>
-            <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_marg_y</span><span class="p">,</span> <span class="o">**</span><span class="n">dist_kws</span>
+            <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">y_bin_edges</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_marg_y</span><span class="p">,</span> <span class="o">**</span><span class="n">dist_kws</span>
         <span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
@@ -1108,7 +1130,7 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_57_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_57_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_57_0.png" style="width: 564px; height: 605px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_57_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_57_0.png" style="width: 564px; height: 605px;" />
 </div>
 </div>
 <p><strong>Observe:</strong></p>
@@ -1118,10 +1140,10 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
 <li><p>The parameter <code class="docutils literal notranslate"><span class="pre">b0_intercept</span></code> has moved much closer to <span class="math notranslate nohighlight">\(0\)</span>, which is interesting: if the theoretical relationship <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">~</span> <span class="pre">f(x)</span></code> has no offset, then for this mean-centered dataset, the intercept should indeed be <span class="math notranslate nohighlight">\(0\)</span>: it might easily be getting pushed off-course by outliers in the OLS model.</p></li>
 <li><p>The parameter <code class="docutils literal notranslate"><span class="pre">b1_slope</span></code> has accordingly become greater: perhaps moving closer to the theoretical function <code class="docutils literal notranslate"><span class="pre">f(x)</span></code></p></li>
 </ul>
-</div>
-</div>
-</div>
 <hr class="docutils" />
+</div>
+</div>
+</div>
 <div class="section" id="5.-Linear-Model-with-Custom-Likelihood-to-Distinguish-Outliers:-Hogg-Method">
 <h2>5. Linear Model with Custom Likelihood to Distinguish Outliers: Hogg Method<a class="headerlink" href="#5.-Linear-Model-with-Custom-Likelihood-to-Distinguish-Outliers:-Hogg-Method" title="Permalink to this headline">¶</a></h2>
 <p>Please read the paper (Hogg 2010) and Jake Vanderplas’ code for more complete information about the modelling technique.</p>
@@ -1172,18 +1194,14 @@ Sampling 4 chains for 5_000 tune and 500 draw iterations (20_000 + 2_000 draws t
     <span class="n">y_est_out</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;y_est_out&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">floatX</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>  <span class="c1"># (1, )</span>
 
     <span class="c1"># very weakly informative prior for additional variance for outliers</span>
-    <span class="n">sigma_y_out</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span>
-        <span class="s2">&quot;sigma_y_out&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">floatX</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
-    <span class="p">)</span>  <span class="c1"># (1, )</span>
+    <span class="n">sigma_y_out</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;sigma_y_out&quot;</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">floatX</span><span class="p">(</span><span class="mf">1.0</span><span class="p">))</span>  <span class="c1"># (1, )</span>
 
     <span class="c1"># create in/outlier distributions to get a logp evaluated on the observed y</span>
     <span class="c1"># this is not strictly a pymc3 likelihood, but behaves like one when we</span>
     <span class="c1"># evaluate it within a Potential (which is minimised)</span>
     <span class="n">inlier_logp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">y_est_in</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">tsv_sigma_y</span><span class="p">)</span><span class="o">.</span><span class="n">logp</span><span class="p">(</span><span class="n">tsv_y</span><span class="p">)</span>
 
-    <span class="n">outlier_logp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">y_est_out</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">tsv_sigma_y</span> <span class="o">+</span> <span class="n">sigma_y_out</span><span class="p">)</span><span class="o">.</span><span class="n">logp</span><span class="p">(</span>
-        <span class="n">tsv_y</span>
-    <span class="p">)</span>
+    <span class="n">outlier_logp</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">y_est_out</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">tsv_sigma_y</span> <span class="o">+</span> <span class="n">sigma_y_out</span><span class="p">)</span><span class="o">.</span><span class="n">logp</span><span class="p">(</span><span class="n">tsv_y</span><span class="p">)</span>
 
     <span class="c1"># frac_outliers only needs to span [0, .5]</span>
     <span class="c1"># testval for is_outlier initialised in order to create class asymmetry</span>
@@ -1299,7 +1317,7 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_73_1.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_73_1.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_73_1.png" style="width: 872px; height: 728px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_73_1.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_73_1.png" style="width: 872px; height: 728px;" />
 </div>
 </div>
 <p><strong>Observe:</strong></p>
@@ -1466,7 +1484,7 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_78_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_78_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_78_0.png" style="width: 420px; height: 441px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_78_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_78_0.png" style="width: 420px; height: 441px;" />
 </div>
 </div>
 </div>
@@ -1497,14 +1515,10 @@ The number of effective samples is smaller than 25% for some parameters.
 <span class="n">dist_kws</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kde_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">cut</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">axlabel</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">grp</span> <span class="ow">in</span> <span class="n">df_trc</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;model&quot;</span><span class="p">):</span>
-    <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
-        <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">],</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">idx</span>
-    <span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">],</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">idx</span><span class="p">)</span>
     <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">],</span> <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="p">,</span> <span class="o">**</span><span class="n">kde_kws</span><span class="p">)</span>
     <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">dist_kws</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">x_bin_edges</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_marg_x</span><span class="p">)</span>
-    <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span>
-        <span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">dist_kws</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">y_bin_edges</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_marg_y</span>
-    <span class="p">)</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">distplot</span><span class="p">(</span><span class="n">grp</span><span class="p">[</span><span class="s2">&quot;b1_slope&quot;</span><span class="p">],</span> <span class="o">**</span><span class="n">dist_kws</span><span class="p">,</span> <span class="n">vertical</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">y_bin_edges</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">gd</span><span class="o">.</span><span class="n">ax_marg_y</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">ax_joint</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1513,7 +1527,7 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_80_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_80_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_80_0.png" style="width: 564px; height: 605px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_80_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_80_0.png" style="width: 564px; height: 605px;" />
 </div>
 </div>
 <p><strong>Observe:</strong></p>
@@ -1534,12 +1548,8 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_outlier_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span>
-    <span class="n">trc_hogg</span><span class="p">[</span><span class="s2">&quot;is_outlier&quot;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">dfhoggs</span><span class="o">.</span><span class="n">index</span>
-<span class="p">)</span>
-<span class="n">dfm_outlier_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span>
-    <span class="n">df_outlier_results</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;datapoint_id&quot;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">&quot;is_outlier&quot;</span>
-<span class="p">)</span>
+<span></span><span class="n">df_outlier_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_records</span><span class="p">(</span><span class="n">trc_hogg</span><span class="p">[</span><span class="s2">&quot;is_outlier&quot;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">dfhoggs</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">dfm_outlier_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">df_outlier_results</span><span class="p">,</span> <span class="n">var_name</span><span class="o">=</span><span class="s2">&quot;datapoint_id&quot;</span><span class="p">,</span> <span class="n">value_name</span><span class="o">=</span><span class="s2">&quot;is_outlier&quot;</span><span class="p">)</span>
 
 <span class="n">gd</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span>
     <span class="n">y</span><span class="o">=</span><span class="s2">&quot;datapoint_id&quot;</span><span class="p">,</span>
@@ -1566,7 +1576,7 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_85_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_85_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_85_0.png" style="width: 852px; height: 450px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_85_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_85_0.png" style="width: 852px; height: 450px;" />
 </div>
 </div>
 <p><strong>Observe</strong>:</p>
@@ -1608,9 +1618,7 @@ Name: classed_as_outlier, dtype: int64
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;annotate_for_investigation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">trc_hogg</span><span class="p">[</span><span class="s2">&quot;is_outlier&quot;</span><span class="p">],</span> <span class="mf">0.75</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
-<span class="p">)</span>
+<span></span><span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;annotate_for_investigation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="n">trc_hogg</span><span class="p">[</span><span class="s2">&quot;is_outlier&quot;</span><span class="p">],</span> <span class="mf">0.75</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
 <span class="n">dfhoggs</span><span class="p">[</span><span class="s2">&quot;annotate_for_investigation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -1752,7 +1760,7 @@ Name: annotate_for_investigation, dtype: int64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM-robust-with-outlier-detection_92_0.png"><img alt="../_images/notebooks_GLM-robust-with-outlier-detection_92_0.png" src="../_images/notebooks_GLM-robust-with-outlier-detection_92_0.png" style="width: 757px; height: 749px;" /></a>
+<img alt="../_images/notebooks_GLM-robust-with-outlier-detection_92_0.png" class="no-scaled-link" src="../_images/notebooks_GLM-robust-with-outlier-detection_92_0.png" style="width: 757px; height: 749px;" />
 </div>
 </div>
 <p><strong>Observe</strong>:</p>
@@ -1778,9 +1786,9 @@ Name: annotate_for_investigation, dtype: int64
 <li><p>if you simply want a robust regression without inlier / outlier labelling, the <strong>Student-T model</strong> may be a good compromise, offering a simple model, quick sampling, and a very similar estimate.</p></li>
 </ul>
 <hr class="docutils" />
-</div>
-</div>
 <hr class="docutils" />
+</div>
+</div>
 <div class="section" id="Notes">
 <h2>Notes<a class="headerlink" href="#Notes" title="Permalink to this headline">¶</a></h2>
 <p>Version history:</p>
@@ -1863,12 +1871,25 @@ watermark 2.0.2
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

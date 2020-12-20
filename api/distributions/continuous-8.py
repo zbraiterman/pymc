@@ -2,13 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as st
 plt.style.use('seaborn-darkgrid')
-x = np.linspace(-8, 8, 200)
-mus = [0., 0., -2., -2.]
-sigmas = [1., 1., 1., 2.]
-dfs = [1., 5., 5., 5.]
-for mu, sigma, df in zip(mus, sigmas, dfs):
-    pdf = st.t.pdf(x, df, loc=mu, scale=sigma)
-    plt.plot(x, pdf, label=r'$\mu$ = {}, $\sigma$ = {}, $\nu$ = {}'.format(mu, sigma, df))
+x = np.linspace(0, 5, 200)
+for b in [0.5, 1.0, 2.0]:
+    pdf = st.cauchy.pdf(x, scale=b)
+    plt.plot(x, pdf, label=r'$\beta$ = {}'.format(b))
 plt.xlabel('x', fontsize=12)
 plt.ylabel('f(x)', fontsize=12)
 plt.legend(loc=1)

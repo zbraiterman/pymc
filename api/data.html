@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Data &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -62,35 +67,69 @@
         
   <div class="section" id="module-pymc3.data">
 <span id="data"></span><h1>Data<a class="headerlink" href="#module-pymc3.data" title="Permalink to this headline">¶</a></h1>
-<dl class="function">
-<dt id="pymc3.data.get_data">
-<code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param">filename</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.get_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a BytesIO object for a package data file.</p>
+<dl class="py class">
+<dt id="pymc3.data.Data">
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">Data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">dims</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">export_index_as_coords</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data container class that wraps the theano <code class="docutils literal notranslate"><span class="pre">SharedVariable</span></code> class
+and lets the model be aware of its inputs and outputs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>filename: str</strong></dt><dd><p>file to load</p>
+<dt><strong>name: str</strong></dt><dd><p>The name for this variable</p>
+</dd>
+<dt><strong>value: {List, np.ndarray, pd.Series, pd.Dataframe}</strong></dt><dd><p>A value to associate with this variable</p>
+</dd>
+<dt><strong>dims: {str, tuple of str}, optional, default=None</strong></dt><dd><p>Dimension names of the random variables (as opposed to the shapes of these
+random variables). Use this when <cite>value</cite> is a pandas Series or DataFrame. The
+<cite>dims</cite> will then be the name of the Series / DataFrame’s columns. See ArviZ
+documentation for more information about dimensions and coordinates:
+<a class="reference external" href="https://arviz-devs.github.io/arviz/notebooks/Introduction.html">https://arviz-devs.github.io/arviz/notebooks/Introduction.html</a></p>
+</dd>
+<dt><strong>export_index_as_coords: bool, optional, default=False</strong></dt><dd><p>If True, the <cite>Data</cite> container will try to infer what the coordinates should be
+if there is an index in <cite>value</cite>.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>BytesIO of the data</dt><dd></dd>
 </dl>
-</dd>
-</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># We generate 10 datasets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">true_mu</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">observed_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">mu</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">true_mu</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">data</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Data</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">observed_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">... </span>    <span class="n">mu</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate one trace for each dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">traces</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">data_vals</span> <span class="ow">in</span> <span class="n">observed_data</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="c1"># Switch out the observed dataset</span>
+<span class="gp">... </span>        <span class="n">pm</span><span class="o">.</span><span class="n">set_data</span><span class="p">({</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data_vals</span><span class="p">})</span>
+<span class="gp">... </span>        <span class="n">traces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>To set the value of the data container variable, check out
+<a class="reference internal" href="model.html#pymc3.model.set_data" title="pymc3.model.set_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">pymc3.model.set_data()</span></code></a>.</p>
+<p>For more information, take a look at this example notebook
+<a class="reference external" href="https://docs.pymc.io/notebooks/data_container.html">https://docs.pymc.io/notebooks/data_container.html</a></p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="pymc3.data.GeneratorAdapter">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">GeneratorAdapter</code><span class="sig-paren">(</span><em class="sig-param">generator</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.GeneratorAdapter" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">GeneratorAdapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">generator</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.GeneratorAdapter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper class that helps to infer data type of generator with looking
 at the first item, preserving the order of the resulting generator</p>
 </dd></dl>
 
-<dl class="class">
+<dl class="py class">
 <dt id="pymc3.data.Minibatch">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">Minibatch</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">batch_size=128</em>, <em class="sig-param">dtype=None</em>, <em class="sig-param">broadcastable=None</em>, <em class="sig-param">name='Minibatch'</em>, <em class="sig-param">random_seed=42</em>, <em class="sig-param">update_shared_f=None</em>, <em class="sig-param">in_memory_size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Minibatch" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">Minibatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">128</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">broadcastable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'Minibatch'</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">42</span></em>, <em class="sig-param"><span class="n">update_shared_f</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">in_memory_size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Minibatch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multidimensional minibatch that is pure TensorVariable</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -268,9 +307,9 @@ is then <code class="docutils literal notranslate"><span class="pre">(10,</span>
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="pymc3.data.Minibatch.clone">
-<code class="sig-name descname">clone</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Minibatch.clone" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">clone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Minibatch.clone" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a new Variable like self.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -288,57 +327,23 @@ index.</p>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="pymc3.data.Data">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">Data</code><a class="headerlink" href="#pymc3.data.Data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Data container class that wraps the theano <code class="docutils literal notranslate"><span class="pre">SharedVariable</span></code> class
-and lets the model be aware of its inputs and outputs.</p>
+<dl class="py function">
+<dt id="pymc3.data.get_data">
+<code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a BytesIO object for a package data file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>name: str</strong></dt><dd><p>The name for this variable</p>
-</dd>
-<dt><strong>value: {List, np.ndarray, pd.Series, pd.Dataframe}</strong></dt><dd><p>A value to associate with this variable</p>
-</dd>
-<dt><strong>dims: {str, tuple of str}, optional, default=None</strong></dt><dd><p>Dimension names of the random variables (as opposed to the shapes of these
-random variables). Use this when <cite>value</cite> is a Pandas Series or DataFrame. The
-<cite>dims</cite> will then be the name of the Series / DataFrame’s columns. See ArviZ
-documentation for more information about dimensions and coordinates:
-<a class="reference external" href="https://arviz-devs.github.io/arviz/notebooks/Introduction.html">https://arviz-devs.github.io/arviz/notebooks/Introduction.html</a></p>
-</dd>
-<dt><strong>export_index_as_coords: bool, optional, default=False</strong></dt><dd><p>If True, the <cite>Data</cite> container will try to infer what the coordinates should be
-if there is an index in <cite>value</cite>.</p>
+<dt><strong>filename: str</strong></dt><dd><p>file to load</p>
 </dd>
 </dl>
 </dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>BytesIO of the data</dt><dd></dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># We generate 10 datasets</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">true_mu</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">observed_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">mu</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">for</span> <span class="n">mu</span> <span class="ow">in</span> <span class="n">true_mu</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">data</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Data</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">observed_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="gp">... </span>    <span class="n">mu</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Generate one trace for each dataset</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">traces</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">data_vals</span> <span class="ow">in</span> <span class="n">observed_data</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
-<span class="gp">... </span>        <span class="c1"># Switch out the observed dataset</span>
-<span class="gp">... </span>        <span class="n">pm</span><span class="o">.</span><span class="n">set_data</span><span class="p">({</span><span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">data_vals</span><span class="p">})</span>
-<span class="gp">... </span>        <span class="n">traces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span>
-</pre></div>
-</div>
-<p>To set the value of the data container variable, check out
-<a class="reference internal" href="model.html#pymc3.model.set_data" title="pymc3.model.set_data"><code class="xref py py-func docutils literal notranslate"><span class="pre">pymc3.model.set_data()</span></code></a>.</p>
-<p>For more information, take a look at this example notebook
-<a class="reference external" href="https://docs.pymc.io/notebooks/data_container.html">https://docs.pymc.io/notebooks/data_container.html</a></p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>
@@ -352,12 +357,25 @@ if there is an index in <cite>value</cite>.</p>
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

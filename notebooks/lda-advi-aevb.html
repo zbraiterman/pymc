@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Automatic autoencoding variational Bayes for latent dirichlet allocation with PyMC3 &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Automatic autoencoding variational Bayes for latent dirichlet allocation with PyMC3 &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -65,21 +70,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -126,20 +145,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -167,7 +199,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -232,7 +264,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -293,46 +326,40 @@ will attract readers, especially practitioners working on a variety of machine l
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
-<span class="c1"># unfortunately I was not able to run it on GPU due to overflow problems</span>
-<span class="o">%</span><span class="k">env</span> THEANO_FLAGS=device=cpu,floatX=float64
-<span class="kn">import</span> <span class="nn">theano</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
 <span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
-<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">TfidfVectorizer</span><span class="p">,</span> <span class="n">CountVectorizer</span>
-<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">theano</span> <span class="kn">import</span> <span class="n">shared</span>
+<span class="kn">import</span> <span class="nn">theano</span>
 <span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="k">as</span> <span class="nn">tt</span>
+
+<span class="kn">from</span> <span class="nn">pymc3</span> <span class="kn">import</span> <span class="n">Dirichlet</span>
+<span class="kn">from</span> <span class="nn">pymc3</span> <span class="kn">import</span> <span class="n">math</span> <span class="k">as</span> <span class="n">pmmath</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_20newsgroups</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfVectorizer</span>
+<span class="kn">from</span> <span class="nn">theano</span> <span class="kn">import</span> <span class="n">shared</span>
 <span class="kn">from</span> <span class="nn">theano.sandbox.rng_mrg</span> <span class="kn">import</span> <span class="n">MRG_RandomStreams</span>
 
-<span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
-<span class="kn">from</span> <span class="nn">pymc3</span> <span class="kn">import</span> <span class="n">math</span> <span class="k">as</span> <span class="n">pmmath</span>
-<span class="kn">from</span> <span class="nn">pymc3</span> <span class="kn">import</span> <span class="n">Dirichlet</span>
-<span class="kn">from</span> <span class="nn">pymc3.distributions.transforms</span> <span class="kn">import</span> <span class="n">t_stick_breaking</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-darkgrid&#39;</span><span class="p">)</span>
+<span class="c1"># unfortunately I was not able to run it on GPU due to overflow problems</span>
+<span class="o">%</span><span class="k">env</span> THEANO_FLAGS=device=cpu,floatX=float64
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;seaborn-darkgrid&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
+<div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 env: THEANO_FLAGS=device=cpu,floatX=float64
-</pre></div></div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/anaconda3/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters
 </pre></div></div>
 </div>
 <div class="section" id="Dataset">
@@ -348,15 +375,13 @@ env: THEANO_FLAGS=device=cpu,floatX=float64
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading dataset...&quot;</span><span class="p">)</span>
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                             <span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;headers&#39;</span><span class="p">,</span> <span class="s1">&#39;footers&#39;</span><span class="p">,</span> <span class="s1">&#39;quotes&#39;</span><span class="p">))</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">fetch_20newsgroups</span><span class="p">(</span><span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">remove</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;headers&quot;</span><span class="p">,</span> <span class="s2">&quot;footers&quot;</span><span class="p">,</span> <span class="s2">&quot;quotes&quot;</span><span class="p">))</span>
 <span class="n">data_samples</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done in </span><span class="si">%0.3f</span><span class="s2">s.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t0</span><span class="p">))</span>
 
 <span class="c1"># Use tf (raw term count) features for LDA.</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Extracting tf features for LDA...&quot;</span><span class="p">)</span>
-<span class="n">tf_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="n">n_words</span><span class="p">,</span>
-                                <span class="n">stop_words</span><span class="o">=</span><span class="s1">&#39;english&#39;</span><span class="p">)</span>
+<span class="n">tf_vectorizer</span> <span class="o">=</span> <span class="n">CountVectorizer</span><span class="p">(</span><span class="n">max_df</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">min_df</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_features</span><span class="o">=</span><span class="n">n_words</span><span class="p">,</span> <span class="n">stop_words</span><span class="o">=</span><span class="s2">&quot;english&quot;</span><span class="p">)</span>
 
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
 <span class="n">tf</span> <span class="o">=</span> <span class="n">tf_vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data_samples</span><span class="p">)</span>
@@ -365,24 +390,15 @@ env: THEANO_FLAGS=device=cpu,floatX=float64
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-Downloading 20news dataset. This may take a few minutes.
-Downloading dataset from https://ndownloader.figshare.com/files/5975967 (14 MB)
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 Loading dataset...
-done in 30.579s.
+done in 1.724s.
 Extracting tf features for LDA...
-done in 3.830s.
+done in 2.177s.
 </pre></div></div>
 </div>
 <p>Each document is represented by 1000-dimensional term-frequency vector. Let’s check the data.</p>
@@ -412,13 +428,14 @@ done in 3.830s.
 <span class="n">n_samples_te</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">n_samples_tr</span>
 <span class="n">docs_tr</span> <span class="o">=</span> <span class="n">tf</span><span class="p">[:</span><span class="n">n_samples_tr</span><span class="p">,</span> <span class="p">:]</span>
 <span class="n">docs_te</span> <span class="o">=</span> <span class="n">tf</span><span class="p">[</span><span class="n">n_samples_tr</span><span class="p">:,</span> <span class="p">:]</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of docs for training = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of docs for test = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">docs_te</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of docs for training = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Number of docs for test = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">docs_te</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
 <span class="n">n_tokens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">docs_tr</span><span class="p">[</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()])</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of tokens in training set = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n_tokens</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sparsity = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-    <span class="nb">len</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">docs_tr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of tokens in training set = </span><span class="si">{</span><span class="n">n_tokens</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Sparsity = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">docs_tr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -460,14 +477,16 @@ Sparsity = 0.0253936
 <span class="sd">    theta : tensor (D x K)</span>
 <span class="sd">        Topic distributions for documents.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="nf">ll_docs_f</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
         <span class="n">dixs</span><span class="p">,</span> <span class="n">vixs</span> <span class="o">=</span> <span class="n">docs</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span>
         <span class="n">vfreqs</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="n">dixs</span><span class="p">,</span> <span class="n">vixs</span><span class="p">]</span>
-        <span class="n">ll_docs</span> <span class="o">=</span> <span class="n">vfreqs</span> <span class="o">*</span> <span class="n">pmmath</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span>
-            <span class="n">tt</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">dixs</span><span class="p">])</span> <span class="o">+</span> <span class="n">tt</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">vixs</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">ll_docs</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">vfreqs</span> <span class="o">*</span> <span class="n">pmmath</span><span class="o">.</span><span class="n">logsumexp</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">dixs</span><span class="p">])</span> <span class="o">+</span> <span class="n">tt</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">vixs</span><span class="p">]),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="p">)</span>
 
         <span class="c1"># Per-word log-likelihood times num of tokens in the whole dataset</span>
-        <span class="k">return</span> <span class="n">tt</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ll_docs</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vfreqs</span><span class="p">)</span><span class="o">+</span><span class="mf">1e-9</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_tokens</span>
+        <span class="k">return</span> <span class="n">tt</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ll_docs</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vfreqs</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-9</span><span class="p">)</span> <span class="o">*</span> <span class="n">n_tokens</span>
 
     <span class="k">return</span> <span class="n">ll_docs_f</span>
 </pre></div>
@@ -478,11 +497,11 @@ Sparsity = 0.0253936
 <div class="section" id="LDA-model">
 <h2>LDA model<a class="headerlink" href="#LDA-model" title="Permalink to this headline">¶</a></h2>
 <p>With the log-likelihood function, we can construct the probabilistic model for LDA. <code class="docutils literal notranslate"><span class="pre">doc_t</span></code> works as a placeholder to which documents in a mini-batch are set.</p>
-<p>For ADVI, each of random variables <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>, drawn from Dirichlet distributions, is transformed into unconstrained real coordinate space. To do this, by default, PyMC3 uses a centered stick-breaking transformation. Since these random variables are on a simplex, the dimension of the unconstrained coordinate space is the original dimension minus 1. For example, the dimension of <span class="math notranslate nohighlight">\(\theta_{d}\)</span> is the number of topics (<code class="docutils literal notranslate"><span class="pre">n_topics</span></code>) in the LDA model, thus the transformed
-space has dimension <code class="docutils literal notranslate"><span class="pre">(n_topics</span> <span class="pre">-</span> <span class="pre">1)</span></code>. It shuold be noted that, in this example, we use <code class="docutils literal notranslate"><span class="pre">t_stick_breaking</span></code>, which is a numerically stable version of <code class="docutils literal notranslate"><span class="pre">stick_breaking</span></code> used by default. This is required to work ADVI for the LDA model.</p>
+<p>For ADVI, each of random variables <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>, drawn from Dirichlet distributions, is transformed into unconstrained real coordinate space. To do this, by default, PyMC3 uses an isometric logratio transformation. Since these random variables are on a simplex, the dimension of the unconstrained coordinate space is the original dimension minus 1. For example, the dimension of <span class="math notranslate nohighlight">\(\theta_{d}\)</span> is the number of topics (<code class="docutils literal notranslate"><span class="pre">n_topics</span></code>) in the LDA model, thus the transformed
+space has dimension <code class="docutils literal notranslate"><span class="pre">(n_topics</span> <span class="pre">-</span> <span class="pre">1)</span></code>.</p>
 <p>The variational posterior on these transformed parameters is represented by a spherical Gaussian distributions (meanfield approximation). Thus, the number of variational parameters of <span class="math notranslate nohighlight">\(\theta_{d}\)</span>, the latent variable for each document, is <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">(n_topics</span> <span class="pre">-</span> <span class="pre">1)</span></code> for means and standard deviations.</p>
 <p>In the last line of the below cell, <code class="docutils literal notranslate"><span class="pre">DensityDist</span></code> class is used to define the log-likelihood function of the model. The second argument is a Python function which takes observations (a document matrix in this example) and returns the log-likelihood value. This function is given as a return value of <code class="docutils literal notranslate"><span class="pre">logp_lda_doc(beta,</span> <span class="pre">theta)</span></code>, which has been defined above.</p>
-<div class="nbinput nblast docutils container">
+<div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
@@ -495,16 +514,31 @@ space has dimension <code class="docutils literal notranslate"><span class="pre"
 <span class="n">doc_t_minibatch</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Minibatch</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">minibatch_size</span><span class="p">)</span>
 <span class="n">doc_t</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">toarray</span><span class="p">()[:</span><span class="n">minibatch_size</span><span class="p">])</span>
 <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="n">Dirichlet</span><span class="p">(</span><span class="s1">&#39;theta&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">floatX</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">n_topics</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">minibatch_size</span><span class="p">,</span> <span class="n">n_topics</span><span class="p">))),</span>
-                      <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">minibatch_size</span><span class="p">,</span> <span class="n">n_topics</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">t_stick_breaking</span><span class="p">(</span><span class="mf">1e-9</span><span class="p">),</span>
-                      <span class="c1"># do not forget scaling</span>
-                      <span class="n">total_size</span><span class="o">=</span><span class="n">n_samples_tr</span><span class="p">)</span>
-    <span class="n">beta</span> <span class="o">=</span> <span class="n">Dirichlet</span><span class="p">(</span><span class="s1">&#39;beta&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">floatX</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">n_topics</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_topics</span><span class="p">,</span> <span class="n">n_words</span><span class="p">))),</span>
-                     <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_topics</span><span class="p">,</span> <span class="n">n_words</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">t_stick_breaking</span><span class="p">(</span><span class="mf">1e-9</span><span class="p">))</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">Dirichlet</span><span class="p">(</span>
+        <span class="s2">&quot;theta&quot;</span><span class="p">,</span>
+        <span class="n">a</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">floatX</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">n_topics</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">minibatch_size</span><span class="p">,</span> <span class="n">n_topics</span><span class="p">))),</span>
+        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">minibatch_size</span><span class="p">,</span> <span class="n">n_topics</span><span class="p">),</span>
+        <span class="c1"># do not forget scaling</span>
+        <span class="n">total_size</span><span class="o">=</span><span class="n">n_samples_tr</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">Dirichlet</span><span class="p">(</span>
+        <span class="s2">&quot;beta&quot;</span><span class="p">,</span>
+        <span class="n">a</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">floatX</span><span class="p">((</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">n_topics</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_topics</span><span class="p">,</span> <span class="n">n_words</span><span class="p">))),</span>
+        <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">n_topics</span><span class="p">,</span> <span class="n">n_words</span><span class="p">),</span>
+    <span class="p">)</span>
     <span class="c1"># Note, that we defined likelihood with scaling, so here we need no additional `total_size` kwarg</span>
-    <span class="n">doc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">DensityDist</span><span class="p">(</span><span class="s1">&#39;doc&#39;</span><span class="p">,</span> <span class="n">logp_lda_doc</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">theta</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="n">doc_t</span><span class="p">)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">DensityDist</span><span class="p">(</span><span class="s2">&quot;doc&quot;</span><span class="p">,</span> <span class="n">logp_lda_doc</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">theta</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="n">doc_t</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+.../lib/python3.7/site-packages/pymc3/data.py:305: FutureWarning: Using a non-tuple sequence for multidimensional indexing is deprecated; use `arr[tuple(seq)]` instead of `arr[seq]`. In the future this will be interpreted as an array index, `arr[np.array(seq)]`, which will result either in an error or a different result.
+  self.shared = theano.shared(data[in_memory_slc])
+</pre></div></div>
 </div>
 </div>
 <div class="section" id="Encoder">
@@ -518,17 +552,17 @@ space has dimension <code class="docutils literal notranslate"><span class="pre"
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">class</span> <span class="nc">LDAEncoder</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Encode (term-frequency) document vectors to variational means and (log-transformed) stds.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Encode (term-frequency) document vectors to variational means and (log-transformed) stds.&quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_words</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">,</span> <span class="n">n_topics</span><span class="p">,</span> <span class="n">p_corruption</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">random_seed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_words</span> <span class="o">=</span> <span class="n">n_words</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_hidden</span> <span class="o">=</span> <span class="n">n_hidden</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_topics</span> <span class="o">=</span> <span class="n">n_topics</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">w0</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_words</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;w0&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">b0</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b0&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">w1</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;w1&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">b1</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;b1&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w0</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_words</span><span class="p">,</span> <span class="n">n_hidden</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;w0&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b0</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;b0&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w1</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_hidden</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;w1&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b1</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;b1&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rng</span> <span class="o">=</span> <span class="n">MRG_RandomStreams</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="n">random_seed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p_corruption</span> <span class="o">=</span> <span class="n">p_corruption</span>
 
@@ -537,7 +571,7 @@ space has dimension <code class="docutils literal notranslate"><span class="pre"
             <span class="n">dixs</span><span class="p">,</span> <span class="n">vixs</span> <span class="o">=</span> <span class="n">xs</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span>
             <span class="n">mask</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">set_subtensor</span><span class="p">(</span>
                 <span class="n">tt</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">xs</span><span class="p">)[</span><span class="n">dixs</span><span class="p">,</span> <span class="n">vixs</span><span class="p">],</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">dixs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">p_corruption</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">dixs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">p_corruption</span><span class="p">),</span>
             <span class="p">)</span>
             <span class="n">xs_</span> <span class="o">=</span> <span class="n">xs</span> <span class="o">*</span> <span class="n">mask</span>
         <span class="k">else</span><span class="p">:</span>
@@ -547,9 +581,9 @@ space has dimension <code class="docutils literal notranslate"><span class="pre"
         <span class="n">w1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w1</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_hidden</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
         <span class="n">hs</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">xs_</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w0</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b0</span><span class="p">)</span>
         <span class="n">zs</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b1</span>
-        <span class="n">zs_mean</span> <span class="o">=</span> <span class="n">zs</span><span class="p">[:,</span> <span class="p">:(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
-        <span class="n">zs_rho</span> <span class="o">=</span> <span class="n">zs</span><span class="p">[:,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):]</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;mu&#39;</span><span class="p">:</span> <span class="n">zs_mean</span><span class="p">,</span> <span class="s1">&#39;rho&#39;</span><span class="p">:</span><span class="n">zs_rho</span><span class="p">}</span>
+        <span class="n">zs_mean</span> <span class="o">=</span> <span class="n">zs</span><span class="p">[:,</span> <span class="p">:</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+        <span class="n">zs_rho</span> <span class="o">=</span> <span class="n">zs</span><span class="p">[:,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_topics</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:]</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;mu&quot;</span><span class="p">:</span> <span class="n">zs_mean</span><span class="p">,</span> <span class="s2">&quot;rho&quot;</span><span class="p">:</span> <span class="n">zs_rho</span><span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">w0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b1</span><span class="p">]</span>
@@ -574,7 +608,7 @@ space has dimension <code class="docutils literal notranslate"><span class="pre"
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-OrderedDict([(theta,
+OrderedDict([(theta ~ Dirichlet(a=array),
               {&#39;mu&#39;: Subtensor{::, :int64:}.0,
                &#39;rho&#39;: Subtensor{::, int64::}.0})])
 </pre></div></div>
@@ -608,28 +642,56 @@ OrderedDict([(theta,
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">η</span> <span class="o">=</span> <span class="o">.</span><span class="mi">1</span>
+<span></span><span class="n">η</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">s</span> <span class="o">=</span> <span class="n">shared</span><span class="p">(</span><span class="n">η</span><span class="p">)</span>
+
+
 <span class="k">def</span> <span class="nf">reduce_rate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
-    <span class="n">s</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">η</span><span class="o">/</span><span class="p">((</span><span class="n">i</span><span class="o">/</span><span class="n">minibatch_size</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**.</span><span class="mi">7</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">η</span> <span class="o">/</span> <span class="p">((</span><span class="n">i</span> <span class="o">/</span> <span class="n">minibatch_size</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.7</span><span class="p">)</span>
+
 
 <span class="k">with</span> <span class="n">model</span><span class="p">:</span>
     <span class="n">approx</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">MeanField</span><span class="p">(</span><span class="n">local_rv</span><span class="o">=</span><span class="n">local_RVs</span><span class="p">)</span>
     <span class="n">approx</span><span class="o">.</span><span class="n">scale_cost_to_minibatch</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">inference</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">KLqp</span><span class="p">(</span><span class="n">approx</span><span class="p">)</span>
-<span class="n">inference</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">reduce_rate</span><span class="p">],</span> <span class="n">obj_optimizer</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">sgd</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">s</span><span class="p">),</span>
-              <span class="n">more_obj_params</span><span class="o">=</span><span class="n">encoder_params</span><span class="p">,</span> <span class="n">total_grad_norm_constraint</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
-              <span class="n">more_replacements</span><span class="o">=</span><span class="p">{</span><span class="n">doc_t</span><span class="p">:</span> <span class="n">doc_t_minibatch</span><span class="p">})</span>
+<span class="n">inference</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="mi">10000</span><span class="p">,</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">reduce_rate</span><span class="p">],</span>
+    <span class="n">obj_optimizer</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">sgd</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">s</span><span class="p">),</span>
+    <span class="n">more_obj_params</span><span class="o">=</span><span class="n">encoder_params</span><span class="p">,</span>
+    <span class="n">total_grad_norm_constraint</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">more_replacements</span><span class="o">=</span><span class="p">{</span><span class="n">doc_t</span><span class="p">:</span> <span class="n">doc_t_minibatch</span><span class="p">},</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='10000' class='' max='10000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [10000/10000 08:11<00:00 Average Loss = 3.0171e+06]
+</div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-Average Loss = 2.9855e+06: 100%|██████████| 10000/10000 [06:20&lt;00:00, 25.59it/s]
-Finished [100%]: Average Loss = 2.9886e+06
+Finished [100%]: Average Loss = 3.0204e+06
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -638,7 +700,7 @@ Finished [100%]: Average Loss = 2.9886e+06
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;pymc3.variational.approximations.MeanField at 0x7fc56422fac8&gt;
+&lt;pymc3.variational.approximations.MeanField at 0x7fef38dc3e50&gt;
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -686,13 +748,15 @@ Approximation{MeanFieldGroup[None, 9] &amp; MeanFieldGroup[9990]}
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">print_top_words</span><span class="p">(</span><span class="n">beta</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">,</span> <span class="n">n_top_words</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">beta</span><span class="p">)):</span>
-        <span class="nb">print</span><span class="p">((</span><span class="s2">&quot;Topic #</span><span class="si">%d</span><span class="s2">: &quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">feature_names</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[:</span><span class="o">-</span><span class="n">n_top_words</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]))</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="p">(</span><span class="s2">&quot;Topic #</span><span class="si">%d</span><span class="s2">: &quot;</span> <span class="o">%</span> <span class="n">i</span><span class="p">)</span>
+            <span class="o">+</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">feature_names</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[:</span> <span class="o">-</span><span class="n">n_top_words</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+        <span class="p">)</span>
 
 
 <span class="n">doc_t</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">docs_tr</span><span class="o">.</span><span class="n">toarray</span><span class="p">())</span>
 <span class="n">samples</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_approx</span><span class="p">(</span><span class="n">approx</span><span class="p">,</span> <span class="n">draws</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">beta_pymc3</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="s1">&#39;beta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">beta_pymc3</span> <span class="o">=</span> <span class="n">samples</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">print_top_words</span><span class="p">(</span><span class="n">beta_pymc3</span><span class="p">,</span> <span class="n">feature_names</span><span class="p">)</span>
 </pre></div>
@@ -703,16 +767,16 @@ Approximation{MeanFieldGroup[None, 9] &amp; MeanFieldGroup[9990]}
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Topic #0: people think god don just said know say time like
-Topic #1: file use windows drive program using scsi does like software
-Topic #2: ax max g9v b8f 75u a86 34u bhj pl 1d9
-Topic #3: space key use information chip new encryption data public government
-Topic #4: just like don good year time car think team better
-Topic #5: know don like just does thanks think good ve need
-Topic #6: 00 10 25 11 15 20 17 12 16 14
-Topic #7: know like thanks new mail good just does don price
-Topic #8: edu com mail cs like send just know don list
-Topic #9: know like just don does thanks good edu mail new
+Topic #0: car good just like use new used power don time
+Topic #1: space key information use encryption new chip data public edu
+Topic #2: don like just know people think ve time good want
+Topic #3: year people said just team don like time think game
+Topic #4: file use windows edu drive program scsi does using like
+Topic #5: 00 10 25 15 11 17 20 16 12 14
+Topic #6: ax max g9v b8f a86 75u pl bhj giz 1t
+Topic #7: people god think don does just know believe say said
+Topic #8: young just people know don like think does work good
+Topic #9: like just know don think does people use time good
 </pre></div></div>
 </div>
 <p>We compare these topics to those obtained by a standard LDA implementation on scikit-learn, which is based on an online stochastic variational inference (Hoffman et al., 2013). We can see that estimated words in the topics are qualitatively similar.</p>
@@ -723,9 +787,13 @@ Topic #9: know like just don does thanks good edu mail new
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">LatentDirichletAllocation</span>
 
-<span class="n">lda</span> <span class="o">=</span> <span class="n">LatentDirichletAllocation</span><span class="p">(</span><span class="n">n_topics</span><span class="o">=</span><span class="n">n_topics</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
-                                <span class="n">learning_method</span><span class="o">=</span><span class="s1">&#39;online&#39;</span><span class="p">,</span> <span class="n">learning_offset</span><span class="o">=</span><span class="mf">50.</span><span class="p">,</span>
-                                <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">lda</span> <span class="o">=</span> <span class="n">LatentDirichletAllocation</span><span class="p">(</span>
+    <span class="n">n_components</span><span class="o">=</span><span class="n">n_topics</span><span class="p">,</span>
+    <span class="n">max_iter</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">learning_method</span><span class="o">=</span><span class="s2">&quot;online&quot;</span><span class="p">,</span>
+    <span class="n">learning_offset</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="o">%</span><span class="k">time</span> lda.fit(docs_tr)
 <span class="n">beta_sklearn</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">components_</span> <span class="o">/</span> <span class="n">lda</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
@@ -733,22 +801,13 @@ Topic #9: know like just don does thanks good edu mail new
 </pre></div>
 </div>
 </div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-/anaconda3/lib/python3.6/site-packages/sklearn/decomposition/online_lda.py:314: DeprecationWarning: n_topics has been renamed to n_components in version 0.19 and will be removed in 0.21
-  DeprecationWarning)
-</pre></div></div>
-</div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 49.7 s, sys: 538 ms, total: 50.3 s
-Wall time: 37.9 s
+CPU times: user 39.7 s, sys: 50.8 ms, total: 39.8 s
+Wall time: 39.8 s
 Topic #0: people gun armenian war armenians turkish states said state 000
 Topic #1: government people law mr president use don think right public
 Topic #2: space science nasa program data research center output earth launch
@@ -789,6 +848,7 @@ Topic #9: 00 10 25 15 20 12 11 16 14 17
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">ws</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">thetas</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">[:,</span> <span class="n">wix</span><span class="p">]))</span>
 
+
 <span class="k">def</span> <span class="nf">eval_lda</span><span class="p">(</span><span class="n">transform</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">docs_te</span><span class="p">,</span> <span class="n">wixs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Evaluate LDA model by log predictive probability.</span>
 
@@ -827,12 +887,7 @@ Topic #9: 00 10 25 15 20 12 11 16 14 17
     <span class="c1"># Log-probability</span>
     <span class="n">lp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">lpss</span><span class="p">))</span> <span class="o">/</span> <span class="n">total_words</span>
 
-    <span class="k">return</span> <span class="p">{</span>
-        <span class="s1">&#39;lp&#39;</span><span class="p">:</span> <span class="n">lp</span><span class="p">,</span>
-        <span class="s1">&#39;thetass&#39;</span><span class="p">:</span> <span class="n">thetass</span><span class="p">,</span>
-        <span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="n">beta</span><span class="p">,</span>
-        <span class="s1">&#39;wss&#39;</span><span class="p">:</span> <span class="n">wss</span>
-    <span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;lp&quot;</span><span class="p">:</span> <span class="n">lp</span><span class="p">,</span> <span class="s2">&quot;thetass&quot;</span><span class="p">:</span> <span class="n">thetass</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">:</span> <span class="n">beta</span><span class="p">,</span> <span class="s2">&quot;wss&quot;</span><span class="p">:</span> <span class="n">wss</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -842,11 +897,12 @@ Topic #9: 00 10 25 15 20 12 11 16 14 17
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">inp</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+<span></span><span class="n">inp</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">matrix</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
 <span class="n">sample_vi_theta</span> <span class="o">=</span> <span class="n">theano</span><span class="o">.</span><span class="n">function</span><span class="p">(</span>
-    <span class="p">[</span><span class="n">inp</span><span class="p">],</span>
-    <span class="n">approx</span><span class="o">.</span><span class="n">sample_node</span><span class="p">(</span><span class="n">approx</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span>  <span class="n">more_replacements</span><span class="o">=</span><span class="p">{</span><span class="n">doc_t</span><span class="p">:</span> <span class="n">inp</span><span class="p">})</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">[</span><span class="n">inp</span><span class="p">],</span> <span class="n">approx</span><span class="o">.</span><span class="n">sample_node</span><span class="p">(</span><span class="n">approx</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">more_replacements</span><span class="o">=</span><span class="p">{</span><span class="n">doc_t</span><span class="p">:</span> <span class="n">inp</span><span class="p">})</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="p">)</span>
+
+
 <span class="k">def</span> <span class="nf">transform_pymc3</span><span class="p">(</span><span class="n">docs</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">sample_vi_theta</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
 </pre></div>
@@ -857,8 +913,10 @@ Topic #9: 00 10 25 15 20 12 11 16 14 17
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="o">%</span><span class="k">time</span> result_pymc3 = eval_lda(transform_pymc3, beta_pymc3, docs_te.toarray(), np.arange(100))
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predictive log prob (pm3) = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_pymc3</span><span class="p">[</span><span class="s1">&#39;lp&#39;</span><span class="p">]))</span>
+<span></span><span class="o">%</span><span class="k">time</span> result_pymc3 = eval_lda(\
+          <span class="n">transform_pymc3</span><span class="p">,</span> <span class="n">beta_pymc3</span><span class="p">,</span> <span class="n">docs_te</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>\
+      <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predictive log prob (pm3) = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_pymc3</span><span class="p">[</span><span class="s2">&quot;lp&quot;</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -867,9 +925,9 @@ Topic #9: 00 10 25 15 20 12 11 16 14 17
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 50.6 s, sys: 740 ms, total: 51.3 s
-Wall time: 40.8 s
-Predictive log prob (pm3) = -6.184892268516339
+CPU times: user 7min 46s, sys: 7min 17s, total: 15min 3s
+Wall time: 36 s
+Predictive log prob (pm3) = -6.213144040486087
 </pre></div></div>
 </div>
 <p>We compare the result with the scikit-learn LDA implemented. The log predictive probability is comparable with AEVB-ADVI, and it shows good set of words in the estimated topics.</p>
@@ -882,8 +940,11 @@ Predictive log prob (pm3) = -6.184892268516339
     <span class="n">thetas</span> <span class="o">=</span> <span class="n">lda</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">thetas</span> <span class="o">/</span> <span class="n">thetas</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
 
-<span class="o">%</span><span class="k">time</span> result_sklearn = eval_lda(transform_sklearn, beta_sklearn, docs_te.toarray(), np.arange(100))
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predictive log prob (sklearn) = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_sklearn</span><span class="p">[</span><span class="s1">&#39;lp&#39;</span><span class="p">]))</span>
+
+<span class="o">%</span><span class="k">time</span> result_sklearn = eval_lda(\
+          <span class="n">transform_sklearn</span><span class="p">,</span> <span class="n">beta_sklearn</span><span class="p">,</span> <span class="n">docs_te</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>\
+      <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Predictive log prob (sklearn) = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result_sklearn</span><span class="p">[</span><span class="s2">&quot;lp&quot;</span><span class="p">]))</span>
 </pre></div>
 </div>
 </div>
@@ -892,9 +953,9 @@ Predictive log prob (pm3) = -6.184892268516339
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-CPU times: user 1min 40s, sys: 1.26 s, total: 1min 41s
-Wall time: 1min 17s
-Predictive log prob (sklearn) = -6.014771065227896
+CPU times: user 3min 44s, sys: 4min 4s, total: 7min 49s
+Wall time: 1min 23s
+Predictive log prob (sklearn) = -6.014771065227894
 </pre></div></div>
 </div>
 </div>
@@ -915,7 +976,7 @@ invoking an inference (<code class="docutils literal notranslate"><span class="p
 <li><p>Salimans, T., Kingma, D. P., &amp; Welling, M. (2015). Markov chain Monte Carlo and variational inference: Bridging the gap. In International Conference on Machine Learning (pp. 1218-1226).</p></li>
 </ul>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -929,13 +990,14 @@ invoking an inference (<code class="docutils literal notranslate"><span class="p
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-pymc3 3.8
-arviz 0.8.3
-numpy 1.17.5
-last updated: Thu Jun 11 2020
+theano  1.0.5
+seaborn 0.11.0
+numpy   1.17.3
+pymc3   3.9.3
+last updated: Sat Sep 26 2020
 
-CPython 3.8.2
-IPython 7.11.0
+CPython 3.7.8
+IPython 7.17.0
 watermark 2.0.2
 </pre></div></div>
 </div>
@@ -951,12 +1013,25 @@ watermark 2.0.2
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Model building and expansion for golf putting &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model building and expansion for golf putting &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -65,21 +70,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -126,20 +145,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -167,7 +199,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -232,7 +264,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -294,7 +327,7 @@ div.rendered_html tbody tr:hover {
 <span class="kn">import</span> <span class="nn">scipy</span>
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running on PyMC3 v</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running on PyMC3 v</span><span class="si">{</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -311,25 +344,41 @@ Running on PyMC3 v3.9.0
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
-    <span class="s2">&quot;axes.prop_cycle&quot;</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">cycler</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;#000000&#39;</span><span class="p">,</span> <span class="s1">&#39;#1b6989&#39;</span><span class="p">,</span> <span class="s1">&#39;#e69f00&#39;</span><span class="p">,</span> <span class="s1">&#39;#009e73&#39;</span><span class="p">,</span> <span class="s1">&#39;#f0e442&#39;</span><span class="p">,</span> <span class="s1">&#39;#50b4e9&#39;</span><span class="p">,</span> <span class="s1">&#39;#d55e00&#39;</span><span class="p">,</span> <span class="s1">&#39;#cc79a7&#39;</span><span class="p">]),</span>
-    <span class="s2">&quot;figure.figsize&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span>
-    <span class="s2">&quot;font.serif&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;Palatino&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;Palatino Linotype&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;Palatino LT STD&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;Book Antiqua&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;Georgia&#39;</span><span class="p">,</span>
-                   <span class="s1">&#39;DejaVu Serif&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;font.family&#39;</span><span class="p">:</span> <span class="s1">&#39;serif&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;figure.facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;#fffff8&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;figure.constrained_layout.use&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="s1">&#39;font.size&#39;</span><span class="p">:</span> <span class="mf">14.0</span><span class="p">,</span>
-    <span class="s1">&#39;hist.bins&#39;</span><span class="p">:</span> <span class="s1">&#39;auto&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;lines.linewidth&#39;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span>
-    <span class="s1">&#39;lines.markeredgewidth&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
-    <span class="s1">&#39;lines.markerfacecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;none&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;lines.markersize&#39;</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span>
-<span class="p">})</span>
+<span></span><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;axes.prop_cycle&quot;</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">cycler</span><span class="p">(</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">,</span>
+            <span class="p">[</span>
+                <span class="s2">&quot;#000000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;#1b6989&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;#e69f00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;#009e73&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;#f0e442&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;#50b4e9&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;#d55e00&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;#cc79a7&quot;</span><span class="p">,</span>
+            <span class="p">],</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;figure.figsize&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">12.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">],</span>
+        <span class="s2">&quot;font.serif&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;Palatino&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Palatino Linotype&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Palatino LT STD&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Book Antiqua&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;Georgia&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;DejaVu Serif&quot;</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;font.family&quot;</span><span class="p">:</span> <span class="s2">&quot;serif&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;figure.facecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;#fffff8&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;figure.constrained_layout.use&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;font.size&quot;</span><span class="p">:</span> <span class="mf">14.0</span><span class="p">,</span>
+        <span class="s2">&quot;hist.bins&quot;</span><span class="p">:</span> <span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lines.linewidth&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span>
+        <span class="s2">&quot;lines.markeredgewidth&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span>
+        <span class="s2">&quot;lines.markerfacecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;lines.markersize&quot;</span><span class="p">:</span> <span class="mf">8.0</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -375,22 +424,24 @@ Running on PyMC3 v3.9.0
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">plot_golf_data</span><span class="p">(</span><span class="n">golf_data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Utility function to standardize a pretty plotting of the golf data.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Utility function to standardize a pretty plotting of the golf data.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
     <span class="n">bg_color</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">()</span>
     <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span><span class="p">,</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span> <span class="o">-</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="o">*</span><span class="n">rv</span><span class="o">.</span><span class="n">interval</span><span class="p">(</span><span class="mf">0.68</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="n">bg_color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="n">bg_color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from hole&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Percent of putts made&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax</span>
+
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_golf_data</span><span class="p">(</span><span class="n">golf_data</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Overview of data from Berry (1995)&quot;</span><span class="p">);</span>
@@ -421,13 +472,15 @@ p(\text{success}) = \operatorname{logit}^{-1}(a \cdot \text{distance} + b) \\
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">logit_model</span><span class="p">(</span><span class="n">golf_data</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">logit_binomial</span><span class="p">:</span>
-        <span class="n">a</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
-        <span class="n">b</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
 
-        <span class="n">success</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span>
-                              <span class="n">n</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span>
-                              <span class="n">p</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">invlogit</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span> <span class="o">+</span> <span class="n">b</span><span class="p">),</span>
-                              <span class="n">observed</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span><span class="p">)</span>
+        <span class="n">success</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span>
+            <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+            <span class="n">n</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span>
+            <span class="n">p</span><span class="o">=</span><span class="n">pm</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">invlogit</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span> <span class="o">+</span> <span class="n">b</span><span class="p">),</span>
+            <span class="n">observed</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span><span class="p">,</span>
+        <span class="p">)</span>
     <span class="k">return</span> <span class="n">logit_binomial</span>
 
 
@@ -582,18 +635,30 @@ The number of effective samples is smaller than 25% for some parameters.
     <span class="c1"># hard to plot more than 500 sensibly</span>
     <span class="n">logit_ppc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_posterior_predictive</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
 
-<span class="n">logit_ppc_success</span> <span class="o">=</span> <span class="n">logit_ppc</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">logit_ppc_success</span> <span class="o">=</span> <span class="n">logit_ppc</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Plotting</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_golf_data</span><span class="p">(</span><span class="n">golf_data</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">200</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">),</span> <span class="mi">50</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">]),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C2&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">t</span><span class="p">,</span>
+        <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">][</span><span class="n">idx</span><span class="p">]</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">][</span><span class="n">idx</span><span class="p">]),</span>
+        <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">),</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C2&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">logit_ppc_success</span><span class="p">,</span> <span class="s1">&#39;k.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Logit mean and posterior predictive&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">logit_ppc_success</span><span class="p">,</span> <span class="s2">&quot;k.&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Logit mean and posterior predictive&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -660,9 +725,9 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">plot_pair</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">));</span>
+<span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">plot_pair</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-<span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">correlate</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">],</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Correlation: </span><span class="si">{</span><span class="n">corr</span><span class="si">:</span><span class="s2">,.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -716,8 +781,10 @@ The number of effective samples is smaller than 25% for some parameters.
 <span></span><span class="n">BALL_RADIUS</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.68</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span>
 <span class="n">CUP_RADIUS</span> <span class="o">=</span> <span class="p">(</span><span class="mf">4.25</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">12</span>
 
+
 <span class="k">def</span> <span class="nf">forward_angle_model</span><span class="p">(</span><span class="n">variance_of_shot</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance_of_shot</span><span class="p">)</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">t</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_golf_data</span><span class="p">(</span><span class="n">golf_data</span><span class="p">)</span>
 
@@ -746,16 +813,25 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="k">as</span> <span class="nn">tt</span>
 
+
 <span class="k">def</span> <span class="nf">Phi</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Calculates the standard normal cumulative distribution function.&quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">tt</span><span class="o">.</span><span class="n">erf</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">tt</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="p">))</span>
+    <span class="k">return</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">tt</span><span class="o">.</span><span class="n">erf</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">tt</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
+
 
 <span class="k">def</span> <span class="nf">angle_model</span><span class="p">(</span><span class="n">golf_data</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">angle_model</span><span class="p">:</span>
-        <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">)</span>
-        <span class="n">p_goes_in</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;p_goes_in&#39;</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Phi</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span> <span class="o">/</span> <span class="n">variance_of_shot</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">success</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p_goes_in</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span><span class="p">)</span>
+        <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">)</span>
+        <span class="n">p_goes_in</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span>
+            <span class="s2">&quot;p_goes_in&quot;</span><span class="p">,</span>
+            <span class="mi">2</span> <span class="o">*</span> <span class="n">Phi</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">)</span> <span class="o">/</span> <span class="n">variance_of_shot</span><span class="p">)</span>
+            <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">success</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span>
+            <span class="s2">&quot;success&quot;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p_goes_in</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span>
+        <span class="p">)</span>
     <span class="k">return</span> <span class="n">angle_model</span>
+
 
 <span class="n">pm</span><span class="o">.</span><span class="n">model_to_graphviz</span><span class="p">(</span><span class="n">angle_model</span><span class="p">(</span><span class="n">golf_data</span><span class="p">))</span>
 </pre></div>
@@ -780,19 +856,16 @@ The number of effective samples is smaller than 25% for some parameters.
 <span></span><span class="k">with</span> <span class="n">angle_model</span><span class="p">(</span><span class="n">golf_data</span><span class="p">):</span>
     <span class="n">angle_prior</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_prior_predictive</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
 
-<span class="n">angle_of_shot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">angle_prior</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">])</span>  <span class="c1"># radians</span>
-<span class="n">distance</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># feet</span>
+<span class="n">angle_of_shot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">angle_prior</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">])</span>  <span class="c1"># radians</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># feet</span>
 
-<span class="n">end_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_of_shot</span><span class="p">),</span>
-    <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_of_shot</span><span class="p">)</span>
-<span class="p">])</span>
+<span class="n">end_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_of_shot</span><span class="p">),</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_of_shot</span><span class="p">)])</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">endx</span><span class="p">,</span> <span class="n">endy</span> <span class="ow">in</span> <span class="n">end_positions</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">endx</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">endy</span><span class="p">],</span> <span class="s1">&#39;k-o&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Start&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Goal&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">endx</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">endy</span><span class="p">],</span> <span class="s2">&quot;k-o&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;go&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Start&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ro&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Goal&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prior distribution of putts from </span><span class="si">{</span><span class="n">distance</span><span class="si">}</span><span class="s2">ft away&quot;</span><span class="p">)</span>
 
@@ -869,10 +942,18 @@ Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws 
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">200</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">),</span> <span class="mi">50</span><span class="p">):</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">][</span><span class="n">idx</span><span class="p">],</span> <span class="n">t</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Geometry-based model&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">][</span><span class="n">idx</span><span class="p">],</span> <span class="n">t</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;C1&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span>
+    <span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Geometry-based model&quot;</span>
+<span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Logit-binomial model&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Logit-binomial model&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparing the fit of geometry-based and logit-binomial model&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
@@ -891,7 +972,9 @@ Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% vs </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span></span><span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">% vs </span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">expit</span><span class="p">(</span><span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">50</span> <span class="o">+</span> <span class="n">logit_trace</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">%&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -909,19 +992,18 @@ Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">angle_of_shot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="mi">500</span><span class="p">))</span>  <span class="c1"># radians</span>
-<span class="n">distance</span> <span class="o">=</span> <span class="mi">20</span> <span class="c1"># feet</span>
+<span></span><span class="n">angle_of_shot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+    <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="mi">500</span><span class="p">)</span>
+<span class="p">)</span>  <span class="c1"># radians</span>
+<span class="n">distance</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># feet</span>
 
-<span class="n">end_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_of_shot</span><span class="p">),</span>
-    <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_of_shot</span><span class="p">)</span>
-<span class="p">])</span>
+<span class="n">end_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle_of_shot</span><span class="p">),</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle_of_shot</span><span class="p">)])</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">endx</span><span class="p">,</span> <span class="n">endy</span> <span class="ow">in</span> <span class="n">end_positions</span><span class="o">.</span><span class="n">T</span><span class="p">:</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">endx</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">endy</span><span class="p">],</span> <span class="s1">&#39;k-o&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">);</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;go&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Start&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Goal&#39;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">endx</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">endy</span><span class="p">],</span> <span class="s2">&quot;k-o&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;w&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;go&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Start&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;g&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ro&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Goal&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
@@ -994,7 +1076,7 @@ Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws 
 <span class="n">plot_golf_data</span><span class="p">(</span><span class="n">golf_data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">200</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparing the new data set to the old data set, and</span><span class="se">\n</span><span class="s2">considering the old model fit&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -1076,9 +1158,17 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <span class="n">plot_golf_data</span><span class="p">(</span><span class="n">golf_data</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">200</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Trained on original data&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">new_angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Trained on new data&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Retraining the model on new data&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Trained on original data&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">new_angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Trained on new data&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Retraining the model on new data&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
 </div>
@@ -1115,17 +1205,30 @@ The estimated number of effective samples is smaller than 200 for some parameter
 <span></span><span class="n">OVERSHOT</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">DISTANCE_TOLERANCE</span> <span class="o">=</span> <span class="mf">3.0</span>
 
+
 <span class="k">def</span> <span class="nf">distance_angle_model</span><span class="p">(</span><span class="n">golf_data</span><span class="p">):</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">values</span>
     <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">distance_angle_model</span><span class="p">:</span>
-        <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">)</span>
-        <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;variance_of_distance&#39;</span><span class="p">)</span>
-        <span class="n">p_good_angle</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;p_good_angle&#39;</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Phi</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">distances</span><span class="p">)</span> <span class="o">/</span> <span class="n">variance_of_shot</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">p_good_distance</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;p_good_distance&#39;</span><span class="p">,</span> <span class="n">Phi</span><span class="p">((</span><span class="n">DISTANCE_TOLERANCE</span> <span class="o">-</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">distances</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">))</span> <span class="o">-</span>
-                                                              <span class="n">Phi</span><span class="p">(</span><span class="o">-</span><span class="n">OVERSHOT</span> <span class="o">/</span> <span class="p">((</span><span class="n">distances</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">)))</span>
+        <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">)</span>
+        <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;variance_of_distance&quot;</span><span class="p">)</span>
+        <span class="n">p_good_angle</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span>
+            <span class="s2">&quot;p_good_angle&quot;</span><span class="p">,</span>
+            <span class="mi">2</span> <span class="o">*</span> <span class="n">Phi</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">distances</span><span class="p">)</span> <span class="o">/</span> <span class="n">variance_of_shot</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">p_good_distance</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span>
+            <span class="s2">&quot;p_good_distance&quot;</span><span class="p">,</span>
+            <span class="n">Phi</span><span class="p">((</span><span class="n">DISTANCE_TOLERANCE</span> <span class="o">-</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">distances</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">))</span>
+            <span class="o">-</span> <span class="n">Phi</span><span class="p">(</span><span class="o">-</span><span class="n">OVERSHOT</span> <span class="o">/</span> <span class="p">((</span><span class="n">distances</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">)),</span>
+        <span class="p">)</span>
 
-        <span class="n">success</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p_good_angle</span> <span class="o">*</span> <span class="n">p_good_distance</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span><span class="p">)</span>
+        <span class="n">success</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span>
+            <span class="s2">&quot;success&quot;</span><span class="p">,</span>
+            <span class="n">n</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span>
+            <span class="n">p</span><span class="o">=</span><span class="n">p_good_angle</span> <span class="o">*</span> <span class="n">p_good_distance</span><span class="p">,</span>
+            <span class="n">observed</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span><span class="p">,</span>
+        <span class="p">)</span>
     <span class="k">return</span> <span class="n">distance_angle_model</span>
+
 
 <span class="n">pm</span><span class="o">.</span><span class="n">model_to_graphviz</span><span class="p">(</span><span class="n">distance_angle_model</span><span class="p">(</span><span class="n">new_golf_data</span><span class="p">))</span>
 </pre></div>
@@ -1204,18 +1307,29 @@ The number of effective samples is smaller than 25% for some parameters.
     <span class="n">rv</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">angle_prob</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">rv</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">t</span><span class="p">)</span> <span class="o">/</span> <span class="n">variance_of_shot</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
 
-    <span class="n">distance_prob_one</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">cdf</span><span class="p">((</span><span class="n">DISTANCE_TOLERANCE</span> <span class="o">-</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">t</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">))</span>
+    <span class="n">distance_prob_one</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">DISTANCE_TOLERANCE</span> <span class="o">-</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">t</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">)</span>
+    <span class="p">)</span>
     <span class="n">distance_prob_two</span> <span class="o">=</span> <span class="n">rv</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="o">-</span><span class="n">OVERSHOT</span> <span class="o">/</span> <span class="p">((</span><span class="n">t</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">))</span>
     <span class="n">distance_prob</span> <span class="o">=</span> <span class="n">distance_prob_one</span> <span class="o">-</span> <span class="n">distance_prob_two</span>
 
     <span class="k">return</span> <span class="n">angle_prob</span> <span class="o">*</span> <span class="n">distance_prob</span>
 
+
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_golf_data</span><span class="p">(</span><span class="n">new_golf_data</span><span class="p">)</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">200</span><span class="p">)</span>
 
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">new_angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Just angle&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_distance_angle_model</span><span class="p">(</span><span class="n">distance_angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">distance_angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Distance and angle&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_angle_model</span><span class="p">(</span><span class="n">new_angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Just angle&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">forward_distance_angle_model</span><span class="p">(</span>
+        <span class="n">distance_angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">distance_angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_distance&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">t</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Distance and angle&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparing fits of models on new data&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
@@ -1238,12 +1352,12 @@ The number of effective samples is smaller than 25% for some parameters.
 <span></span><span class="k">with</span> <span class="n">distance_angle_model</span><span class="p">(</span><span class="n">new_golf_data</span><span class="p">):</span>
     <span class="n">ppc</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample_posterior_predictive</span><span class="p">(</span><span class="n">distance_angle_trace</span><span class="p">)</span>
 
-<span class="n">residuals</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">-</span> <span class="n">ppc</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">tries</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">-</span> <span class="n">ppc</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">tries</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from hole&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Absolute error in expected</span><span class="se">\n</span><span class="s2">percent of success&quot;</span><span class="p">)</span>
 
@@ -1294,17 +1408,29 @@ parametrize it by mean (<span class="math notranslate nohighlight">\(np\)</span>
 <span></span><span class="k">def</span> <span class="nf">disp_distance_angle_model</span><span class="p">(</span><span class="n">golf_data</span><span class="p">):</span>
     <span class="n">distances</span> <span class="o">=</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">values</span>
     <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">distance_angle_model</span><span class="p">:</span>
-        <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">)</span>
-        <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;variance_of_distance&#39;</span><span class="p">)</span>
-        <span class="n">dispersion</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s1">&#39;dispersion&#39;</span><span class="p">)</span>
+        <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">)</span>
+        <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;variance_of_distance&quot;</span><span class="p">)</span>
+        <span class="n">dispersion</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">HalfNormal</span><span class="p">(</span><span class="s2">&quot;dispersion&quot;</span><span class="p">)</span>
 
-        <span class="n">p_good_angle</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;p_good_angle&#39;</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">Phi</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">distances</span><span class="p">)</span> <span class="o">/</span> <span class="n">variance_of_shot</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="n">p_good_distance</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span><span class="s1">&#39;p_good_distance&#39;</span><span class="p">,</span> <span class="n">Phi</span><span class="p">((</span><span class="n">DISTANCE_TOLERANCE</span> <span class="o">-</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">distances</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">))</span> <span class="o">-</span>
-                                                              <span class="n">Phi</span><span class="p">(</span><span class="o">-</span><span class="n">OVERSHOT</span> <span class="o">/</span> <span class="p">((</span><span class="n">distances</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">)))</span>
+        <span class="n">p_good_angle</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span>
+            <span class="s2">&quot;p_good_angle&quot;</span><span class="p">,</span>
+            <span class="mi">2</span> <span class="o">*</span> <span class="n">Phi</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">distances</span><span class="p">)</span> <span class="o">/</span> <span class="n">variance_of_shot</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">p_good_distance</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Deterministic</span><span class="p">(</span>
+            <span class="s2">&quot;p_good_distance&quot;</span><span class="p">,</span>
+            <span class="n">Phi</span><span class="p">((</span><span class="n">DISTANCE_TOLERANCE</span> <span class="o">-</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">/</span> <span class="p">((</span><span class="n">distances</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">))</span>
+            <span class="o">-</span> <span class="n">Phi</span><span class="p">(</span><span class="o">-</span><span class="n">OVERSHOT</span> <span class="o">/</span> <span class="p">((</span><span class="n">distances</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">)),</span>
+        <span class="p">)</span>
 
         <span class="n">p</span> <span class="o">=</span> <span class="n">p_good_angle</span> <span class="o">*</span> <span class="n">p_good_distance</span>
-        <span class="n">p_success</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;p_success&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">sd</span><span class="o">=</span><span class="n">tt</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">)</span> <span class="o">+</span> <span class="n">dispersion</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">)</span>
+        <span class="n">p_success</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span>
+            <span class="s2">&quot;p_success&quot;</span><span class="p">,</span>
+            <span class="n">mu</span><span class="o">=</span><span class="n">p</span><span class="p">,</span>
+            <span class="n">sd</span><span class="o">=</span><span class="n">tt</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(((</span><span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">))</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">)</span> <span class="o">+</span> <span class="n">dispersion</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">observed</span><span class="o">=</span><span class="n">golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">/</span> <span class="n">golf_data</span><span class="o">.</span><span class="n">tries</span><span class="p">,</span>
+        <span class="p">)</span>
     <span class="k">return</span> <span class="n">distance_angle_model</span>
+
 
 <span class="n">pm</span><span class="o">.</span><span class="n">model_to_graphviz</span><span class="p">(</span><span class="n">disp_distance_angle_model</span><span class="p">(</span><span class="n">new_golf_data</span><span class="p">))</span>
 </pre></div>
@@ -1398,8 +1524,24 @@ Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws 
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">200</span><span class="p">)</span>
 
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_distance_angle_model</span><span class="p">(</span><span class="n">distance_angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">distance_angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Distance and angle&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">forward_distance_angle_model</span><span class="p">(</span><span class="n">disp_distance_angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">disp_distance_angle_trace</span><span class="p">[</span><span class="s1">&#39;variance_of_distance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">t</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dispersed model&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">forward_distance_angle_model</span><span class="p">(</span>
+        <span class="n">distance_angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">distance_angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_distance&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">t</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Distance and angle&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">t</span><span class="p">,</span>
+    <span class="n">forward_distance_angle_model</span><span class="p">(</span>
+        <span class="n">disp_distance_angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">disp_distance_angle_trace</span><span class="p">[</span><span class="s2">&quot;variance_of_distance&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+        <span class="n">t</span><span class="p">,</span>
+    <span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dispersed model&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Comparing dispersed model with binomial distance/angle model&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
 </pre></div>
@@ -1418,17 +1560,19 @@ Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">old_residuals</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">-</span> <span class="n">ppc</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">tries</span>
+<span></span><span class="n">old_residuals</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">-</span> <span class="n">ppc</span><span class="p">[</span><span class="s2">&quot;success&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="o">/</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">tries</span>
 
-<span class="n">residuals</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">/</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">tries</span> <span class="o">-</span> <span class="n">disp_ppc</span><span class="p">[</span><span class="s1">&#39;p_success&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">residuals</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="p">(</span>
+    <span class="n">new_golf_data</span><span class="o">.</span><span class="n">successes</span> <span class="o">/</span> <span class="n">new_golf_data</span><span class="o">.</span><span class="n">tries</span> <span class="o">-</span> <span class="n">disp_ppc</span><span class="p">[</span><span class="s2">&quot;p_success&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">)</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Dispersed model&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">old_residuals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Distance and angle model&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Dispersed model&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_golf_data</span><span class="o">.</span><span class="n">distance</span><span class="p">,</span> <span class="n">old_residuals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Distance and angle model&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from hole&quot;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Distance from hole&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Absolute error in expected</span><span class="se">\n</span><span class="s2">percent of success&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Residuals of dispersed model vs distance/angle model&quot;</span><span class="p">);</span>
 </pre></div>
@@ -1458,29 +1602,40 @@ Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws 
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">simulate_from_distance</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">distance_to_hole</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
-    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">trials</span><span class="p">)</span>
-    <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
-    <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;variance_of_distance&#39;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+    <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+    <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s2">&quot;variance_of_distance&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
 
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance_of_shot</span><span class="p">)</span>
-    <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">,</span> <span class="p">(</span><span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">)</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+        <span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">,</span> <span class="p">(</span><span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span>
+    <span class="p">)</span>
 
     <span class="n">final_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
 
     <span class="n">made_it</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">distance_to_hole</span><span class="p">)</span>
-    <span class="n">made_it</span> <span class="o">=</span> <span class="n">made_it</span> <span class="o">*</span> <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">distance_to_hole</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">DISTANCE_TOLERANCE</span><span class="p">)</span>
+    <span class="n">made_it</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">made_it</span>
+        <span class="o">*</span> <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">distance_to_hole</span><span class="p">)</span>
+        <span class="o">*</span> <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">DISTANCE_TOLERANCE</span><span class="p">)</span>
+    <span class="p">)</span>
 
     <span class="n">_</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;k.&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">250</span> <span class="o">/</span> <span class="n">distance_to_hole</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">*</span><span class="n">final_position</span><span class="p">[:,</span> <span class="o">~</span><span class="n">made_it</span><span class="p">],</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">250</span> <span class="o">/</span> <span class="n">distance_to_hole</span><span class="p">,</span> <span class="n">mew</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_to_hole</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;ko&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">350</span> <span class="o">/</span> <span class="n">distance_to_hole</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;k.&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">250</span> <span class="o">/</span> <span class="n">distance_to_hole</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="o">*</span><span class="n">final_position</span><span class="p">[:,</span> <span class="o">~</span><span class="n">made_it</span><span class="p">],</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">250</span> <span class="o">/</span> <span class="n">distance_to_hole</span><span class="p">,</span> <span class="n">mew</span><span class="o">=</span><span class="mf">0.5</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">distance_to_hole</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;ko&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">350</span> <span class="o">/</span> <span class="n">distance_to_hole</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s2">&quot;#e6ffdb&quot;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Final position of </span><span class="si">{</span><span class="n">trials</span><span class="si">:</span><span class="s2">,d</span><span class="si">}</span><span class="s2"> putts from </span><span class="si">{</span><span class="n">distance_to_hole</span><span class="si">}</span><span class="s2">ft.</span><span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">made_it</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% made)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Final position of </span><span class="si">{</span><span class="n">trials</span><span class="si">:</span><span class="s2">,d</span><span class="si">}</span><span class="s2"> putts from </span><span class="si">{</span><span class="n">distance_to_hole</span><span class="si">}</span><span class="s2">ft.</span><span class="se">\n</span><span class="s2">(</span><span class="si">{</span><span class="mi">100</span> <span class="o">*</span> <span class="n">made_it</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">% made)&quot;</span>
+    <span class="p">)</span>
     <span class="k">return</span> <span class="n">ax</span>
+
 
 <span class="n">simulate_from_distance</span><span class="p">(</span><span class="n">distance_angle_trace</span><span class="p">,</span> <span class="n">distance_to_hole</span><span class="o">=</span><span class="mi">50</span><span class="p">);</span>
 </pre></div>
@@ -1519,22 +1674,30 @@ Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws 
 <span></span><span class="k">def</span> <span class="nf">expected_num_putts</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">distance_to_hole</span><span class="p">,</span> <span class="n">trials</span><span class="o">=</span><span class="mi">100_000</span><span class="p">):</span>
     <span class="n">distance_to_hole</span> <span class="o">=</span> <span class="n">distance_to_hole</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">trials</span><span class="p">)</span>
 
-    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
     <span class="n">idxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">trials</span><span class="p">)</span>
-    <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;variance_of_shot&#39;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
-    <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s1">&#39;variance_of_distance&#39;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+    <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s2">&quot;variance_of_shot&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
+    <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">trace</span><span class="p">[</span><span class="s2">&quot;variance_of_distance&quot;</span><span class="p">][</span><span class="n">idxs</span><span class="p">]</span>
     <span class="n">n_shots</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">while</span> <span class="n">distance_to_hole</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">variance_of_shot</span><span class="p">)</span>
-        <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">,</span> <span class="p">(</span><span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span><span class="p">)</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span>
+            <span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">,</span> <span class="p">(</span><span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">OVERSHOT</span><span class="p">)</span> <span class="o">*</span> <span class="n">variance_of_distance</span>
+        <span class="p">)</span>
 
         <span class="n">final_position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">distance</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
 
         <span class="n">made_it</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="n">CUP_RADIUS</span> <span class="o">-</span> <span class="n">BALL_RADIUS</span><span class="p">)</span> <span class="o">/</span> <span class="n">distance_to_hole</span><span class="p">)</span>
-        <span class="n">made_it</span> <span class="o">=</span> <span class="n">made_it</span> <span class="o">*</span> <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">distance_to_hole</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">DISTANCE_TOLERANCE</span><span class="p">)</span>
+        <span class="n">made_it</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">made_it</span>
+            <span class="o">*</span> <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">distance_to_hole</span><span class="p">)</span>
+            <span class="o">*</span> <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">distance_to_hole</span> <span class="o">+</span> <span class="n">DISTANCE_TOLERANCE</span><span class="p">)</span>
+        <span class="p">)</span>
 
-        <span class="n">distance_to_hole</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">distance_to_hole</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">final_position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)[</span><span class="o">~</span><span class="n">made_it</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">distance_to_hole</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">final_position</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">distance_to_hole</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">final_position</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)[</span><span class="o">~</span><span class="n">made_it</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">variance_of_shot</span> <span class="o">=</span> <span class="n">variance_of_shot</span><span class="p">[</span><span class="o">~</span><span class="n">made_it</span><span class="p">]</span>
         <span class="n">variance_of_distance</span> <span class="o">=</span> <span class="n">variance_of_distance</span><span class="p">[</span><span class="o">~</span><span class="n">made_it</span><span class="p">]</span>
         <span class="n">n_shots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">made_it</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
@@ -1609,12 +1772,25 @@ watermark 2.0.2
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>GLM: Poisson Regression &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GLM: Poisson Regression &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -65,21 +70,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -126,20 +145,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -167,7 +199,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -232,7 +264,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -287,21 +320,15 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1">## Interactive magics</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">re</span>
+<span></span><span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-darkgrid&#39;</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="kn">import</span> <span class="nn">patsy</span> <span class="k">as</span> <span class="nn">pt</span>
 <span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">6</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running on PyMC3 v</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running on PyMC3 v</span><span class="si">{</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -310,8 +337,20 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Running on PyMC3 v3.6
+Running on PyMC3 v3.9.3
 </pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
+<span class="n">RANDOM_SEED</span> <span class="o">=</span> <span class="mi">8927</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">RANDOM_SEED</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <p>This is a minimal reproducible example of Poisson regression to predict counts using dummy data.</p>
 <p>This Notebook is basically an excuse to demo Poisson regression using PyMC3, both manually and using the <code class="docutils literal notranslate"><span class="pre">glm</span></code> library to demo interactions using the <code class="docutils literal notranslate"><span class="pre">patsy</span></code> library. We will create some dummy data, Poisson distributed according to a linear model, and try to recover the coefficients of that linear model through inference.</p>
@@ -324,38 +363,6 @@ Running on PyMC3 v3.6
 <p>This very basic model is inspired by <a class="reference external" href="http://ianozsvald.com/2016/05/07/statistically-solving-sneezes-and-sniffles-a-work-in-progress-report-at-pydatalondon-2016/">a project by Ian Osvald</a>, which is concerned with understanding the various effects of external environmental factors upon the allergic sneezing of a test subject.</p>
 <div class="section" id="Local-Functions">
 <h2>Local Functions<a class="headerlink" href="#Local-Functions" title="Permalink to this headline">¶</a></h2>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">strip_derived_rvs</span><span class="p">(</span><span class="n">rvs</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Convenience fn: remove PyMC3-generated RVs from a list&#39;&#39;&#39;</span>
-    <span class="n">ret_rvs</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">rv</span> <span class="ow">in</span> <span class="n">rvs</span><span class="p">:</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;_log&#39;</span><span class="p">,</span><span class="n">rv</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="ow">or</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;_interval&#39;</span><span class="p">,</span><span class="n">rv</span><span class="o">.</span><span class="n">name</span><span class="p">)):</span>
-            <span class="n">ret_rvs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">ret_rvs</span>
-
-
-<span class="k">def</span> <span class="nf">plot_traces_pymc</span><span class="p">(</span><span class="n">trcs</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39; Convenience fn: plot traces with overlaid means and values &#39;&#39;&#39;</span>
-
-    <span class="n">nrows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">trcs</span><span class="o">.</span><span class="n">varnames</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">varnames</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">nrows</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">varnames</span><span class="p">)</span>
-
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">traceplot</span><span class="p">(</span><span class="n">trcs</span><span class="p">,</span> <span class="n">var_names</span><span class="o">=</span><span class="n">varnames</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="n">nrows</span><span class="o">*</span><span class="mf">1.4</span><span class="p">),</span>
-                      <span class="n">lines</span><span class="o">=</span><span class="nb">tuple</span><span class="p">([(</span><span class="n">k</span><span class="p">,</span> <span class="p">{},</span> <span class="n">v</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">])</span>
-                                   <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pm</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trcs</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="n">varnames</span><span class="p">)</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]))</span>
-
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">mn</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trcs</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="n">varnames</span><span class="p">)[</span><span class="s1">&#39;mean&#39;</span><span class="p">]):</span>
-        <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mn</span><span class="p">),</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">mn</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">xycoords</span><span class="o">=</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-                         <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s1">&#39;offset points&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
-                         <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="s1">&#39;large&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#AA0022&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
 </div>
 <div class="section" id="Generate-Data">
 <h2>Generate Data<a class="headerlink" href="#Generate-Data" title="Permalink to this headline">¶</a></h2>
@@ -376,26 +383,41 @@ Running on PyMC3 v3.6
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># decide poisson theta values</span>
-<span class="n">theta_noalcohol_meds</span> <span class="o">=</span> <span class="mi">1</span>    <span class="c1"># no alcohol, took an antihist</span>
-<span class="n">theta_alcohol_meds</span> <span class="o">=</span> <span class="mi">3</span>      <span class="c1"># alcohol, took an antihist</span>
+<span class="n">theta_noalcohol_meds</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># no alcohol, took an antihist</span>
+<span class="n">theta_alcohol_meds</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># alcohol, took an antihist</span>
 <span class="n">theta_noalcohol_nomeds</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># no alcohol, no antihist</span>
-<span class="n">theta_alcohol_nomeds</span> <span class="o">=</span> <span class="mi">36</span>   <span class="c1"># alcohol, no antihist</span>
+<span class="n">theta_alcohol_nomeds</span> <span class="o">=</span> <span class="mi">36</span>  <span class="c1"># alcohol, no antihist</span>
 
 <span class="c1"># create samples</span>
 <span class="n">q</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-        <span class="s1">&#39;nsneeze&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">theta_noalcohol_meds</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                   <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">theta_alcohol_meds</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                   <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">theta_noalcohol_nomeds</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                   <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">theta_alcohol_nomeds</span><span class="p">,</span> <span class="n">q</span><span class="p">))),</span>
-        <span class="s1">&#39;alcohol&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                   <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                   <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                   <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="p">))),</span>
-        <span class="s1">&#39;nomeds&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                      <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                      <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
-                                      <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="p">)))})</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;nsneeze&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">theta_noalcohol_meds</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">theta_alcohol_meds</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">theta_noalcohol_nomeds</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">theta_alcohol_nomeds</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;alcohol&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;nomeds&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">q</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">),</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -439,31 +461,31 @@ Running on PyMC3 v3.6
   <tbody>
     <tr>
       <th>3995</th>
-      <td>38</td>
+      <td>40</td>
       <td>True</td>
       <td>True</td>
     </tr>
     <tr>
       <th>3996</th>
-      <td>31</td>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>3997</th>
       <td>30</td>
       <td>True</td>
       <td>True</td>
     </tr>
     <tr>
+      <th>3997</th>
+      <td>37</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
       <th>3998</th>
-      <td>34</td>
+      <td>22</td>
       <td>True</td>
       <td>True</td>
     </tr>
     <tr>
       <th>3999</th>
-      <td>36</td>
+      <td>33</td>
       <td>True</td>
       <td>True</td>
     </tr>
@@ -478,7 +500,7 @@ Running on PyMC3 v3.6
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;alcohol&#39;</span><span class="p">,</span><span class="s1">&#39;nomeds&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;alcohol&quot;</span><span class="p">,</span> <span class="s2">&quot;nomeds&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -525,13 +547,13 @@ Running on PyMC3 v3.6
   <tbody>
     <tr>
       <th>False</th>
-      <td>1.018</td>
-      <td>5.866</td>
+      <td>1.047</td>
+      <td>6.002</td>
     </tr>
     <tr>
       <th>True</th>
-      <td>2.938</td>
-      <td>35.889</td>
+      <td>3.089</td>
+      <td>36.004</td>
     </tr>
   </tbody>
 </table>
@@ -546,8 +568,15 @@ Running on PyMC3 v3.6
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;nsneeze&#39;</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="s1">&#39;nomeds&#39;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;alcohol&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
-               <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;nsneeze&quot;</span><span class="p">,</span>
+    <span class="n">row</span><span class="o">=</span><span class="s2">&quot;nomeds&quot;</span><span class="p">,</span>
+    <span class="n">col</span><span class="o">=</span><span class="s2">&quot;alcohol&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">aspect</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -556,15 +585,15 @@ Running on PyMC3 v3.6
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-/home/junpenglao/anaconda3/lib/python3.6/site-packages/seaborn/categorical.py:3692: UserWarning: The `size` paramter has been renamed to `height`; please update your code.
-  warnings.warn(msg, UserWarning)
+/home/amit/miniconda3/envs/pymc3/lib/python3.8/site-packages/seaborn/axisgrid.py:382: UserWarning: This figure was using constrained_layout==True, but that is incompatible with subplots_adjust and or tight_layout: setting constrained_layout==False.
+  fig.tight_layout()
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GLM-poisson-regression_12_1.png" src="../_images/notebooks_GLM-poisson-regression_12_1.png" />
+<img alt="../_images/notebooks_GLM-poisson-regression_12_1.png" class="no-scaled-link" src="../_images/notebooks_GLM-poisson-regression_12_1.png" style="width: 1216px; height: 791px;" />
 </div>
 </div>
 <p><strong>Observe:</strong></p>
@@ -575,9 +604,9 @@ Running on PyMC3 v3.6
 <li><p>Changing <code class="docutils literal notranslate"><span class="pre">nomeds</span> <span class="pre">==</span> <span class="pre">True</span></code> (lower-left) increases the sneeze count <code class="docutils literal notranslate"><span class="pre">nsneeze</span></code> further</p></li>
 <li><p>Changing both <code class="docutils literal notranslate"><span class="pre">alcohol</span> <span class="pre">==</span> <span class="pre">True</span> <span class="pre">and</span> <span class="pre">nomeds</span> <span class="pre">==</span> <span class="pre">True</span></code> (lower-right) increases the sneeze count <code class="docutils literal notranslate"><span class="pre">nsneeze</span></code> a lot, increasing both the mean and variance.</p></li>
 </ul>
-</div>
-</div>
 <hr class="docutils" />
+</div>
+</div>
 <div class="section" id="Poisson-Regression">
 <h2>Poisson Regression<a class="headerlink" href="#Poisson-Regression" title="Permalink to this headline">¶</a></h2>
 <p>Our model here is a very simple Poisson regression, allowing for interaction of terms:</p>
@@ -591,7 +620,7 @@ Running on PyMC3 v3.6
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fml</span> <span class="o">=</span> <span class="s1">&#39;nsneeze ~ alcohol + antihist + alcohol:antihist&#39;</span>  <span class="c1"># full patsy formulation</span>
+<span></span><span class="n">fml</span> <span class="o">=</span> <span class="s2">&quot;nsneeze ~ alcohol + antihist + alcohol:antihist&quot;</span>  <span class="c1"># full patsy formulation</span>
 </pre></div>
 </div>
 </div>
@@ -600,7 +629,7 @@ Running on PyMC3 v3.6
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fml</span> <span class="o">=</span> <span class="s1">&#39;nsneeze ~ alcohol * nomeds&#39;</span>  <span class="c1"># lazy, alternative patsy formulation</span>
+<span></span><span class="n">fml</span> <span class="o">=</span> <span class="s2">&quot;nsneeze ~ alcohol * nomeds&quot;</span>  <span class="c1"># lazy, alternative patsy formulation</span>
 </pre></div>
 </div>
 </div>
@@ -612,7 +641,7 @@ Running on PyMC3 v3.6
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="p">(</span><span class="n">mx_en</span><span class="p">,</span> <span class="n">mx_ex</span><span class="p">)</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">dmatrices</span><span class="p">(</span><span class="n">fml</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;dataframe&#39;</span><span class="p">,</span> <span class="n">NA_action</span><span class="o">=</span><span class="s1">&#39;raise&#39;</span><span class="p">)</span>
+<span></span><span class="p">(</span><span class="n">mx_en</span><span class="p">,</span> <span class="n">mx_ex</span><span class="p">)</span> <span class="o">=</span> <span class="n">pt</span><span class="o">.</span><span class="n">dmatrices</span><span class="p">(</span><span class="n">fml</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">return_type</span><span class="o">=</span><span class="s2">&quot;dataframe&quot;</span><span class="p">,</span> <span class="n">NA_action</span><span class="o">=</span><span class="s2">&quot;raise&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -621,7 +650,7 @@ Running on PyMC3 v3.6
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">mx_ex</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="n">mx_ex</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
+<span></span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">mx_ex</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">mx_ex</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">)))</span>
 </pre></div>
 </div>
 </div>
@@ -710,19 +739,21 @@ Running on PyMC3 v3.6
 <span></span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">mdl_fish</span><span class="p">:</span>
 
     <span class="c1"># define priors, weakly informative Normal</span>
-    <span class="n">b0</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;b0_intercept&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">b1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;b1_alcohol[T.True]&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">b2</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;b2_nomeds[T.True]&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">b3</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;b3_alcohol[T.True]:nomeds[T.True]&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">b0</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;b0_intercept&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">b1</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;b1_alcohol[T.True]&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">b2</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;b2_nomeds[T.True]&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">b3</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;b3_alcohol[T.True]:nomeds[T.True]&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
     <span class="c1"># define linear model and exp link function</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="p">(</span><span class="n">b0</span> <span class="o">+</span>
-            <span class="n">b1</span> <span class="o">*</span> <span class="n">mx_ex</span><span class="p">[</span><span class="s1">&#39;alcohol[T.True]&#39;</span><span class="p">]</span> <span class="o">+</span>
-            <span class="n">b2</span> <span class="o">*</span> <span class="n">mx_ex</span><span class="p">[</span><span class="s1">&#39;nomeds[T.True]&#39;</span><span class="p">]</span> <span class="o">+</span>
-            <span class="n">b3</span> <span class="o">*</span> <span class="n">mx_ex</span><span class="p">[</span><span class="s1">&#39;alcohol[T.True]:nomeds[T.True]&#39;</span><span class="p">])</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">b0</span>
+        <span class="o">+</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">mx_ex</span><span class="p">[</span><span class="s2">&quot;alcohol[T.True]&quot;</span><span class="p">]</span>
+        <span class="o">+</span> <span class="n">b2</span> <span class="o">*</span> <span class="n">mx_ex</span><span class="p">[</span><span class="s2">&quot;nomeds[T.True]&quot;</span><span class="p">]</span>
+        <span class="o">+</span> <span class="n">b3</span> <span class="o">*</span> <span class="n">mx_ex</span><span class="p">[</span><span class="s2">&quot;alcohol[T.True]:nomeds[T.True]&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
 
     <span class="c1">## Define Poisson likelihood</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="n">mx_en</span><span class="p">[</span><span class="s1">&#39;nsneeze&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Poisson</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">observed</span><span class="o">=</span><span class="n">mx_en</span><span class="p">[</span><span class="s2">&quot;nsneeze&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -733,11 +764,11 @@ Running on PyMC3 v3.6
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">mdl_fish</span><span class="p">:</span>
-    <span class="n">trc_fish</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">inf_fish</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">return_inferencedata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
@@ -746,7 +777,37 @@ Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
 Multiprocess sampling (4 chains in 4 jobs)
 NUTS: [b3_alcohol[T.True]:nomeds[T.True], b2_nomeds[T.True], b1_alcohol[T.True], b0_intercept]
-Sampling 4 chains: 100%|██████████| 8000/8000 [00:45&lt;00:00, 174.12draws/s]
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [8000/8000 00:33<00:00 Sampling 4 chains, 0 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 35 seconds.
+The acceptance probability does not match the target. It is 0.8860269606635056, but should be close to 0.8. Try to increase the number of tuning steps.
+The acceptance probability does not match the target. It is 0.8862113253674084, but should be close to 0.8. Try to increase the number of tuning steps.
 The number of effective samples is smaller than 25% for some parameters.
 </pre></div></div>
 </div>
@@ -756,16 +817,32 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">rvs_fish</span> <span class="o">=</span> <span class="p">[</span><span class="n">rv</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">rv</span> <span class="ow">in</span> <span class="n">strip_derived_rvs</span><span class="p">(</span><span class="n">mdl_fish</span><span class="o">.</span><span class="n">unobserved_RVs</span><span class="p">)]</span>
-<span class="n">plot_traces_pymc</span><span class="p">(</span><span class="n">trc_fish</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="n">rvs_fish</span><span class="p">)</span>
+<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">inf_fish</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f3ce6430&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f3bbad90&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f3b9da30&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f478aac0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f58d0e80&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f67132b0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f7550a60&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f87e8250&gt;]],
+      dtype=object)
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GLM-poisson-regression_29_0.png" src="../_images/notebooks_GLM-poisson-regression_29_0.png" />
+<img alt="../_images/notebooks_GLM-poisson-regression_29_1.png" class="no-scaled-link" src="../_images/notebooks_GLM-poisson-regression_29_1.png" style="width: 1211px; height: 811px;" />
 </div>
 </div>
 <p><strong>Observe:</strong></p>
@@ -780,7 +857,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trc_fish</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="n">rvs_fish</span><span class="p">)[[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;hpd_2.5&#39;</span><span class="p">,</span><span class="s1">&#39;hpd_97.5&#39;</span><span class="p">]])</span>
+<span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">inf_fish</span><span class="p">)[[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;hdi_3%&quot;</span><span class="p">,</span> <span class="s2">&quot;hdi_97%&quot;</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -808,34 +885,34 @@ The number of effective samples is smaller than 25% for some parameters.
     <tr style="text-align: right;">
       <th></th>
       <th>mean</th>
-      <th>hpd_2.5</th>
-      <th>hpd_97.5</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>b0_intercept</th>
-      <td>1.017360</td>
-      <td>0.956431</td>
-      <td>1.075815</td>
+      <td>1.047074</td>
+      <td>0.988072</td>
+      <td>1.108491</td>
     </tr>
     <tr>
       <th>b1_alcohol[T.True]</th>
-      <td>2.886177</td>
-      <td>2.696525</td>
-      <td>3.100204</td>
+      <td>2.950575</td>
+      <td>2.762124</td>
+      <td>3.148733</td>
     </tr>
     <tr>
       <th>b2_nomeds[T.True]</th>
-      <td>5.765253</td>
-      <td>5.404684</td>
-      <td>6.128869</td>
+      <td>5.731630</td>
+      <td>5.387061</td>
+      <td>6.086054</td>
     </tr>
     <tr>
       <th>b3_alcohol[T.True]:nomeds[T.True]</th>
-      <td>2.120270</td>
-      <td>1.973526</td>
-      <td>2.280686</td>
+      <td>2.033991</td>
+      <td>1.894585</td>
+      <td>2.185840</td>
     </tr>
   </tbody>
 </table>
@@ -887,11 +964,11 @@ The number of effective samples is smaller than 25% for some parameters.
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">mdl_fish_alt</span><span class="p">:</span>
-    <span class="n">trc_fish_alt</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+    <span class="n">inf_fish_alt</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">return_inferencedata</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
+<div class="nboutput docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area stderr docutils container">
@@ -900,9 +977,35 @@ Auto-assigning NUTS sampler...
 Initializing NUTS using jitter+adapt_diag...
 Multiprocess sampling (2 chains in 2 jobs)
 NUTS: [mu, alcohol[T.True]:nomeds[T.True], nomeds[T.True], alcohol[T.True], Intercept]
-Sampling 2 chains: 100%|██████████| 8000/8000 [01:29&lt;00:00, 89.10draws/s]
-The acceptance probability does not match the target. It is 0.8786736824110916, but should be close to 0.8. Try to increase the number of tuning steps.
-The acceptance probability does not match the target. It is 0.880898252028724, but should be close to 0.8. Try to increase the number of tuning steps.
+</pre></div></div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+    <style>
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    </style>
+  <progress value='8000' class='' max='8000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+  100.00% [8000/8000 01:03<00:00 Sampling 2 chains, 0 divergences]
+</div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Sampling 2 chains for 2_000 tune and 2_000 draw iterations (4_000 + 4_000 draws total) took 64 seconds.
 The number of effective samples is smaller than 25% for some parameters.
 </pre></div></div>
 </div>
@@ -912,16 +1015,34 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">rvs_fish_alt</span> <span class="o">=</span> <span class="p">[</span><span class="n">rv</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">rv</span> <span class="ow">in</span> <span class="n">strip_derived_rvs</span><span class="p">(</span><span class="n">mdl_fish_alt</span><span class="o">.</span><span class="n">unobserved_RVs</span><span class="p">)]</span>
-<span class="n">plot_traces_pymc</span><span class="p">(</span><span class="n">trc_fish_alt</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="n">rvs_fish_alt</span><span class="p">)</span>
+<span></span><span class="n">az</span><span class="o">.</span><span class="n">plot_trace</span><span class="p">(</span><span class="n">inf_fish_alt</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50e91f65e0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50e811ceb0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50e3bb01f0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50e3bd1070&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f3805190&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f37f8520&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50e80681c0&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50f38128e0&gt;],
+       [&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50e811a520&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f50e8136850&gt;]],
+      dtype=object)
+</pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../_images/notebooks_GLM-poisson-regression_41_0.png" src="../_images/notebooks_GLM-poisson-regression_41_0.png" />
+<img alt="../_images/notebooks_GLM-poisson-regression_41_1.png" class="no-scaled-link" src="../_images/notebooks_GLM-poisson-regression_41_1.png" style="width: 1211px; height: 1011px;" />
 </div>
 </div>
 </div>
@@ -932,7 +1053,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trc_fish_alt</span><span class="p">,</span> <span class="n">varnames</span><span class="o">=</span><span class="n">rvs_fish_alt</span><span class="p">)[[</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span><span class="s1">&#39;hpd_2.5&#39;</span><span class="p">,</span><span class="s1">&#39;hpd_97.5&#39;</span><span class="p">]])</span>
+<span></span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">inf_fish</span><span class="p">)[[</span><span class="s2">&quot;mean&quot;</span><span class="p">,</span> <span class="s2">&quot;hdi_3%&quot;</span><span class="p">,</span> <span class="s2">&quot;hdi_97%&quot;</span><span class="p">]])</span>
 </pre></div>
 </div>
 </div>
@@ -960,40 +1081,34 @@ The number of effective samples is smaller than 25% for some parameters.
     <tr style="text-align: right;">
       <th></th>
       <th>mean</th>
-      <th>hpd_2.5</th>
-      <th>hpd_97.5</th>
+      <th>hdi_3%</th>
+      <th>hdi_97%</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>Intercept</th>
-      <td>1.018445e+00</td>
-      <td>0.956916</td>
-      <td>1.082025e+00</td>
+      <th>b0_intercept</th>
+      <td>1.047074</td>
+      <td>0.988072</td>
+      <td>1.108491</td>
     </tr>
     <tr>
-      <th>alcohol[T.True]</th>
-      <td>2.884207e+00</td>
-      <td>2.693380</td>
-      <td>3.100136e+00</td>
+      <th>b1_alcohol[T.True]</th>
+      <td>2.950575</td>
+      <td>2.762124</td>
+      <td>3.148733</td>
     </tr>
     <tr>
-      <th>nomeds[T.True]</th>
-      <td>5.757942e+00</td>
-      <td>5.368011</td>
-      <td>6.129526e+00</td>
+      <th>b2_nomeds[T.True]</th>
+      <td>5.731630</td>
+      <td>5.387061</td>
+      <td>6.086054</td>
     </tr>
     <tr>
-      <th>alcohol[T.True]:nomeds[T.True]</th>
-      <td>2.121873e+00</td>
-      <td>1.972392</td>
-      <td>2.295317e+00</td>
-    </tr>
-    <tr>
-      <th>mu</th>
-      <td>3.340292e+18</td>
-      <td>1.005653</td>
-      <td>3.927977e+54</td>
+      <th>b3_alcohol[T.True]:nomeds[T.True]</th>
+      <td>2.033991</td>
+      <td>1.894585</td>
+      <td>2.185840</td>
     </tr>
   </tbody>
 </table>
@@ -1010,7 +1125,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">trc_fish_alt</span><span class="p">[</span><span class="s1">&#39;mu&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">75</span><span class="p">])</span>
+<span></span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">inf_fish_alt</span><span class="o">.</span><span class="n">posterior</span><span class="p">[</span><span class="s2">&quot;mu&quot;</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1020,7 +1135,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-array([ 3.7665716 ,  9.82299111, 25.23929425])
+array([ 3.91395615,  9.56839665, 22.9396979 ])
 </pre></div></div>
 </div>
 <p>We see this is pretty close to the overall mean of:</p>
@@ -1029,7 +1144,7 @@ array([ 3.7665716 ,  9.82299111, 25.23929425])
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;nsneeze&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;nsneeze&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1039,13 +1154,13 @@ array([ 3.7665716 ,  9.82299111, 25.23929425])
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-11.42775
+11.5355
 </pre></div></div>
 </div>
 <hr class="docutils" />
 <p>Example originally contributed by Jonathan Sedar 2016-05-15 <a class="reference external" href="https://github.com/jonsedar">github.com/jonsedar</a></p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
@@ -1059,13 +1174,16 @@ array([ 3.7665716 ,  9.82299111, 25.23929425])
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-pymc3 3.8
-arviz 0.8.3
-numpy 1.17.5
-last updated: Thu Jun 11 2020
+patsy   0.5.1
+pymc3   3.9.3
+seaborn 0.10.1
+numpy   1.18.5
+pandas  1.0.5
+arviz   0.9.0
+last updated: Fri Sep 25 2020
 
-CPython 3.8.2
-IPython 7.11.0
+CPython 3.8.3
+IPython 7.16.1
 watermark 2.0.2
 </pre></div></div>
 </div>
@@ -1082,12 +1200,25 @@ watermark 2.0.2
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

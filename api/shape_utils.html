@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>shape_utils &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>shape_utils &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -74,7 +79,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.shape_utils.to_tuple" title="pymc3.distributions.shape_utils.to_tuple"><code class="xref py py-obj docutils literal notranslate"><span class="pre">to_tuple</span></code></a>(shape)</p></td>
 <td><p>Convert ints, arrays, and Nones to tuples</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.shape_utils.shapes_broadcasting" title="pymc3.distributions.shape_utils.shapes_broadcasting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shapes_broadcasting</span></code></a>(\*args[, raise_exception])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.shape_utils.shapes_broadcasting" title="pymc3.distributions.shape_utils.shapes_broadcasting"><code class="xref py py-obj docutils literal notranslate"><span class="pre">shapes_broadcasting</span></code></a>(*args[, raise_exception])</p></td>
 <td><p>Return the shape resulting from broadcasting multiple shapes.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_shape" title="pymc3.distributions.shape_utils.broadcast_dist_samples_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">broadcast_dist_samples_shape</span></code></a>(shapes[, size])</p></td>
@@ -93,55 +98,9 @@
 </table>
 <span class="target" id="module-pymc3.distributions.shape_utils"></span><p>A collection of common numpy array shape operations needed for broadcasting
 samples from probability distributions for stochastic nodes in PyMC.</p>
-<dl class="function">
-<dt id="pymc3.distributions.shape_utils.to_tuple">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">to_tuple</code><span class="sig-paren">(</span><em class="sig-param">shape</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.to_tuple" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert ints, arrays, and Nones to tuples</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>shape: None, int or array-like</strong></dt><dd><p>Represents the shape to convert to tuple.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>If <cite>shape</cite> is None, returns an empty tuple. If it’s an int, (shape,) is</dt><dd></dd>
-<dt>returned. If it is array-like, tuple(shape) is returned.</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="pymc3.distributions.shape_utils.shapes_broadcasting">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">shapes_broadcasting</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">raise_exception=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.shapes_broadcasting" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the shape resulting from broadcasting multiple shapes.
-Represents numpy’s broadcasting rules.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>*args: array-like of int</strong></dt><dd><p>Tuples or arrays or lists representing the shapes of arrays to be
-broadcast.</p>
-</dd>
-<dt><strong>raise_exception: bool (optional)</strong></dt><dd><p>Controls whether to raise an exception or simply return <cite>None</cite> if
-the broadcasting fails.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>Resulting shape. If broadcasting is not possible and <cite>raise_exception</cite> is</dt><dd></dd>
-<dt>False, then <cite>None</cite> is returned. If <cite>raise_exception</cite> is <cite>True</cite>, a</dt><dd></dd>
-<dt><cite>ValueError</cite> is raised.</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
+<dl class="py function">
 <dt id="pymc3.distributions.shape_utils.broadcast_dist_samples_shape">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_dist_samples_shape</code><span class="sig-paren">(</span><em class="sig-param">shapes</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_shape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_dist_samples_shape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shapes</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply shape broadcasting to shape tuples but assuming that the shapes
 correspond to draws from random variables, with the <cite>size</cite> tuple possibly
 prepended to it. The <cite>size</cite> prepend is ignored to consider if the supplied
@@ -191,9 +150,112 @@ prepended to it. The <cite>size</cite> prepend is ignored to consider if the sup
 </div>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
+<dt id="pymc3.distributions.shape_utils.broadcast_dist_samples_to">
+<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_dist_samples_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_shape</span></em>, <em class="sig-param"><span class="n">samples</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Broadcast samples drawn from distributions to a given shape, taking into
+account the size (i.e. the number of samples) of the draw, which is
+prepended to the sample’s shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>to_shape: Tuple shape onto which the samples must be able to broadcast</strong></dt><dd></dd>
+<dt><strong>samples: Iterable of ndarrays holding the sampled values</strong></dt><dd></dd>
+<dt><strong>size: None, int or tuple (optional)</strong></dt><dd><p>size of the sample set requested.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>List of the broadcasted sample arrays</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">to_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sample0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">broadcast_dist_samples_to</span><span class="p">(</span>
+    <span class="n">to_shape</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">sample0</span><span class="p">,</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">],</span>
+    <span class="n">size</span><span class="o">=</span><span class="n">size</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">((</span><span class="n">o</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample2</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">to_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sample0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">broadcast_dist_samples_to</span><span class="p">(</span>
+    <span class="n">to_shape</span><span class="p">,</span>
+    <span class="p">[</span><span class="n">sample0</span><span class="p">,</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">],</span>
+    <span class="n">size</span><span class="o">=</span><span class="n">size</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">((</span><span class="n">o</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample1</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample2</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pymc3.distributions.shape_utils.broadcast_distribution_samples">
+<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_distribution_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_distribution_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Broadcast samples drawn from distributions taking into account the
+size (i.e. the number of samples) of the draw, which is prepended to
+the sample’s shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>samples: Iterable of ndarrays holding the sampled values</strong></dt><dd></dd>
+<dt><strong>size: None, int or tuple (optional)</strong></dt><dd><p>size of the sample set requested.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>List of broadcasted sample arrays</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sample0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">broadcast_distribution_samples</span><span class="p">([</span><span class="n">sample0</span><span class="p">,</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">],</span>
+                                     <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">all</span><span class="p">((</span><span class="n">o</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample2</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">sample0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">broadcast_distribution_samples</span><span class="p">([</span><span class="n">sample0</span><span class="p">,</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">],</span>
+                                     <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">all</span><span class="p">((</span><span class="n">o</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample1</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample2</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
 <dt id="pymc3.distributions.shape_utils.get_broadcastable_dist_samples">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">get_broadcastable_dist_samples</code><span class="sig-paren">(</span><em class="sig-param">samples</em>, <em class="sig-param">size=None</em>, <em class="sig-param">must_bcast_with=None</em>, <em class="sig-param">return_out_shape=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.get_broadcastable_dist_samples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">get_broadcastable_dist_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">must_bcast_with</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_out_shape</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.get_broadcastable_dist_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a view of the samples drawn from distributions which adds new axises
 in between the <cite>size</cite> prepend and the distribution’s <cite>shape</cite>. These views
 should be able to broadcast the samples from the distrubtions taking into
@@ -262,107 +324,50 @@ samples views.</p>
 </div>
 </dd></dl>
 
-<dl class="function">
-<dt id="pymc3.distributions.shape_utils.broadcast_distribution_samples">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_distribution_samples</code><span class="sig-paren">(</span><em class="sig-param">samples</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_distribution_samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Broadcast samples drawn from distributions taking into account the
-size (i.e. the number of samples) of the draw, which is prepended to
-the sample’s shape.</p>
+<dl class="py function">
+<dt id="pymc3.distributions.shape_utils.shapes_broadcasting">
+<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">shapes_broadcasting</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">raise_exception</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.shapes_broadcasting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the shape resulting from broadcasting multiple shapes.
+Represents numpy’s broadcasting rules.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>samples: Iterable of ndarrays holding the sampled values</strong></dt><dd></dd>
-<dt><strong>size: None, int or tuple (optional)</strong></dt><dd><p>size of the sample set requested.</p>
+<dt><strong>*args: array-like of int</strong></dt><dd><p>Tuples or arrays or lists representing the shapes of arrays to be
+broadcast.</p>
+</dd>
+<dt><strong>raise_exception: bool (optional)</strong></dt><dd><p>Controls whether to raise an exception or simply return <cite>None</cite> if
+the broadcasting fails.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>List of broadcasted sample arrays</dt><dd></dd>
+<dt>Resulting shape. If broadcasting is not possible and <cite>raise_exception</cite> is</dt><dd></dd>
+<dt>False, then <cite>None</cite> is returned. If <cite>raise_exception</cite> is <cite>True</cite>, a</dt><dd></dd>
+<dt><cite>ValueError</cite> is raised.</dt><dd></dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">sample0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">out</span> <span class="o">=</span> <span class="n">broadcast_distribution_samples</span><span class="p">([</span><span class="n">sample0</span><span class="p">,</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">],</span>
-                                     <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">all</span><span class="p">((</span><span class="n">o</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">))</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample2</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">sample0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">out</span> <span class="o">=</span> <span class="n">broadcast_distribution_samples</span><span class="p">([</span><span class="n">sample0</span><span class="p">,</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">],</span>
-                                     <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">all</span><span class="p">((</span><span class="n">o</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">))</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample1</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample2</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
 </dd></dl>
 
-<dl class="function">
-<dt id="pymc3.distributions.shape_utils.broadcast_dist_samples_to">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_dist_samples_to</code><span class="sig-paren">(</span><em class="sig-param">to_shape</em>, <em class="sig-param">samples</em>, <em class="sig-param">size=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_to" title="Permalink to this definition">¶</a></dt>
-<dd><p>Broadcast samples drawn from distributions to a given shape, taking into
-account the size (i.e. the number of samples) of the draw, which is
-prepended to the sample’s shape.</p>
+<dl class="py function">
+<dt id="pymc3.distributions.shape_utils.to_tuple">
+<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">to_tuple</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.to_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert ints, arrays, and Nones to tuples</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>to_shape: Tuple shape onto which the samples must be able to broadcast</strong></dt><dd></dd>
-<dt><strong>samples: Iterable of ndarrays holding the sampled values</strong></dt><dd></dd>
-<dt><strong>size: None, int or tuple (optional)</strong></dt><dd><p>size of the sample set requested.</p>
+<dt><strong>shape: None, int or array-like</strong></dt><dd><p>Represents the shape to convert to tuple.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt>List of the broadcasted sample arrays</dt><dd></dd>
+<dt>If <cite>shape</cite> is None, returns an empty tuple. If it’s an int, (shape,) is</dt><dd></dd>
+<dt>returned. If it is array-like, tuple(shape) is returned.</dt><dd></dd>
 </dl>
 </dd>
 </dl>
-<p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">to_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">sample0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">out</span> <span class="o">=</span> <span class="n">broadcast_dist_samples_to</span><span class="p">(</span>
-    <span class="n">to_shape</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">sample0</span><span class="p">,</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">],</span>
-    <span class="n">size</span><span class="o">=</span><span class="n">size</span>
-<span class="p">)</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">((</span><span class="n">o</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">))</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample2</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">size</span> <span class="o">=</span> <span class="mi">100</span>
-<span class="n">to_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">sample0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
-<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-<span class="n">out</span> <span class="o">=</span> <span class="n">broadcast_dist_samples_to</span><span class="p">(</span>
-    <span class="n">to_shape</span><span class="p">,</span>
-    <span class="p">[</span><span class="n">sample0</span><span class="p">,</span> <span class="n">sample1</span><span class="p">,</span> <span class="n">sample2</span><span class="p">],</span>
-    <span class="n">size</span><span class="o">=</span><span class="n">size</span>
-<span class="p">)</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">((</span><span class="n">o</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">out</span><span class="p">))</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample1</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sample2</span> <span class="o">==</span> <span class="n">out</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-</pre></div>
-</div>
 </dd></dl>
 
 </div>
@@ -376,12 +381,25 @@ prepended to the sample’s shape.</p>
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

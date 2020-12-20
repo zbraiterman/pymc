@@ -1,15 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import scipy.stats as st
 plt.style.use('seaborn-darkgrid')
-x = np.linspace(0, 3, 200)
-alphas = [.5, 1., 1.5, 5., 5.]
-betas = [1., 1., 1., 1.,  2]
-for a, b in zip(alphas, betas):
-    pdf = st.weibull_min.pdf(x, a, scale=b)
-    plt.plot(x, pdf, label=r'$\alpha$ = {}, $\beta$ = {}'.format(a, b))
+x = np.linspace(0, 1, 200)
+a_s = [.5, 5., 1., 2., 2.]
+b_s = [.5, 1., 3., 2., 5.]
+for a, b in zip(a_s, b_s):
+    pdf = a * b * x ** (a - 1) * (1 - x ** a) ** (b - 1)
+    plt.plot(x, pdf, label=r'$a$ = {}, $b$ = {}'.format(a, b))
 plt.xlabel('x', fontsize=12)
 plt.ylabel('f(x)', fontsize=12)
-plt.ylim(0, 2.5)
-plt.legend(loc=1)
+plt.ylim(0, 3.)
+plt.legend(loc=9)
 plt.show()

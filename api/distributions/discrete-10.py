@@ -2,14 +2,12 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy.stats as st
 plt.style.use('seaborn-darkgrid')
-ls = [1, -2]
-us = [6, 2]
-for l, u in zip(ls, us):
-    x = np.arange(l, u+1)
-    pmf = [1.0 / (u - l + 1)] * len(x)
-    plt.plot(x, pmf, '-o', label='lower = {}, upper = {}'.format(l, u))
+x = np.arange(0, 15)
+for m in [0.5, 3, 8]:
+    pmf = st.poisson.pmf(x, m)
+    plt.plot(x, pmf, '-o', label='$\mu$ = {}'.format(m))
 plt.xlabel('x', fontsize=12)
 plt.ylabel('f(x)', fontsize=12)
-plt.ylim(0, 0.4)
+plt.ylim(0)
 plt.legend(loc=1)
 plt.show()

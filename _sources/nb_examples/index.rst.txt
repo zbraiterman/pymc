@@ -1,4 +1,9 @@
 
+:orphan:
+
+..
+    _href from docs/source/conf.py
+
 .. _notebook_gallery:
 
 .. title:: examples_notebooks

@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>Backends &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backends &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -62,32 +67,8 @@
         
   <div class="section" id="module-pymc3.backends">
 <span id="backends"></span><h1>Backends<a class="headerlink" href="#module-pymc3.backends" title="Permalink to this headline">¶</a></h1>
-<p>Backends for traces</p>
-<div class="section" id="available-backends">
-<h2>Available backends<a class="headerlink" href="#available-backends" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li><p>NumPy array (pymc3.backends.NDArray)</p></li>
-<li><p>Text files (pymc3.backends.Text)</p></li>
-<li><p>SQLite (pymc3.backends.SQLite)</p></li>
-</ol>
-<p>The NDArray backend holds the entire trace in memory, whereas the Text
-and SQLite backends store the values while sampling.</p>
-</div>
-<div class="section" id="selecting-a-backend">
-<h2>Selecting a backend<a class="headerlink" href="#selecting-a-backend" title="Permalink to this headline">¶</a></h2>
-<p>By default, a NumPy array is used as the backend. To specify a different
-backend, pass a backend instance to <cite>sample</cite>.</p>
-<p>For example, the following would save the sampling values to CSV files
-in the directory ‘test’.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">():</span>
-<span class="gp">&gt;&gt;&gt; </span>     <span class="n">db</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span>     <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">trace</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Note that as in the example above, one must have an active model context,
-or pass a <cite>model</cite> parameter in order to create a backend.</p>
-</div>
+<p>Storage backends for traces</p>
+<p>The NDArray (pymc3.backends.NDArray) backend holds the entire trace in memory.</p>
 <div class="section" id="selecting-values-from-a-backend">
 <h2>Selecting values from a backend<a class="headerlink" href="#selecting-values-from-a-backend" title="Permalink to this headline">¶</a></h2>
 <p>After a backend is finished sampling, it returns a MultiTrace object.
@@ -122,59 +103,19 @@ iterations for all traces and variables.</p>
 </pre></div>
 </div>
 <p>The backend for the new trace is always NDArray, regardless of the
-type of original trace.  Only the NDArray backend supports a stop
-value in the slice.</p>
+type of original trace.</p>
 </div>
 <div class="section" id="loading-a-saved-backend">
 <h2>Loading a saved backend<a class="headerlink" href="#loading-a-saved-backend" title="Permalink to this headline">¶</a></h2>
-<p>Saved backends can be loaded using <cite>load</cite> function in the module for the
-specific backend.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="writing-custom-backends">
-<h2>Writing custom backends<a class="headerlink" href="#writing-custom-backends" title="Permalink to this headline">¶</a></h2>
-<p>Backends consist of a class that handles sampling storage and value
-selection. Three sampling methods of backend will be called:</p>
-<ul class="simple">
-<li><p>setup: Before sampling is started, the <cite>setup</cite> method will be called
-with two arguments: the number of draws and the chain number. This is
-useful setting up any structure for storing the sampling values that
-require the above information.</p></li>
-<li><p>record: Record the sampling results for the current draw. This method
-will be called with a dictionary of values mapped to the variable
-names. This is the only sampling function that <em>must</em> do something to
-have a meaningful backend.</p></li>
-<li><p>close: This method is called following sampling and should perform any
-actions necessary for finalizing and cleaning up the backend.</p></li>
-</ul>
-<p>The base storage class <cite>backends.base.BaseTrace</cite> provides common model
-setup that is used by all the PyMC backends.</p>
-<p>Several selection methods must also be defined:</p>
-<ul class="simple">
-<li><p>get_values: This is the core method for selecting values from the
-backend. It can be called directly and is used by __getitem__ when the
-backend is indexed with a variable name or object.</p></li>
-<li><p>_slice: Defines how the backend returns a slice of itself. This
-is called if the backend is indexed with a slice range.</p></li>
-<li><p>point: Returns values for each variable at a single iteration. This is
-called if the backend is indexed with a single integer.</p></li>
-<li><p>__len__: This should return the number of draws.</p></li>
-</ul>
-<p>When <cite>pymc3.sample</cite> finishes, it wraps all trace objects in a MultiTrace
-object that provides a consistent selection interface for all backends.
-If the traces are stored on disk, then a <cite>load</cite> function should also be
-defined that returns a MultiTrace object.</p>
-<p>For specific examples, see pymc3.backends.{ndarray,text,sqlite}.py.</p>
+<p>Saved backends can be loaded using <cite>arviz.from_netcdf</cite></p>
 </div>
 <div class="section" id="module-pymc3.backends.ndarray">
 <span id="ndarray"></span><h2>ndarray<a class="headerlink" href="#module-pymc3.backends.ndarray" title="Permalink to this headline">¶</a></h2>
 <p>NumPy array trace backend</p>
 <p>Store sampling values in memory as a NumPy array.</p>
-<dl class="class">
+<dl class="py class">
 <dt id="pymc3.backends.ndarray.NDArray">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">NDArray</code><span class="sig-paren">(</span><em class="sig-param">name=None</em>, <em class="sig-param">model=None</em>, <em class="sig-param">vars=None</em>, <em class="sig-param">test_point=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">NDArray</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">test_point</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray" title="Permalink to this definition">¶</a></dt>
 <dd><p>NDArray trace object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -189,16 +130,16 @@ defined that returns a MultiTrace object.</p>
 </dl>
 </dd>
 </dl>
-<dl class="method">
+<dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.close">
-<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.close" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.close" title="Permalink to this definition">¶</a></dt>
 <dd><p>Close the database backend.</p>
 <p>This is called after sampling has finished.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.get_values">
-<code class="sig-name descname">get_values</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">varname: str</em>, <em class="sig-param">burn=0</em>, <em class="sig-param">thin=1</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.get_values" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">varname</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">burn</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">thin</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.get_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get values from trace.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -216,16 +157,16 @@ defined that returns a MultiTrace object.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.point">
-<code class="sig-name descname">point</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">idx</em><span class="sig-paren">)</span> &#x2192; Dict[str, Any]<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return dictionary of point values at <cite>idx</cite> for current chain
 with variable names as keys.</p>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.record">
-<code class="sig-name descname">record</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">point</em>, <em class="sig-param">sampler_stats=None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.record" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">record</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em>, <em class="sig-param"><span class="n">sampler_stats</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Record results of a sampling iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -237,9 +178,9 @@ with variable names as keys.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.setup">
-<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">draws</em>, <em class="sig-param">chain</em>, <em class="sig-param">sampler_vars=None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.setup" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">draws</span></em>, <em class="sig-param"><span class="n">chain</span></em>, <em class="sig-param"><span class="n">sampler_vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.setup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform chain-specific setup.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -258,9 +199,9 @@ exported by the samplers.</p>
 
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="pymc3.backends.ndarray.load_trace">
-<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">load_trace</code><span class="sig-paren">(</span><em class="sig-param">directory: str</em>, <em class="sig-param">model=None</em><span class="sig-paren">)</span> &#x2192; pymc3.backends.base.MultiTrace<a class="headerlink" href="#pymc3.backends.ndarray.load_trace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">load_trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace">pymc3.backends.base.MultiTrace</a><a class="headerlink" href="#pymc3.backends.ndarray.load_trace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads a multitrace that has been written to file.</p>
 <p>A the model used for the trace must be passed in, or the command
 must be run in a model context.</p>
@@ -281,15 +222,15 @@ must be run in a model context.</p>
 </dl>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="pymc3.backends.ndarray.point_list_to_multitrace">
-<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">point_list_to_multitrace</code><span class="sig-paren">(</span><em class="sig-param">point_list: List[Dict[str, numpy.ndarray]], model: Union[pymc3.model.Model, NoneType] = None</em><span class="sig-paren">)</span> &#x2192; pymc3.backends.base.MultiTrace<a class="headerlink" href="#pymc3.backends.ndarray.point_list_to_multitrace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">point_list_to_multitrace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_list</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>numpy.ndarray<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace">pymc3.backends.base.MultiTrace</a><a class="headerlink" href="#pymc3.backends.ndarray.point_list_to_multitrace" title="Permalink to this definition">¶</a></dt>
 <dd><p>transform point list into MultiTrace</p>
 </dd></dl>
 
-<dl class="function">
+<dl class="py function">
 <dt id="pymc3.backends.ndarray.save_trace">
-<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">save_trace</code><span class="sig-paren">(</span><em class="sig-param">trace: pymc3.backends.base.MultiTrace</em>, <em class="sig-param">directory: Union[str</em>, <em class="sig-param">NoneType] = None</em>, <em class="sig-param">overwrite=False</em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#pymc3.backends.ndarray.save_trace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">save_trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trace</span><span class="p">:</span> <span class="n"><a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace">pymc3.backends.base.MultiTrace</a></span></em>, <em class="sig-param"><span class="n">directory</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#pymc3.backends.ndarray.save_trace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save multitrace to file.</p>
 <p>TODO: Also save warnings.</p>
 <p>This is a custom data format for PyMC3 traces.  Each chain goes inside
@@ -316,279 +257,13 @@ for more information about this format.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="module-pymc3.backends.sqlite">
-<span id="sqlite"></span><h2>sqlite<a class="headerlink" href="#module-pymc3.backends.sqlite" title="Permalink to this headline">¶</a></h2>
-<p>SQLite trace backend</p>
-<p>Store and retrieve sampling values in SQLite database file.</p>
-<div class="section" id="database-format">
-<h3>Database format<a class="headerlink" href="#database-format" title="Permalink to this headline">¶</a></h3>
-<p>For each variable, a table is created with the following format:</p>
-<blockquote>
-<div><p>recid (INT), draw (INT), chain (INT),  v0 (FLOAT), v1 (FLOAT), v2 (FLOAT) …</p>
-</div></blockquote>
-<p>The variable column names are extended to reflect additional dimensions.
-For example, a variable with the shape (2, 2) would be stored as</p>
-<blockquote>
-<div><p>key (INT), draw (INT), chain (INT),  v0_0 (FLOAT), v0_1 (FLOAT), v1_0 (FLOAT) …</p>
-</div></blockquote>
-<p>The key is autoincremented each time a new row is added to the table.
-The chain column denotes the chain index and starts at 0.</p>
-<dl class="class">
-<dt id="pymc3.backends.sqlite.SQLite">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.backends.sqlite.</code><code class="sig-name descname">SQLite</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">model=None</em>, <em class="sig-param">vars=None</em>, <em class="sig-param">test_point=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.sqlite.SQLite" title="Permalink to this definition">¶</a></dt>
-<dd><p>SQLite trace object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>name: str</strong></dt><dd><p>Name of database file</p>
-</dd>
-<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
-</dd>
-<dt><strong>vars: list of variables</strong></dt><dd><p>Sampling values will be stored for these variables. If None,
-<cite>model.unobserved_RVs</cite> is used.</p>
-</dd>
-<dt><strong>test_point: dict</strong></dt><dd><p>use different test point that might be with changed variables shapes</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="method">
-<dt id="pymc3.backends.sqlite.SQLite.close">
-<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.sqlite.SQLite.close" title="Permalink to this definition">¶</a></dt>
-<dd><p>Close the database backend.</p>
-<p>This is called after sampling has finished.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.backends.sqlite.SQLite.get_values">
-<code class="sig-name descname">get_values</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">varname</em>, <em class="sig-param">burn=0</em>, <em class="sig-param">thin=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.sqlite.SQLite.get_values" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get values from trace.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>varname: str</strong></dt><dd></dd>
-<dt><strong>burn: int</strong></dt><dd></dd>
-<dt><strong>thin: int</strong></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>A NumPy array</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.backends.sqlite.SQLite.point">
-<code class="sig-name descname">point</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">idx</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.sqlite.SQLite.point" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return dictionary of point values at <cite>idx</cite> for current chain
-with variables names as keys.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.backends.sqlite.SQLite.record">
-<code class="sig-name descname">record</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">point</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.sqlite.SQLite.record" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record results of a sampling iteration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>point: dict</strong></dt><dd><p>Values mapped to variable names</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.backends.sqlite.SQLite.setup">
-<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">draws</em>, <em class="sig-param">chain</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.sqlite.SQLite.setup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Perform chain-specific setup.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>draws: int</strong></dt><dd><p>Expected number of draws</p>
-</dd>
-<dt><strong>chain: int</strong></dt><dd><p>Chain number</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="pymc3.backends.sqlite.load">
-<code class="sig-prename descclassname">pymc3.backends.sqlite.</code><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">model=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.sqlite.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load SQLite database.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>name: str</strong></dt><dd><p>Path to SQLite database file</p>
-</dd>
-<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>A MultiTrace instance</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-</div>
-<div class="section" id="module-pymc3.backends.text">
-<span id="text"></span><h2>text<a class="headerlink" href="#module-pymc3.backends.text" title="Permalink to this headline">¶</a></h2>
-<p>Text file trace backend</p>
-<p>Store sampling values as CSV files.</p>
-<div class="section" id="file-format">
-<h3>File format<a class="headerlink" href="#file-format" title="Permalink to this headline">¶</a></h3>
-<p>Sampling values for each chain are saved in a separate file (under a
-directory specified by the <cite>name</cite> argument).  The rows correspond to
-sampling iterations.  The column names consist of variable names and
-index labels.  For example, the heading</p>
-<blockquote>
-<div><p>x,y__0_0,y__0_1,y__1_0,y__1_1,y__2_0,y__2_1</p>
-</div></blockquote>
-<p>represents two variables, x and y, where x is a scalar and y has a
-shape of (3, 2).</p>
-<dl class="class">
-<dt id="pymc3.backends.text.Text">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.backends.text.</code><code class="sig-name descname">Text</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">model=None</em>, <em class="sig-param">vars=None</em>, <em class="sig-param">test_point=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.text.Text" title="Permalink to this definition">¶</a></dt>
-<dd><p>Text trace object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>name: str</strong></dt><dd><p>Name of directory to store text files</p>
-</dd>
-<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
-</dd>
-<dt><strong>vars: list of variables</strong></dt><dd><p>Sampling values will be stored for these variables. If None,
-<cite>model.unobserved_RVs</cite> is used.</p>
-</dd>
-<dt><strong>test_point: dict</strong></dt><dd><p>use different test point that might be with changed variables shapes</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<dl class="method">
-<dt id="pymc3.backends.text.Text.close">
-<code class="sig-name descname">close</code><span class="sig-paren">(</span><em class="sig-param">self</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.text.Text.close" title="Permalink to this definition">¶</a></dt>
-<dd><p>Close the database backend.</p>
-<p>This is called after sampling has finished.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.backends.text.Text.get_values">
-<code class="sig-name descname">get_values</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">varname</em>, <em class="sig-param">burn=0</em>, <em class="sig-param">thin=1</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.text.Text.get_values" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get values from trace.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>varname: str</strong></dt><dd></dd>
-<dt><strong>burn: int</strong></dt><dd></dd>
-<dt><strong>thin: int</strong></dt><dd></dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>A NumPy array</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.backends.text.Text.point">
-<code class="sig-name descname">point</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">idx</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.text.Text.point" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return dictionary of point values at <cite>idx</cite> for current chain
-with variables names as keys.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.backends.text.Text.record">
-<code class="sig-name descname">record</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">point</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.text.Text.record" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record results of a sampling iteration.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>point: dict</strong></dt><dd><p>Values mapped to variable names</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="pymc3.backends.text.Text.setup">
-<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param">self</em>, <em class="sig-param">draws</em>, <em class="sig-param">chain</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.text.Text.setup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Perform chain-specific setup.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>draws: int</strong></dt><dd><p>Expected number of draws</p>
-</dd>
-<dt><strong>chain: int</strong></dt><dd><p>Chain number</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="pymc3.backends.text.dump">
-<code class="sig-prename descclassname">pymc3.backends.text.</code><code class="sig-name descname">dump</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">trace</em>, <em class="sig-param">chains=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.text.dump" title="Permalink to this definition">¶</a></dt>
-<dd><p>Store values from NDArray trace as CSV files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>name: str</strong></dt><dd><p>Name of directory to store CSV files in</p>
-</dd>
-<dt><strong>trace: MultiTrace of NDArray traces</strong></dt><dd><p>Result of MCMC run with default NDArray backend</p>
-</dd>
-<dt><strong>chains: list</strong></dt><dd><p>Chains to dump. If None, all chains are dumped.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="pymc3.backends.text.load">
-<code class="sig-prename descclassname">pymc3.backends.text.</code><code class="sig-name descname">load</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">model=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.text.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load Text database.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>name: str</strong></dt><dd><p>Name of directory with files (one per chain)</p>
-</dd>
-<dt><strong>model: Model</strong></dt><dd><p>If None, the model is taken from the <cite>with</cite> context.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><dl class="simple">
-<dt>A MultiTrace instance</dt><dd></dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-</div>
 <div class="section" id="module-pymc3.backends.tracetab">
 <span id="tracetab"></span><h2>tracetab<a class="headerlink" href="#module-pymc3.backends.tracetab" title="Permalink to this headline">¶</a></h2>
 <p>Functions for converting traces into a table-like format</p>
-<dl class="function">
+<dl class="py function">
 <dt id="pymc3.backends.tracetab.trace_to_dataframe">
-<code class="sig-prename descclassname">pymc3.backends.tracetab.</code><code class="sig-name descname">trace_to_dataframe</code><span class="sig-paren">(</span><em class="sig-param">trace</em>, <em class="sig-param">chains=None</em>, <em class="sig-param">varnames=None</em>, <em class="sig-param">include_transformed=False</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.tracetab.trace_to_dataframe" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert trace to Pandas DataFrame.</p>
+<code class="sig-prename descclassname">pymc3.backends.tracetab.</code><code class="sig-name descname">trace_to_dataframe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trace</span></em>, <em class="sig-param"><span class="n">chains</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">varnames</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">include_transformed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.tracetab.trace_to_dataframe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert trace to pandas DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -619,12 +294,25 @@ DataFrame.</p>
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

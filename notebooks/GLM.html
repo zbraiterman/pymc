@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>(Generalized) Linear and Hierarchical Linear Models in PyMC3 &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>(Generalized) Linear and Hierarchical Linear Models in PyMC3 &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -65,21 +70,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -126,20 +145,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -167,7 +199,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -232,7 +264,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -290,12 +323,13 @@ div.rendered_html tbody tr:hover {
 <span></span><span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pymc3</span> <span class="kn">import</span>  <span class="o">*</span>
-<span class="kn">import</span> <span class="nn">theano</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">glm</span> <span class="k">as</span> <span class="n">glm_sm</span>
 <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">theano</span>
+
 <span class="kn">from</span> <span class="nn">pandas.plotting</span> <span class="kn">import</span> <span class="n">scatter_matrix</span>
+<span class="kn">from</span> <span class="nn">pymc3</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">import</span> <span class="n">glm</span> <span class="k">as</span> <span class="n">glm_sm</span>
 </pre></div>
 </div>
 </div>
@@ -305,7 +339,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;retina&#39;
-<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;arviz-darkgrid&#39;</span><span class="p">)</span>
+<span class="n">az</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;arviz-darkgrid&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -321,8 +355,8 @@ div.rendered_html tbody tr:hover {
 <span class="n">true_intercept</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">true_slope</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">true_intercept</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="n">true_slope</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=.</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">}</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">true_intercept</span> <span class="o">+</span> <span class="n">x</span> <span class="o">*</span> <span class="n">true_slope</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -333,13 +367,13 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">lm</span> <span class="o">=</span> <span class="n">glm</span><span class="o">.</span><span class="n">LinearComponent</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;y ~ x&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="n">sigma</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;sigma&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
-    <span class="n">y_obs</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;y_obs&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">lm</span><span class="o">.</span><span class="n">y_est</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">lm</span> <span class="o">=</span> <span class="n">glm</span><span class="o">.</span><span class="n">LinearComponent</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;y ~ x&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="s2">&quot;sigma&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+    <span class="n">y_obs</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;y_obs&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">lm</span><span class="o">.</span><span class="n">y_est</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plot_posterior_predictive_glm</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -389,7 +423,7 @@ The acceptance probability does not match the target. It is 0.8974642870765553, 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_6_3.png"><img alt="../_images/notebooks_GLM_6_3.png" src="../_images/notebooks_GLM_6_3.png" style="width: 443px; height: 446px;" /></a>
+<img alt="../_images/notebooks_GLM_6_3.png" class="no-scaled-link" src="../_images/notebooks_GLM_6_3.png" style="width: 443px; height: 446px;" />
 </div>
 </div>
 <p>Since there are a couple of general linear models that are being used over and over again (Normally distributed noise, logistic regression etc), the <code class="docutils literal notranslate"><span class="pre">glm.glm()</span></code> function simplifies the above step by creating the likelihood (y_obs) and its priors (sigma) for us. Since we are working in the model context, the random variables are all added to the model behind the scenes. This function also automatically finds a good starting point which it returns.</p>
@@ -400,11 +434,11 @@ The acceptance probability does not match the target. It is 0.8974642870765553, 
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;y ~ x&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;y ~ x&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plot_posterior_predictive_glm</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -454,7 +488,7 @@ The acceptance probability does not match the target. It is 0.8878450567290662, 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_8_3.png"><img alt="../_images/notebooks_GLM_8_3.png" src="../_images/notebooks_GLM_8_3.png" style="width: 443px; height: 446px;" /></a>
+<img alt="../_images/notebooks_GLM_8_3.png" class="no-scaled-link" src="../_images/notebooks_GLM_8_3.png" style="width: 443px; height: 446px;" />
 </div>
 </div>
 </div>
@@ -466,7 +500,7 @@ The acceptance probability does not match the target. It is 0.8878450567290662, 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">x_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">15</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">])</span>
+<span></span><span class="n">x_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
 <span class="n">y_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
 <span class="n">data_outlier</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x_out</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_out</span><span class="p">)</span>
 </pre></div>
@@ -478,11 +512,11 @@ The acceptance probability does not match the target. It is 0.8878450567290662, 
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model</span><span class="p">:</span>
-    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;y ~ x&#39;</span><span class="p">,</span> <span class="n">data_outlier</span><span class="p">)</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;y ~ x&quot;</span><span class="p">,</span> <span class="n">data_outlier</span><span class="p">)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_out</span><span class="p">,</span> <span class="n">y_out</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_out</span><span class="p">,</span> <span class="n">y_out</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plot_posterior_predictive_glm</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -531,7 +565,7 @@ Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_11_3.png"><img alt="../_images/notebooks_GLM_11_3.png" src="../_images/notebooks_GLM_11_3.png" style="width: 424px; height: 446px;" /></a>
+<img alt="../_images/notebooks_GLM_11_3.png" class="no-scaled-link" src="../_images/notebooks_GLM_11_3.png" style="width: 424px; height: 446px;" />
 </div>
 </div>
 <p>Because the normal distribution does not have a lot of mass in the tails, an outlier will affect the fit strongly.</p>
@@ -543,14 +577,14 @@ case we explicitly use the Identity link function which is also the default) and
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_robust</span><span class="p">:</span>
-    <span class="n">family</span> <span class="o">=</span> <span class="n">glm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">StudentT</span><span class="p">(</span><span class="n">link</span><span class="o">=</span><span class="n">glm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span>
-                                   <span class="n">priors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;nu&#39;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span>
-                                           <span class="s1">&#39;lam&#39;</span><span class="p">:</span> <span class="n">Uniform</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)})</span>
-    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;y ~ x&#39;</span><span class="p">,</span> <span class="n">data_outlier</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">family</span><span class="p">)</span>
+    <span class="n">family</span> <span class="o">=</span> <span class="n">glm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">StudentT</span><span class="p">(</span>
+        <span class="n">link</span><span class="o">=</span><span class="n">glm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Identity</span><span class="p">(),</span> <span class="n">priors</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;nu&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;lam&quot;</span><span class="p">:</span> <span class="n">Uniform</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">)}</span>
+    <span class="p">)</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;y ~ x&quot;</span><span class="p">,</span> <span class="n">data_outlier</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">family</span><span class="p">)</span>
     <span class="n">trace</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_out</span><span class="p">,</span> <span class="n">y_out</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_out</span><span class="p">,</span> <span class="n">y_out</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plot_posterior_predictive_glm</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -599,7 +633,7 @@ Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_13_3.png"><img alt="../_images/notebooks_GLM_13_3.png" src="../_images/notebooks_GLM_13_3.png" style="width: 424px; height: 446px;" /></a>
+<img alt="../_images/notebooks_GLM_13_3.png" class="no-scaled-link" src="../_images/notebooks_GLM_13_3.png" style="width: 424px; height: 446px;" />
 </div>
 </div>
 </div>
@@ -610,7 +644,7 @@ Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws 
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sat_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;Guber1999data.txt&#39;</span><span class="p">))</span>
+<span></span><span class="n">sat_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;Guber1999data.txt&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -620,17 +654,17 @@ Sampling 2 chains for 1_000 tune and 2_000 draw iterations (2_000 + 4_000 draws 
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_sat</span><span class="p">:</span>
-    <span class="n">grp_mean</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;grp_mean&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">grp_sd</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;grp_sd&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">grp_mean</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;grp_mean&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">grp_sd</span> <span class="o">=</span> <span class="n">Uniform</span><span class="p">(</span><span class="s2">&quot;grp_sd&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
     <span class="c1"># Define priors for intercept and regression coefficients.</span>
-    <span class="n">priors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Intercept&#39;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">sat_t</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">sat_t</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
-              <span class="s1">&#39;spend&#39;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">grp_sd</span><span class="p">),</span>
-              <span class="s1">&#39;stu_tea_rat&#39;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">grp_sd</span><span class="p">),</span>
-              <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">grp_sd</span><span class="p">),</span>
-              <span class="s1">&#39;prcnt_take&#39;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">grp_sd</span><span class="p">)</span>
-              <span class="p">}</span>
-    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
-        <span class="s1">&#39;sat_t ~ spend + stu_tea_rat + salary + prcnt_take&#39;</span><span class="p">,</span> <span class="n">sat_data</span><span class="p">,</span> <span class="n">priors</span><span class="o">=</span><span class="n">priors</span><span class="p">)</span>
+    <span class="n">priors</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Intercept&quot;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">sat_t</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">sat_t</span><span class="o">.</span><span class="n">std</span><span class="p">()),</span>
+        <span class="s2">&quot;spend&quot;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">grp_sd</span><span class="p">),</span>
+        <span class="s2">&quot;stu_tea_rat&quot;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">grp_sd</span><span class="p">),</span>
+        <span class="s2">&quot;salary&quot;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">grp_sd</span><span class="p">),</span>
+        <span class="s2">&quot;prcnt_take&quot;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">grp_sd</span><span class="p">),</span>
+    <span class="p">}</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;sat_t ~ spend + stu_tea_rat + salary + prcnt_take&quot;</span><span class="p">,</span> <span class="n">sat_data</span><span class="p">,</span> <span class="n">priors</span><span class="o">=</span><span class="n">priors</span><span class="p">)</span>
     <span class="n">trace_sat</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -683,7 +717,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_to_dataframe</span><span class="p">(</span><span class="n">trace_sat</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">));</span>
+<span></span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_to_dataframe</span><span class="p">(</span><span class="n">trace_sat</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
@@ -691,7 +725,7 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_17_0.png"><img alt="../_images/notebooks_GLM_17_0.png" src="../_images/notebooks_GLM_17_0.png" style="width: 1013px; height: 985px;" /></a>
+<img alt="../_images/notebooks_GLM_17_0.png" class="no-scaled-link" src="../_images/notebooks_GLM_17_0.png" style="width: 1013px; height: 985px;" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -700,12 +734,15 @@ The number of effective samples is smaller than 25% for some parameters.
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_sat</span><span class="p">:</span>
-    <span class="n">grp_mean</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;grp_mean&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">grp_prec</span> <span class="o">=</span> <span class="n">Gamma</span><span class="p">(</span><span class="s1">&#39;grp_prec&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">beta</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
+    <span class="n">grp_mean</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;grp_mean&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">grp_prec</span> <span class="o">=</span> <span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;grp_prec&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
     <span class="n">slope</span> <span class="o">=</span> <span class="n">StudentT</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="n">grp_prec</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">intercept</span> <span class="o">=</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">sat_t</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">sat_t</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
-    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;sat_t ~ spend + stu_tea_rat + salary + prcnt_take&#39;</span><span class="p">,</span> <span class="n">sat_data</span><span class="p">,</span>
-        <span class="n">priors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intercept&#39;</span><span class="p">:</span> <span class="n">intercept</span><span class="p">,</span> <span class="s1">&#39;Regressor&#39;</span><span class="p">:</span> <span class="n">slope</span><span class="p">})</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
+        <span class="s2">&quot;sat_t ~ spend + stu_tea_rat + salary + prcnt_take&quot;</span><span class="p">,</span>
+        <span class="n">sat_data</span><span class="p">,</span>
+        <span class="n">priors</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Intercept&quot;</span><span class="p">:</span> <span class="n">intercept</span><span class="p">,</span> <span class="s2">&quot;Regressor&quot;</span><span class="p">:</span> <span class="n">slope</span><span class="p">},</span>
+    <span class="p">)</span>
     <span class="n">trace_sat</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -756,7 +793,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_to_dataframe</span><span class="p">(</span><span class="n">trace_sat</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">));</span>
+<span></span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_to_dataframe</span><span class="p">(</span><span class="n">trace_sat</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
@@ -764,7 +801,7 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_19_0.png"><img alt="../_images/notebooks_GLM_19_0.png" src="../_images/notebooks_GLM_19_0.png" style="width: 1009px; height: 985px;" /></a>
+<img alt="../_images/notebooks_GLM_19_0.png" class="no-scaled-link" src="../_images/notebooks_GLM_19_0.png" style="width: 1009px; height: 985px;" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -772,14 +809,17 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">tdf_gain</span> <span class="o">=</span> <span class="mf">5.</span>
+<span></span><span class="n">tdf_gain</span> <span class="o">=</span> <span class="mf">5.0</span>
 <span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_sat</span><span class="p">:</span>
-    <span class="n">grp_mean</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s1">&#39;grp_mean&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">grp_prec</span> <span class="o">=</span> <span class="n">Gamma</span><span class="p">(</span><span class="s1">&#39;grp_prec&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">beta</span><span class="o">=.</span><span class="mi">1</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">1.</span><span class="p">)</span>
-    <span class="n">slope</span> <span class="o">=</span> <span class="n">StudentT</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="n">grp_prec</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#grp_df)</span>
+    <span class="n">grp_mean</span> <span class="o">=</span> <span class="n">Normal</span><span class="p">(</span><span class="s2">&quot;grp_mean&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">grp_prec</span> <span class="o">=</span> <span class="n">Gamma</span><span class="p">(</span><span class="s2">&quot;grp_prec&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="n">slope</span> <span class="o">=</span> <span class="n">StudentT</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">grp_mean</span><span class="p">,</span> <span class="n">lam</span><span class="o">=</span><span class="n">grp_prec</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># grp_df)</span>
     <span class="n">intercept</span> <span class="o">=</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">sat_t</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">sigma</span><span class="o">=</span><span class="n">sat_data</span><span class="o">.</span><span class="n">sat_t</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
-    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;sat_t ~ spend + stu_tea_rat + salary + prcnt_take&#39;</span><span class="p">,</span> <span class="n">sat_data</span><span class="p">,</span>
-                <span class="n">priors</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Intercept&#39;</span><span class="p">:</span> <span class="n">intercept</span><span class="p">,</span> <span class="s1">&#39;Regressor&#39;</span><span class="p">:</span> <span class="n">slope</span><span class="p">})</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
+        <span class="s2">&quot;sat_t ~ spend + stu_tea_rat + salary + prcnt_take&quot;</span><span class="p">,</span>
+        <span class="n">sat_data</span><span class="p">,</span>
+        <span class="n">priors</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Intercept&quot;</span><span class="p">:</span> <span class="n">intercept</span><span class="p">,</span> <span class="s2">&quot;Regressor&quot;</span><span class="p">:</span> <span class="n">slope</span><span class="p">},</span>
+    <span class="p">)</span>
 
     <span class="n">trace_sat</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
@@ -831,7 +871,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_to_dataframe</span><span class="p">(</span><span class="n">trace_sat</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">));</span>
+<span></span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_to_dataframe</span><span class="p">(</span><span class="n">trace_sat</span><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">));</span>
 </pre></div>
 </div>
 </div>
@@ -839,7 +879,7 @@ The number of effective samples is smaller than 25% for some parameters.
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_21_0.png"><img alt="../_images/notebooks_GLM_21_0.png" src="../_images/notebooks_GLM_21_0.png" style="width: 1009px; height: 985px;" /></a>
+<img alt="../_images/notebooks_GLM_21_0.png" class="no-scaled-link" src="../_images/notebooks_GLM_21_0.png" style="width: 1009px; height: 985px;" />
 </div>
 </div>
 </div>
@@ -850,7 +890,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">htwt_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s1">&#39;HtWt.csv&#39;</span><span class="p">))</span>
+<span></span><span class="n">htwt_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">get_data</span><span class="p">(</span><span class="s2">&quot;HtWt.csv&quot;</span><span class="p">))</span>
 <span class="n">htwt_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -923,7 +963,7 @@ The number of effective samples is smaller than 25% for some parameters.
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">m</span> <span class="o">=</span> <span class="n">glm_sm</span><span class="p">(</span><span class="s1">&#39;male ~ height + weight&#39;</span><span class="p">,</span> <span class="n">htwt_data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span></span><span class="n">m</span> <span class="o">=</span> <span class="n">glm_sm</span><span class="p">(</span><span class="s2">&quot;male ~ height + weight&quot;</span><span class="p">,</span> <span class="n">htwt_data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">sm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -959,8 +999,10 @@ weight         0.0096      0.011      0.892      0.372      -0.012       0.031
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_htwt</span><span class="p">:</span>
-    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;male ~ height + weight&#39;</span><span class="p">,</span> <span class="n">htwt_data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">glm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
-    <span class="n">trace_htwt</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;adapt_diag&#39;</span><span class="p">)</span> <span class="c1"># default init with jitter can cause problem</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s2">&quot;male ~ height + weight&quot;</span><span class="p">,</span> <span class="n">htwt_data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">glm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">())</span>
+    <span class="n">trace_htwt</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span>
+        <span class="mi">2000</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;adapt_diag&quot;</span>
+    <span class="p">)</span>  <span class="c1"># default init with jitter can cause problem</span>
 </pre></div>
 </div>
 </div>
@@ -1011,10 +1053,10 @@ The acceptance probability does not match the target. It is 0.895678925061463, b
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">trace_df</span> <span class="o">=</span> <span class="n">trace_to_dataframe</span><span class="p">(</span><span class="n">trace_htwt</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">trace_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">trace_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_df</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P(weight &lt; 0) = &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">trace_df</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P(height &lt; 0) = &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">trace_df</span><span class="p">[</span><span class="s1">&#39;height&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P(weight &lt; 0) = &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">trace_df</span><span class="p">[</span><span class="s2">&quot;weight&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;P(height &lt; 0) = &quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">trace_df</span><span class="p">[</span><span class="s2">&quot;height&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1040,7 +1082,7 @@ P(height &lt; 0) =  0.0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_26_1.png"><img alt="../_images/notebooks_GLM_26_1.png" src="../_images/notebooks_GLM_26_1.png" style="width: 707px; height: 680px;" /></a>
+<img alt="../_images/notebooks_GLM_26_1.png" class="no-scaled-link" src="../_images/notebooks_GLM_26_1.png" style="width: 707px; height: 680px;" />
 </div>
 </div>
 </div>
@@ -1052,11 +1094,11 @@ P(height &lt; 0) =  0.0
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">lp</span> <span class="o">=</span> <span class="n">Laplace</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-<span class="n">x_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-.</span><span class="mi">5</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
+<span class="n">x_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_eval</span><span class="p">,</span> <span class="n">theano</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">lp</span><span class="o">.</span><span class="n">logp</span><span class="p">(</span><span class="n">x_eval</span><span class="p">))</span><span class="o">.</span><span class="n">eval</span><span class="p">())</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Probability&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Laplace distribution&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Laplace distribution&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -1064,7 +1106,7 @@ P(height &lt; 0) =  0.0
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_28_0.png"><img alt="../_images/notebooks_GLM_28_0.png" src="../_images/notebooks_GLM_28_0.png" style="width: 634px; height: 458px;" /></a>
+<img alt="../_images/notebooks_GLM_28_0.png" class="no-scaled-link" src="../_images/notebooks_GLM_28_0.png" style="width: 634px; height: 458px;" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -1074,17 +1116,16 @@ P(height &lt; 0) =  0.0
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">with</span> <span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">model_lasso</span><span class="p">:</span>
     <span class="c1"># Define priors for intercept and regression coefficients.</span>
-    <span class="n">priors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Intercept&#39;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span>
-              <span class="s1">&#39;Regressor&#39;</span><span class="p">:</span> <span class="n">Laplace</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;male ~ height + weight&#39;</span><span class="p">,</span> <span class="n">htwt_data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">glm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(),</span>
-                    <span class="n">priors</span><span class="o">=</span><span class="n">priors</span><span class="p">)</span>
+    <span class="n">priors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Intercept&quot;</span><span class="p">:</span> <span class="n">Normal</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">50</span><span class="p">),</span> <span class="s2">&quot;Regressor&quot;</span><span class="p">:</span> <span class="n">Laplace</span><span class="o">.</span><span class="n">dist</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)}</span>
+    <span class="n">GLM</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span>
+        <span class="s2">&quot;male ~ height + weight&quot;</span><span class="p">,</span> <span class="n">htwt_data</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">glm</span><span class="o">.</span><span class="n">families</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(),</span> <span class="n">priors</span><span class="o">=</span><span class="n">priors</span>
+    <span class="p">)</span>
 
-    <span class="n">trace_lasso</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;adapt_diag&#39;</span><span class="p">)</span>
+    <span class="n">trace_lasso</span> <span class="o">=</span> <span class="n">sample</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">cores</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s2">&quot;adapt_diag&quot;</span><span class="p">)</span>
 
 <span class="n">trace_df</span> <span class="o">=</span> <span class="n">trace_to_dataframe</span><span class="p">(</span><span class="n">trace_lasso</span><span class="p">)</span>
-<span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_df</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">));</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">trace_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">scatter_matrix</span><span class="p">(</span><span class="n">trace_df</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">trace_df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1148,7 +1189,7 @@ weight     0.038506
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<a class="reference internal image-reference" href="../_images/notebooks_GLM_29_4.png"><img alt="../_images/notebooks_GLM_29_4.png" src="../_images/notebooks_GLM_29_4.png" style="width: 696px; height: 680px;" /></a>
+<img alt="../_images/notebooks_GLM_29_4.png" class="no-scaled-link" src="../_images/notebooks_GLM_29_4.png" style="width: 696px; height: 680px;" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -1192,12 +1233,25 @@ watermark 2.0.2
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>

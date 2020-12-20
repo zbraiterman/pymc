@@ -1,21 +1,21 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>DEMetropolis(Z): Population vs. History efficiency comparison &#8212; PyMC3 3.9.3 documentation</title>
-    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEMetropolis(Z): Population vs. History efficiency comparison &#8212; PyMC3 3.10.0 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
@@ -23,6 +23,11 @@
     <link rel="author" title="About these documents" href="../about.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+<script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-176578023-1']);
+  _gaq.push(['_trackPageview']);
+</script>
 <script>hljs.initHighlightingOnLoad();</script>
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -65,21 +70,35 @@
 /* CSS for nbsphinx extension */
 
 /* remove conflicting styling from Sphinx themes */
-div.nbinput.container,
-div.nbinput.container div.prompt,
-div.nbinput.container div.input_area,
-div.nbinput.container div[class*=highlight],
-div.nbinput.container div[class*=highlight] pre,
-div.nboutput.container,
-div.nboutput.container div.prompt,
-div.nboutput.container div.output_area,
-div.nboutput.container div[class*=highlight],
-div.nboutput.container div[class*=highlight] pre {
-    background: none;
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
     border: none;
-    padding: 0 0;
+    padding: 0;
     margin: 0;
     box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
 }
 
 /* avoid gaps between output lines */
@@ -126,20 +145,33 @@ div.nboutput.container div.prompt pre {
 /* all prompts */
 div.nbinput.container div.prompt,
 div.nboutput.container div.prompt {
-    min-width: 7ex;
-    padding-top: 0.3rem;
-    padding-right: 0.3rem;
-    text-align: right;
-    flex: 0;
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
 }
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
 @media (max-width: 540px) {
     div.nbinput.container div.prompt,
     div.nboutput.container div.prompt {
+        width: unset;
         text-align: left;
         padding: 0.4em;
     }
     div.nboutput.container div.prompt.empty {
         padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
     }
 }
 
@@ -167,7 +199,7 @@ div.nboutput.container div.output_area {
 div.nbinput.container div.input_area {
     border: 1px solid #e0e0e0;
     border-radius: 2px;
-    background: #f5f5f5;
+    /*background: #f5f5f5;*/
 }
 
 /* override MathJax center alignment in output cells */
@@ -232,7 +264,8 @@ div.nboutput.container div.output_area div[class*=highlight].math,
 div.nboutput.container div.output_area.rendered_html,
 div.nboutput.container div.output_area > div.output_javascript,
 div.nboutput.container div.output_area:not(.rendered_html) > img{
-    padding: 0.3rem;
+    padding: 5px;
+    margin: 0;
 }
 
 /* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
@@ -291,19 +324,20 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
+<span></span><span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">arviz</span> <span class="k">as</span> <span class="nn">az</span>
 <span class="kn">import</span> <span class="nn">fastprogress</span>
 <span class="kn">import</span> <span class="nn">ipywidgets</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pathlib</span>
 <span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
-<span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">cm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running on PyMC3 v</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Running on PyMC3 v</span><span class="si">{</span><span class="n">pm</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -325,39 +359,46 @@ Running on PyMC3 v3.9.0
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">get_mvnormal_model</span><span class="p">(</span><span class="n">D</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">:</span>
+<span></span><span class="k">def</span> <span class="nf">get_mvnormal_model</span><span class="p">(</span><span class="n">D</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">:</span>
     <span class="n">true_mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
     <span class="n">true_cov</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
-    <span class="n">true_cov</span><span class="p">[:</span><span class="mi">5</span><span class="p">,:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-        <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-    <span class="p">])</span>
+    <span class="n">true_cov</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="p">[</span>
+            <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+            <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="p">]</span>
+    <span class="p">)</span>
 
     <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">()</span> <span class="k">as</span> <span class="n">pmodel</span><span class="p">:</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">MvNormal</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">true_mu</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">true_cov</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">D</span><span class="p">,))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">MvNormal</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="n">true_mu</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">true_cov</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">D</span><span class="p">,))</span>
 
     <span class="n">true_samples</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-    <span class="n">truth_id</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">convert_to_inference_data</span><span class="p">(</span><span class="n">true_samples</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,:],</span> <span class="n">group</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">)</span>
+    <span class="n">truth_id</span> <span class="o">=</span> <span class="n">az</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">convert_to_inference_data</span><span class="p">(</span><span class="n">true_samples</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:],</span> <span class="n">group</span><span class="o">=</span><span class="s2">&quot;random&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pmodel</span><span class="p">,</span> <span class="n">truth_id</span>
 
+
 <span class="k">def</span> <span class="nf">run_setting</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">N_tune</span><span class="p">,</span> <span class="n">N_draws</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">):</span>
-    <span class="n">savename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">D</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">N_tune</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">N_draws</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">N_chains</span><span class="si">}</span><span class="s1">.nc&#39;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Scenario filename: </span><span class="si">{</span><span class="n">savename</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">savename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">algorithm</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">D</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">N_tune</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">N_draws</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">N_chains</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scenario filename: </span><span class="si">{</span><span class="n">savename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">savename</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
         <span class="n">pmodel</span><span class="p">,</span> <span class="n">truth_id</span> <span class="o">=</span> <span class="n">get_mvnormal_model</span><span class="p">(</span><span class="n">D</span><span class="p">)</span>
         <span class="k">with</span> <span class="n">pmodel</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;DE-MCMC&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="s2">&quot;DE-MCMC&quot;</span><span class="p">:</span>
                 <span class="n">step</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">DEMetropolis</span><span class="p">()</span>
-            <span class="k">elif</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="s1">&#39;DE-MCMC-Z&#39;</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="n">algorithm</span> <span class="o">==</span> <span class="s2">&quot;DE-MCMC-Z&quot;</span><span class="p">:</span>
                 <span class="n">step</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">DEMetropolisZ</span><span class="p">()</span>
             <span class="n">idata</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span>
-                <span class="n">cores</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="n">N_tune</span><span class="p">,</span> <span class="n">draws</span><span class="o">=</span><span class="n">N_draws</span><span class="p">,</span> <span class="n">chains</span><span class="o">=</span><span class="n">N_chains</span><span class="p">,</span>
+                <span class="n">cores</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">tune</span><span class="o">=</span><span class="n">N_tune</span><span class="p">,</span>
+                <span class="n">draws</span><span class="o">=</span><span class="n">N_draws</span><span class="p">,</span>
+                <span class="n">chains</span><span class="o">=</span><span class="n">N_chains</span><span class="p">,</span>
                 <span class="n">step</span><span class="o">=</span><span class="n">step</span><span class="p">,</span>
-                <span class="n">start</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">D</span><span class="p">},</span>
-                <span class="n">discard_tuned_samples</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_inferencedata</span><span class="o">=</span><span class="kc">True</span>
+                <span class="n">start</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">D</span><span class="p">},</span>
+                <span class="n">discard_tuned_samples</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">return_inferencedata</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="n">idata</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">savename</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -375,14 +416,14 @@ Running on PyMC3 v3.9.0
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s1">&#39;algorithm,D,N_tune,N_draws,N_chains,t,idata&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
-<span class="n">df_results</span> <span class="o">=</span> <span class="n">df_results</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;algorithm,D,N_tune,N_draws,N_chains&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">))</span>
+<span></span><span class="n">df_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;algorithm,D,N_tune,N_draws,N_chains,t,idata&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span>
+<span class="n">df_results</span> <span class="o">=</span> <span class="n">df_results</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;algorithm,D,N_tune,N_draws,N_chains&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">))</span>
 
-<span class="k">for</span> <span class="n">algorithm</span> <span class="ow">in</span> <span class="p">{</span><span class="s1">&#39;DE-MCMC&#39;</span><span class="p">,</span> <span class="s1">&#39;DE-MCMC-Z&#39;</span><span class="p">}:</span>
+<span class="k">for</span> <span class="n">algorithm</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">&quot;DE-MCMC&quot;</span><span class="p">,</span> <span class="s2">&quot;DE-MCMC-Z&quot;</span><span class="p">}:</span>
     <span class="k">for</span> <span class="n">D</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">):</span>
         <span class="n">N_tune</span> <span class="o">=</span> <span class="mi">10000</span>
         <span class="n">N_draws</span> <span class="o">=</span> <span class="mi">10000</span>
-        <span class="k">for</span> <span class="n">N_chains</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">80</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">N_chains</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">):</span>
             <span class="n">idata</span> <span class="o">=</span> <span class="n">run_setting</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">N_tune</span><span class="p">,</span> <span class="n">N_draws</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">)</span>
             <span class="n">t</span> <span class="o">=</span> <span class="n">idata</span><span class="o">.</span><span class="n">posterior</span><span class="o">.</span><span class="n">sampling_time</span>
             <span class="n">df_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N_tune</span><span class="p">,</span> <span class="n">N_draws</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">)]</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">idata</span><span class="p">)</span>
@@ -437,7 +478,7 @@ Scenario filename: DE-MCMC_40_10000_10000_80.nc
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_results</span><span class="p">[[</span><span class="s1">&#39;t&#39;</span><span class="p">]]</span>
+<span></span><span class="n">df_results</span><span class="p">[[</span><span class="s2">&quot;t&quot;</span><span class="p">]]</span>
 </pre></div>
 </div>
 </div>
@@ -657,24 +698,16 @@ Scenario filename: DE-MCMC_40_10000_10000_80.nc
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">df_temp</span> <span class="o">=</span> <span class="n">df_results</span><span class="o">.</span><span class="n">reset_index</span><span class="p">([</span><span class="s1">&#39;N_tune&#39;</span><span class="p">,</span> <span class="s1">&#39;N_draws&#39;</span><span class="p">])</span>
-<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;N_samples&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">row</span><span class="o">.</span><span class="n">N_draws</span> <span class="o">*</span> <span class="n">row</span><span class="o">.</span><span class="n">Index</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()</span>
+<span></span><span class="n">df_temp</span> <span class="o">=</span> <span class="n">df_results</span><span class="o">.</span><span class="n">reset_index</span><span class="p">([</span><span class="s2">&quot;N_tune&quot;</span><span class="p">,</span> <span class="s2">&quot;N_draws&quot;</span><span class="p">])</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s2">&quot;N_samples&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">N_draws</span> <span class="o">*</span> <span class="n">row</span><span class="o">.</span><span class="n">Index</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()]</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s2">&quot;ess&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">float</span><span class="p">(</span><span class="n">az</span><span class="o">.</span><span class="n">ess</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">posterior</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">for</span> <span class="n">idata</span> <span class="ow">in</span> <span class="n">fastprogress</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">idata</span><span class="p">)</span>
 <span class="p">]</span>
-<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;ess&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nb">float</span><span class="p">(</span><span class="n">az</span><span class="o">.</span><span class="n">ess</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">posterior</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-    <span class="k">for</span> <span class="n">idata</span> <span class="ow">in</span> <span class="n">fastprogress</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">idata</span><span class="p">)</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s2">&quot;rel_ess&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">ess</span> <span class="o">/</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">N_samples</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()]</span>
+<span class="n">df_temp</span><span class="p">[</span><span class="s2">&quot;r_hat&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">float</span><span class="p">(</span><span class="n">az</span><span class="o">.</span><span class="n">rhat</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">posterior</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="k">for</span> <span class="n">idata</span> <span class="ow">in</span> <span class="n">fastprogress</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">idata</span><span class="p">)</span>
 <span class="p">]</span>
-<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;rel_ess&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">row</span><span class="o">.</span><span class="n">ess</span> <span class="o">/</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">N_samples</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">itertuples</span><span class="p">()</span>
-<span class="p">]</span>
-<span class="n">df_temp</span><span class="p">[</span><span class="s1">&#39;r_hat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="nb">float</span><span class="p">(</span><span class="n">az</span><span class="o">.</span><span class="n">rhat</span><span class="p">(</span><span class="n">idata</span><span class="o">.</span><span class="n">posterior</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-    <span class="k">for</span> <span class="n">idata</span> <span class="ow">in</span> <span class="n">fastprogress</span><span class="o">.</span><span class="n">progress_bar</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">idata</span><span class="p">)</span>
-<span class="p">]</span>
-<span class="n">df_temp</span> <span class="o">=</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;algorithm&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;N_chains&#39;</span><span class="p">])</span>
+<span class="n">df_temp</span> <span class="o">=</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;algorithm&quot;</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;N_chains&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -1196,9 +1229,9 @@ Scenario filename: DE-MCMC_40_10000_10000_80.nc
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span></span><span class="n">fig</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">140</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="k">for</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">linestyle</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s1">&#39;DE-MCMC&#39;</span><span class="p">,</span> <span class="s1">&#39;DE-MCMC-Z&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;--&#39;</span><span class="p">]):</span>
+<span class="k">for</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">linestyle</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;DE-MCMC&quot;</span><span class="p">,</span> <span class="s2">&quot;DE-MCMC-Z&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">]):</span>
     <span class="n">dimensionalities</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_temp</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">D</span><span class="p">)))[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">N_dimensionalities</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dimensionalities</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">dim</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dimensionalities</span><span class="p">):</span>
@@ -1206,15 +1239,15 @@ Scenario filename: DE-MCMC_40_10000_10000_80.nc
         <span class="n">df</span> <span class="o">=</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">dim</span><span class="p">)]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
         <span class="n">right</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
             <span class="n">df</span><span class="o">.</span><span class="n">N_chains</span><span class="p">,</span>
-            <span class="n">df</span><span class="o">.</span><span class="n">rel_ess</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span>
+            <span class="n">df</span><span class="o">.</span><span class="n">rel_ess</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span>
             <span class="n">linestyle</span><span class="o">=</span><span class="n">linestyle</span><span class="p">,</span>
             <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">algorithm</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s1"> dimensions&#39;</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">algorithm</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">dim</span><span class="si">}</span><span class="s2"> dimensions&quot;</span><span class="p">,</span>
         <span class="p">)</span>
 
 <span class="n">right</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">right</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$S_</span><span class="si">{eff}</span><span class="s1">$   [%]&#39;</span><span class="p">)</span>
-<span class="n">right</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$N_</span><span class="si">{chains}</span><span class="s1">$   [-]&#39;</span><span class="p">)</span>
+<span class="n">right</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$S_</span><span class="si">{eff}</span><span class="s2">$   [%]&quot;</span><span class="p">)</span>
+<span class="n">right</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$N_</span><span class="si">{chains}</span><span class="s2">$   [-]&quot;</span><span class="p">)</span>
 <span class="n">right</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">right</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1239,12 +1272,12 @@ Scenario filename: DE-MCMC_40_10000_10000_80.nc
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">140</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">alg</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;DE-MCMC&#39;</span><span class="p">,</span> <span class="s1">&#39;DE-MCMC-Z&#39;</span><span class="p">]:</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;N_samples&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">alg</span><span class="p">]</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">N_samples</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">alg</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">alg</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;DE-MCMC&quot;</span><span class="p">,</span> <span class="s2">&quot;DE-MCMC-Z&quot;</span><span class="p">]:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df_temp</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;N_samples&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">alg</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">N_samples</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">alg</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$N_</span><span class="si">{samples}</span><span class="s1"> / 1000$   [-]&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$t_</span><span class="si">{sampling}</span><span class="s1">$   [s]&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$N_</span><span class="si">{samples}</span><span class="s2"> / 1000$   [-]&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$t_</span><span class="si">{sampling}</span><span class="s2">$   [s]&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -1268,17 +1301,18 @@ Scenario filename: DE-MCMC_40_10000_10000_80.nc
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="k">def</span> <span class="nf">plot_trace</span><span class="p">(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">):</span>
     <span class="n">n_plot</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">)</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">n_plot</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">n_plot</span><span class="p">))</span>
-    <span class="n">idata</span> <span class="o">=</span> <span class="n">df_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">),</span> <span class="s1">&#39;idata&#39;</span><span class="p">]</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="n">n_plot</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">n_plot</span><span class="p">))</span>
+    <span class="n">idata</span> <span class="o">=</span> <span class="n">df_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">),</span> <span class="s2">&quot;idata&quot;</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_plot</span><span class="p">):</span>
-        <span class="n">samples</span> <span class="o">=</span> <span class="n">idata</span><span class="o">.</span><span class="n">posterior</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">c</span><span class="p">,:,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">idata</span><span class="o">.</span><span class="n">posterior</span><span class="o">.</span><span class="n">x</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="n">axs</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">return</span>
+
 
 <span class="n">ipywidgets</span><span class="o">.</span><span class="n">interact_manual</span><span class="p">(</span>
     <span class="n">plot_trace</span><span class="p">,</span>
-    <span class="n">algorithm</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DE-MCMC&#39;</span><span class="p">,</span> <span class="s1">&#39;DE-MCMC-Z&#39;</span><span class="p">],</span>
+    <span class="n">algorithm</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DE-MCMC&quot;</span><span class="p">,</span> <span class="s2">&quot;DE-MCMC-Z&quot;</span><span class="p">],</span>
     <span class="n">D</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_results</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">D</span><span class="p">)),</span>
     <span class="n">N_chains</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_results</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">N_chains</span><span class="p">)),</span>
 <span class="p">);</span>
@@ -1302,29 +1336,29 @@ Scenario filename: DE-MCMC_40_10000_10000_80.nc
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">def</span> <span class="nf">plot_stat</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">sname</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s1">&#39;accepted&#39;</span><span class="p">,</span> <span class="n">rolling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">):</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="s1">&#39;row&#39;</span><span class="p">)</span>
+<span></span><span class="k">def</span> <span class="nf">plot_stat</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">sname</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;accepted&quot;</span><span class="p">,</span> <span class="n">rolling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">algorithm</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">sharey</span><span class="o">=</span><span class="s2">&quot;row&quot;</span><span class="p">)</span>
     <span class="n">row</span> <span class="o">=</span> <span class="n">df_results</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">algorithm</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">N_chains</span><span class="p">)]</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_results</span><span class="o">.</span><span class="n">idata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">posterior</span><span class="o">.</span><span class="n">chain</span><span class="p">:</span>
-        <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span>
-            <span class="c1">#idata.warmup_sample_stats[sname].sel(chain=c),</span>
-            <span class="n">idata</span><span class="o">.</span><span class="n">sample_stats</span><span class="p">[</span><span class="n">sname</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">chain</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
-        <span class="p">])</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">500</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="n">rolling</span> <span class="k">else</span> <span class="n">S</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
-            <span class="n">y</span><span class="p">,</span>
-            <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="c1"># idata.warmup_sample_stats[sname].sel(chain=c),</span>
+                <span class="n">idata</span><span class="o">.</span><span class="n">sample_stats</span><span class="p">[</span><span class="n">sname</span><span class="p">]</span><span class="o">.</span><span class="n">sel</span><span class="p">(</span><span class="n">chain</span><span class="o">=</span><span class="n">c</span><span class="p">)</span>
+            <span class="p">]</span>
         <span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration&#39;</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">500</span> <span class="o">-</span> <span class="mi">1</span> <span class="p">:]</span><span class="o">.</span><span class="n">values</span> <span class="k">if</span> <span class="n">rolling</span> <span class="k">else</span> <span class="n">S</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;iteration&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">sname</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     <span class="k">return</span>
+
 
 <span class="n">ipywidgets</span><span class="o">.</span><span class="n">interact_manual</span><span class="p">(</span>
     <span class="n">plot_stat</span><span class="p">,</span>
     <span class="n">sname</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">df_results</span><span class="o">.</span><span class="n">idata</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sample_stats</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
     <span class="n">rolling</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">algorithm</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;DE-MCMC-Z&#39;</span><span class="p">,</span><span class="s1">&#39;DE-MCMC&#39;</span><span class="p">],</span>
+    <span class="n">algorithm</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;DE-MCMC-Z&quot;</span><span class="p">,</span> <span class="s2">&quot;DE-MCMC&quot;</span><span class="p">],</span>
     <span class="n">D</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_results</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">D</span><span class="p">)),</span>
     <span class="n">N_chains</span><span class="o">=</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df_results</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">N_chains</span><span class="p">)),</span>
 <span class="p">);</span>
@@ -1384,12 +1418,25 @@ watermark 2.0.2
         <a href="https://twitter.com/pymc_devs"><i class="twitter icon large"></i></a>
         <a href="https://discourse.pymc.io/"><i class="discourse icon large"></i></a>
     </div>
+    <div class="ui center aligned container">This page uses <a href="https://analytics.google.com/">
+    Google Analytics</a> to collect statistics. You can disable it by blocking
+    the JavaScript coming from www.google-analytics.com.
+    <script>
+      (function() {
+        var ga = document.createElement('script');
+        ga.src = ('https:' == document.location.protocol ?
+                  'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        ga.setAttribute('async', 'true');
+        document.documentElement.firstChild.appendChild(ga);
+      })();
+    </script>
+    </div>
     <div class="ui center aligned container">
         <p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 2.4.4.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
         </p>
     </div>
 </div>
