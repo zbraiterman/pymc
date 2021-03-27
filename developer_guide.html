@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PyMC3 Developer Guide &#8212; PyMC3 3.10.0 documentation</title>
+    <title>PyMC3 Developer Guide &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/default.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -177,15 +178,16 @@ below), and x.dist() as the associated density/mass function
 (distribution in the mathematical sense). It is not perfect, and now
 after a few years learning Bayesian statistics I also realized these
 subtleties (i.e., the distinction between <em>random variable</em> and
-<em>distribution</em>). But when I was learning probabilistic modelling as a
+<em>distribution</em>).</p>
+<p>But when I was learning probabilistic modelling as a
 beginner, I did find this approach to be the easiest and most
 straightforward. In a perfect world, we should have
 <span class="math notranslate nohighlight">\(x \sim \text{Normal}(0, 1)\)</span> which defines a random variable that
 follows a Gaussian distribution, and
-<span class="math notranslate nohighlight">\(\chi = \text{Normal}(0, 1), x \sim \chi\)</span> which define a scalar
-density function that takes input <span class="math notranslate nohighlight">\(x\)</span></p>
+<span class="math notranslate nohighlight">\(\chi = \text{Normal}(0, 1), x \sim \chi\)</span> which define a <a class="reference external" href="https://en.wikipedia.org/wiki/Probability_density_function">probability
+density function</a> that takes input <span class="math notranslate nohighlight">\(x\)</span></p>
 <div class="math notranslate nohighlight">
-\[(``X:=f(x) = 1/sqrt(2*pi) * exp(-.5*x**2)``)\]</div>
+\[X:=f(x) = \frac{1}{\sigma \sqrt{2 \pi}} \exp^{- 0.5 (\frac{x - \mu}{\sigma})^2}\vert_{\mu = 0, \sigma=1} = \frac{1}{\sqrt{2 \pi}} \exp^{- 0.5 x^2}\]</div>
 <p>Within a model context, RVs are essentially Theano tensors (more on that
 below). This is different than TFP and pyro, where you need to be more
 explicit about the conversion. For example:</p>
@@ -1069,7 +1071,7 @@ for every logp evaluation.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

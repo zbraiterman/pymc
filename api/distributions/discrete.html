@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Discrete &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Discrete &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -119,7 +120,7 @@
 </table>
 <span class="target" id="module-pymc3.distributions.discrete"></span><dl class="py class">
 <dt id="pymc3.distributions.discrete.Bernoulli">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">Bernoulli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Bernoulli" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">Bernoulli</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Bernoulli" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bernoulli log-likelihood</p>
 <p>The Bernoulli distribution describes the probability of successes
 (x=1) and failures (x=0).
@@ -128,7 +129,7 @@ The pmf of this distribution is</p>
 \[f(x \mid p) = p^{x} (1-p)^{1-x}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-1.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-1.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-1.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-1.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-1.png" src="../../_images/discrete-1.png" />
+<img alt="../../_images/discrete-1.png" class="plot-directive" src="../../_images/discrete-1.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -159,8 +160,29 @@ can be specified.</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.Bernoulli.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Bernoulli.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for Bernoulli distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+values are desired the values must be provided in a numpy array or theano tensor.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.Bernoulli.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Bernoulli.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Bernoulli.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Bernoulli distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -180,7 +202,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.Bernoulli.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Bernoulli.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Bernoulli.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Bernoulli distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -205,7 +227,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.BetaBinomial">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">BetaBinomial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.BetaBinomial" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">BetaBinomial</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.BetaBinomial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Beta-binomial log-likelihood.</p>
 <p>Equivalent to binomial random variable with success probability
 drawn from a beta distribution.
@@ -216,7 +238,7 @@ The pmf of this distribution is</p>
     \frac{B(x + \alpha, n - x + \beta)}{B(\alpha, \beta)}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-2.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-2.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-2.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-2.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-2.png" src="../../_images/discrete-2.png" />
+<img alt="../../_images/discrete-2.png" class="plot-directive" src="../../_images/discrete-2.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -248,8 +270,28 @@ The pmf of this distribution is</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.BetaBinomial.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.BetaBinomial.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for BetaBinomial distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log CDF is calculated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.BetaBinomial.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.BetaBinomial.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.BetaBinomial.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of BetaBinomial distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -269,7 +311,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.BetaBinomial.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.BetaBinomial.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.BetaBinomial.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from BetaBinomial distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -294,7 +336,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.Binomial">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">Binomial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Binomial" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">Binomial</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Binomial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Binomial log-likelihood.</p>
 <p>The discrete probability distribution of the number of successes
 in a sequence of n independent yes/no experiments, each of which
@@ -304,7 +346,7 @@ The pmf of this distribution is</p>
 \[f(x \mid n, p) = \binom{n}{x} p^x (1-p)^{n-x}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-3.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-3.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-3.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-3.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-3.png" src="../../_images/discrete-3.png" />
+<img alt="../../_images/discrete-3.png" class="plot-directive" src="../../_images/discrete-3.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -334,8 +376,28 @@ The pmf of this distribution is</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.Binomial.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Binomial.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for Binomial distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log CDF is calculated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.Binomial.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Binomial.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Binomial.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Binomial distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -355,7 +417,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.Binomial.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Binomial.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Binomial.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Binomial distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -380,14 +442,14 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.Categorical">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">Categorical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Categorical" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">Categorical</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Categorical" title="Permalink to this definition">¶</a></dt>
 <dd><p>Categorical log-likelihood.</p>
 <p>The most general discrete distribution. The pmf of this distribution is</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid p) = p_x\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-4.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-4.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-4.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-4.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-4.png" src="../../_images/discrete-4.png" />
+<img alt="../../_images/discrete-4.png" class="plot-directive" src="../../_images/discrete-4.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -411,7 +473,7 @@ rescaled otherwise.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.Categorical.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Categorical.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Categorical.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Categorical distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -431,7 +493,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.Categorical.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Categorical.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Categorical.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Categorical distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -456,7 +518,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.Constant">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">Constant</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Constant" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">Constant</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Constant" title="Permalink to this definition">¶</a></dt>
 <dd><p>Constant log-likelihood.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -468,7 +530,7 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.Constant.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Constant.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Constant.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Constant distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -488,7 +550,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.Constant.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Constant.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Constant.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Constant distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -513,20 +575,20 @@ specified).</p>
 
 <dl class="py attribute">
 <dt id="pymc3.distributions.discrete.ConstantDist">
-<code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">ConstantDist</code><a class="headerlink" href="#pymc3.distributions.discrete.ConstantDist" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">ConstantDist</span></code><a class="headerlink" href="#pymc3.distributions.discrete.ConstantDist" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <a class="reference internal" href="#pymc3.distributions.discrete.Constant" title="pymc3.distributions.discrete.Constant"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.distributions.discrete.Constant</span></code></a></p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.DiscreteUniform">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">DiscreteUniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteUniform" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">DiscreteUniform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteUniform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discrete uniform distribution.
 The pmf of this distribution is</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid lower, upper) = \frac{1}{upper-lower+1}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-5.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-5.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-5.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-5.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-5.png" src="../../_images/discrete-5.png" />
+<img alt="../../_images/discrete-5.png" class="plot-directive" src="../../_images/discrete-5.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -556,8 +618,29 @@ The pmf of this distribution is</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.DiscreteUniform.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteUniform.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for Discrete uniform distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+values are desired the values must be provided in a numpy array or theano tensor.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.DiscreteUniform.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteUniform.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteUniform.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of DiscreteUniform distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -577,7 +660,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.DiscreteUniform.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteUniform.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteUniform.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from DiscreteUniform distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -602,7 +685,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.DiscreteWeibull">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">DiscreteWeibull</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteWeibull" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">DiscreteWeibull</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteWeibull" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discrete Weibull log-likelihood</p>
 <p>The discrete Weibull distribution is a flexible model of count data that
 can handle both over- and under-dispersion.
@@ -611,7 +694,7 @@ The pmf of this distribution is</p>
 \[f(x \mid q, \beta) = q^{x^{\beta}} - q^{(x + 1)^{\beta}}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-6.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-6.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-6.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-6.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-6.png" src="../../_images/discrete-6.png" />
+<img alt="../../_images/discrete-6.png" class="plot-directive" src="../../_images/discrete-6.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -631,8 +714,29 @@ The pmf of this distribution is</p>
 </tbody>
 </table>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.DiscreteWeibull.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteWeibull.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for Discrete Weibull distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+values are desired the values must be provided in a numpy array or theano tensor.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.DiscreteWeibull.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteWeibull.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteWeibull.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of DiscreteWeibull distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -652,7 +756,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.DiscreteWeibull.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteWeibull.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.DiscreteWeibull.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from DiscreteWeibull distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -677,7 +781,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.Geometric">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">Geometric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Geometric" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">Geometric</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Geometric" title="Permalink to this definition">¶</a></dt>
 <dd><p>Geometric log-likelihood.</p>
 <p>The probability that the first success in a sequence of Bernoulli
 trials occurs on the x’th trial.
@@ -686,7 +790,7 @@ The pmf of this distribution is</p>
 \[f(x \mid p) = p(1-p)^{x-1}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-7.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-7.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-7.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-7.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-7.png" src="../../_images/discrete-7.png" />
+<img alt="../../_images/discrete-7.png" class="plot-directive" src="../../_images/discrete-7.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -714,8 +818,29 @@ The pmf of this distribution is</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.Geometric.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Geometric.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for Geometric distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+values are desired the values must be provided in a numpy array or theano tensor.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.Geometric.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Geometric.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Geometric.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Geometric distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -735,7 +860,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.Geometric.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Geometric.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Geometric.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Geometric distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -760,7 +885,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.HyperGeometric">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">HyperGeometric</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.HyperGeometric" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">HyperGeometric</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.HyperGeometric" title="Permalink to this definition">¶</a></dt>
 <dd><p>Discrete hypergeometric distribution.</p>
 <p>The probability of <span class="math notranslate nohighlight">\(x\)</span> successes in a sequence of <span class="math notranslate nohighlight">\(n\)</span> bernoulli
 trials taken without replacement from a population of <span class="math notranslate nohighlight">\(N\)</span> objects,
@@ -770,7 +895,7 @@ The pmf of this distribution is</p>
 \[f(x \mid N, n, k) = \frac{\binom{k}{x}\binom{N-k}{n-x}}{\binom{N}{n}}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-8.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-8.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-8.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-8.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-8.png" src="../../_images/discrete-8.png" />
+<img alt="../../_images/discrete-8.png" class="plot-directive" src="../../_images/discrete-8.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -802,8 +927,28 @@ The pmf of this distribution is</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.HyperGeometric.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.HyperGeometric.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for HyperGeometric distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log CDF is calculated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.HyperGeometric.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.HyperGeometric.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.HyperGeometric.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of HyperGeometric distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -823,7 +968,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.HyperGeometric.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.HyperGeometric.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.HyperGeometric.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from HyperGeometric distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -848,7 +993,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.NegativeBinomial">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">NegativeBinomial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.NegativeBinomial" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">NegativeBinomial</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.NegativeBinomial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Negative binomial log-likelihood.</p>
 <p>The negative binomial distribution describes a Poisson random variable
 whose rate parameter is gamma distributed.
@@ -859,7 +1004,7 @@ The pmf of this distribution is</p>
     (\alpha/(\mu+\alpha))^\alpha (\mu/(\mu+\alpha))^x\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-9.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-9.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-9.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-9.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-9.png" src="../../_images/discrete-9.png" />
+<img alt="../../_images/discrete-9.png" class="plot-directive" src="../../_images/discrete-9.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -895,8 +1040,28 @@ and either in terms of alpha or n. The link between the parametrizations is give
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.NegativeBinomial.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.NegativeBinomial.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for NegativeBinomial distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log CDF is calculated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.NegativeBinomial.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.NegativeBinomial.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.NegativeBinomial.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of NegativeBinomial distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -916,7 +1081,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.NegativeBinomial.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.NegativeBinomial.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.NegativeBinomial.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from NegativeBinomial distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -941,7 +1106,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.OrderedLogistic">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">OrderedLogistic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.OrderedLogistic" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">OrderedLogistic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.OrderedLogistic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Ordered Logistic log-likelihood.</p>
 <p>Useful for regression on ordinal data values whose values range
 from 1 to K as a function of some predictor, <span class="math notranslate nohighlight">\(\eta\)</span>. The
@@ -1004,7 +1169,7 @@ ranges.  Do not explicitly set the first and last elements of
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.Poisson">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">Poisson</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Poisson" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">Poisson</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Poisson" title="Permalink to this definition">¶</a></dt>
 <dd><p>Poisson log-likelihood.</p>
 <p>Often used to model the number of events occurring in a fixed period
 of time when the times at which events occur are independent.
@@ -1013,7 +1178,7 @@ The pmf of this distribution is</p>
 \[f(x \mid \mu) = \frac{e^{-\mu}\mu^x}{x!}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-10.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-10.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-10.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-10.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-10.png" src="../../_images/discrete-10.png" />
+<img alt="../../_images/discrete-10.png" class="plot-directive" src="../../_images/discrete-10.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1045,8 +1210,29 @@ The pmf of this distribution is</p>
 <p>The Poisson distribution can be derived as a limiting case of the
 binomial distribution.</p>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.Poisson.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Poisson.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for Poisson distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+values are desired the values must be provided in a numpy array or theano tensor.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.Poisson.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Poisson.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Poisson.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Poisson distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1066,7 +1252,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.Poisson.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Poisson.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.Poisson.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Poisson distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1091,7 +1277,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.ZeroInflatedBinomial">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">ZeroInflatedBinomial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedBinomial" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">ZeroInflatedBinomial</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedBinomial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Zero-inflated Binomial log-likelihood.</p>
 <p>The pmf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -1101,7 +1287,7 @@ specified).</p>
     \end{array} \right.\end{split}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-11.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-11.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-11.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-11.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-111.png" src="../../_images/discrete-111.png" />
+<img alt="../../_images/discrete-11.png" class="plot-directive" src="../../_images/discrete-11.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1133,8 +1319,28 @@ specified).</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.ZeroInflatedBinomial.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedBinomial.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for ZeroInflatedBinomial distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log CDF is calculated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.ZeroInflatedBinomial.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedBinomial.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedBinomial.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of ZeroInflatedBinomial distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1154,7 +1360,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.ZeroInflatedBinomial.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedBinomial.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedBinomial.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from ZeroInflatedBinomial distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1179,7 +1385,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.ZeroInflatedNegativeBinomial">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">ZeroInflatedNegativeBinomial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedNegativeBinomial" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">ZeroInflatedNegativeBinomial</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedNegativeBinomial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Zero-Inflated Negative binomial log-likelihood.</p>
 <p>The Zero-inflated version of the Negative Binomial (NB).
 The NB distribution describes a Poisson random variable
@@ -1200,7 +1406,7 @@ The pmf of this distribution is</p>
 \right.\end{split}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-12.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-12.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-12.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-12.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-12.png" src="../../_images/discrete-12.png" />
+<img alt="../../_images/discrete-12.png" class="plot-directive" src="../../_images/discrete-12.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1232,8 +1438,28 @@ The pmf of this distribution is</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for ZeroInflatedNegativeBinomial distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value for which log CDF is calculated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of ZeroInflatedNegativeBinomial distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1253,7 +1479,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from ZeroInflatedNegativeBinomial distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1278,7 +1504,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.discrete.ZeroInflatedPoisson">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.discrete.</code><code class="sig-name descname">ZeroInflatedPoisson</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedPoisson" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.discrete.</span></code><code class="sig-name descname"><span class="pre">ZeroInflatedPoisson</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedPoisson" title="Permalink to this definition">¶</a></dt>
 <dd><p>Zero-inflated Poisson log-likelihood.</p>
 <p>Often used to model the number of events occurring in a fixed period
 of time when the times at which events occur are independent.
@@ -1290,7 +1516,7 @@ The pmf of this distribution is</p>
     \end{array} \right.\end{split}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/discrete-13.py">Source code</a>, <a class="reference external" href="../../api/distributions/discrete-13.png">png</a>, <a class="reference external" href="../../api/distributions/discrete-13.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/discrete-13.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/discrete-13.png" src="../../_images/discrete-13.png" />
+<img alt="../../_images/discrete-13.png" class="plot-directive" src="../../_images/discrete-13.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1321,8 +1547,29 @@ The pmf of this distribution is</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt id="pymc3.distributions.discrete.ZeroInflatedPoisson.logcdf">
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedPoisson.logcdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the log of the cumulative distribution function for ZeroInflatedPoisson distribution
+at the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+values are desired the values must be provided in a numpy array or theano tensor.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pymc3.distributions.discrete.ZeroInflatedPoisson.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedPoisson.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedPoisson.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of ZeroInflatedPoisson distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1342,7 +1589,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.discrete.ZeroInflatedPoisson.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedPoisson.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.discrete.ZeroInflatedPoisson.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from ZeroInflatedPoisson distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1394,7 +1641,7 @@ specified).</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ODE &#8212; PyMC3 3.10.0 documentation</title>
+    <title>ODE &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -78,7 +79,7 @@
 </table>
 <span class="target" id="module-pymc3.ode"></span><dl class="py class">
 <dt id="pymc3.ode.DifferentialEquation">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.ode.</code><code class="sig-name descname">DifferentialEquation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em>, <em class="sig-param"><span class="n">times</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">n_states</span></em>, <em class="sig-param"><span class="n">n_theta</span></em>, <em class="sig-param"><span class="n">t0</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.ode.</span></code><code class="sig-name descname"><span class="pre">DifferentialEquation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">times</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_states</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_theta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify an ordinary differential equation</p>
 <div class="math notranslate nohighlight">
 \[\dfrac{dy}{dt} = f(y,t,p) \quad y(t_0) = y_0\]</div>
@@ -111,7 +112,7 @@ For vector valued differential equations, n_states = number of differential equa
 </div>
 <dl class="py method">
 <dt id="pymc3.ode.DifferentialEquation.grad">
-<code class="sig-name descname">grad</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inputs</span></em>, <em class="sig-param"><span class="n">output_grads</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation.grad" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">grad</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_grads</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation.grad" title="Permalink to this definition">¶</a></dt>
 <dd><p>Construct a graph for the gradient with respect to each input variable.</p>
 <p>Each returned <cite>Variable</cite> represents the gradient with respect to that
 input computed based on the symbolic gradients with respect to each
@@ -138,15 +139,23 @@ input.</p>
 
 <dl class="py method">
 <dt id="pymc3.ode.DifferentialEquation.make_node">
-<code class="sig-name descname">make_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y0</span></em>, <em class="sig-param"><span class="n">theta</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation.make_node" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a “apply” nodes for the inputs in that order.</p>
+<code class="sig-name descname"><span class="pre">make_node</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">theta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation.make_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Construct an <cite>Apply</cite> node that represent the application of this operation to the given inputs.</p>
+<p>This must be implemented by sub-classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>node: Apply</dt><dd><p>The constructed <cite>Apply</cite> node.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.ode.DifferentialEquation.perform">
-<code class="sig-name descname">perform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">inputs_storage</span></em>, <em class="sig-param"><span class="n">output_storage</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation.perform" title="Permalink to this definition">¶</a></dt>
-<dd><p>Required: Calculate the function on the inputs and put the variables in
-the output storage. Return None.</p>
+<code class="sig-name descname"><span class="pre">perform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs_storage</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_storage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.ode.DifferentialEquation.perform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the function on the inputs and put the variables in the output storage.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -164,12 +173,6 @@ is to set the values of these sub-lists.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><dl class="simple">
-<dt>MethodNotDefined</dt><dd><p>The subclass does not override this method.</p>
-</dd>
-</dl>
-</dd>
 </dl>
 <p class="rubric">Notes</p>
 <p>The <cite>output_storage</cite> list might contain data. If an element of
@@ -178,9 +181,9 @@ instance, for a <cite>TensorVariable</cite>, it has to be a NumPy <cite>ndarray<
 with the right number of dimensions and the correct dtype.
 Its shape and stride pattern can be arbitrary. It is not
 guaranteed that such pre-set values were produced by a previous call to
-this <cite>PureOp.perform</cite>; they could’ve been allocated by another
-<cite>PureOp</cite>’s <cite>perform</cite> method.
-A <cite>PureOp</cite> is free to reuse <cite>output_storage</cite> as it sees fit, or to
+this <cite>Op.perform</cite>; they could’ve been allocated by another
+<cite>Op</cite>’s <cite>perform</cite> method.
+A <cite>Op</cite> is free to reuse <cite>output_storage</cite> as it sees fit, or to
 discard it and allocate new memory.</p>
 </dd></dl>
 
@@ -215,7 +218,7 @@ discard it and allocate new memory.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

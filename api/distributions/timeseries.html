@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Timeseries &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Timeseries &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -98,7 +99,7 @@
 </table>
 <span class="target" id="module-pymc3.distributions.timeseries"></span><dl class="py class">
 <dt id="pymc3.distributions.timeseries.AR">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.timeseries.</code><code class="sig-name descname">AR</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.AR" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.timeseries.</span></code><code class="sig-name descname"><span class="pre">AR</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.AR" title="Permalink to this definition">¶</a></dt>
 <dd><p>Autoregressive process with p lags.</p>
 <div class="math notranslate nohighlight">
 \[x_t = \rho_0 + \rho_1 x_{t-1} + \ldots + \rho_p x_{t-p} + \epsilon_t,
@@ -126,7 +127,7 @@ given by</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.timeseries.AR.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.AR.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.AR.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of AR distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -147,7 +148,7 @@ given by</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.timeseries.AR1">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.timeseries.</code><code class="sig-name descname">AR1</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.AR1" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.timeseries.</span></code><code class="sig-name descname"><span class="pre">AR1</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.AR1" title="Permalink to this definition">¶</a></dt>
 <dd><p>Autoregressive process with 1 lag.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -161,7 +162,7 @@ given by</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.timeseries.AR1.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.AR1.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.AR1.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of AR1 distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -182,7 +183,7 @@ given by</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.timeseries.EulerMaruyama">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.timeseries.</code><code class="sig-name descname">EulerMaruyama</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.EulerMaruyama" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.timeseries.</span></code><code class="sig-name descname"><span class="pre">EulerMaruyama</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.EulerMaruyama" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stochastic differential equation discretized with the Euler-Maruyama method.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -198,7 +199,7 @@ given by</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.timeseries.EulerMaruyama.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.EulerMaruyama.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.EulerMaruyama.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of EulerMaruyama distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -219,7 +220,7 @@ given by</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.timeseries.GARCH11">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.timeseries.</code><code class="sig-name descname">GARCH11</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GARCH11" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.timeseries.</span></code><code class="sig-name descname"><span class="pre">GARCH11</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GARCH11" title="Permalink to this definition">¶</a></dt>
 <dd><p>GARCH(1,1) with Normal innovations. The model is specified by</p>
 <div class="math notranslate nohighlight">
 \[y_t = \sigma_t * z_t\]</div>
@@ -242,7 +243,7 @@ given by</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.timeseries.GARCH11.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GARCH11.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GARCH11.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of GARCH(1, 1) distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -263,7 +264,7 @@ given by</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.timeseries.GaussianRandomWalk">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.timeseries.</code><code class="sig-name descname">GaussianRandomWalk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GaussianRandomWalk" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.timeseries.</span></code><code class="sig-name descname"><span class="pre">GaussianRandomWalk</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GaussianRandomWalk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Random Walk with Normal innovations</p>
 <p>Note that this is mainly a user-friendly wrapper to enable an easier specification
 of GRW. You are not restricted to use only Normal innovations but can use any
@@ -290,7 +291,7 @@ the first element will be discarded (since there is no innovation in the first t
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.timeseries.GaussianRandomWalk.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GaussianRandomWalk.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GaussianRandomWalk.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Gaussian Random Walk distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -309,7 +310,7 @@ the first element will be discarded (since there is no innovation in the first t
 
 <dl class="py method">
 <dt id="pymc3.distributions.timeseries.GaussianRandomWalk.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GaussianRandomWalk.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.GaussianRandomWalk.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from GaussianRandomWalk.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -334,7 +335,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.timeseries.MvGaussianRandomWalk">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.timeseries.</code><code class="sig-name descname">MvGaussianRandomWalk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.MvGaussianRandomWalk" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.timeseries.</span></code><code class="sig-name descname"><span class="pre">MvGaussianRandomWalk</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.MvGaussianRandomWalk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate Random Walk with Normal innovations</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -356,7 +357,7 @@ specified).</p>
 <p>Only one of cov, tau or chol is required.</p>
 <dl class="py method">
 <dt id="pymc3.distributions.timeseries.MvGaussianRandomWalk.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.MvGaussianRandomWalk.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.MvGaussianRandomWalk.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Multivariate Gaussian
 Random Walk distribution at specified value.</p>
 <dl class="field-list simple">
@@ -374,11 +375,37 @@ Random Walk distribution at specified value.</p>
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="pymc3.distributions.timeseries.MvGaussianRandomWalk.random">
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.MvGaussianRandomWalk.random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw random values from MvGaussianRandomWalk.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
+conditioned (uses default point if not specified).</p>
+</dd>
+<dt><strong>size: int or tuple of ints, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
+specified).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>array</dt><dd></dd>
+<dt>Examples</dt><dd></dd>
+</dl>
+<blockquote>
+<div></div></blockquote>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt id="pymc3.distributions.timeseries.MvStudentTRandomWalk">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.timeseries.</code><code class="sig-name descname">MvStudentTRandomWalk</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.MvStudentTRandomWalk" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.timeseries.</span></code><code class="sig-name descname"><span class="pre">MvStudentTRandomWalk</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.timeseries.MvStudentTRandomWalk" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate Random Walk with StudentT innovations</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -428,7 +455,7 @@ Random Walk distribution at specified value.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

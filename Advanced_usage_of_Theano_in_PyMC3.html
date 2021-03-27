@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Advanced usage of Theano in PyMC3 &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Advanced usage of Theano in PyMC3 &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/default.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -201,7 +202,7 @@ values of <span class="math notranslate nohighlight">\(\mu\theta\)</span> we ins
     <span class="k">return</span> <span class="n">optimize</span><span class="o">.</span><span class="n">newton</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fprime</span><span class="o">=</span><span class="n">jac</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">theta</span><span class="p">,))</span>
 </pre></div>
 </div>
-<p>We could wrap <cite>mu_from_theta</cite> with <cite>tt.as_op</cite> and use gradient-free
+<p>We could wrap <cite>mu_from_theta</cite> with <cite>theano.compile.ops.as_op</cite> and use gradient-free
 methods like Metropolis, but to get NUTS and ADVI working, we also
 need to define the derivative of <cite>mu_from_theta</cite>. We can find this
 derivative using the implicit function theorem, or equivalently we
@@ -225,8 +226,9 @@ sympy:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">theano</span>
 <span class="kn">import</span> <span class="nn">theano.tensor</span> <span class="k">as</span> <span class="nn">tt</span>
 <span class="kn">import</span> <span class="nn">theano.tests.unittest_tools</span>
+<span class="kn">from</span> <span class="nn">theano.graph.op</span> <span class="kn">import</span> <span class="n">Op</span>
 
-<span class="k">class</span> <span class="nc">MuFromTheta</span><span class="p">(</span><span class="n">tt</span><span class="o">.</span><span class="n">Op</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">MuFromTheta</span><span class="p">(</span><span class="n">Op</span><span class="p">):</span>
     <span class="n">itypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">tt</span><span class="o">.</span><span class="n">dscalar</span><span class="p">]</span>
     <span class="n">otypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">tt</span><span class="o">.</span><span class="n">dscalar</span><span class="p">]</span>
 
@@ -292,7 +294,7 @@ sympy:</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

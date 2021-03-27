@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Data &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -69,7 +70,7 @@
 <span id="data"></span><h1>Data<a class="headerlink" href="#module-pymc3.data" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="pymc3.data.Data">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">Data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">dims</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">export_index_as_coords</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Data" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.data.</span></code><code class="sig-name descname"><span class="pre">Data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_index_as_coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Data container class that wraps the theano <code class="docutils literal notranslate"><span class="pre">SharedVariable</span></code> class
 and lets the model be aware of its inputs and outputs.</p>
 <dl class="field-list simple">
@@ -122,14 +123,14 @@ if there is an index in <cite>value</cite>.</p>
 
 <dl class="py class">
 <dt id="pymc3.data.GeneratorAdapter">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">GeneratorAdapter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">generator</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.GeneratorAdapter" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.data.</span></code><code class="sig-name descname"><span class="pre">GeneratorAdapter</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generator</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.GeneratorAdapter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper class that helps to infer data type of generator with looking
 at the first item, preserving the order of the resulting generator</p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="pymc3.data.Minibatch">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">Minibatch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">batch_size</span><span class="o">=</span><span class="default_value">128</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">broadcastable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'Minibatch'</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">42</span></em>, <em class="sig-param"><span class="n">update_shared_f</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">in_memory_size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Minibatch" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.data.</span></code><code class="sig-name descname"><span class="pre">Minibatch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">128</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcastable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Minibatch'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">42</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_shared_f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_memory_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Minibatch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multidimensional minibatch that is pure TensorVariable</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -309,7 +310,7 @@ is then <code class="docutils literal notranslate"><span class="pre">(10,</span>
 </dl>
 <dl class="py method">
 <dt id="pymc3.data.Minibatch.clone">
-<code class="sig-name descname">clone</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Minibatch.clone" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">clone</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.Minibatch.clone" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a new Variable like self.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -329,7 +330,7 @@ index.</p>
 
 <dl class="py function">
 <dt id="pymc3.data.get_data">
-<code class="sig-prename descclassname">pymc3.data.</code><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.get_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.data.</span></code><code class="sig-name descname"><span class="pre">get_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.data.get_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a BytesIO object for a package data file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -375,7 +376,7 @@ index.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

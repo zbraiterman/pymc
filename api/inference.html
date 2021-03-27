@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inference &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Inference &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -72,7 +73,7 @@
 <p>Functions for MCMC sampling.</p>
 <dl class="py function">
 <dt id="pymc3.sampling.fast_sample_posterior_predictive">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">fast_sample_posterior_predictive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trace</span><span class="p">:</span> <span class="n">Union<span class="p">[</span><a class="reference internal" href="#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace">pymc3.backends.base.MultiTrace</a><span class="p">, </span>xarray.core.dataset.Dataset<span class="p">, </span>arviz.data.inference_data.InferenceData<span class="p">, </span>List<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>numpy.ndarray<span class="p">]</span><span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">samples</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">var_names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_size</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>str<span class="p">, </span>numpy.ndarray<span class="p">]</span><a class="headerlink" href="#pymc3.sampling.fast_sample_posterior_predictive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.sampling.</span></code><code class="sig-name descname"><span class="pre">fast_sample_posterior_predictive</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trace</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">MultiTrace</span> <span class="p"><span class="pre">|</span></span> <span class="pre">Dataset</span> <span class="p"><span class="pre">|</span></span> <span class="pre">InferenceData</span> <span class="p"><span class="pre">|</span></span> <span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">np.ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span> <span class="p"><span class="pre">|</span></span> <span class="pre">None</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Model</span> <span class="p"><span class="pre">|</span></span> <span class="pre">None</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span> <span class="p"><span class="pre">|</span></span> <span class="pre">None</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">np.ndarray</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pymc3.sampling.fast_sample_posterior_predictive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate posterior predictive samples from a model given a trace.</p>
 <p>This is a vectorized alternative to the standard <code class="docutils literal notranslate"><span class="pre">sample_posterior_predictive</span></code> function.
 It aims to be as compatible as possible with the original API, and is significantly
@@ -112,7 +113,7 @@ posterior predictive samples.</p>
 
 <dl class="py function">
 <dt id="pymc3.sampling.init_nuts">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">init_nuts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">init</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">chains</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">n_init</span><span class="o">=</span><span class="default_value">500000</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">progressbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">jitter_max_retries</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.init_nuts" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.sampling.</span></code><code class="sig-name descname"><span class="pre">init_nuts</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter_max_retries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.init_nuts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up the mass matrix initialization for NUTS.</p>
 <p>NUTS convergence and sampling speed is extremely dependent on the
 choice of mass/scaling matrix. This function implements different
@@ -172,7 +173,7 @@ init methods.</p>
 
 <dl class="py function">
 <dt id="pymc3.sampling.iter_sample">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">iter_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">draws</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">step</span></em>, <em class="sig-param"><span class="n">start</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Dict<span class="p">[</span>Any<span class="p">, </span>Any<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">trace</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">chain</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">tune</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>int<span class="p">, </span>List<span class="p">[</span>int<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.iter_sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.sampling.</span></code><code class="sig-name descname"><span class="pre">iter_sample</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">draws</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tune</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model"><span class="pre">pymc3.model.Model</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.iter_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a trace on each iteration using the given step method.</p>
 <p>Multiple step methods ared supported via compound step methods.  Returns the
 amount of time taken.</p>
@@ -222,7 +223,7 @@ Sampling can be interrupted by throwing a <code class="docutils literal notransl
 
 <dl class="py function">
 <dt id="pymc3.sampling.sample">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">draws</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">step</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">init</span><span class="o">=</span><span class="default_value">'auto'</span></em>, <em class="sig-param"><span class="n">n_init</span><span class="o">=</span><span class="default_value">200000</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">trace</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">chain_idx</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">chains</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cores</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tune</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">progressbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">discard_tuned_samples</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">compute_convergence_checks</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">jitter_max_retries</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">return_inferencedata</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">idata_kwargs</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>dict<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mp_ctx</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pickle_backend</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'pickle'</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.sampling.</span></code><code class="sig-name descname"><span class="pre">sample</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">draws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">200000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cores</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tune</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">discard_tuned_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_convergence_checks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jitter_max_retries</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_inferencedata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idata_kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mp_ctx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pickle_backend</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'pickle'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw samples from the posterior using the given step methods.</p>
 <p>Multiple step methods are supported via compound step methods.</p>
 <dl class="field-list">
@@ -383,7 +384,7 @@ you could send</p>
 <span class="gp">   ...: </span>    <span class="n">y</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Binomial</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="n">h</span><span class="p">)</span>
 <span class="gp">   ...: </span>    <span class="n">trace</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">sample</span><span class="p">()</span>
 
-<span class="gp">In [3]: </span><span class="n">pm</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;stats&quot;</span><span class="p">)</span>
+<span class="gp">In [3]: </span><span class="n">az</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;stats&quot;</span><span class="p">)</span>
 
 <span class="gh">Out[3]:</span>
 <span class="go">    mean     sd  hdi_3%  hdi_97%</span>
@@ -394,7 +395,7 @@ you could send</p>
 
 <dl class="py function">
 <dt id="pymc3.sampling.sample_posterior_predictive">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample_posterior_predictive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trace</span></em>, <em class="sig-param"><span class="n">samples</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">var_names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">keep_size</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>bool<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">progressbar</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>str<span class="p">, </span>numpy.ndarray<span class="p">]</span><a class="headerlink" href="#pymc3.sampling.sample_posterior_predictive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.sampling.</span></code><code class="sig-name descname"><span class="pre">sample_posterior_predictive</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model"><span class="pre">pymc3.model.Model</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressbar</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pymc3.sampling.sample_posterior_predictive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate posterior predictive samples from a model given a trace.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -441,7 +442,7 @@ posterior predictive samples.</p>
 
 <dl class="py function">
 <dt id="pymc3.sampling.sample_posterior_predictive_w">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample_posterior_predictive_w</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">traces</span></em>, <em class="sig-param"><span class="n">samples</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">models</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>List<span class="p">[</span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">weights</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>numpy.ndarray<span class="p">, </span>List<span class="p">[</span>float<span class="p">]</span><span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>int<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">progressbar</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample_posterior_predictive_w" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.sampling.</span></code><code class="sig-name descname"><span class="pre">sample_posterior_predictive_w</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">traces</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model"><span class="pre">pymc3.model.Model</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressbar</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.sample_posterior_predictive_w" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate weighted posterior predictive samples from a list of models and
 a list of traces according to a set of weights.</p>
 <dl class="field-list simple">
@@ -481,7 +482,7 @@ posterior predictive samples from the weighted models.</p>
 
 <dl class="py function">
 <dt id="pymc3.sampling.sample_prior_predictive">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">sample_prior_predictive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span><span class="o">=</span><span class="default_value">500</span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">var_names</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Iterable<span class="p">[</span>str<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>str<span class="p">, </span>numpy.ndarray<span class="p">]</span><a class="headerlink" href="#pymc3.sampling.sample_prior_predictive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.sampling.</span></code><code class="sig-name descname"><span class="pre">sample_prior_predictive</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model"><span class="pre">pymc3.model.Model</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var_names</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pymc3.sampling.sample_prior_predictive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate samples from the prior predictive distribution.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -510,7 +511,7 @@ samples.</p>
 <h3>Step-methods<a class="headerlink" href="#step-methods" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="pymc3.sampling.assign_step_methods">
-<code class="sig-prename descclassname">pymc3.sampling.</code><code class="sig-name descname">assign_step_methods</code><span class="sig-paren">(</span><em class="sig-param">model</em>, <em class="sig-param">step=None</em>, <em class="sig-param">methods=(&lt;class 'pymc3.step_methods.hmc.nuts.NUTS'&gt;</em>, <em class="sig-param">&lt;class 'pymc3.step_methods.hmc.hmc.HamiltonianMC'&gt;</em>, <em class="sig-param">&lt;class 'pymc3.step_methods.metropolis.Metropolis'&gt;</em>, <em class="sig-param">&lt;class 'pymc3.step_methods.metropolis.BinaryMetropolis'&gt;</em>, <em class="sig-param">&lt;class 'pymc3.step_methods.metropolis.BinaryGibbsMetropolis'&gt;</em>, <em class="sig-param">&lt;class 'pymc3.step_methods.slicer.Slice'&gt;</em>, <em class="sig-param">&lt;class 'pymc3.step_methods.metropolis.CategoricalGibbsMetropolis'&gt;</em>, <em class="sig-param">&lt;class 'pymc3.step_methods.pgbart.PGBART'&gt;)</em>, <em class="sig-param">step_kwargs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.assign_step_methods" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.sampling.</span></code><code class="sig-name descname"><span class="pre">assign_step_methods</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">model</span></em>, <em class="sig-param"><span class="pre">step=None</span></em>, <em class="sig-param"><span class="pre">methods=(&lt;class</span> <span class="pre">'pymc3.step_methods.hmc.nuts.NUTS'&gt;</span></em>, <em class="sig-param"><span class="pre">&lt;class</span> <span class="pre">'pymc3.step_methods.hmc.hmc.HamiltonianMC'&gt;</span></em>, <em class="sig-param"><span class="pre">&lt;class</span> <span class="pre">'pymc3.step_methods.metropolis.Metropolis'&gt;</span></em>, <em class="sig-param"><span class="pre">&lt;class</span> <span class="pre">'pymc3.step_methods.metropolis.BinaryMetropolis'&gt;</span></em>, <em class="sig-param"><span class="pre">&lt;class</span> <span class="pre">'pymc3.step_methods.metropolis.BinaryGibbsMetropolis'&gt;</span></em>, <em class="sig-param"><span class="pre">&lt;class</span> <span class="pre">'pymc3.step_methods.slicer.Slice'&gt;</span></em>, <em class="sig-param"><span class="pre">&lt;class</span> <span class="pre">'pymc3.step_methods.metropolis.CategoricalGibbsMetropolis'&gt;</span></em>, <em class="sig-param"><span class="pre">&lt;class</span> <span class="pre">'pymc3.step_methods.pgbart.PGBART'&gt;)</span></em>, <em class="sig-param"><span class="pre">step_kwargs=None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.sampling.assign_step_methods" title="Permalink to this definition">¶</a></dt>
 <dd><p>Assign model variables to appropriate step methods.</p>
 <p>Passing a specified model will auto-assign its constituent stochastic
 variables to step methods based on the characteristics of the variables.
@@ -548,7 +549,7 @@ the step method, values a dict of arguments.</p>
 <span id="nuts"></span><h4>NUTS<a class="headerlink" href="#module-pymc3.step_methods.hmc.nuts" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt id="pymc3.step_methods.hmc.nuts.NUTS">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.hmc.nuts.</code><code class="sig-name descname">NUTS</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.nuts.NUTS" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.hmc.nuts.</span></code><code class="sig-name descname"><span class="pre">NUTS</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.nuts.NUTS" title="Permalink to this definition">¶</a></dt>
 <dd><p>A sampler for continuous variables based on Hamiltonian mechanics.</p>
 <p>NUTS automatically tunes the step size and the number of steps per
 sample. A detailed description can be found at [1], “Algorithm 6:
@@ -662,7 +663,7 @@ This is usually achieved by setting the <cite>tune</cite> parameter if
 <cite>pm.sample</cite> to the desired number of tuning steps.</p>
 <dl class="py method">
 <dt id="pymc3.step_methods.hmc.nuts.NUTS.competence">
-<em class="property">static </em><code class="sig-name descname">competence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var</span></em>, <em class="sig-param"><span class="n">has_grad</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.nuts.NUTS.competence" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">competence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_grad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.nuts.NUTS.competence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check how appropriate this class is for sampling a random variable.</p>
 </dd></dl>
 
@@ -673,7 +674,7 @@ This is usually achieved by setting the <cite>tune</cite> parameter if
 <span id="metropolis"></span><h4>Metropolis<a class="headerlink" href="#module-pymc3.step_methods.metropolis" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt id="pymc3.step_methods.metropolis.BinaryGibbsMetropolis">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">BinaryGibbsMetropolis</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.BinaryGibbsMetropolis" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.metropolis.</span></code><code class="sig-name descname"><span class="pre">BinaryGibbsMetropolis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.BinaryGibbsMetropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>A Metropolis-within-Gibbs step method optimized for binary variables</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -684,7 +685,7 @@ This is usually achieved by setting the <cite>tune</cite> parameter if
 e.g., [0, 2, 1, …]. Default is random</p>
 </dd>
 <dt><strong>transit_p: float</strong></dt><dd><p>The diagonal of the transition kernel. A value &gt; .5 gives anticorrelated proposals,
-which resulting in more efficient antithetical sampling.</p>
+which resulting in more efficient antithetical sampling. Default is 0.8</p>
 </dd>
 <dt><strong>model: PyMC Model</strong></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
 </dd>
@@ -693,7 +694,7 @@ which resulting in more efficient antithetical sampling.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.step_methods.metropolis.BinaryGibbsMetropolis.competence">
-<em class="property">static </em><code class="sig-name descname">competence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.BinaryGibbsMetropolis.competence" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">competence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.BinaryGibbsMetropolis.competence" title="Permalink to this definition">¶</a></dt>
 <dd><p>BinaryMetropolis is only suitable for Bernoulli
 and Categorical variables with k=2.</p>
 </dd></dl>
@@ -702,7 +703,7 @@ and Categorical variables with k=2.</p>
 
 <dl class="py class">
 <dt id="pymc3.step_methods.metropolis.BinaryMetropolis">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">BinaryMetropolis</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.BinaryMetropolis" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.metropolis.</span></code><code class="sig-name descname"><span class="pre">BinaryMetropolis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.BinaryMetropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metropolis-Hastings optimized for binary variables</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -722,7 +723,7 @@ and Categorical variables with k=2.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.step_methods.metropolis.BinaryMetropolis.competence">
-<em class="property">static </em><code class="sig-name descname">competence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.BinaryMetropolis.competence" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">competence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.BinaryMetropolis.competence" title="Permalink to this definition">¶</a></dt>
 <dd><p>BinaryMetropolis is only suitable for binary (bool)
 and Categorical variables with k=1.</p>
 </dd></dl>
@@ -731,7 +732,7 @@ and Categorical variables with k=1.</p>
 
 <dl class="py class">
 <dt id="pymc3.step_methods.metropolis.CategoricalGibbsMetropolis">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">CategoricalGibbsMetropolis</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.CategoricalGibbsMetropolis" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.metropolis.</span></code><code class="sig-name descname"><span class="pre">CategoricalGibbsMetropolis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.CategoricalGibbsMetropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>A Metropolis-within-Gibbs step method optimized for categorical variables.
 This step method works for Bernoulli variables as well, but it is not
 optimized for them, like BinaryGibbsMetropolis is. Step method supports
@@ -740,7 +741,7 @@ which was introduced by Liu in his 1996 technical report
 “Metropolized Gibbs Sampler: An Improvement”.</p>
 <dl class="py method">
 <dt id="pymc3.step_methods.metropolis.CategoricalGibbsMetropolis.competence">
-<em class="property">static </em><code class="sig-name descname">competence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.CategoricalGibbsMetropolis.competence" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">competence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.CategoricalGibbsMetropolis.competence" title="Permalink to this definition">¶</a></dt>
 <dd><p>CategoricalGibbsMetropolis is only suitable for Bernoulli and
 Categorical variables.</p>
 </dd></dl>
@@ -749,7 +750,7 @@ Categorical variables.</p>
 
 <dl class="py class">
 <dt id="pymc3.step_methods.metropolis.DEMetropolis">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">DEMetropolis</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolis" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.metropolis.</span></code><code class="sig-name descname"><span class="pre">DEMetropolis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Differential Evolution Metropolis sampling step.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -799,7 +800,7 @@ Statistics and Computing
 
 <dl class="py class">
 <dt id="pymc3.step_methods.metropolis.DEMetropolisZ">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">DEMetropolisZ</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.metropolis.</span></code><code class="sig-name descname"><span class="pre">DEMetropolisZ</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adaptive Differential Evolution Metropolis sampling step that uses the past to inform jumps.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -850,13 +851,13 @@ Statistics and Computing
 </dl>
 <dl class="py method">
 <dt id="pymc3.step_methods.metropolis.DEMetropolisZ.reset_tuning">
-<code class="sig-name descname">reset_tuning</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ.reset_tuning" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reset_tuning</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ.reset_tuning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the tuned sampler parameters and history to their initial values.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.step_methods.metropolis.DEMetropolisZ.stop_tuning">
-<code class="sig-name descname">stop_tuning</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ.stop_tuning" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">stop_tuning</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.DEMetropolisZ.stop_tuning" title="Permalink to this definition">¶</a></dt>
 <dd><p>At the end of the tuning phase, this method removes the first x% of the history
 so future proposals are not informed by unconverged tuning iterations.</p>
 </dd></dl>
@@ -865,8 +866,9 @@ so future proposals are not informed by unconverged tuning iterations.</p>
 
 <dl class="py class">
 <dt id="pymc3.step_methods.metropolis.Metropolis">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.metropolis.</code><code class="sig-name descname">Metropolis</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.Metropolis" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.metropolis.</span></code><code class="sig-name descname"><span class="pre">Metropolis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.Metropolis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Metropolis-Hastings sampling step</p>
+<p>Create an instance of a Metropolis stepper</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -885,23 +887,14 @@ S (and n). Defaults to normal.</p>
 </dd>
 <dt><strong>model: PyMC Model</strong></dt><dd><p>Optional model for sampling step. Defaults to None (taken from context).</p>
 </dd>
-<dt><strong>mode:  string or `Mode` instance.</strong></dt><dd><p>compilation mode passed to Theano functions</p>
+<dt><strong>mode: string or `Mode` instance.</strong></dt><dd><p>compilation mode passed to Theano functions</p>
 </dd>
-</dl>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>vars: list of sampling variables</strong></dt><dd></dd>
-<dt><strong>shared: dict of theano variable -&gt; shared variable</strong></dt><dd></dd>
-<dt><strong>blocked: Boolean (default True)</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="pymc3.step_methods.metropolis.Metropolis.reset_tuning">
-<code class="sig-name descname">reset_tuning</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.Metropolis.reset_tuning" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reset_tuning</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.metropolis.Metropolis.reset_tuning" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resets the tuned sampler parameters to their initial values.</p>
 </dd></dl>
 
@@ -912,7 +905,7 @@ S (and n). Defaults to normal.</p>
 <span id="slice"></span><h4>Slice<a class="headerlink" href="#module-pymc3.step_methods.slicer" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt id="pymc3.step_methods.slicer.Slice">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.slicer.</code><code class="sig-name descname">Slice</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.slicer.Slice" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.slicer.</span></code><code class="sig-name descname"><span class="pre">Slice</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.slicer.Slice" title="Permalink to this definition">¶</a></dt>
 <dd><p>Univariate slice sampler step method</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -935,7 +928,7 @@ S (and n). Defaults to normal.</p>
 <h4>Hamiltonian Monte Carlo<a class="headerlink" href="#hamiltonian-monte-carlo" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt id="pymc3.step_methods.hmc.hmc.HamiltonianMC">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.step_methods.hmc.hmc.</code><code class="sig-name descname">HamiltonianMC</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.hmc.HamiltonianMC" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.step_methods.hmc.hmc.</span></code><code class="sig-name descname"><span class="pre">HamiltonianMC</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.hmc.HamiltonianMC" title="Permalink to this definition">¶</a></dt>
 <dd><p>A sampler for continuous variables based on Hamiltonian mechanics.</p>
 <p>See NUTS sampler for automatically tuned stopping time and step size scaling.</p>
 <p>Set up the Hamiltonian Monte Carlo sampler.</p>
@@ -992,7 +985,7 @@ disabled, <cite>k</cite>, <cite>t0</cite>, <cite>gamma</cite> and <cite>target_a
 </dl>
 <dl class="py method">
 <dt id="pymc3.step_methods.hmc.hmc.HamiltonianMC.competence">
-<em class="property">static </em><code class="sig-name descname">competence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var</span></em>, <em class="sig-param"><span class="n">has_grad</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.hmc.HamiltonianMC.competence" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">competence</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_grad</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.step_methods.hmc.hmc.HamiltonianMC.competence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check how appropriate this class is for sampling a random variable.</p>
 </dd></dl>
 
@@ -1003,59 +996,59 @@ disabled, <cite>k</cite>, <cite>t0</cite>, <cite>gamma</cite> and <cite>target_a
 <h4>Sequential Monte Carlo<a class="headerlink" href="#sequential-monte-carlo" title="Permalink to this headline">¶</a></h4>
 <dl class="py class">
 <dt id="pymc3.smc.smc.SMC">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.smc.smc.</code><code class="sig-name descname">SMC</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">draws</span><span class="o">=</span><span class="default_value">2000</span></em>, <em class="sig-param"><span class="n">kernel</span><span class="o">=</span><span class="default_value">'metropolis'</span></em>, <em class="sig-param"><span class="n">n_steps</span><span class="o">=</span><span class="default_value">25</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tune_steps</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">p_acc_rate</span><span class="o">=</span><span class="default_value">0.85</span></em>, <em class="sig-param"><span class="n">threshold</span><span class="o">=</span><span class="default_value">0.5</span></em>, <em class="sig-param"><span class="n">save_sim_data</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">save_log_pseudolikelihood</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">- 1</span></em>, <em class="sig-param"><span class="n">chain</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.smc.smc.</span></code><code class="sig-name descname"><span class="pre">SMC</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">draws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'metropolis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tune_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_acc_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.85</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_sim_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_log_pseudolikelihood</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sequential Monte Carlo with Independent Metropolis-Hastings and ABC kernels.</p>
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.initialize_logp">
-<code class="sig-name descname">initialize_logp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.initialize_logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">initialize_logp</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.initialize_logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the prior and likelihood log probabilities.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.initialize_population">
-<code class="sig-name descname">initialize_population</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.initialize_population" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">initialize_population</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.initialize_population" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an initial population from the prior distribution.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.mutate">
-<code class="sig-name descname">mutate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.mutate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">mutate</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.mutate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Independent Metropolis-Hastings perturbation.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.posterior_to_trace">
-<code class="sig-name descname">posterior_to_trace</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.posterior_to_trace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">posterior_to_trace</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.posterior_to_trace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save results into a PyMC3 trace.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.resample">
-<code class="sig-name descname">resample</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.resample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">resample</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.resample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Resample particles based on importance weights.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.setup_kernel">
-<code class="sig-name descname">setup_kernel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.setup_kernel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">setup_kernel</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.setup_kernel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up the likelihood logp function based on the chosen kernel.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.tune">
-<code class="sig-name descname">tune</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.tune" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">tune</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.tune" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tune n_steps based on the acceptance rate.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.update_proposal">
-<code class="sig-name descname">update_proposal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.update_proposal" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">update_proposal</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.update_proposal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Update proposal based on the covariance matrix from tempered posterior.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.smc.smc.SMC.update_weights_beta">
-<code class="sig-name descname">update_weights_beta</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.update_weights_beta" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">update_weights_beta</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.smc.smc.SMC.update_weights_beta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the next inverse temperature (beta).</p>
 <p>The importance weights based on current beta and tempered likelihood and updates the
 marginal likelihood estimate.</p>
@@ -1069,7 +1062,7 @@ marginal likelihood estimate.</p>
 <h3>MultiTrace<a class="headerlink" href="#multitrace" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="pymc3.backends.base.MultiTrace">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.backends.base.</code><code class="sig-name descname">MultiTrace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">straces</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.backends.base.</span></code><code class="sig-name descname"><span class="pre">MultiTrace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">straces</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Main interface for accessing values from MCMC results.</p>
 <p>The core method to select values is <cite>get_values</cite>. The method
 to select sampler statistics is <cite>get_sampler_stats</cite>. Both kinds of
@@ -1121,7 +1114,7 @@ trace with the highest chain number is always used.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.backends.base.MultiTrace.add_values">
-<code class="sig-name descname">add_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vals</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pymc3.backends.base.MultiTrace.add_values" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_values</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vals</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.add_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add variables to traces.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1146,7 +1139,7 @@ Change to <cite>True</cite> to overwrite the values of variables</p>
 
 <dl class="py method">
 <dt id="pymc3.backends.base.MultiTrace.get_sampler_stats">
-<code class="sig-name descname">get_sampler_stats</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stat_name</span></em>, <em class="sig-param"><span class="n">burn</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">thin</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">combine</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">chains</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">squeeze</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.get_sampler_stats" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_sampler_stats</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stat_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.get_sampler_stats" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get sampler statistics from the trace.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1171,7 +1164,7 @@ Change to <cite>True</cite> to overwrite the values of variables</p>
 
 <dl class="py method">
 <dt id="pymc3.backends.base.MultiTrace.get_values">
-<code class="sig-name descname">get_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">varname</span></em>, <em class="sig-param"><span class="n">burn</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">thin</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">combine</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">chains</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">squeeze</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.get_values" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_values</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">combine</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">squeeze</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.get_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get values from traces.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1201,7 +1194,7 @@ always be a list of arrays, even if <cite>combine</cite> is True.</p>
 
 <dl class="py method">
 <dt id="pymc3.backends.base.MultiTrace.point">
-<code class="sig-name descname">point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span></em>, <em class="sig-param"><span class="n">chain</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">point</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return a dictionary of point values at <cite>idx</cite>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1216,7 +1209,7 @@ always be a list of arrays, even if <cite>combine</cite> is True.</p>
 
 <dl class="py method">
 <dt id="pymc3.backends.base.MultiTrace.points">
-<code class="sig-name descname">points</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chains</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.points" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">points</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.points" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return an iterator over all or some of the sample points</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1231,7 +1224,7 @@ chains is not given, include points from all chains.</p>
 
 <dl class="py method">
 <dt id="pymc3.backends.base.MultiTrace.remove_values">
-<code class="sig-name descname">remove_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.remove_values" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">remove_values</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.MultiTrace.remove_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>remove variables from traces.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1247,7 +1240,7 @@ chains is not given, include points from all chains.</p>
 
 <dl class="py class">
 <dt id="pymc3.backends.base.BaseTrace">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.backends.base.</code><code class="sig-name descname">BaseTrace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">test_point</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.BaseTrace" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.backends.base.</span></code><code class="sig-name descname"><span class="pre">BaseTrace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.base.BaseTrace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Base trace object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1301,7 +1294,7 @@ Operator Variational Inference
 </ul>
 <dl class="py class">
 <dt id="pymc3.variational.opvi.Approximation">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.opvi.</code><code class="sig-name descname">Approximation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">groups</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.opvi.</span></code><code class="sig-name descname"><span class="pre">Approximation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">groups</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Wrapper for grouped approximations</strong></p>
 <p>Wraps list of groups, creates an Approximation instance that collects
 sampled variables from all the groups, also collects logQ needed for
@@ -1335,50 +1328,50 @@ explicit Variational Inference.</p>
 to their local Group parameters dict</p>
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.datalogp">
-<em class="property">property </em><code class="sig-name descname">datalogp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.datalogp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">datalogp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.datalogp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - computes <span class="math notranslate nohighlight">\(E_{q}(data term)\)</span> from model via <cite>theano.scan</cite> that can be optimized later</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.datalogp_norm">
-<em class="property">property </em><code class="sig-name descname">datalogp_norm</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.datalogp_norm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">datalogp_norm</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.datalogp_norm" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - normalized <span class="math notranslate nohighlight">\(E_{q}(data term)\)</span></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.get_optimization_replacements">
-<code class="sig-name descname">get_optimization_replacements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em>, <em class="sig-param"><span class="n">d</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.get_optimization_replacements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_optimization_replacements</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.get_optimization_replacements" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - optimizations for logP. If sample size is static and equal to 1:
 then <cite>theano.scan</cite> MC estimate is replaced with single sample without call to <cite>theano.scan</cite>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.logp">
-<em class="property">property </em><code class="sig-name descname">logp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.logp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - computes <span class="math notranslate nohighlight">\(E_{q}(logP)\)</span> from model via <cite>theano.scan</cite> that can be optimized later</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.logp_norm">
-<em class="property">property </em><code class="sig-name descname">logp_norm</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.logp_norm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logp_norm</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.logp_norm" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - normalized <span class="math notranslate nohighlight">\(E_{q}(logP)\)</span></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.logq">
-<em class="property">property </em><code class="sig-name descname">logq</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.logq" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logq</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.logq" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - collects <cite>logQ</cite> for all groups</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.logq_norm">
-<em class="property">property </em><code class="sig-name descname">logq_norm</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.logq_norm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logq_norm</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.logq_norm" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - collects <cite>logQ</cite> for all groups and normalizes it</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.make_size_and_deterministic_replacements">
-<code class="sig-name descname">make_size_and_deterministic_replacements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em>, <em class="sig-param"><span class="n">d</span></em>, <em class="sig-param"><span class="n">more_replacements</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.make_size_and_deterministic_replacements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">make_size_and_deterministic_replacements</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">more_replacements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.make_size_and_deterministic_replacements" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - creates correct replacements for initial depending on
 sample size and deterministic flag</p>
 <dl class="field-list simple">
@@ -1402,20 +1395,20 @@ sample size and deterministic flag</p>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.replacements">
-<em class="property">property </em><code class="sig-name descname">replacements</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.replacements" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">replacements</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.replacements" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - all replacements from groups to replace PyMC random variables with approximation</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.rslice">
-<code class="sig-name descname">rslice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.rslice" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">rslice</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.rslice" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - vectorized sampling for named random variable without call to <cite>theano.scan</cite>.
 This node still needs <a class="reference internal" href="#pymc3.variational.opvi.Approximation.set_size_and_deterministic" title="pymc3.variational.opvi.Approximation.set_size_and_deterministic"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_size_and_deterministic()</span></code></a> to be evaluated</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.sample">
-<code class="sig-name descname">sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">draws</span><span class="o">=</span><span class="default_value">500</span></em>, <em class="sig-param"><span class="n">include_transformed</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">sample</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">draws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_transformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw samples from variational posterior.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1437,7 +1430,7 @@ This node still needs <a class="reference internal" href="#pymc3.variational.opv
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.sample_node">
-<code class="sig-name descname">sample_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">deterministic</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">more_replacements</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sample_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">sample_node</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deterministic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">more_replacements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sample_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>Samples given node or nodes over shared posterior</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1462,13 +1455,13 @@ if True - zero initial point will produce constant latent variables</p>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.scale_cost_to_minibatch">
-<em class="property">property </em><code class="sig-name descname">scale_cost_to_minibatch</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.scale_cost_to_minibatch" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">scale_cost_to_minibatch</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.scale_cost_to_minibatch" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - Property to control scaling cost to minibatch</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.set_size_and_deterministic">
-<code class="sig-name descname">set_size_and_deterministic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">s</span></em>, <em class="sig-param"><span class="n">d</span></em>, <em class="sig-param"><span class="n">more_replacements</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.set_size_and_deterministic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_size_and_deterministic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">more_replacements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.set_size_and_deterministic" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - after node is sampled via <a class="reference internal" href="#pymc3.variational.opvi.Approximation.symbolic_sample_over_posterior" title="pymc3.variational.opvi.Approximation.symbolic_sample_over_posterior"><code class="xref py py-func docutils literal notranslate"><span class="pre">symbolic_sample_over_posterior()</span></code></a> or
 <a class="reference internal" href="#pymc3.variational.opvi.Approximation.symbolic_single_sample" title="pymc3.variational.opvi.Approximation.symbolic_single_sample"><code class="xref py py-func docutils literal notranslate"><span class="pre">symbolic_single_sample()</span></code></a> new random generator can be allocated and applied to node</p>
 <dl class="field-list simple">
@@ -1494,66 +1487,66 @@ if True - zero initial point will produce constant latent variables</p>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.single_symbolic_datalogp">
-<em class="property">property </em><code class="sig-name descname">single_symbolic_datalogp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.single_symbolic_datalogp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">single_symbolic_datalogp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.single_symbolic_datalogp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - for single MC sample estimate of <span class="math notranslate nohighlight">\(E_{q}(data term)\)</span> <cite>theano.scan</cite>
 is not needed and code can be optimized</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.single_symbolic_logp">
-<em class="property">property </em><code class="sig-name descname">single_symbolic_logp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.single_symbolic_logp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">single_symbolic_logp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.single_symbolic_logp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - for single MC sample estimate of <span class="math notranslate nohighlight">\(E_{q}(logP)\)</span> <cite>theano.scan</cite>
 is not needed and code can be optimized</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.single_symbolic_varlogp">
-<em class="property">property </em><code class="sig-name descname">single_symbolic_varlogp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.single_symbolic_varlogp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">single_symbolic_varlogp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.single_symbolic_varlogp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - for single MC sample estimate of <span class="math notranslate nohighlight">\(E_{q}(prior term)\)</span> <cite>theano.scan</cite>
 is not needed and code can be optimized</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.sized_symbolic_datalogp">
-<em class="property">property </em><code class="sig-name descname">sized_symbolic_datalogp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sized_symbolic_datalogp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">sized_symbolic_datalogp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sized_symbolic_datalogp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - computes sampled data term from model via <cite>theano.scan</cite></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.sized_symbolic_logp">
-<em class="property">property </em><code class="sig-name descname">sized_symbolic_logp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sized_symbolic_logp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">sized_symbolic_logp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sized_symbolic_logp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - computes sampled logP from model via <cite>theano.scan</cite></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.sized_symbolic_varlogp">
-<em class="property">property </em><code class="sig-name descname">sized_symbolic_varlogp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sized_symbolic_varlogp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">sized_symbolic_varlogp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.sized_symbolic_varlogp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - computes sampled prior term from model via <cite>theano.scan</cite></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.symbolic_logq">
-<em class="property">property </em><code class="sig-name descname">symbolic_logq</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.symbolic_logq" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">symbolic_logq</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.symbolic_logq" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - collects <cite>symbolic_logq</cite> for all groups</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.symbolic_normalizing_constant">
-<em class="property">property </em><code class="sig-name descname">symbolic_normalizing_constant</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.symbolic_normalizing_constant" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">symbolic_normalizing_constant</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.symbolic_normalizing_constant" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - normalizing constant for <cite>self.logq</cite>, scales it to <cite>minibatch_size</cite> instead of <cite>total_size</cite>.
 Here the effect is controlled by <cite>self.scale_cost_to_minibatch</cite></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.symbolic_sample_over_posterior">
-<code class="sig-name descname">symbolic_sample_over_posterior</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.symbolic_sample_over_posterior" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">symbolic_sample_over_posterior</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.symbolic_sample_over_posterior" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - performs sampling of node applying independent samples from posterior each time.
 Note that it is done symbolically and this node needs <a class="reference internal" href="#pymc3.variational.opvi.Approximation.set_size_and_deterministic" title="pymc3.variational.opvi.Approximation.set_size_and_deterministic"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_size_and_deterministic()</span></code></a> call</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.symbolic_single_sample">
-<code class="sig-name descname">symbolic_single_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.symbolic_single_sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">symbolic_single_sample</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.symbolic_single_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - performs sampling of node applying single sample from posterior.
 Note that it is done symbolically and this node needs
 <a class="reference internal" href="#pymc3.variational.opvi.Approximation.set_size_and_deterministic" title="pymc3.variational.opvi.Approximation.set_size_and_deterministic"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_size_and_deterministic()</span></code></a> call with <cite>size=1</cite></p>
@@ -1561,19 +1554,19 @@ Note that it is done symbolically and this node needs
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.to_flat_input">
-<code class="sig-name descname">to_flat_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.to_flat_input" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">to_flat_input</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Approximation.to_flat_input" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - replace vars with flattened view stored in <cite>self.inputs</cite></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.varlogp">
-<em class="property">property </em><code class="sig-name descname">varlogp</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.varlogp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">varlogp</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.varlogp" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - computes <span class="math notranslate nohighlight">\(E_{q}(prior term)\)</span> from model via <cite>theano.scan</cite> that can be optimized later</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Approximation.varlogp_norm">
-<em class="property">property </em><code class="sig-name descname">varlogp_norm</code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.varlogp_norm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">varlogp_norm</span></code><a class="headerlink" href="#pymc3.variational.opvi.Approximation.varlogp_norm" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - normalized <span class="math notranslate nohighlight">\(E_{q}(prior term)\)</span></p>
 </dd></dl>
 
@@ -1581,7 +1574,7 @@ Note that it is done symbolically and this node needs
 
 <dl class="py class">
 <dt id="pymc3.variational.opvi.Group">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.opvi.</code><code class="sig-name descname">Group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">group</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vfam</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.opvi.</span></code><code class="sig-name descname"><span class="pre">Group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vfam</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Base class for grouping variables in VI</strong></p>
 <p>Grouped Approximation is used for modelling mutual dependencies
 for a specified group of variables. Base for local and global group.</p>
@@ -1757,19 +1750,19 @@ It does not accept any other parameter rather than <cite>groups</cite></p>
 </div>
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.logq">
-<em class="property">property </em><code class="sig-name descname">logq</code><a class="headerlink" href="#pymc3.variational.opvi.Group.logq" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logq</span></code><a class="headerlink" href="#pymc3.variational.opvi.Group.logq" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - Monte Carlo estimate for group <cite>logQ</cite></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.logq_norm">
-<em class="property">property </em><code class="sig-name descname">logq_norm</code><a class="headerlink" href="#pymc3.variational.opvi.Group.logq_norm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logq_norm</span></code><a class="headerlink" href="#pymc3.variational.opvi.Group.logq_norm" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - Monte Carlo estimate for group <cite>logQ</cite> normalized</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.make_size_and_deterministic_replacements">
-<code class="sig-name descname">make_size_and_deterministic_replacements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">s</span></em>, <em class="sig-param"><span class="n">d</span></em>, <em class="sig-param"><span class="n">more_replacements</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.make_size_and_deterministic_replacements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">make_size_and_deterministic_replacements</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">more_replacements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.make_size_and_deterministic_replacements" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - creates correct replacements for initial depending on
 sample size and deterministic flag</p>
 <dl class="field-list simple">
@@ -1793,7 +1786,7 @@ sample size and deterministic flag</p>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.set_size_and_deterministic">
-<code class="sig-name descname">set_size_and_deterministic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em>, <em class="sig-param"><span class="n">s</span></em>, <em class="sig-param"><span class="n">d</span></em>, <em class="sig-param"><span class="n">more_replacements</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.set_size_and_deterministic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_size_and_deterministic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">more_replacements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.set_size_and_deterministic" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - after node is sampled via <a class="reference internal" href="#pymc3.variational.opvi.Group.symbolic_sample_over_posterior" title="pymc3.variational.opvi.Group.symbolic_sample_over_posterior"><code class="xref py py-func docutils literal notranslate"><span class="pre">symbolic_sample_over_posterior()</span></code></a> or
 <a class="reference internal" href="#pymc3.variational.opvi.Group.symbolic_single_sample" title="pymc3.variational.opvi.Group.symbolic_single_sample"><code class="xref py py-func docutils literal notranslate"><span class="pre">symbolic_single_sample()</span></code></a> new random generator can be allocated and applied to node</p>
 <dl class="field-list simple">
@@ -1819,13 +1812,13 @@ sample size and deterministic flag</p>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.symbolic_logq">
-<em class="property">property </em><code class="sig-name descname">symbolic_logq</code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_logq" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">symbolic_logq</span></code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_logq" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - correctly scaled <cite>self.symbolic_logq_not_scaled</cite></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.symbolic_logq_not_scaled">
-<em class="property">property </em><code class="sig-name descname">symbolic_logq_not_scaled</code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_logq_not_scaled" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">symbolic_logq_not_scaled</span></code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_logq_not_scaled" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - symbolically computed logq for <cite>self.symbolic_random</cite>
 computations can be more efficient since all is known beforehand including
 <cite>self.symbolic_random</cite></p>
@@ -1833,13 +1826,13 @@ computations can be more efficient since all is known beforehand including
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.symbolic_normalizing_constant">
-<em class="property">property </em><code class="sig-name descname">symbolic_normalizing_constant</code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_normalizing_constant" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">symbolic_normalizing_constant</span></code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_normalizing_constant" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - normalizing constant for <cite>self.logq</cite>, scales it to <cite>minibatch_size</cite> instead of <cite>total_size</cite></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.symbolic_random">
-<em class="property">property </em><code class="sig-name descname">symbolic_random</code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_random" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">symbolic_random</span></code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_random" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - abstract node that takes <cite>self.symbolic_initial</cite> and creates
 approximate posterior that is parametrized with <cite>self.params_dict</cite>.</p>
 <p>Implementation should take in account <cite>self.batched</cite>. If <cite>self.batched</cite> is <cite>True</cite>, then
@@ -1855,20 +1848,20 @@ approximate posterior that is parametrized with <cite>self.params_dict</cite>.</
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.symbolic_random2d">
-<em class="property">property </em><code class="sig-name descname">symbolic_random2d</code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_random2d" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">symbolic_random2d</span></code><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_random2d" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - <cite>self.symbolic_random</cite> flattened to matrix</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.symbolic_sample_over_posterior">
-<code class="sig-name descname">symbolic_sample_over_posterior</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_sample_over_posterior" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">symbolic_sample_over_posterior</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_sample_over_posterior" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - performs sampling of node applying independent samples from posterior each time.
 Note that it is done symbolically and this node needs <a class="reference internal" href="#pymc3.variational.opvi.Group.set_size_and_deterministic" title="pymc3.variational.opvi.Group.set_size_and_deterministic"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_size_and_deterministic()</span></code></a> call</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.symbolic_single_sample">
-<code class="sig-name descname">symbolic_single_sample</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_single_sample" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">symbolic_single_sample</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.symbolic_single_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - performs sampling of node applying single sample from posterior.
 Note that it is done symbolically and this node needs
 <a class="reference internal" href="#pymc3.variational.opvi.Group.set_size_and_deterministic" title="pymc3.variational.opvi.Group.set_size_and_deterministic"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_size_and_deterministic()</span></code></a> call with <cite>size=1</cite></p>
@@ -1876,7 +1869,7 @@ Note that it is done symbolically and this node needs
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Group.to_flat_input">
-<code class="sig-name descname">to_flat_input</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.to_flat_input" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">to_flat_input</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Group.to_flat_input" title="Permalink to this definition">¶</a></dt>
 <dd><p><em>Dev</em> - replace vars with flattened view stored in <cite>self.inputs</cite></p>
 </dd></dl>
 
@@ -1884,7 +1877,7 @@ Note that it is done symbolically and this node needs
 
 <dl class="py class">
 <dt id="pymc3.variational.opvi.ObjectiveFunction">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.opvi.</code><code class="sig-name descname">ObjectiveFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">tf</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.opvi.</span></code><code class="sig-name descname"><span class="pre">ObjectiveFunction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper class for construction loss and updates for variational inference</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
@@ -1898,7 +1891,7 @@ Note that it is done symbolically and this node needs
 </dl>
 <dl class="py method">
 <dt id="pymc3.variational.opvi.ObjectiveFunction.score_function">
-<code class="sig-name descname">score_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sc_n_mc</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">more_replacements</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fn_kwargs</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.score_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">score_function</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sc_n_mc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">more_replacements</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fn_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.score_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compile scoring function that operates which takes no inputs and returns Loss</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1921,7 +1914,7 @@ Note that it is done symbolically and this node needs
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.ObjectiveFunction.step_function">
-<code class="sig-name descname">step_function</code><span class="sig-paren">(</span><em class="sig-param">obj_n_mc=None</em>, <em class="sig-param">tf_n_mc=None</em>, <em class="sig-param">obj_optimizer=&lt;function adagrad_window&gt;</em>, <em class="sig-param">test_optimizer=&lt;function adagrad_window&gt;</em>, <em class="sig-param">more_obj_params=None</em>, <em class="sig-param">more_tf_params=None</em>, <em class="sig-param">more_updates=None</em>, <em class="sig-param">more_replacements=None</em>, <em class="sig-param">total_grad_norm_constraint=None</em>, <em class="sig-param">score=False</em>, <em class="sig-param">fn_kwargs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.step_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">step_function</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj_n_mc=None</span></em>, <em class="sig-param"><span class="pre">tf_n_mc=None</span></em>, <em class="sig-param"><span class="pre">obj_optimizer=&lt;function</span> <span class="pre">adagrad_window&gt;</span></em>, <em class="sig-param"><span class="pre">test_optimizer=&lt;function</span> <span class="pre">adagrad_window&gt;</span></em>, <em class="sig-param"><span class="pre">more_obj_params=None</span></em>, <em class="sig-param"><span class="pre">more_tf_params=None</span></em>, <em class="sig-param"><span class="pre">more_updates=None</span></em>, <em class="sig-param"><span class="pre">more_replacements=None</span></em>, <em class="sig-param"><span class="pre">total_grad_norm_constraint=None</span></em>, <em class="sig-param"><span class="pre">score=False</span></em>, <em class="sig-param"><span class="pre">fn_kwargs=None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.step_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Step function that should be called on each optimization step.</p>
 <p>Generally it solves the following problem:</p>
 <div class="math notranslate nohighlight">
@@ -1963,7 +1956,7 @@ Note that it is done symbolically and this node needs
 
 <dl class="py method">
 <dt id="pymc3.variational.opvi.ObjectiveFunction.updates">
-<code class="sig-name descname">updates</code><span class="sig-paren">(</span><em class="sig-param">obj_n_mc=None</em>, <em class="sig-param">tf_n_mc=None</em>, <em class="sig-param">obj_optimizer=&lt;function adagrad_window&gt;</em>, <em class="sig-param">test_optimizer=&lt;function adagrad_window&gt;</em>, <em class="sig-param">more_obj_params=None</em>, <em class="sig-param">more_tf_params=None</em>, <em class="sig-param">more_updates=None</em>, <em class="sig-param">more_replacements=None</em>, <em class="sig-param">total_grad_norm_constraint=None</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.updates" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">updates</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">obj_n_mc=None</span></em>, <em class="sig-param"><span class="pre">tf_n_mc=None</span></em>, <em class="sig-param"><span class="pre">obj_optimizer=&lt;function</span> <span class="pre">adagrad_window&gt;</span></em>, <em class="sig-param"><span class="pre">test_optimizer=&lt;function</span> <span class="pre">adagrad_window&gt;</span></em>, <em class="sig-param"><span class="pre">more_obj_params=None</span></em>, <em class="sig-param"><span class="pre">more_tf_params=None</span></em>, <em class="sig-param"><span class="pre">more_updates=None</span></em>, <em class="sig-param"><span class="pre">more_replacements=None</span></em>, <em class="sig-param"><span class="pre">total_grad_norm_constraint=None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.ObjectiveFunction.updates" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate gradients for objective function, test function and then
 constructs updates for optimization step</p>
 <dl class="field-list simple">
@@ -2001,7 +1994,7 @@ constructs updates for optimization step</p>
 
 <dl class="py class">
 <dt id="pymc3.variational.opvi.Operator">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.opvi.</code><code class="sig-name descname">Operator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">approx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Operator" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.opvi.</span></code><code class="sig-name descname"><span class="pre">Operator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Operator" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Base class for Operator</strong></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2015,7 +2008,7 @@ constructs updates for optimization step</p>
 <p>For implementing custom operator it is needed to define <a class="reference internal" href="#pymc3.variational.opvi.Operator.apply" title="pymc3.variational.opvi.Operator.apply"><code class="xref py py-func docutils literal notranslate"><span class="pre">Operator.apply()</span></code></a> method</p>
 <dl class="py method">
 <dt id="pymc3.variational.opvi.Operator.apply">
-<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Operator.apply" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">apply</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.opvi.Operator.apply" title="Permalink to this definition">¶</a></dt>
 <dd><p>Operator itself</p>
 <div class="math notranslate nohighlight">
 \[(O^{p,q}f_{\theta})(z)\]</div>
@@ -2038,7 +2031,7 @@ same dimensional output</p>
 
 <dl class="py attribute">
 <dt id="pymc3.variational.opvi.Operator.objective_class">
-<code class="sig-name descname">objective_class</code><a class="headerlink" href="#pymc3.variational.opvi.Operator.objective_class" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">objective_class</span></code><a class="headerlink" href="#pymc3.variational.opvi.Operator.objective_class" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <a class="reference internal" href="#pymc3.variational.opvi.ObjectiveFunction" title="pymc3.variational.opvi.ObjectiveFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.variational.opvi.ObjectiveFunction</span></code></a></p>
 </dd></dl>
 
@@ -2049,7 +2042,7 @@ same dimensional output</p>
 <span id="vi-inference-api"></span><h3>VI Inference API<a class="headerlink" href="#module-pymc3.variational.inference" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="pymc3.variational.inference.ADVI">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">ADVI</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ADVI" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">ADVI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ADVI" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Automatic Differentiation Variational Inference (ADVI)</strong></p>
 <p>This class implements the meanfield ADVI, where the variational
 posterior distribution is assumed to be spherical Gaussian without
@@ -2175,7 +2168,7 @@ Auto-Encoding Variational Bayes. stat, 1050, 1.</p></li>
 
 <dl class="py class">
 <dt id="pymc3.variational.inference.ASVGD">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">ASVGD</code><span class="sig-paren">(</span><em class="sig-param">approx=None</em>, <em class="sig-param">estimator=&lt;class 'pymc3.variational.operators.KSD'&gt;</em>, <em class="sig-param">kernel=&lt;pymc3.variational.test_functions.RBF object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ASVGD" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">ASVGD</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">approx=None</span></em>, <em class="sig-param"><span class="pre">estimator=&lt;class</span> <span class="pre">'pymc3.variational.operators.KSD'&gt;</span></em>, <em class="sig-param"><span class="pre">kernel=&lt;pymc3.variational.test_functions.RBF</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ASVGD" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Amortized Stein Variational Gradient Descent</strong></p>
 <p><strong>not suggested to use</strong></p>
 <p>This inference is based on Kernelized Stein Discrepancy
@@ -2214,7 +2207,7 @@ arXiv:1704.02399</p></li>
 </ul>
 <dl class="py method">
 <dt id="pymc3.variational.inference.ASVGD.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">score</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">progressbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">obj_n_mc</span><span class="o">=</span><span class="default_value">500</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ASVGD.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_n_mc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ASVGD.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform Operator Variational Inference</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2265,7 +2258,7 @@ arXiv:1704.02399</p></li>
 
 <dl class="py class">
 <dt id="pymc3.variational.inference.FullRankADVI">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">FullRankADVI</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.FullRankADVI" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">FullRankADVI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.FullRankADVI" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Full Rank Automatic Differentiation Variational Inference (ADVI)</strong></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2299,7 +2292,7 @@ Auto-Encoding Variational Bayes. stat, 1050, 1.</p></li>
 
 <dl class="py class">
 <dt id="pymc3.variational.inference.ImplicitGradient">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">ImplicitGradient</code><span class="sig-paren">(</span><em class="sig-param">approx</em>, <em class="sig-param">estimator=&lt;class 'pymc3.variational.operators.KSD'&gt;</em>, <em class="sig-param">kernel=&lt;pymc3.variational.test_functions.RBF object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ImplicitGradient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">ImplicitGradient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">approx</span></em>, <em class="sig-param"><span class="pre">estimator=&lt;class</span> <span class="pre">'pymc3.variational.operators.KSD'&gt;</span></em>, <em class="sig-param"><span class="pre">kernel=&lt;pymc3.variational.test_functions.RBF</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.ImplicitGradient" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Implicit Gradient for Variational Inference</strong></p>
 <p><strong>not suggested to use</strong></p>
 <p>An approach to fit arbitrary approximation by computing kernel based gradient
@@ -2311,7 +2304,7 @@ samples but there is no theoretical approach to choose the best one in such case
 
 <dl class="py class">
 <dt id="pymc3.variational.inference.Inference">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">Inference</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">op</span></em>, <em class="sig-param"><span class="n">approx</span></em>, <em class="sig-param"><span class="n">tf</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.Inference" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">Inference</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">op</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tf</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.Inference" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Base class for Variational Inference</strong></p>
 <p>Communicates Operator, Approximation and Test Function to build Objective Function</p>
 <dl class="field-list simple">
@@ -2328,7 +2321,7 @@ samples but there is no theoretical approach to choose the best one in such case
 </dl>
 <dl class="py method">
 <dt id="pymc3.variational.inference.Inference.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">score</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">callbacks</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">progressbar</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.Inference.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">callbacks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.Inference.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform Operator Variational Inference</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2377,7 +2370,7 @@ samples but there is no theoretical approach to choose the best one in such case
 
 <dl class="py method">
 <dt id="pymc3.variational.inference.Inference.refine">
-<code class="sig-name descname">refine</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">progressbar</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.Inference.refine" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">refine</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progressbar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.Inference.refine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Refine the solution using the last compiled step function</p>
 </dd></dl>
 
@@ -2385,7 +2378,7 @@ samples but there is no theoretical approach to choose the best one in such case
 
 <dl class="py class">
 <dt id="pymc3.variational.inference.KLqp">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">KLqp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">approx</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.KLqp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">KLqp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.KLqp" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Kullback Leibler Divergence Inference</strong></p>
 <p>General approach to fit Approximations that define <span class="math notranslate nohighlight">\(logq\)</span>
 by maximizing ELBO (Evidence Lower Bound). In some cases
@@ -2412,7 +2405,7 @@ arXiv preprint 1804.03599</p></li>
 
 <dl class="py class">
 <dt id="pymc3.variational.inference.NFVI">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">NFVI</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.NFVI" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">NFVI</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.NFVI" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Normalizing Flow based :class:`KLqp` inference</strong></p>
 <p>Normalizing flow is a series of invertible transformations on initial distribution.</p>
 <div class="math notranslate nohighlight">
@@ -2455,7 +2448,7 @@ valid value to create instance specific one</p>
 
 <dl class="py class">
 <dt id="pymc3.variational.inference.SVGD">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">SVGD</code><span class="sig-paren">(</span><em class="sig-param">n_particles=100</em>, <em class="sig-param">jitter=1</em>, <em class="sig-param">model=None</em>, <em class="sig-param">start=None</em>, <em class="sig-param">random_seed=None</em>, <em class="sig-param">estimator=&lt;class 'pymc3.variational.operators.KSD'&gt;</em>, <em class="sig-param">kernel=&lt;pymc3.variational.test_functions.RBF object&gt;</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.SVGD" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">SVGD</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n_particles=100</span></em>, <em class="sig-param"><span class="pre">jitter=1</span></em>, <em class="sig-param"><span class="pre">model=None</span></em>, <em class="sig-param"><span class="pre">start=None</span></em>, <em class="sig-param"><span class="pre">random_seed=None</span></em>, <em class="sig-param"><span class="pre">estimator=&lt;class</span> <span class="pre">'pymc3.variational.operators.KSD'&gt;</span></em>, <em class="sig-param"><span class="pre">kernel=&lt;pymc3.variational.test_functions.RBF</span> <span class="pre">object&gt;</span></em>, <em class="sig-param"><span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.SVGD" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Stein Variational Gradient Descent</strong></p>
 <p>This inference is based on Kernelized Stein Discrepancy
 it’s main idea is to move initial noisy particles so that
@@ -2506,7 +2499,7 @@ arXiv:1704.02399</p></li>
 
 <dl class="py function">
 <dt id="pymc3.variational.inference.fit">
-<code class="sig-prename descclassname">pymc3.variational.inference.</code><code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">10000</span></em>, <em class="sig-param"><span class="n">local_rv</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">method</span><span class="o">=</span><span class="default_value">'advi'</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">random_seed</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inf_kwargs</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.variational.inference.</span></code><code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">local_rv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'advi'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inf_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.inference.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Handy shortcut for using inference methods in functional way</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2581,13 +2574,13 @@ valid value to create instance specific one</p>
 <span id="approximations"></span><h3>Approximations<a class="headerlink" href="#module-pymc3.variational.approximations" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="pymc3.variational.approximations.Empirical">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.approximations.</code><code class="sig-name descname">Empirical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trace</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.Empirical" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.approximations.</span></code><code class="sig-name descname"><span class="pre">Empirical</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.Empirical" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Single Group Full Rank Approximation</strong></p>
 <p>Builds Approximation instance from a given trace,
 it has the same interface as variational approximation</p>
 <dl class="py method">
 <dt id="pymc3.variational.approximations.Empirical.evaluate_over_trace">
-<code class="sig-name descname">evaluate_over_trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.Empirical.evaluate_over_trace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">evaluate_over_trace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.Empirical.evaluate_over_trace" title="Permalink to this definition">¶</a></dt>
 <dd><p>This allows to statically evaluate any symbolic expression over the trace.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2607,7 +2600,7 @@ it has the same interface as variational approximation</p>
 
 <dl class="py class">
 <dt id="pymc3.variational.approximations.FullRank">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.approximations.</code><code class="sig-name descname">FullRank</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.FullRank" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.approximations.</span></code><code class="sig-name descname"><span class="pre">FullRank</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.FullRank" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Single Group Full Rank Approximation</strong></p>
 <p>Full Rank approximation to the posterior where Multivariate Gaussian family
 is fitted to minimize KL divergence from True posterior. In contrast to
@@ -2617,7 +2610,7 @@ main drawback of the method is computational cost.</p>
 
 <dl class="py class">
 <dt id="pymc3.variational.approximations.MeanField">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.approximations.</code><code class="sig-name descname">MeanField</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.MeanField" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.approximations.</span></code><code class="sig-name descname"><span class="pre">MeanField</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.MeanField" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Single Group Mean Field Approximation</strong></p>
 <p>Mean Field approximation to the posterior where spherical Gaussian family
 is fitted to minimize KL divergence from True posterior. It is assumed
@@ -2627,7 +2620,7 @@ of the method</p>
 
 <dl class="py class">
 <dt id="pymc3.variational.approximations.NormalizingFlow">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.approximations.</code><code class="sig-name descname">NormalizingFlow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">flow</span><span class="o">=</span><span class="default_value">'scale-loc'</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.NormalizingFlow" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.approximations.</span></code><code class="sig-name descname"><span class="pre">NormalizingFlow</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">flow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'scale-loc'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.NormalizingFlow" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Single Group Normalizing Flow Approximation</strong></p>
 <p>Normalizing flow is a series of invertible transformations on initial distribution.</p>
 <div class="math notranslate nohighlight">
@@ -2666,7 +2659,7 @@ arXiv:1611.09630</p></li>
 
 <dl class="py function">
 <dt id="pymc3.variational.approximations.sample_approx">
-<code class="sig-prename descclassname">pymc3.variational.approximations.</code><code class="sig-name descname">sample_approx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">approx</span></em>, <em class="sig-param"><span class="n">draws</span><span class="o">=</span><span class="default_value">100</span></em>, <em class="sig-param"><span class="n">include_transformed</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.sample_approx" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.variational.approximations.</span></code><code class="sig-name descname"><span class="pre">sample_approx</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_transformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.approximations.sample_approx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw samples from variational posterior.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2693,7 +2686,7 @@ arXiv:1611.09630</p></li>
 <span id="operators"></span><h3>Operators<a class="headerlink" href="#module-pymc3.variational.operators" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="pymc3.variational.operators.KL">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.operators.</code><code class="sig-name descname">KL</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">approx</span></em>, <em class="sig-param"><span class="n">beta</span><span class="o">=</span><span class="default_value">1.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.operators.KL" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.operators.</span></code><code class="sig-name descname"><span class="pre">KL</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">beta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.operators.KL" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Operator based on Kullback Leibler Divergence</strong></p>
 <p>This operator constructs Evidence Lower Bound (ELBO) objective</p>
 <div class="math notranslate nohighlight">
@@ -2713,7 +2706,7 @@ arXiv:1611.09630</p></li>
 </dl>
 <dl class="py method">
 <dt id="pymc3.variational.operators.KL.apply">
-<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.operators.KL.apply" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">apply</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.operators.KL.apply" title="Permalink to this definition">¶</a></dt>
 <dd><p>Operator itself</p>
 <div class="math notranslate nohighlight">
 \[(O^{p,q}f_{\theta})(z)\]</div>
@@ -2738,7 +2731,7 @@ same dimensional output</p>
 
 <dl class="py class">
 <dt id="pymc3.variational.operators.KSD">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.variational.operators.</code><code class="sig-name descname">KSD</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">approx</span></em>, <em class="sig-param"><span class="n">temperature</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.operators.KSD" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.variational.operators.</span></code><code class="sig-name descname"><span class="pre">KSD</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">temperature</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.operators.KSD" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Operator based on Kernelized Stein Discrepancy</strong></p>
 <dl class="simple">
 <dt>Input: A target distribution with density function <span class="math notranslate nohighlight">\(p(x)\)</span></dt><dd><p>and a set of initial particles <span class="math notranslate nohighlight">\(\{x^0_i\}^n_{i=1}\)</span></p>
@@ -2767,7 +2760,7 @@ arXiv:1608.04471</p></li>
 </ul>
 <dl class="py method">
 <dt id="pymc3.variational.operators.KSD.apply">
-<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">f</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.operators.KSD.apply" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">apply</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.variational.operators.KSD.apply" title="Permalink to this definition">¶</a></dt>
 <dd><p>Operator itself</p>
 <div class="math notranslate nohighlight">
 \[(O^{p,q}f_{\theta})(z)\]</div>
@@ -2790,7 +2783,7 @@ same dimensional output</p>
 
 <dl class="py attribute">
 <dt id="pymc3.variational.operators.KSD.objective_class">
-<code class="sig-name descname">objective_class</code><a class="headerlink" href="#pymc3.variational.operators.KSD.objective_class" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">objective_class</span></code><a class="headerlink" href="#pymc3.variational.operators.KSD.objective_class" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pymc3.variational.operators.KSDObjective</span></code></p>
 </dd></dl>
 
@@ -2827,7 +2820,7 @@ same dimensional output</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

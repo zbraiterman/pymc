@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>shape_utils &#8212; PyMC3 3.10.0 documentation</title>
+    <title>shape_utils &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -15,8 +16,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
@@ -100,7 +99,7 @@
 samples from probability distributions for stochastic nodes in PyMC.</p>
 <dl class="py function">
 <dt id="pymc3.distributions.shape_utils.broadcast_dist_samples_shape">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_dist_samples_shape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shapes</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_shape" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.shape_utils.</span></code><code class="sig-name descname"><span class="pre">broadcast_dist_samples_shape</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_shape" title="Permalink to this definition">¶</a></dt>
 <dd><p>Apply shape broadcasting to shape tuples but assuming that the shapes
 correspond to draws from random variables, with the <cite>size</cite> tuple possibly
 prepended to it. The <cite>size</cite> prepend is ignored to consider if the supplied
@@ -152,7 +151,7 @@ prepended to it. The <cite>size</cite> prepend is ignored to consider if the sup
 
 <dl class="py function">
 <dt id="pymc3.distributions.shape_utils.broadcast_dist_samples_to">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_dist_samples_to</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">to_shape</span></em>, <em class="sig-param"><span class="n">samples</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_to" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.shape_utils.</span></code><code class="sig-name descname"><span class="pre">broadcast_dist_samples_to</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">to_shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_dist_samples_to" title="Permalink to this definition">¶</a></dt>
 <dd><p>Broadcast samples drawn from distributions to a given shape, taking into
 account the size (i.e. the number of samples) of the draw, which is
 prepended to the sample’s shape.</p>
@@ -208,7 +207,7 @@ prepended to the sample’s shape.</p>
 
 <dl class="py function">
 <dt id="pymc3.distributions.shape_utils.broadcast_distribution_samples">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">broadcast_distribution_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_distribution_samples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.shape_utils.</span></code><code class="sig-name descname"><span class="pre">broadcast_distribution_samples</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.broadcast_distribution_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Broadcast samples drawn from distributions taking into account the
 size (i.e. the number of samples) of the draw, which is prepended to
 the sample’s shape.</p>
@@ -255,7 +254,7 @@ the sample’s shape.</p>
 
 <dl class="py function">
 <dt id="pymc3.distributions.shape_utils.get_broadcastable_dist_samples">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">get_broadcastable_dist_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">must_bcast_with</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">return_out_shape</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.get_broadcastable_dist_samples" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.shape_utils.</span></code><code class="sig-name descname"><span class="pre">get_broadcastable_dist_samples</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">must_bcast_with</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_out_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.get_broadcastable_dist_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get a view of the samples drawn from distributions which adds new axises
 in between the <cite>size</cite> prepend and the distribution’s <cite>shape</cite>. These views
 should be able to broadcast the samples from the distrubtions taking into
@@ -326,7 +325,7 @@ samples views.</p>
 
 <dl class="py function">
 <dt id="pymc3.distributions.shape_utils.shapes_broadcasting">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">shapes_broadcasting</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="n">raise_exception</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.shapes_broadcasting" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.shape_utils.</span></code><code class="sig-name descname"><span class="pre">shapes_broadcasting</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">raise_exception</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.shapes_broadcasting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the shape resulting from broadcasting multiple shapes.
 Represents numpy’s broadcasting rules.</p>
 <dl class="field-list simple">
@@ -352,7 +351,7 @@ the broadcasting fails.</p>
 
 <dl class="py function">
 <dt id="pymc3.distributions.shape_utils.to_tuple">
-<code class="sig-prename descclassname">pymc3.distributions.shape_utils.</code><code class="sig-name descname">to_tuple</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">shape</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.to_tuple" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.shape_utils.</span></code><code class="sig-name descname"><span class="pre">to_tuple</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.shape_utils.to_tuple" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert ints, arrays, and Nones to tuples</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -399,7 +398,7 @@ the broadcasting fails.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

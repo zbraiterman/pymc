@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Index &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="_static/default.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,8 +16,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="_static/highlight.min.js"></script>
     <script src="_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="_static/PyMC3.ico"/>
@@ -111,10 +110,10 @@
         <li><a href="api/inference.html#pymc3.variational.opvi.Operator.apply">(pymc3.variational.opvi.Operator method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/inference.html#pymc3.variational.opvi.Approximation">Approximation (class in pymc3.variational.opvi)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/distributions/timeseries.html#pymc3.distributions.timeseries.AR">AR (class in pymc3.distributions.timeseries)</a>
 </li>
       <li><a href="api/distributions/timeseries.html#pymc3.distributions.timeseries.AR1">AR1 (class in pymc3.distributions.timeseries)</a>
@@ -126,6 +125,8 @@
       <li><a href="api/inference.html#pymc3.sampling.assign_step_methods">assign_step_methods() (in module pymc3.sampling)</a>
 </li>
       <li><a href="api/inference.html#pymc3.variational.inference.ASVGD">ASVGD (class in pymc3.variational.inference)</a>
+</li>
+      <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.AsymmetricLaplace">AsymmetricLaplace (class in pymc3.distributions.continuous)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -300,6 +301,8 @@
       <li><a href="api/ode.html#pymc3.ode.DifferentialEquation">DifferentialEquation (class in pymc3.ode)</a>
 </li>
       <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.Dirichlet">Dirichlet (class in pymc3.distributions.multivariate)</a>
+</li>
+      <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.DirichletMultinomial">DirichletMultinomial (class in pymc3.distributions.multivariate)</a>
 </li>
       <li><a href="api/model.html#pymc3.model.Model.disc_vars">disc_vars() (pymc3.model.Model property)</a>
 </li>
@@ -710,6 +713,30 @@
 </li>
         <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.Weibull.logcdf">(pymc3.distributions.continuous.Weibull method)</a>
 </li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.Bernoulli.logcdf">(pymc3.distributions.discrete.Bernoulli method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.BetaBinomial.logcdf">(pymc3.distributions.discrete.BetaBinomial method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.Binomial.logcdf">(pymc3.distributions.discrete.Binomial method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.DiscreteUniform.logcdf">(pymc3.distributions.discrete.DiscreteUniform method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.DiscreteWeibull.logcdf">(pymc3.distributions.discrete.DiscreteWeibull method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.Geometric.logcdf">(pymc3.distributions.discrete.Geometric method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.HyperGeometric.logcdf">(pymc3.distributions.discrete.HyperGeometric method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.NegativeBinomial.logcdf">(pymc3.distributions.discrete.NegativeBinomial method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.Poisson.logcdf">(pymc3.distributions.discrete.Poisson method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.ZeroInflatedBinomial.logcdf">(pymc3.distributions.discrete.ZeroInflatedBinomial method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.ZeroInflatedNegativeBinomial.logcdf">(pymc3.distributions.discrete.ZeroInflatedNegativeBinomial method)</a>
+</li>
+        <li><a href="api/distributions/discrete.html#pymc3.distributions.discrete.ZeroInflatedPoisson.logcdf">(pymc3.distributions.discrete.ZeroInflatedPoisson method)</a>
+</li>
       </ul></li>
       <li><a href="api/math.html#pymc3.math.LogDet">LogDet (class in pymc3.math)</a>
 </li>
@@ -727,9 +754,11 @@
 </li>
       <li><a href="api/distributions/transforms.html#pymc3.distributions.transforms.LogOdds">LogOdds (class in pymc3.distributions.transforms)</a>
 </li>
-      <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.Beta.logp">logp() (pymc3.distributions.continuous.Beta method)</a>
+      <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.AsymmetricLaplace.logp">logp() (pymc3.distributions.continuous.AsymmetricLaplace method)</a>
 
       <ul>
+        <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.Beta.logp">(pymc3.distributions.continuous.Beta method)</a>
+</li>
         <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.Cauchy.logp">(pymc3.distributions.continuous.Cauchy method)</a>
 </li>
         <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.ExGaussian.logp">(pymc3.distributions.continuous.ExGaussian method)</a>
@@ -821,6 +850,8 @@
         <li><a href="api/distributions/mixture.html#pymc3.distributions.mixture.MixtureSameFamily.logp">(pymc3.distributions.mixture.MixtureSameFamily method)</a>
 </li>
         <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.Dirichlet.logp">(pymc3.distributions.multivariate.Dirichlet method)</a>
+</li>
+        <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.DirichletMultinomial.logp">(pymc3.distributions.multivariate.DirichletMultinomial method)</a>
 </li>
         <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.KroneckerNormal.logp">(pymc3.distributions.multivariate.KroneckerNormal method)</a>
 </li>
@@ -1345,9 +1376,11 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.Beta.random">random() (pymc3.distributions.continuous.Beta method)</a>
+      <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.AsymmetricLaplace.random">random() (pymc3.distributions.continuous.AsymmetricLaplace method)</a>
 
       <ul>
+        <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.Beta.random">(pymc3.distributions.continuous.Beta method)</a>
+</li>
         <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.Cauchy.random">(pymc3.distributions.continuous.Cauchy method)</a>
 </li>
         <li><a href="api/distributions/continuous.html#pymc3.distributions.continuous.ExGaussian.random">(pymc3.distributions.continuous.ExGaussian method)</a>
@@ -1440,6 +1473,8 @@
 </li>
         <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.Dirichlet.random">(pymc3.distributions.multivariate.Dirichlet method)</a>
 </li>
+        <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.DirichletMultinomial.random">(pymc3.distributions.multivariate.DirichletMultinomial method)</a>
+</li>
         <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.KroneckerNormal.random">(pymc3.distributions.multivariate.KroneckerNormal method)</a>
 </li>
         <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.LKJCorr.random">(pymc3.distributions.multivariate.LKJCorr method)</a>
@@ -1455,6 +1490,8 @@
         <li><a href="api/distributions/multivariate.html#pymc3.distributions.multivariate.Wishart.random">(pymc3.distributions.multivariate.Wishart method)</a>
 </li>
         <li><a href="api/distributions/timeseries.html#pymc3.distributions.timeseries.GaussianRandomWalk.random">(pymc3.distributions.timeseries.GaussianRandomWalk method)</a>
+</li>
+        <li><a href="api/distributions/timeseries.html#pymc3.distributions.timeseries.MvGaussianRandomWalk.random">(pymc3.distributions.timeseries.MvGaussianRandomWalk method)</a>
 </li>
       </ul></li>
   </ul></td>
@@ -1736,7 +1773,7 @@
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

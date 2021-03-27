@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Model &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Model &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -15,8 +16,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
@@ -69,7 +68,7 @@
 <span id="model"></span><h1>Model<a class="headerlink" href="#module-pymc3.model" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="pymc3.model.Deterministic">
-<code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">Deterministic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">var</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dims</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Deterministic" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">Deterministic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Deterministic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a named deterministic variable</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -88,78 +87,78 @@
 
 <dl class="py class">
 <dt id="pymc3.model.Factor">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">Factor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">Factor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Common functionality for objects with a log probability density
 associated with them.</p>
 <dl class="py method">
 <dt id="pymc3.model.Factor.d2logp">
-<code class="sig-name descname">d2logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.d2logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">d2logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.d2logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log probability density hessian function</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.d2logp_nojac">
-<code class="sig-name descname">d2logp_nojac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.d2logp_nojac" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">d2logp_nojac</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.d2logp_nojac" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log density hessian function, without jacobian terms.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.dlogp">
-<code class="sig-name descname">dlogp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.dlogp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">dlogp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.dlogp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log probability density gradient function</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.dlogp_nojac">
-<code class="sig-name descname">dlogp_nojac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.dlogp_nojac" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">dlogp_nojac</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.dlogp_nojac" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log density gradient function, without jacobian terms.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.fastd2logp">
-<code class="sig-name descname">fastd2logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.fastd2logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fastd2logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.fastd2logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log probability density hessian function</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.fastd2logp_nojac">
-<code class="sig-name descname">fastd2logp_nojac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.fastd2logp_nojac" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fastd2logp_nojac</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.fastd2logp_nojac" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log density hessian function, without jacobian terms.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.fastdlogp">
-<code class="sig-name descname">fastdlogp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.fastdlogp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fastdlogp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.fastdlogp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log probability density gradient function</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.fastdlogp_nojac">
-<code class="sig-name descname">fastdlogp_nojac</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.fastdlogp_nojac" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fastdlogp_nojac</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Factor.fastdlogp_nojac" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log density gradient function, without jacobian terms.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.fastlogp">
-<em class="property">property </em><code class="sig-name descname">fastlogp</code><a class="headerlink" href="#pymc3.model.Factor.fastlogp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">fastlogp</span></code><a class="headerlink" href="#pymc3.model.Factor.fastlogp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log probability density function</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.logp">
-<em class="property">property </em><code class="sig-name descname">logp</code><a class="headerlink" href="#pymc3.model.Factor.logp" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logp</span></code><a class="headerlink" href="#pymc3.model.Factor.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiled log probability density function</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.logp_nojact">
-<em class="property">property </em><code class="sig-name descname">logp_nojact</code><a class="headerlink" href="#pymc3.model.Factor.logp_nojact" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logp_nojact</span></code><a class="headerlink" href="#pymc3.model.Factor.logp_nojact" title="Permalink to this definition">¶</a></dt>
 <dd><p>Theano scalar of log-probability, excluding jacobian terms.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Factor.logpt">
-<em class="property">property </em><code class="sig-name descname">logpt</code><a class="headerlink" href="#pymc3.model.Factor.logpt" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logpt</span></code><a class="headerlink" href="#pymc3.model.Factor.logpt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Theano scalar of log-probability of the model</p>
 </dd></dl>
 
@@ -167,7 +166,7 @@ associated with them.</p>
 
 <dl class="py class">
 <dt id="pymc3.model.Model">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">Model</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">Model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Encapsulates the variables and likelihood factors of a model.</p>
 <p>Model class can be used for creating class based models. To create
 a class based model you should inherit from <a class="reference internal" href="#pymc3.model.Model" title="pymc3.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a> and
@@ -189,6 +188,11 @@ likelihood factors of parent model.</p>
 temporarily in the model context. See the documentation
 of theano for a complete list. Set config key
 <code class="docutils literal notranslate"><span class="pre">compute_test_value</span></code> to <cite>raise</cite> if it is None.</p>
+</dd>
+<dt><strong>check_bounds: bool</strong></dt><dd><p>Ensure that input parameters to distributions are in a valid
+range. If your model is built in a way where you know your
+parameters can only take on valid values you can set this to
+False for increased speed.</p>
 </dd>
 </dl>
 </dd>
@@ -254,7 +258,7 @@ of theano for a complete list. Set config key
 </div>
 <dl class="py method">
 <dt id="pymc3.model.Model.Var">
-<code class="sig-name descname">Var</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">dist</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">total_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">dims</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.Var" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Var</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.Var" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create and add (un)observed random variable to the model with an
 appropriate prior distribution.</p>
 <dl class="field-list simple">
@@ -281,20 +285,20 @@ the variable is unobserved.</p>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.add_random_variable">
-<code class="sig-name descname">add_random_variable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">var</span></em>, <em class="sig-param"><span class="n">dims</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.add_random_variable" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_random_variable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.add_random_variable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a random variable to the named variables of the model.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.basic_RVs">
-<em class="property">property </em><code class="sig-name descname">basic_RVs</code><a class="headerlink" href="#pymc3.model.Model.basic_RVs" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">basic_RVs</span></code><a class="headerlink" href="#pymc3.model.Model.basic_RVs" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of random variables the model is defined in terms of
 (which excludes deterministics).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.check_test_point">
-<code class="sig-name descname">check_test_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">test_point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">round_vals</span><span class="o">=</span><span class="default_value">2</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.check_test_point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">check_test_point</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_vals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.check_test_point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks log probability of test_point for all random variables in the model.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -316,19 +320,19 @@ if None, then all model.test_point is used</p>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.cont_vars">
-<em class="property">property </em><code class="sig-name descname">cont_vars</code><a class="headerlink" href="#pymc3.model.Model.cont_vars" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">cont_vars</span></code><a class="headerlink" href="#pymc3.model.Model.cont_vars" title="Permalink to this definition">¶</a></dt>
 <dd><p>All the continuous variables in the model</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.disc_vars">
-<em class="property">property </em><code class="sig-name descname">disc_vars</code><a class="headerlink" href="#pymc3.model.Model.disc_vars" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">disc_vars</span></code><a class="headerlink" href="#pymc3.model.Model.disc_vars" title="Permalink to this definition">¶</a></dt>
 <dd><p>All the discrete variables in the model</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.fastfn">
-<code class="sig-name descname">fastfn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outs</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.fastfn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fastfn</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.fastfn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles a Theano function which returns <code class="docutils literal notranslate"><span class="pre">outs</span></code> and takes values
 of model vars as a dict as an argument.</p>
 <dl class="field-list simple">
@@ -348,7 +352,7 @@ of model vars as a dict as an argument.</p>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.flatten">
-<code class="sig-name descname">flatten</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">order</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">inputvar</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.flatten" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">flatten</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputvar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.flatten" title="Permalink to this definition">¶</a></dt>
 <dd><p>Flattens model’s input and returns:</p>
 <dl class="simple">
 <dt>FlatView with</dt><dd><ul class="simple">
@@ -379,7 +383,7 @@ of model vars as a dict as an argument.</p>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.fn">
-<code class="sig-name descname">fn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outs</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.fn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fn</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.fn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles a Theano function which returns the values of <code class="docutils literal notranslate"><span class="pre">outs</span></code>
 and takes values of model vars as arguments.</p>
 <dl class="field-list simple">
@@ -399,7 +403,7 @@ and takes values of model vars as arguments.</p>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.logp_dlogp_function">
-<code class="sig-name descname">logp_dlogp_function</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grad_vars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tempered</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.logp_dlogp_function" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp_dlogp_function</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grad_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.logp_dlogp_function" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compile a theano function that computes logp and gradient.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -417,7 +421,7 @@ use all free random variables of this model.</p>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.logp_nojact">
-<em class="property">property </em><code class="sig-name descname">logp_nojact</code><a class="headerlink" href="#pymc3.model.Model.logp_nojact" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logp_nojact</span></code><a class="headerlink" href="#pymc3.model.Model.logp_nojact" title="Permalink to this definition">¶</a></dt>
 <dd><p>Theano scalar of log-probability of the model but without the jacobian
 if transformed Random Variable is presented.
 Note that If there is no transformed variable in the model, logp_nojact
@@ -426,13 +430,13 @@ will be the same as logpt as there is no need for Jacobian correction.</p>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.logpt">
-<em class="property">property </em><code class="sig-name descname">logpt</code><a class="headerlink" href="#pymc3.model.Model.logpt" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">logpt</span></code><a class="headerlink" href="#pymc3.model.Model.logpt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Theano scalar of log-probability of the model</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.makefn">
-<code class="sig-name descname">makefn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outs</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.makefn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">makefn</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.makefn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles a Theano function which returns <code class="docutils literal notranslate"><span class="pre">outs</span></code> and takes the variable
 ancestors of <code class="docutils literal notranslate"><span class="pre">outs</span></code> as inputs.</p>
 <dl class="field-list simple">
@@ -452,19 +456,19 @@ ancestors of <code class="docutils literal notranslate"><span class="pre">outs</
 
 <dl class="py method">
 <dt id="pymc3.model.Model.name_for">
-<code class="sig-name descname">name_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.name_for" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">name_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.name_for" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if name has prefix and adds if needed</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.name_of">
-<code class="sig-name descname">name_of</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.name_of" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">name_of</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.name_of" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks if name has prefix and deletes if needed</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.profile">
-<code class="sig-name descname">profile</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outs</span></em>, <em class="sig-param"><span class="n">n</span><span class="o">=</span><span class="default_value">1000</span></em>, <em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">profile</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.profile" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">profile</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Model.profile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles and profiles a Theano function which returns <code class="docutils literal notranslate"><span class="pre">outs</span></code> and
 takes values of model vars as a dict as an argument.</p>
 <dl class="field-list simple">
@@ -491,26 +495,26 @@ takes values of model vars as a dict as an argument.</p>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.test_point">
-<em class="property">property </em><code class="sig-name descname">test_point</code><a class="headerlink" href="#pymc3.model.Model.test_point" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">test_point</span></code><a class="headerlink" href="#pymc3.model.Model.test_point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test point used to check that the model doesn’t generate errors</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.unobserved_RVs">
-<em class="property">property </em><code class="sig-name descname">unobserved_RVs</code><a class="headerlink" href="#pymc3.model.Model.unobserved_RVs" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">unobserved_RVs</span></code><a class="headerlink" href="#pymc3.model.Model.unobserved_RVs" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of all random variable, including deterministic ones.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.varlogpt">
-<em class="property">property </em><code class="sig-name descname">varlogpt</code><a class="headerlink" href="#pymc3.model.Model.varlogpt" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">varlogpt</span></code><a class="headerlink" href="#pymc3.model.Model.varlogpt" title="Permalink to this definition">¶</a></dt>
 <dd><p>Theano scalar of log-probability of the unobserved random variables
 (excluding deterministic).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.Model.vars">
-<em class="property">property </em><code class="sig-name descname">vars</code><a class="headerlink" href="#pymc3.model.Model.vars" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">vars</span></code><a class="headerlink" href="#pymc3.model.Model.vars" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of unobserved random variables used as inputs to the model
 (which excludes deterministics).</p>
 </dd></dl>
@@ -519,7 +523,7 @@ takes values of model vars as a dict as an argument.</p>
 
 <dl class="py function">
 <dt id="pymc3.model.Point">
-<code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">Point</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">Point</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Build a point. Uses same args as dict() does.
 Filters out variables not in the model. All keys are strings.</p>
 <dl class="field-list simple">
@@ -534,7 +538,7 @@ Filters out variables not in the model. All keys are strings.</p>
 
 <dl class="py function">
 <dt id="pymc3.model.Potential">
-<code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">Potential</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">var</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Potential" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">Potential</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.Potential" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add an arbitrary factor potential to the model likelihood</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -553,7 +557,7 @@ Filters out variables not in the model. All keys are strings.</p>
 
 <dl class="py function">
 <dt id="pymc3.model.compilef">
-<code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">compilef</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outs</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.compilef" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">compilef</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.compilef" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles a Theano function which returns <code class="docutils literal notranslate"><span class="pre">outs</span></code> and takes values of model
 vars as a dict as an argument.</p>
 <dl class="field-list simple">
@@ -573,7 +577,7 @@ vars as a dict as an argument.</p>
 
 <dl class="py function">
 <dt id="pymc3.model.fastfn">
-<code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">fastfn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outs</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.fastfn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">fastfn</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.fastfn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles a Theano function which returns <code class="docutils literal notranslate"><span class="pre">outs</span></code> and takes values of model
 vars as a dict as an argument.</p>
 <dl class="field-list simple">
@@ -593,7 +597,7 @@ vars as a dict as an argument.</p>
 
 <dl class="py function">
 <dt id="pymc3.model.fn">
-<code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">fn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">outs</span></em>, <em class="sig-param"><span class="n">mode</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.fn" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">fn</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.fn" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compiles a Theano function which returns the values of <code class="docutils literal notranslate"><span class="pre">outs</span></code> and
 takes values of model vars as arguments.</p>
 <dl class="field-list simple">
@@ -613,14 +617,14 @@ takes values of model vars as arguments.</p>
 
 <dl class="py function">
 <dt id="pymc3.model.modelcontext">
-<code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">modelcontext</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><a class="headerlink" href="#pymc3.model.modelcontext" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">modelcontext</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pymc3.model.Model" title="pymc3.model.Model"><span class="pre">pymc3.model.Model</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pymc3.model.Model" title="pymc3.model.Model"><span class="pre">pymc3.model.Model</span></a><a class="headerlink" href="#pymc3.model.modelcontext" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the given model or, if none was supplied, try to find one in
 the context stack.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="pymc3.model.set_data">
-<code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">set_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_data</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.set_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">set_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.set_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the value of one or more data container variables.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -682,7 +686,7 @@ with which to update.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Random Variables &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Random Variables &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -15,8 +16,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
@@ -70,13 +69,13 @@
 <p>The normal PyMC3 programmer will typically not need to interact with these classes, except possibly when debugging.  Otherwise they are primarily of interest to developers.</p>
 <dl class="py class">
 <dt id="pymc3.model.PyMC3Variable">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">PyMC3Variable</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">type</span></em>, <em class="sig-param"><span class="n">owner</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.PyMC3Variable" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">PyMC3Variable</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.PyMC3Variable" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to wrap Theano TensorVariable for custom behavior.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt id="pymc3.model.ValueGradFunction">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">ValueGradFunction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">costs</span></em>, <em class="sig-param"><span class="n">grad_vars</span></em>, <em class="sig-param"><span class="n">extra_vars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">dtype</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">casting</span><span class="o">=</span><span class="default_value">'no'</span></em>, <em class="sig-param"><span class="n">compute_grads</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">ValueGradFunction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">costs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_vars</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">casting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'no'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_grads</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a theano function that computes a value and its gradient.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -116,25 +115,25 @@ kwargs.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.model.ValueGradFunction.array_to_dict">
-<code class="sig-name descname">array_to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.array_to_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">array_to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.array_to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert an array to a dictionary containing the grad_vars.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.ValueGradFunction.array_to_full_dict">
-<code class="sig-name descname">array_to_full_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">array</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.array_to_full_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">array_to_full_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.array_to_full_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert an array to a dictionary with grad_vars and extra_vars.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.ValueGradFunction.dict_to_array">
-<code class="sig-name descname">dict_to_array</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.dict_to_array" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">dict_to_array</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ValueGradFunction.dict_to_array" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a dictionary with values for grad_vars to an array.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.model.ValueGradFunction.profile">
-<em class="property">property </em><code class="sig-name descname">profile</code><a class="headerlink" href="#pymc3.model.ValueGradFunction.profile" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">profile</span></code><a class="headerlink" href="#pymc3.model.ValueGradFunction.profile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Profiling information of the underlying theano function.</p>
 </dd></dl>
 
@@ -142,7 +141,7 @@ kwargs.</p>
 
 <dl class="py class">
 <dt id="pymc3.model.FreeRV">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">FreeRV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">owner</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">distribution</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">total_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.FreeRV" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">FreeRV</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.FreeRV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unobserved random variable that a model is specified in terms of.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -159,7 +158,7 @@ kwargs.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.model.FreeRV.init_value">
-<em class="property">property </em><code class="sig-name descname">init_value</code><a class="headerlink" href="#pymc3.model.FreeRV.init_value" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">init_value</span></code><a class="headerlink" href="#pymc3.model.FreeRV.init_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience attribute to return tag.test_value</p>
 </dd></dl>
 
@@ -167,7 +166,7 @@ kwargs.</p>
 
 <dl class="py class">
 <dt id="pymc3.model.ObservedRV">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">ObservedRV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">owner</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">distribution</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">total_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ObservedRV" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">ObservedRV</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.ObservedRV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Observed random variable that a model is specified in terms of.
 Potentially partially observed.</p>
 <dl class="field-list simple">
@@ -185,7 +184,7 @@ Potentially partially observed.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.model.ObservedRV.init_value">
-<em class="property">property </em><code class="sig-name descname">init_value</code><a class="headerlink" href="#pymc3.model.ObservedRV.init_value" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">init_value</span></code><a class="headerlink" href="#pymc3.model.ObservedRV.init_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience attribute to return tag.test_value</p>
 </dd></dl>
 
@@ -193,7 +192,7 @@ Potentially partially observed.</p>
 
 <dl class="py class">
 <dt id="pymc3.model.MultiObservedRV">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">MultiObservedRV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">distribution</span></em>, <em class="sig-param"><span class="n">total_size</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.MultiObservedRV" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">MultiObservedRV</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distribution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.MultiObservedRV" title="Permalink to this definition">¶</a></dt>
 <dd><p>Observed random variable that a model is specified in terms of.
 Potentially partially observed.</p>
 <dl class="field-list simple">
@@ -213,7 +212,7 @@ Potentially partially observed.</p>
 
 <dl class="py class">
 <dt id="pymc3.model.TransformedRV">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.model.</code><code class="sig-name descname">TransformedRV</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">owner</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">index</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">distribution</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">transform</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">total_size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.TransformedRV" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.model.</span></code><code class="sig-name descname"><span class="pre">TransformedRV</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">owner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.model.TransformedRV" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
@@ -229,7 +228,7 @@ Potentially partially observed.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.model.TransformedRV.init_value">
-<em class="property">property </em><code class="sig-name descname">init_value</code><a class="headerlink" href="#pymc3.model.TransformedRV.init_value" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">init_value</span></code><a class="headerlink" href="#pymc3.model.TransformedRV.init_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience attribute to return tag.test_value</p>
 </dd></dl>
 
@@ -264,7 +263,7 @@ Potentially partially observed.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

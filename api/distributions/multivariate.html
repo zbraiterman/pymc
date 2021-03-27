@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Multivariate &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Multivariate &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -100,11 +101,14 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.multivariate.Dirichlet" title="pymc3.distributions.multivariate.Dirichlet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Dirichlet</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Dirichlet log-likelihood.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.multivariate.DirichletMultinomial" title="pymc3.distributions.multivariate.DirichletMultinomial"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DirichletMultinomial</span></code></a>(name, *args, **kwargs)</p></td>
+<td><p>Dirichlet Multinomial log-likelihood.</p></td>
+</tr>
 </tbody>
 </table>
 <span class="target" id="module-pymc3.distributions.multivariate"></span><dl class="py class">
 <dt id="pymc3.distributions.multivariate.Dirichlet">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">Dirichlet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Dirichlet" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">Dirichlet</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Dirichlet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Dirichlet log-likelihood.</p>
 <div class="math notranslate nohighlight">
 \[f(\mathbf{x}|\mathbf{a}) =
@@ -139,7 +143,7 @@ where <span class="math notranslate nohighlight">\(a_0 = \sum a_i\)</span></p></
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.Dirichlet.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Dirichlet.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Dirichlet.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Dirichlet distribution
 at specified value.</p>
 <dl class="field-list simple">
@@ -159,7 +163,7 @@ at specified value.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.Dirichlet.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Dirichlet.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Dirichlet.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Dirichlet distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -183,8 +187,101 @@ specified).</p>
 </dd></dl>
 
 <dl class="py class">
+<dt id="pymc3.distributions.multivariate.DirichletMultinomial">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">DirichletMultinomial</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.DirichletMultinomial" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dirichlet Multinomial log-likelihood.</p>
+<p>Dirichlet mixture of Multinomials distribution, with a marginalized PMF.</p>
+<div class="math notranslate nohighlight">
+\[\]</div>
+<dl>
+<dt>f(x mid n, a) = frac{Gamma(n + 1)Gamma(sum a_k)}</dt><dd><blockquote>
+<div><p>{Gamma(n + sum a_k)}</p>
+</div></blockquote>
+<p>prod_{k=1}^K
+frac{Gamma(x_k +  a_k)}</p>
+<blockquote>
+<div><p>{Gamma(x_k + 1)Gamma(a_k)}</p>
+</div></blockquote>
+</dd>
+</dl>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Support</p></td>
+<td><p><span class="math notranslate nohighlight">\(x \in \{0, 1, \ldots, n\}\)</span> such that
+<span class="math notranslate nohighlight">\(\sum x_i = n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Mean</p></td>
+<td><p><span class="math notranslate nohighlight">\(n \frac{a_i}{\sum{a_k}}\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n</strong><span class="classifier">int or array</span></dt><dd><p>Total counts in each replicate. If n is an array its shape must be (N,)
+with N = a.shape[0]</p>
+</dd>
+<dt><strong>a</strong><span class="classifier">one- or two-dimensional array</span></dt><dd><p>Dirichlet parameter. Elements must be strictly positive.
+The number of categories is given by the length of the last axis.</p>
+</dd>
+<dt><strong>shape</strong><span class="classifier">integer tuple</span></dt><dd><p>Describes shape of distribution. For example if n=array([5, 10]), and
+a=array([1, 1, 1]), shape should be (2, 3).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pymc3.distributions.multivariate.DirichletMultinomial.logp">
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.DirichletMultinomial.logp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate log-probability of DirichletMultinomial distribution
+at specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: integer array</strong></dt><dd><p>Value for which log-probability is calculated.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymc3.distributions.multivariate.DirichletMultinomial.random">
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.DirichletMultinomial.random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw random values from Dirichlet-Multinomial distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
+conditioned (uses default point if not specified).</p>
+</dd>
+<dt><strong>size: int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
+specified).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>array</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="pymc3.distributions.multivariate.KroneckerNormal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">KroneckerNormal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.KroneckerNormal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">KroneckerNormal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.KroneckerNormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate normal log-likelihood with Kronecker-structured covariance.</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid \mu, K) =
@@ -278,7 +375,7 @@ Thus,</p>
 eigendecompositions.</p>
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.KroneckerNormal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.KroneckerNormal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.KroneckerNormal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Multivariate Normal distribution
 with Kronecker-structured covariance at specified value.</p>
 <dl class="field-list simple">
@@ -298,7 +395,7 @@ with Kronecker-structured covariance at specified value.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.KroneckerNormal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.KroneckerNormal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.KroneckerNormal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Multivariate Normal distribution
 with Kronecker-structured covariance.</p>
 <dl class="field-list simple">
@@ -324,7 +421,7 @@ specified).</p>
 
 <dl class="py function">
 <dt id="pymc3.distributions.multivariate.LKJCholeskyCov">
-<code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">LKJCholeskyCov</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">eta</span></em>, <em class="sig-param"><span class="n">n</span></em>, <em class="sig-param"><span class="n">sd_dist</span></em>, <em class="sig-param"><span class="n">compute_corr</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">store_in_trace</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCholeskyCov" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">LKJCholeskyCov</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sd_dist</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_corr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_in_trace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCholeskyCov" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wrapper function for covariance matrix with LKJ distributed correlations.</p>
 <p>This defines a distribution over Cholesky decomposed covariance
 matrices, such that the underlying correlation matrices follow an
@@ -457,7 +554,7 @@ of the determinants of the blocks, we get</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.multivariate.LKJCorr">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">LKJCorr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCorr" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">LKJCorr</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCorr" title="Permalink to this definition">¶</a></dt>
 <dd><p>The LKJ (Lewandowski, Kurowicka and Joe) log-likelihood.</p>
 <p>The LKJ distribution is a prior distribution for correlation matrices.
 If eta = 1 this corresponds to the uniform distribution over correlation
@@ -507,7 +604,7 @@ extended onion method.” Journal of multivariate analysis,
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.LKJCorr.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCorr.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCorr.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of LKJ distribution at specified
 value.</p>
 <dl class="field-list simple">
@@ -527,7 +624,7 @@ value.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.LKJCorr.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCorr.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.LKJCorr.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from LKJ distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -552,11 +649,11 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.multivariate.MatrixNormal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">MatrixNormal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MatrixNormal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">MatrixNormal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MatrixNormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix-valued normal log-likelihood.</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid \mu, U, V) =
-    \frac{1}{(2\pi |U|^n |V|^m)^{1/2}}
+    \frac{1}{(2\pi^{m n} |U|^n |V|^m)^{1/2}}
     \exp\left\{
          -\frac{1}{2} \mathrm{Tr}[ V^{-1} (x-\mu)^{\prime} U^{-1} (x-\mu)]
      \right\}\]</div>
@@ -652,7 +749,7 @@ constant, both the covariance and scaling could be learned as follows
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.MatrixNormal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MatrixNormal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MatrixNormal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Matrix-valued Normal distribution
 at specified value.</p>
 <dl class="field-list simple">
@@ -672,7 +769,7 @@ at specified value.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.MatrixNormal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MatrixNormal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MatrixNormal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Matrix-valued Normal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -697,7 +794,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.multivariate.Multinomial">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">Multinomial</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Multinomial" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">Multinomial</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Multinomial" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multinomial log-likelihood.</p>
 <p>Generalizes binomial distribution, but instead of each trial resulting
 in “success” or “failure”, each one results in exactly one of some
@@ -742,7 +839,7 @@ automatically rescaled otherwise.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.Multinomial.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Multinomial.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Multinomial.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Multinomial distribution
 at specified value.</p>
 <dl class="field-list simple">
@@ -762,7 +859,7 @@ at specified value.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.Multinomial.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Multinomial.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Multinomial.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Multinomial distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -787,7 +884,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.multivariate.MvNormal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">MvNormal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvNormal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">MvNormal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvNormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate normal log-likelihood.</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid \pi, T) =
@@ -862,7 +959,7 @@ parametrization:</p>
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.MvNormal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvNormal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvNormal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Multivariate Normal distribution
 at specified value.</p>
 <dl class="field-list simple">
@@ -882,7 +979,7 @@ at specified value.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.MvNormal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvNormal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvNormal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Multivariate Normal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -907,7 +1004,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.multivariate.MvStudentT">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">MvStudentT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvStudentT" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">MvStudentT</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvStudentT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Multivariate Student-T log-likelihood.</p>
 <div class="math notranslate nohighlight">
 \[f(\mathbf{x}| \nu,\mu,\Sigma) =
@@ -919,7 +1016,7 @@ specified).</p>
        1+\frac{1}{\nu}
        ({\mathbf x}-{\mu})^T
        {\Sigma}^{-1}({\mathbf x}-{\mu})
-     \right]^{(\nu+p)/2}}\]</div>
+     \right]^{-(\nu+p)/2}}\]</div>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 15%" />
@@ -927,7 +1024,7 @@ specified).</p>
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Support</p></td>
-<td><p><span class="math notranslate nohighlight">\(x \in \mathbb{R}^k\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(x \in \mathbb{R}^p\)</span></p></td>
 </tr>
 <tr class="row-even"><td><p>Mean</p></td>
 <td><p><span class="math notranslate nohighlight">\(\mu\)</span> if <span class="math notranslate nohighlight">\(\nu &gt; 1\)</span> else undefined</p></td>
@@ -963,7 +1060,7 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.MvStudentT.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvStudentT.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvStudentT.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Multivariate Student’s T distribution
 at specified value.</p>
 <dl class="field-list simple">
@@ -983,7 +1080,7 @@ at specified value.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.MvStudentT.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvStudentT.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.MvStudentT.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Multivariate Student’s T distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1008,7 +1105,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.multivariate.Wishart">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">Wishart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Wishart" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">Wishart</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Wishart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wishart log-likelihood.</p>
 <p>The Wishart distribution is the probability distribution of the
 maximum-likelihood estimator (MLE) of the precision matrix of a
@@ -1052,7 +1149,7 @@ freedom.</p>
 use LKJCholeskyCov or LKJCorr.</p>
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.Wishart.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">X</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Wishart.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Wishart.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Wishart distribution
 at specified value.</p>
 <dl class="field-list simple">
@@ -1072,7 +1169,7 @@ at specified value.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.multivariate.Wishart.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Wishart.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.Wishart.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Wishart distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1097,7 +1194,7 @@ specified).</p>
 
 <dl class="py function">
 <dt id="pymc3.distributions.multivariate.WishartBartlett">
-<code class="sig-prename descclassname">pymc3.distributions.multivariate.</code><code class="sig-name descname">WishartBartlett</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">S</span></em>, <em class="sig-param"><span class="n">nu</span></em>, <em class="sig-param"><span class="n">is_cholesky</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">return_cholesky</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">testval</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.WishartBartlett" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.distributions.multivariate.</span></code><code class="sig-name descname"><span class="pre">WishartBartlett</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">S</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_cholesky</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_cholesky</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">testval</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.multivariate.WishartBartlett" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bartlett decomposition of the Wishart distribution. As the Wishart
 distribution requires the matrix to be symmetric positive semi-definite
 it is impossible for MCMC to ever propose acceptable matrices.</p>
@@ -1168,7 +1265,7 @@ normal. You should instead use LKJCholeskyCov or LKJCorr.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

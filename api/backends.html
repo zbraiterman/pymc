@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Backends &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Backends &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../_static/default.css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -15,8 +16,6 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
     <script src="../_static/highlight.min.js"></script>
     <script src="../_static/semantic.min.js"></script>
     <link rel="shortcut icon" href="../_static/PyMC3.ico"/>
@@ -115,7 +114,7 @@ type of original trace.</p>
 <p>Store sampling values in memory as a NumPy array.</p>
 <dl class="py class">
 <dt id="pymc3.backends.ndarray.NDArray">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">NDArray</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">vars</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">test_point</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.backends.ndarray.</span></code><code class="sig-name descname"><span class="pre">NDArray</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray" title="Permalink to this definition">¶</a></dt>
 <dd><p>NDArray trace object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -132,14 +131,14 @@ type of original trace.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.close">
-<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.close" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">close</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.close" title="Permalink to this definition">¶</a></dt>
 <dd><p>Close the database backend.</p>
 <p>This is called after sampling has finished.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.get_values">
-<code class="sig-name descname">get_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">varname</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">burn</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">thin</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.get_values" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_values</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">varname</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">numpy.ndarray</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.get_values" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get values from trace.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -159,14 +158,14 @@ type of original trace.</p>
 
 <dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.point">
-<code class="sig-name descname">point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">idx</span></em><span class="sig-paren">)</span> &#x2192; Dict<span class="p">[</span>str<span class="p">, </span>Any<span class="p">]</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.point" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">point</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.point" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return dictionary of point values at <cite>idx</cite> for current chain
 with variable names as keys.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.record">
-<code class="sig-name descname">record</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em>, <em class="sig-param"><span class="n">sampler_stats</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.record" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">record</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler_stats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.record" title="Permalink to this definition">¶</a></dt>
 <dd><p>Record results of a sampling iteration.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -180,7 +179,7 @@ with variable names as keys.</p>
 
 <dl class="py method">
 <dt id="pymc3.backends.ndarray.NDArray.setup">
-<code class="sig-name descname">setup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">draws</span></em>, <em class="sig-param"><span class="n">chain</span></em>, <em class="sig-param"><span class="n">sampler_vars</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#pymc3.backends.ndarray.NDArray.setup" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">draws</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler_vars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span><a class="headerlink" href="#pymc3.backends.ndarray.NDArray.setup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform chain-specific setup.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -201,7 +200,7 @@ exported by the samplers.</p>
 
 <dl class="py function">
 <dt id="pymc3.backends.ndarray.load_trace">
-<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">load_trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">directory</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">model</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace">pymc3.backends.base.MultiTrace</a><a class="headerlink" href="#pymc3.backends.ndarray.load_trace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.backends.ndarray.</span></code><code class="sig-name descname"><span class="pre">load_trace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace"><span class="pre">pymc3.backends.base.MultiTrace</span></a><a class="headerlink" href="#pymc3.backends.ndarray.load_trace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Loads a multitrace that has been written to file.</p>
 <p>A the model used for the trace must be passed in, or the command
 must be run in a model context.</p>
@@ -224,13 +223,13 @@ must be run in a model context.</p>
 
 <dl class="py function">
 <dt id="pymc3.backends.ndarray.point_list_to_multitrace">
-<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">point_list_to_multitrace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point_list</span><span class="p">:</span> <span class="n">List<span class="p">[</span>Dict<span class="p">[</span>str<span class="p">, </span>numpy.ndarray<span class="p">]</span><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">model</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model">pymc3.model.Model</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace">pymc3.backends.base.MultiTrace</a><a class="headerlink" href="#pymc3.backends.ndarray.point_list_to_multitrace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.backends.ndarray.</span></code><code class="sig-name descname"><span class="pre">point_list_to_multitrace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_list</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span> </span><span class="pre">numpy.ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="model.html#pymc3.model.Model" title="pymc3.model.Model"><span class="pre">pymc3.model.Model</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace"><span class="pre">pymc3.backends.base.MultiTrace</span></a><a class="headerlink" href="#pymc3.backends.ndarray.point_list_to_multitrace" title="Permalink to this definition">¶</a></dt>
 <dd><p>transform point list into MultiTrace</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="pymc3.backends.ndarray.save_trace">
-<code class="sig-prename descclassname">pymc3.backends.ndarray.</code><code class="sig-name descname">save_trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trace</span><span class="p">:</span> <span class="n"><a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace">pymc3.backends.base.MultiTrace</a></span></em>, <em class="sig-param"><span class="n">directory</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">overwrite</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span> &#x2192; str<a class="headerlink" href="#pymc3.backends.ndarray.save_trace" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.backends.ndarray.</span></code><code class="sig-name descname"><span class="pre">save_trace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trace</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="inference.html#pymc3.backends.base.MultiTrace" title="pymc3.backends.base.MultiTrace"><span class="pre">pymc3.backends.base.MultiTrace</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">str</span><a class="headerlink" href="#pymc3.backends.ndarray.save_trace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save multitrace to file.</p>
 <p>TODO: Also save warnings.</p>
 <p>This is a custom data format for PyMC3 traces.  Each chain goes inside
@@ -262,7 +261,7 @@ for more information about this format.</p>
 <p>Functions for converting traces into a table-like format</p>
 <dl class="py function">
 <dt id="pymc3.backends.tracetab.trace_to_dataframe">
-<code class="sig-prename descclassname">pymc3.backends.tracetab.</code><code class="sig-name descname">trace_to_dataframe</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">trace</span></em>, <em class="sig-param"><span class="n">chains</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">varnames</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">include_transformed</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.tracetab.trace_to_dataframe" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pymc3.backends.tracetab.</span></code><code class="sig-name descname"><span class="pre">trace_to_dataframe</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chains</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">varnames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_transformed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.backends.tracetab.trace_to_dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert trace to pandas DataFrame.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -312,7 +311,7 @@ DataFrame.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

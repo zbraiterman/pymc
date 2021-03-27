@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Continuous &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Continuous &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -106,61 +107,64 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Laplace" title="pymc3.distributions.continuous.Laplace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Laplace</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Laplace log-likelihood.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.StudentT" title="pymc3.distributions.continuous.StudentT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StudentT</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.AsymmetricLaplace" title="pymc3.distributions.continuous.AsymmetricLaplace"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsymmetricLaplace</span></code></a>(name, *args, **kwargs)</p></td>
+<td><p>Asymmetric-Laplace log-likelihood.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.StudentT" title="pymc3.distributions.continuous.StudentT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StudentT</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Student’s T log-likelihood.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.HalfStudentT" title="pymc3.distributions.continuous.HalfStudentT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HalfStudentT</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.HalfStudentT" title="pymc3.distributions.continuous.HalfStudentT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HalfStudentT</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Half Student’s T log-likelihood</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Cauchy" title="pymc3.distributions.continuous.Cauchy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cauchy</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Cauchy" title="pymc3.distributions.continuous.Cauchy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cauchy</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Cauchy log-likelihood.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.HalfCauchy" title="pymc3.distributions.continuous.HalfCauchy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HalfCauchy</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.HalfCauchy" title="pymc3.distributions.continuous.HalfCauchy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HalfCauchy</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Half-Cauchy log-likelihood.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Gamma" title="pymc3.distributions.continuous.Gamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Gamma</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Gamma" title="pymc3.distributions.continuous.Gamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Gamma</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Gamma log-likelihood.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.InverseGamma" title="pymc3.distributions.continuous.InverseGamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InverseGamma</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.InverseGamma" title="pymc3.distributions.continuous.InverseGamma"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InverseGamma</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Inverse gamma log-likelihood, the reciprocal of the gamma distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Weibull" title="pymc3.distributions.continuous.Weibull"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Weibull</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Weibull" title="pymc3.distributions.continuous.Weibull"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Weibull</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Weibull log-likelihood.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Lognormal" title="pymc3.distributions.continuous.Lognormal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lognormal</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Lognormal" title="pymc3.distributions.continuous.Lognormal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lognormal</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Log-normal log-likelihood.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.ChiSquared" title="pymc3.distributions.continuous.ChiSquared"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChiSquared</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.ChiSquared" title="pymc3.distributions.continuous.ChiSquared"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ChiSquared</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p><span class="math notranslate nohighlight">\(\chi^2\)</span> log-likelihood.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Wald" title="pymc3.distributions.continuous.Wald"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wald</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Wald" title="pymc3.distributions.continuous.Wald"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Wald</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Wald log-likelihood.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Pareto" title="pymc3.distributions.continuous.Pareto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pareto</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Pareto" title="pymc3.distributions.continuous.Pareto"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pareto</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Pareto log-likelihood.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.ExGaussian" title="pymc3.distributions.continuous.ExGaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExGaussian</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.ExGaussian" title="pymc3.distributions.continuous.ExGaussian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExGaussian</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Exponentially modified Gaussian log-likelihood.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.VonMises" title="pymc3.distributions.continuous.VonMises"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VonMises</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.VonMises" title="pymc3.distributions.continuous.VonMises"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VonMises</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Univariate VonMises log-likelihood.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Triangular" title="pymc3.distributions.continuous.Triangular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Triangular</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Triangular" title="pymc3.distributions.continuous.Triangular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Triangular</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Continuous Triangular log-likelihood</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Gumbel" title="pymc3.distributions.continuous.Gumbel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Gumbel</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Gumbel" title="pymc3.distributions.continuous.Gumbel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Gumbel</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Univariate Gumbel log-likelihood</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Rice" title="pymc3.distributions.continuous.Rice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rice</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Rice" title="pymc3.distributions.continuous.Rice"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rice</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Rice distribution.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Logistic" title="pymc3.distributions.continuous.Logistic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Logistic</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Logistic" title="pymc3.distributions.continuous.Logistic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Logistic</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Logistic log-likelihood.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.LogitNormal" title="pymc3.distributions.continuous.LogitNormal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogitNormal</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.LogitNormal" title="pymc3.distributions.continuous.LogitNormal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LogitNormal</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Logit-Normal log-likelihood.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Interpolated" title="pymc3.distributions.continuous.Interpolated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interpolated</span></code></a>(name, *args, **kwargs)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pymc3.distributions.continuous.Interpolated" title="pymc3.distributions.continuous.Interpolated"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Interpolated</span></code></a>(name, *args, **kwargs)</p></td>
 <td><p>Univariate probability distribution defined as a linear interpolation of probability density function evaluated on some lattice of points.</p></td>
 </tr>
 </tbody>
@@ -168,8 +172,96 @@
 <span class="target" id="module-pymc3.distributions.continuous"></span><p>A collection of common probability distributions for stochastic
 nodes in PyMC.</p>
 <dl class="py class">
+<dt id="pymc3.distributions.continuous.AsymmetricLaplace">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">AsymmetricLaplace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.AsymmetricLaplace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asymmetric-Laplace log-likelihood.</p>
+<p>The pdf of this distribution is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}{f(x|\\b,\kappa,\mu) =
+    \left({\frac{\\b}{\kappa + 1/\kappa}}\right)\,e^{-(x-\mu)\\b\,s\kappa ^{s}}}\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[s = sgn(x-\mu)\]</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Support</p></td>
+<td><p><span class="math notranslate nohighlight">\(x \in \mathbb{R}\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p>Mean</p></td>
+<td><p><span class="math notranslate nohighlight">\(\mu-\frac{\\\kappa-1/\kappa}b\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Variance</p></td>
+<td><p><span class="math notranslate nohighlight">\(\frac{1+\kappa^{4}}{b^2\kappa^2 }\)</span></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>b: float</strong></dt><dd><p>Scale parameter (b &gt; 0)</p>
+</dd>
+<dt><strong>kappa: float</strong></dt><dd><p>Symmetry parameter (kappa &gt; 0)</p>
+</dd>
+<dt><strong>mu: float</strong></dt><dd><p>Location parameter</p>
+</dd>
+<dt><strong>See Also:</strong></dt><dd></dd>
+<dt><strong>——–</strong></dt><dd></dd>
+<dt><strong>`Reference &lt;https://en.wikipedia.org/wiki/Asymmetric_Laplace_distribution&gt;`_</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="pymc3.distributions.continuous.AsymmetricLaplace.logp">
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.AsymmetricLaplace.logp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate log-probability of Asymmetric-Laplace distribution at specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log-probability is calculated. If the log probabilities for multiple
+values are desired the values must be provided in a numpy array or theano tensor</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>TensorVariable</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pymc3.distributions.continuous.AsymmetricLaplace.random">
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.AsymmetricLaplace.random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw random samples from this distribution, using the inverse CDF method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>point: dict, optional</strong></dt><dd><p>Dict of variable values on which random values are to be
+conditioned (uses default point if not specified).</p>
+</dd>
+<dt><strong>size:int, optional</strong></dt><dd><p>Desired size of random sample (returns one sample if not
+specified).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>array</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="pymc3.distributions.continuous.Beta">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Beta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Beta" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Beta</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Beta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Beta log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -177,7 +269,7 @@ nodes in PyMC.</p>
     \frac{x^{\alpha - 1} (1 - x)^{\beta - 1}}{B(\alpha, \beta)}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-1.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-1.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-1.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-1.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-1.png" src="../../_images/continuous-1.png" />
+<img alt="../../_images/continuous-1.png" class="plot-directive" src="../../_images/continuous-1.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -221,14 +313,13 @@ parametrizations is given by</p>
 the binomial distribution.</p>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Beta.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Beta.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Beta.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Beta distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
-values are desired the values must be provided in a numpy array or theano tensor.</p>
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -242,7 +333,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Beta.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Beta.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Beta.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Beta distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -262,7 +353,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Beta.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Beta.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Beta.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Beta distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -287,7 +378,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Cauchy">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Cauchy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Cauchy" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Cauchy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Cauchy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Cauchy log-likelihood.</p>
 <p>Also known as the Lorentz or the Breit-Wigner distribution.</p>
 <p>The pdf of this distribution is</p>
@@ -296,7 +387,7 @@ specified).</p>
     \frac{1}{\pi \beta [1 + (\frac{x-\alpha}{\beta})^2]}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-2.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-2.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-2.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-2.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-2.png" src="../../_images/continuous-2.png" />
+<img alt="../../_images/continuous-2.png" class="plot-directive" src="../../_images/continuous-2.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -330,13 +421,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Cauchy.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Cauchy.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Cauchy.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Cauchy distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -351,7 +442,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Cauchy.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Cauchy.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Cauchy.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Cauchy distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -371,7 +462,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Cauchy.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Cauchy.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Cauchy.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Cauchy distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -396,14 +487,14 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.ChiSquared">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">ChiSquared</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ChiSquared" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">ChiSquared</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ChiSquared" title="Permalink to this definition">¶</a></dt>
 <dd><p><span class="math notranslate nohighlight">\(\chi^2\)</span> log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid \nu) = \frac{x^{(\nu-2)/2}e^{-x/2}}{2^{\nu/2}\Gamma(\nu/2)}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-3.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-3.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-3.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-3.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-3.png" src="../../_images/continuous-3.png" />
+<img alt="../../_images/continuous-3.png" class="plot-directive" src="../../_images/continuous-3.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -434,7 +525,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.ExGaussian">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">ExGaussian</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ExGaussian" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">ExGaussian</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ExGaussian" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exponentially modified Gaussian log-likelihood.</p>
 <p>Results from the convolution of a normal distribution with an exponential
 distribution.</p>
@@ -448,7 +539,7 @@ distribution.</p>
 standard normal distribution.</p>
 <p>(<a class="reference external" href="../../api/distributions/continuous-4.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-4.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-4.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-4.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-4.png" src="../../_images/continuous-4.png" />
+<img alt="../../_images/continuous-4.png" class="plot-directive" src="../../_images/continuous-4.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -496,13 +587,13 @@ Vol. 4, No. 1, pp 35-45.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.ExGaussian.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ExGaussian.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ExGaussian.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for ExGaussian distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -525,7 +616,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.ExGaussian.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ExGaussian.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ExGaussian.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of ExGaussian distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -545,7 +636,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.ExGaussian.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ExGaussian.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.ExGaussian.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from ExGaussian distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -570,14 +661,14 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Exponential">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Exponential</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Exponential" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Exponential</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Exponential" title="Permalink to this definition">¶</a></dt>
 <dd><p>Exponential log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid \lambda) = \lambda \exp\left\{ -\lambda x \right\}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-5.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-5.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-5.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-5.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-5.png" src="../../_images/continuous-5.png" />
+<img alt="../../_images/continuous-5.png" class="plot-directive" src="../../_images/continuous-5.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -606,13 +697,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Exponential.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Exponential.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Exponential.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of cumulative distribution function for the Exponential distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -623,19 +714,11 @@ values are desired the values must be provided in a numpy array or theano tensor
 </dl>
 </dd>
 </dl>
-<p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="re8a42a770a5e-machler2012"><span class="brackets">Machler2012</span></dt>
-<dd><p>Martin Mächler (2012).
-“Accurately computing <span class="math notranslate nohighlight">\(\log(1-\exp(-\mid a \mid))\)</span> Assessed by the Rmpfr
-package”</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Exponential.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Exponential.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Exponential.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Exponential distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -655,7 +738,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Exponential.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Exponential.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Exponential.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Exponential distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -680,18 +763,18 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Flat">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Flat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Flat" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Flat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Flat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uninformative log-likelihood that returns 0 regardless of
 the passed value.</p>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Flat.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Flat.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Flat.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Flat distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -706,7 +789,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Flat.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Flat.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Flat.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Flat distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -726,7 +809,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Flat.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Flat.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Flat.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raises ValueError as it is not possible to sample from Flat distribution</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -747,7 +830,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Gamma">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Gamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gamma" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Gamma</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gamma" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gamma log-likelihood.</p>
 <p>Represents the sum of alpha exponentially distributed random variables,
 each of which has mean beta.</p>
@@ -757,7 +840,7 @@ each of which has mean beta.</p>
     \frac{\beta^{\alpha}x^{\alpha-1}e^{-\beta x}}{\Gamma(\alpha)}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-6.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-6.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-6.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-6.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-6.png" src="../../_images/continuous-6.png" />
+<img alt="../../_images/continuous-6.png" class="plot-directive" src="../../_images/continuous-6.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -798,13 +881,13 @@ parametrizations is given by</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Gamma.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gamma.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gamma.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Gamma distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -819,7 +902,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Gamma.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gamma.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gamma.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Gamma distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -839,7 +922,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Gamma.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gamma.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gamma.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Gamma distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -864,7 +947,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Gumbel">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Gumbel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gumbel" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Gumbel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gumbel" title="Permalink to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>Univariate Gumbel log-likelihood</p>
 </div></blockquote>
@@ -876,7 +959,7 @@ specified).</p>
 \[z = \frac{x - \mu}{\beta}.\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-7.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-7.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-7.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-7.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-7.png" src="../../_images/continuous-7.png" />
+<img alt="../../_images/continuous-7.png" class="plot-directive" src="../../_images/continuous-7.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -907,13 +990,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Gumbel.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gumbel.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gumbel.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Gumbel distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -928,7 +1011,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Gumbel.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gumbel.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gumbel.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Gumbel distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -948,7 +1031,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Gumbel.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gumbel.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Gumbel.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Gumbel distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -973,14 +1056,14 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.HalfCauchy">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">HalfCauchy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfCauchy" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">HalfCauchy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfCauchy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Half-Cauchy log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid \beta) = \frac{2}{\pi \beta [1 + (\frac{x}{\beta})^2]}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-8.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-8.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-8.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-8.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-8.png" src="../../_images/continuous-8.png" />
+<img alt="../../_images/continuous-8.png" class="plot-directive" src="../../_images/continuous-8.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1012,13 +1095,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfCauchy.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfCauchy.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfCauchy.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for HalfCauchy distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -1033,7 +1116,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfCauchy.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfCauchy.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfCauchy.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of HalfCauchy distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1053,7 +1136,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfCauchy.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfCauchy.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfCauchy.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from HalfCauchy distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1078,17 +1161,17 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.HalfFlat">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">HalfFlat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfFlat" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">HalfFlat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfFlat" title="Permalink to this definition">¶</a></dt>
 <dd><p>Improper flat prior over the positive reals.</p>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfFlat.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfFlat.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfFlat.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for HalfFlat distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -1103,7 +1186,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfFlat.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfFlat.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfFlat.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of HalfFlat distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1123,7 +1206,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfFlat.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfFlat.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfFlat.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Raises ValueError as it is not possible to sample from HalfFlat distribution</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1144,7 +1227,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.HalfNormal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">HalfNormal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfNormal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">HalfNormal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfNormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Half-normal log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -1163,7 +1246,7 @@ the half-normal, they are just two parameterisation <span class="math notranslat
 </div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-9.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-9.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-9.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-9.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-9.png" src="../../_images/continuous-9.png" />
+<img alt="../../_images/continuous-9.png" class="plot-directive" src="../../_images/continuous-9.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1202,13 +1285,13 @@ the half-normal, they are just two parameterisation <span class="math notranslat
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfNormal.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfNormal.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfNormal.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for HalfNormal distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -1223,7 +1306,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfNormal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfNormal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfNormal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of HalfNormal distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1243,7 +1326,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfNormal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfNormal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfNormal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from HalfNormal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1268,7 +1351,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.HalfStudentT">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">HalfStudentT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfStudentT" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">HalfStudentT</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfStudentT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Half Student’s T log-likelihood</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -1278,7 +1361,7 @@ specified).</p>
     \left(1+\frac{1}{\nu}\frac{x^2}{\sigma^2}\right)^{-\frac{\nu+1}{2}}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-10.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-10.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-10.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-10.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-10.png" src="../../_images/continuous-10.png" />
+<img alt="../../_images/continuous-10.png" class="plot-directive" src="../../_images/continuous-10.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1316,7 +1399,7 @@ increases. (only required if sigma is not specified)</p>
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfStudentT.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfStudentT.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfStudentT.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of HalfStudentT distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1336,7 +1419,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.HalfStudentT.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfStudentT.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.HalfStudentT.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from HalfStudentT distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1361,7 +1444,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Interpolated">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Interpolated</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Interpolated" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Interpolated</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Interpolated" title="Permalink to this definition">¶</a></dt>
 <dd><p>Univariate probability distribution defined as a linear interpolation
 of probability density function evaluated on some lattice of points.</p>
 <p>The lattice can be uneven, so the steps between different points can have
@@ -1395,7 +1478,7 @@ plain array-like objects, so they are constant and cannot be sampled.</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Interpolated.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Interpolated.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Interpolated.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Interpolated distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1415,7 +1498,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Interpolated.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Interpolated.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Interpolated.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Interpolated distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1437,7 +1520,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.InverseGamma">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">InverseGamma</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.InverseGamma" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">InverseGamma</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.InverseGamma" title="Permalink to this definition">¶</a></dt>
 <dd><p>Inverse gamma log-likelihood, the reciprocal of the gamma distribution.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -1446,7 +1529,7 @@ specified).</p>
     \exp\left(\frac{-\beta}{x}\right)\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-11.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-11.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-11.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-11.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-111.png" src="../../_images/continuous-111.png" />
+<img alt="../../_images/continuous-11.png" class="plot-directive" src="../../_images/continuous-11.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1482,13 +1565,13 @@ for <span class="math notranslate nohighlight">\(\alpha &gt; 2\)</span></p></td>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.InverseGamma.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.InverseGamma.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.InverseGamma.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Inverse Gamma distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -1503,7 +1586,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.InverseGamma.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.InverseGamma.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.InverseGamma.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of InverseGamma distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1523,7 +1606,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.InverseGamma.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.InverseGamma.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.InverseGamma.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from InverseGamma distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1548,7 +1631,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Kumaraswamy">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Kumaraswamy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Kumaraswamy" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Kumaraswamy</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Kumaraswamy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Kumaraswamy log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -1556,7 +1639,7 @@ specified).</p>
     abx^{a-1}(1-x^a)^{b-1}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-12.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-12.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-12.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-12.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-12.png" src="../../_images/continuous-12.png" />
+<img alt="../../_images/continuous-12.png" class="plot-directive" src="../../_images/continuous-12.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1587,7 +1670,7 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Kumaraswamy.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Kumaraswamy.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Kumaraswamy.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Kumaraswamy distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1607,7 +1690,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Kumaraswamy.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Kumaraswamy.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Kumaraswamy.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Kumaraswamy distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1632,7 +1715,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Laplace">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Laplace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Laplace</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Laplace log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -1640,7 +1723,7 @@ specified).</p>
     \frac{1}{2b} \exp \left\{ - \frac{|x - \mu|}{b} \right\}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-13.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-13.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-13.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-13.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-13.png" src="../../_images/continuous-13.png" />
+<img alt="../../_images/continuous-13.png" class="plot-directive" src="../../_images/continuous-13.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1671,13 +1754,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Laplace.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Laplace distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -1692,7 +1775,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Laplace.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Laplace distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1712,7 +1795,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Laplace.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Laplace.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Laplace distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1737,7 +1820,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Logistic">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Logistic</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Logistic" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Logistic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Logistic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logistic log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -1745,7 +1828,7 @@ specified).</p>
     \frac{\exp\left(-\frac{x - \mu}{s}\right)}{s \left(1 + \exp\left(-\frac{x - \mu}{s}\right)\right)^2}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-14.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-14.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-14.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-14.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-14.png" src="../../_images/continuous-14.png" />
+<img alt="../../_images/continuous-14.png" class="plot-directive" src="../../_images/continuous-14.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1776,13 +1859,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Logistic.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Logistic.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Logistic.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Logistic distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -1793,19 +1876,11 @@ values are desired the values must be provided in a numpy array or theano tensor
 </dl>
 </dd>
 </dl>
-<p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="r2f2c9ecd1839-machler2012"><span class="brackets">Machler2012</span></dt>
-<dd><p>Martin Mächler (2012).
-“Accurately computing :math:  <cite>log(1-exp(- mid a mid&lt;))</cite> Assessed by the Rmpfr
-package”</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Logistic.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Logistic.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Logistic.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Logistic distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1825,7 +1900,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Logistic.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Logistic.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Logistic.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Logistic distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1850,7 +1925,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.LogitNormal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">LogitNormal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.LogitNormal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">LogitNormal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.LogitNormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logit-Normal log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -1859,7 +1934,7 @@ specified).</p>
     \exp\left\{ -\frac{\tau}{2} (logit(x)-\mu)^2 \right\}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-15.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-15.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-15.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-15.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-15.png" src="../../_images/continuous-15.png" />
+<img alt="../../_images/continuous-15.png" class="plot-directive" src="../../_images/continuous-15.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1892,7 +1967,7 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.LogitNormal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.LogitNormal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.LogitNormal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of LogitNormal distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1912,7 +1987,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.LogitNormal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.LogitNormal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.LogitNormal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from LogitNormal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1937,7 +2012,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Lognormal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Lognormal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Lognormal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Lognormal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Lognormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Log-normal log-likelihood.</p>
 <p>Distribution of any random variable whose logarithm is normally
 distributed. A variable might be modeled as log-normal if it can
@@ -1950,7 +2025,7 @@ independent factors.</p>
     \exp\left\{ -\frac{\tau}{2} (\ln(x)-\mu)^2 \right\}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-16.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-16.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-16.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-16.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-16.png" src="../../_images/continuous-16.png" />
+<img alt="../../_images/continuous-16.png" class="plot-directive" src="../../_images/continuous-16.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -1992,13 +2067,13 @@ independent factors.</p>
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Lognormal.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Lognormal.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Lognormal.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Lognormal distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -2013,7 +2088,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Lognormal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Lognormal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Lognormal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Lognormal distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2033,7 +2108,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Lognormal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Lognormal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Lognormal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Lognormal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2058,7 +2133,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Moyal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Moyal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Moyal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Moyal log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -2068,7 +2143,7 @@ specified).</p>
 \[z = \frac{x-\mu}{\sigma}.\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-17.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-17.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-17.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-17.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-17.png" src="../../_images/continuous-17.png" />
+<img alt="../../_images/continuous-17.png" class="plot-directive" src="../../_images/continuous-17.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2099,13 +2174,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Moyal.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Moyal distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -2120,7 +2195,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Moyal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Moyal distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2140,7 +2215,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Moyal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Moyal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Moyal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2165,7 +2240,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Normal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Normal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Normal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Normal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Normal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Univariate normal log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -2179,7 +2254,7 @@ given by</p>
 \[\tau = \dfrac{1}{\sigma^2}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-18.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-18.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-18.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-18.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-18.png" src="../../_images/continuous-18.png" />
+<img alt="../../_images/continuous-18.png" class="plot-directive" src="../../_images/continuous-18.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2220,13 +2295,13 @@ given by</p>
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Normal.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Normal.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Normal.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Normal distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -2241,7 +2316,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Normal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Normal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Normal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Normal distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2261,7 +2336,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Normal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Normal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Normal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Normal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2286,7 +2361,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Pareto">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Pareto</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Pareto" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Pareto</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Pareto" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pareto log-likelihood.</p>
 <p>Often used to characterize wealth distribution, or other examples of the
 80/20 rule.</p>
@@ -2295,7 +2370,7 @@ specified).</p>
 \[f(x \mid \alpha, m) = \frac{\alpha m^{\alpha}}{x^{\alpha+1}}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-19.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-19.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-19.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-19.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-19.png" src="../../_images/continuous-19.png" />
+<img alt="../../_images/continuous-19.png" class="plot-directive" src="../../_images/continuous-19.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2327,13 +2402,13 @@ for <span class="math notranslate nohighlight">\(\alpha &gt; 2\)</span></p></td>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Pareto.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Pareto.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Pareto.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Pareto distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -2348,7 +2423,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Pareto.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Pareto.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Pareto.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Pareto distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2368,7 +2443,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Pareto.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Pareto.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Pareto.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Pareto distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2393,7 +2468,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Rice">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Rice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Rice" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Rice</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Rice" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rice distribution.</p>
 <div class="math notranslate nohighlight">
 \[f(x\mid \nu ,\sigma )=
@@ -2401,7 +2476,7 @@ specified).</p>
 \left({\frac  {-(x^{2}+\nu ^{2})}{2\sigma ^{2}}}\right)I_{0}\left({\frac  {x\nu }{\sigma ^{2}}}\right),\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-20.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-20.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-20.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-20.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-20.png" src="../../_images/continuous-20.png" />
+<img alt="../../_images/continuous-20.png" class="plot-directive" src="../../_images/continuous-20.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2443,7 +2518,7 @@ The link between the two parametrizations is given by</p>
 \[b = \dfrac{\nu}{\sigma}\]</div>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Rice.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Rice.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Rice.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Rice distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2463,7 +2538,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Rice.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Rice.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Rice.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Rice distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2488,7 +2563,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.SkewNormal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">SkewNormal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.SkewNormal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">SkewNormal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.SkewNormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Univariate skew-normal log-likelihood.</p>
 <blockquote>
 <div><p>The pdf of this distribution is</p>
@@ -2498,7 +2573,7 @@ specified).</p>
 2 \Phi((x-\mu)\sqrt{\tau}\alpha) \phi(x,\mu,\tau)\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-21.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-21.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-21.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-21.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-211.png" src="../../_images/continuous-211.png" />
+<img alt="../../_images/continuous-21.png" class="plot-directive" src="../../_images/continuous-21.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2542,7 +2617,7 @@ tau the precision and sigma the standard deviation. In the limit of alpha
 approaching plus/minus infinite we get a half-normal distribution.</p>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.SkewNormal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.SkewNormal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.SkewNormal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of SkewNormal distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2562,7 +2637,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.SkewNormal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.SkewNormal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.SkewNormal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from SkewNormal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2587,7 +2662,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.StudentT">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">StudentT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.StudentT" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">StudentT</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.StudentT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Student’s T log-likelihood.</p>
 <p>Describes a normal variable whose precision is gamma distributed.
 If only nu parameter is passed, this specifies a standard (central)
@@ -2600,7 +2675,7 @@ Student’s T.</p>
     \left[1+\frac{\lambda(x-\mu)^2}{\nu}\right]^{-\frac{\nu+1}{2}}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-22.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-22.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-22.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-22.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-22.png" src="../../_images/continuous-22.png" />
+<img alt="../../_images/continuous-22.png" class="plot-directive" src="../../_images/continuous-22.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2639,14 +2714,13 @@ increases. (only required if sigma is not specified)</p>
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.StudentT.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.StudentT.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.StudentT.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Student’s T distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
-values are desired the values must be provided in a numpy array or theano tensor.</p>
+<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated.</p>
 </dd>
 </dl>
 </dd>
@@ -2660,7 +2734,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.StudentT.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.StudentT.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.StudentT.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of StudentT distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2680,7 +2754,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.StudentT.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.StudentT.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.StudentT.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from StudentT distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2705,7 +2779,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Triangular">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Triangular</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Triangular" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Triangular</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Triangular" title="Permalink to this definition">¶</a></dt>
 <dd><p>Continuous Triangular log-likelihood</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -2718,7 +2792,7 @@ specified).</p>
  \end{cases}\end{split}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-23.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-23.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-23.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-23.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-23.png" src="../../_images/continuous-23.png" />
+<img alt="../../_images/continuous-23.png" class="plot-directive" src="../../_images/continuous-23.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2751,13 +2825,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Triangular.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Triangular.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Triangular.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Triangular distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -2772,7 +2846,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Triangular.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Triangular.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Triangular.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Triangular distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2792,7 +2866,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Triangular.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Triangular.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Triangular.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Triangular distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2817,7 +2891,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.TruncatedNormal">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">TruncatedNormal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.TruncatedNormal" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">TruncatedNormal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.TruncatedNormal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Univariate truncated normal log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -2830,7 +2904,7 @@ given by</p>
 \[\tau = \dfrac{1}{\sigma^2}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-24.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-24.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-24.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-24.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-24.png" src="../../_images/continuous-24.png" />
+<img alt="../../_images/continuous-24.png" class="plot-directive" src="../../_images/continuous-24.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2876,7 +2950,7 @@ given by</p>
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.TruncatedNormal.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.TruncatedNormal.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.TruncatedNormal.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of TruncatedNormal distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2896,7 +2970,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.TruncatedNormal.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.TruncatedNormal.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.TruncatedNormal.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from TruncatedNormal distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2921,14 +2995,14 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Uniform">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Uniform</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Uniform" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Uniform</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Uniform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Continuous uniform log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid lower, upper) = \frac{1}{upper-lower}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-25.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-25.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-25.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-25.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-25.png" src="../../_images/continuous-25.png" />
+<img alt="../../_images/continuous-25.png" class="plot-directive" src="../../_images/continuous-25.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -2959,13 +3033,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Uniform.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Uniform.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Uniform.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Uniform distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -2980,7 +3054,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Uniform.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Uniform.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Uniform.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Uniform distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -2999,7 +3073,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Uniform.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Uniform.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Uniform.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Uniform distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3024,7 +3098,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.VonMises">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">VonMises</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.VonMises" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">VonMises</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.VonMises" title="Permalink to this definition">¶</a></dt>
 <dd><p>Univariate VonMises log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -3033,7 +3107,7 @@ specified).</p>
 <p>where <span class="math notranslate nohighlight">\(I_0\)</span> is the modified Bessel function of order 0.</p>
 <p>(<a class="reference external" href="../../api/distributions/continuous-26.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-26.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-26.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-26.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-26.png" src="../../_images/continuous-26.png" />
+<img alt="../../_images/continuous-26.png" class="plot-directive" src="../../_images/continuous-26.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3064,7 +3138,7 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.VonMises.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.VonMises.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.VonMises.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of VonMises distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3084,7 +3158,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.VonMises.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.VonMises.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.VonMises.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from VonMises distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3109,7 +3183,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Wald">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Wald</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Wald" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Wald</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Wald" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wald log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -3120,7 +3194,7 @@ specified).</p>
     \right\}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-27.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-27.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-27.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-27.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-27.png" src="../../_images/continuous-27.png" />
+<img alt="../../_images/continuous-27.png" class="plot-directive" src="../../_images/continuous-27.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3184,13 +3258,13 @@ statmod: Probability Calculations for the Inverse Gaussian Distribution</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Wald.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Wald.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Wald.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Wald distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -3205,7 +3279,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Wald.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Wald.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Wald.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Wald distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3225,7 +3299,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Wald.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Wald.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Wald.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Wald distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3250,7 +3324,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.continuous.Weibull">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.continuous.</code><code class="sig-name descname">Weibull</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Weibull" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.continuous.</span></code><code class="sig-name descname"><span class="pre">Weibull</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Weibull" title="Permalink to this definition">¶</a></dt>
 <dd><p>Weibull log-likelihood.</p>
 <p>The pdf of this distribution is</p>
 <div class="math notranslate nohighlight">
@@ -3259,7 +3333,7 @@ specified).</p>
     \exp(-(\frac{x}{\beta})^{\alpha})}{\beta^\alpha}\]</div>
 <p>(<a class="reference external" href="../../api/distributions/continuous-28.py">Source code</a>, <a class="reference external" href="../../api/distributions/continuous-28.png">png</a>, <a class="reference external" href="../../api/distributions/continuous-28.hires.png">hires.png</a>, <a class="reference external" href="../../api/distributions/continuous-28.pdf">pdf</a>)</p>
 <div class="figure align-default">
-<img alt="../../_images/continuous-28.png" src="../../_images/continuous-28.png" />
+<img alt="../../_images/continuous-28.png" class="plot-directive" src="../../_images/continuous-28.png" />
 </div>
 <table class="docutils align-default">
 <colgroup>
@@ -3290,13 +3364,13 @@ specified).</p>
 </dl>
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Weibull.logcdf">
-<code class="sig-name descname">logcdf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Weibull.logcdf" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logcdf</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Weibull.logcdf" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the log of the cumulative distribution function for Weibull distribution
 at the specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>value: numeric</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
+<dt><strong>value: numeric or np.ndarray or theano.tensor</strong></dt><dd><p>Value(s) for which log CDF is calculated. If the log CDF for multiple
 values are desired the values must be provided in a numpy array or theano tensor.</p>
 </dd>
 </dl>
@@ -3307,19 +3381,11 @@ values are desired the values must be provided in a numpy array or theano tensor
 </dl>
 </dd>
 </dl>
-<p class="rubric">References</p>
-<dl class="citation">
-<dt class="label" id="r6587fbdd04ec-machler2012"><span class="brackets">Machler2012</span></dt>
-<dd><p>Martin Mächler (2012).
-“Accurately computing <cite>log(1-exp(- mid a mid))</cite> Assessed by the Rmpfr
-package”</p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Weibull.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Weibull.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Weibull.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of Weibull distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3339,7 +3405,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.continuous.Weibull.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Weibull.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.continuous.Weibull.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from Weibull distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -3391,7 +3457,7 @@ specified).</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>

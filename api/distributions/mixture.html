@@ -5,9 +5,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mixture &#8212; PyMC3 3.10.0 documentation</title>
+    <title>Mixture &#8212; PyMC3 3.11.2 documentation</title>
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/semantic-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/default.css" />
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -86,7 +87,7 @@
 </table>
 <span class="target" id="module-pymc3.distributions.mixture"></span><dl class="py class">
 <dt id="pymc3.distributions.mixture.Mixture">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.mixture.</code><code class="sig-name descname">Mixture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.mixture.</span></code><code class="sig-name descname"><span class="pre">Mixture</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mixture log-likelihood</p>
 <p>Often used to model subpopulation heterogeneity</p>
 <div class="math notranslate nohighlight">
@@ -168,7 +169,7 @@ the mixture weights</p>
 </div>
 <dl class="py method">
 <dt id="pymc3.distributions.mixture.Mixture.infer_comp_dist_shapes">
-<code class="sig-name descname">infer_comp_dist_shapes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.infer_comp_dist_shapes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">infer_comp_dist_shapes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.infer_comp_dist_shapes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Try to infer the shapes of the component distributions,
 <cite>comp_dists</cite>, and how they should broadcast together.
 The behavior is slightly different if <cite>comp_dists</cite> is a <cite>Distribution</cite>
@@ -204,7 +205,7 @@ together.</p>
 
 <dl class="py method">
 <dt id="pymc3.distributions.mixture.Mixture.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of defined Mixture distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -224,7 +225,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.mixture.Mixture.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.Mixture.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from defined Mixture distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -249,7 +250,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.mixture.MixtureSameFamily">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.mixture.</code><code class="sig-name descname">MixtureSameFamily</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.MixtureSameFamily" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.mixture.</span></code><code class="sig-name descname"><span class="pre">MixtureSameFamily</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.MixtureSameFamily" title="Permalink to this definition">¶</a></dt>
 <dd><p>Mixture Same Family log-likelihood
 This distribution handles mixtures of multivariate distributions in a vectorized
 manner. It is used over Mixture distribution when the mixture components are not
@@ -289,7 +290,7 @@ the <cite>mixture_axis</cite> is consumed resulting in the shape of mixture as -
 distribution is reduced.</p>
 <dl class="py method">
 <dt id="pymc3.distributions.mixture.MixtureSameFamily.logp">
-<code class="sig-name descname">logp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.MixtureSameFamily.logp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.MixtureSameFamily.logp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate log-probability of defined <code class="docutils literal notranslate"><span class="pre">MixtureSameFamily</span></code> distribution at specified value.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -309,7 +310,7 @@ values are desired the values must be provided in a numpy array or theano tensor
 
 <dl class="py method">
 <dt id="pymc3.distributions.mixture.MixtureSameFamily.random">
-<code class="sig-name descname">random</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">size</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.MixtureSameFamily.random" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">random</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.MixtureSameFamily.random" title="Permalink to this definition">¶</a></dt>
 <dd><p>Draw random values from defined <code class="docutils literal notranslate"><span class="pre">MixtureSameFamily</span></code> distribution.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -334,7 +335,7 @@ specified).</p>
 
 <dl class="py class">
 <dt id="pymc3.distributions.mixture.NormalMixture">
-<em class="property">class </em><code class="sig-prename descclassname">pymc3.distributions.mixture.</code><code class="sig-name descname">NormalMixture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.NormalMixture" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pymc3.distributions.mixture.</span></code><code class="sig-name descname"><span class="pre">NormalMixture</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pymc3.distributions.mixture.NormalMixture" title="Permalink to this definition">¶</a></dt>
 <dd><p>Normal mixture log-likelihood</p>
 <div class="math notranslate nohighlight">
 \[f(x \mid w, \mu, \sigma^2) = \sum_{i = 1}^n w_i N(x \mid \mu_i, \sigma^2_i)\]</div>
@@ -425,7 +426,7 @@ the number of components.</p>
             &copy; Copyright 2018, The PyMC Development Team.
         </p>
         <p>
-            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.4.0.<br />
+            Created using <a href="https://sphinx-doc.org/">Sphinx</a> 3.5.3.<br />
         </p>
     </div>
 </div>
