@@ -42,7 +42,7 @@ The {ref}`model_comparison` notebook demonstrates the use of model comparison cr
 
 #### Validating a model using prior and posterior predictive checks
 
-The {ref}`posterior_predictive` notebooks explains what prior and posterior predictive checks are and how to implement them in PyMC to validate your model.
+The {ref}`posterior_predictive` notebook explains what prior and posterior predictive checks are and how to implement them in PyMC to validate your model.
 
 ### {octicon}`list-unordered;1em;sd-text-info` Glossary
 
@@ -54,21 +54,28 @@ PyMC's own {doc}`glossary` defines many core terms and provides useful reference
 
 (the path in pymc-examples repo excluding the `examples` folder, or using manual anchors if we decide to create them).
 
-::::{grid} 2
-:gutter: 4
-
-:::{grid-item-card} TODO
+### {octicon}`mortar-board;1em;sd-text-info` Tutorial notebooks
 
 
-TODO
-:::
+#### Making Personalized Recommendations using Probabilistic Matrix Factorization
 
-::::
+Learn how to build a recommendation algorithm (like the ones used by Netflix or Spotify to suggest content to users).
+
+{ref}`matrix_recommendation`
+
+TODO: Add anchor to the example
+
+## Ranking elements using Hierarchical Models
+
+Learn to rank a group of elements, in this case, a set of rugby teams, by infering a latent parameter, for example, team strength by using a hierarchical model on data like their scoring results.
+
+{ref}`hierarchical_rugby`
+
+TODO: Add anchor to the example
+
 
 ---
 ## Diving deeper
-
-Links to intermediate notebooks. {doc}`More about step 3... <learn/step3>`
 
 
 :::{toctree}
