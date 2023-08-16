@@ -28,3 +28,4 @@ sphinx>=1.5
 sphinxext-rediraffe
 typing-extensions>=3.7.4
 watermark
+tornado>=6.3.3 # not directly required, pinned by Snyk to avoid a vulnerability
